@@ -1,6 +1,6 @@
 # Collector-1.3.0, May 01, 2022 (Win-64, Linux-64)
 
-Plugin to translate applications with 'Code::Blocks'
+Plugin to translate applications ( wxWidgets) with 'Code::Blocks'
 
 **Versions for all 'Code::Block, sdk >= 2.0.0, svn >= 12004'**
 
