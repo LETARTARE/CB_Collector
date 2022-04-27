@@ -51,7 +51,7 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 		- Lin-64
 			- 'Build->Build' => 'lin_316/Collector.so' with size ... KB
 				...
-			- Plugins->Manage plugins... : Install New 
+			- 'Plugins->Manage plugins... : Install New' 
 				- choice '.../lin_316/Collector.cbpugin'
 				=> in 'Collector' log
 					Platform : 'Linux-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15' 
