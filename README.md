@@ -1,6 +1,6 @@
 # Collector-1.3.0, May 01, 2022 (Win-64, Linux-64)
 
-Plugin to translate applications ( wxWidgets) with 'Code::Blocks'
+Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 **Versions for all 'Code::Block, sdk >= 2.0.0, svn >= 12004'**
 
@@ -29,9 +29,9 @@ Plugin to translate applications ( wxWidgets) with 'Code::Blocks'
 			1- read 'http://wiki.codeblocks.org/index.php?title=Configure_tools',
 			2- read 'infos/Collector_exp.en' paragraph 'SETUP 'Poedit',
 
-	2- 'wxrc.exe' must be installed  
-		- either with 'codeblocks.exe' (for Win-64)
-		- either with 'wxWidgets' (for Linux-64)
+	2- 'wxrc' must be installed  
+		- either with 'codeblocks.exe' (for Win-64 : 'wxrc.exe' with target 'wxrc_315' or 'wxrc_316')
+		- either with 'wxWidgets' (for Linux-64 : native)
 
 
 3- Installation in 'Code::Blocks' (without 'Poedit') :
@@ -42,14 +42,21 @@ Plugin to translate applications ( wxWidgets) with 'Code::Blocks'
 		- load the project 'Collector-x.y.z.cbp
 		- choice target (lin_305, lin_315, win_315, win_316 ... : 305 => wx-3.0.5)
 		- Win-64
-			- compile  => 'win_316\Collector.dll' with size ... KB
+			- 'Build->Build' => 'win_316\Collector.dll' with size ... KB
 				...
-			- Plugins->Manage plugins... : Install New 
-				- choice '.../win_316/Collector.cbpugin'
+			- 'Plugins->Manage plugins... : Install New' 
+				- choice '...\win_316\Collector.cbpugin'
 				=> in 'Collector' log
 					Platform : 'Win-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15' 
+		- Lin-64
+			- 'Build->Build' => 'lin_316/Collector.so' with size ... KB
+				...
+			- Plugins->Manage plugins... : Install New 
+				- choice '.../lin_316/Collector.cbpugin'
+				=> in 'Collector' log
+					Platform : 'Linux-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15' 
 				
-	3- You see '&Collect' menu or 'Collector Toolbar' in tools bar
+	3- You see '&Collect' in menu bar or 'Collector Toolbar' in tools bar
 
 4 - Fast Start in 'Code::Blocks' (without 'Poedit') :
 
@@ -59,8 +66,7 @@ Plugin to translate applications ( wxWidgets) with 'Code::Blocks'
 		which lists the files with strings in 'Collector' log,
 
 	2- '&Collect->Extract from project'
-		which extracts the strings and creates the file
-			'trlocale\name_project.po'
+		which extracts the strings and creates the file 'trlocale\name_project.po'
 			
 	3- item '&Collect->Removes temporary files' 
 		which eliminates, if necessary, potential temporary files created during listing.
