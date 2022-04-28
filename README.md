@@ -11,7 +11,7 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
     The goal is to translate, in the local language, the development projects
 	under 'Code::Blocks', only those using 'wxWidgets'.
 
-	The extension 'Collector to generate in directory 'trlocale' a file :
+	The extension 'Collector' to generate in directory 'trlocale' a file :
 		- 'name_projet.po' for a single project,
 		- or 'name_projet_workspace.po' for cooperative project (workspace).
 
@@ -23,14 +23,14 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 	1- 'xgettex.exe' and 'msmerge.exe' must be installed in the system path
 		(system variable PATH), or either with 'codeblocks.exe'
 
-		-> 'Poedit' contient 'xgettext.exe' et 'msmerge.exe'
+		-> 'Win' : 'Poedit' contient 'xgettext.exe' et 'msmerge.exe'
 			'http://www.poedit.net/'
 		To install 'Poedit' in 'Code::Blocks' :
 			1- read 'http://wiki.codeblocks.org/index.php?title=Configure_tools',
 			2- read 'infos/Collector_exp.en' paragraph 'SETUP 'Poedit',
 
 	2- 'wxrc' must be installed  
-		- either with 'codeblocks.exe' (for Win-64 : 'wxrc.exe' with target 'wxrc_315' or 'wxrc_316')
+		- either with 'codeblocks' (for Win-64 : 'wxrc.exe' with target 'wxrc_315' or 'wxrc_316')
 		- either with 'wxWidgets' (for Linux-64 : native)
 
 
@@ -41,14 +41,14 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 	2- in 'Code::Blocks' 
 		- load the project 'Collector-x.y.z.cbp
 		- choice target (lin_305, lin_315, win_315, win_316 ... : 305 => wx-3.0.5)
-		- Win-64
+		- Win-64 :
 			- 'Build->Build' => 'win_316\Collector.dll' with size ... KB
 				...
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '...\win_316\Collector.cbpugin'
 				=> in 'Collector' log
 					Platform : 'Win-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15' 
-		- Lin-64
+		- Lin-64 :
 			- 'Build->Build' => 'lin_316/Collector.so' with size ... KB
 				...
 			- 'Plugins->Manage plugins... : Install New' 
