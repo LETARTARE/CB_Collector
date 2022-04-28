@@ -16,7 +16,7 @@ v 1.3.0 : May 01, 2022
 		- or 'leader_project_name.po' for cooperative project (workspace).
 
 	This file is provided to 'Poedit', built-in 'Code::Blocks', which generates
-	file '*.mo', to put in the executable directory for test
+	a file '*.mo', to put, by user, in the executable directory for test
 
 //------------------------------------------------------------------------------
 2- Prerequisites
@@ -32,8 +32,8 @@ v 1.3.0 : May 01, 2022
 			2- read 'infos/Collector_exp.en' paragraph 'SETUP 'Poedit',
 
 	2- 'wxrc' must be installed  
-		- either with 'codeblocks.exe' (for Win-64)
-		- either with 'wxWidgets' (for Lin-64)
+		- either with 'codeblocks.exe' (for 'Win-64')
+		- either with 'wxWidgets' (for 'Lin-64')
 
 //------------------------------------------------------------------------------
 3- Installation in 'Code::Blocks' (without 'Poedit') :
@@ -51,7 +51,7 @@ v 1.3.0 : May 01, 2022
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '...\win_316\Collector.cbpugin'
 				=> in 'Collector' log
-					Platform : 'Win-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15' 
+			"Platform : 'Win-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15'"
 
 		- Lin-64 :
 			- 'Build->Build' => 
@@ -60,12 +60,11 @@ v 1.3.0 : May 01, 2022
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '.../lin_316/Collector.cbpugin'
 				=> in 'Collector' log
-					Platform : 'Lin-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15' 
+			"Platform : 'Lin-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15'"
 	
 				
 	3- You see '&Collect' menu or 'Collector Toolbar' in tools bar
 	
-
 //------------------------------------------------------------------------------
 4 - Fast Start in 'Code::Blocks' (without 'Poedit') :
 //------------------------------------------------------------------------------
@@ -80,7 +79,7 @@ v 1.3.0 : May 01, 2022
 			'trlocale\project_name.po'
 			
 	** you can perform these two operations in succession by
-		&Collect->List and Extract from project'.
+		'&Collect->List and Extract from project'.
 			
 	3- '&Collect->Clean temporary' 
 		which eliminates, if necessary, potential temporary files created during listing.
@@ -95,4 +94,4 @@ v 1.3.0 : May 01, 2022
 5 - Detailed use
 //------------------------------------------------------------------------------
 
-	The directory 'infos' files contains the explanatory use.
+	The directory 'infos' contains the explanatory use.

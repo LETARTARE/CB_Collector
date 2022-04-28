@@ -12,12 +12,12 @@ v 1.3.0 : 01 mai 2022
 	Le but est de traduire, dans la langue locale, les projets de développement
 	sous 'Code::Blocks', uniquement ceux utilisant 'wxWidgets'.
 
-	L'extension 'Collector' permet de générer dans le répertoire 'trlocale' un fichier :
+	L'extension 'Collector' permet de générer, dans le répertoire 'trlocale', un fichier :
 		- 'nom_projet.po' pour un seul projet,
 		- ou 'nom_pilote_projet.po' pour un projet coopératif (workspace).
 
-	Ce fichier est fourni à 'Poedit', intégré à 'Code::Blocks', qui génère
-	fichier '*.mo', à placer dans le répertoire exécutable pour le test.
+	Ce fichier est fourni à 'Poedit', intégré à 'Code::Blocks', qui génère un fichier 
+	'*.mo', à placer, par l'utilisateur, dans le répertoire exécutable pour le test.
 
 //------------------------------------------------------------------------------
 2- Conditions préalables
@@ -33,8 +33,8 @@ v 1.3.0 : 01 mai 2022
 			2- lire 'infos/Collector_exp.en' paragraphe 'SETUP 'Poedit',
 
 	2- 'wxrc' doit être installé  
-		- soit avec 'codeblocks.exe' (pour Win-64)
-		- soit avec 'wxWidgets' (pour Lin-64)
+		- soit avec 'codeblocks.exe' (pour 'Win-64')
+		- soit avec 'wxWidgets' (pour 'Lin-64')
 
 //------------------------------------------------------------------------------
 3- Installation dans 'Code::Blocks' (sans 'Poedit') :
@@ -46,14 +46,14 @@ v 1.3.0 : 01 mai 2022
 		- chargez le projet 'Collector-x.y.z.cbp'.
 		- choisissez la cible (lin_305, lin_315, win_315, win_316 ... : 305 => wx-3.0.5)
 		- Win-64
-			- Générer->Générer' => 
+			- 'Générer->Générer' => 
 				- 'win_316\Collector.dll' avec une taille de ... KB
 				- ...
 			- 'Extensions->Gérer les extensions... : installer une nouvelle' 
 				- choisissez '...\win_316\Collector.cbpugin'
 				- ...
 				=> vous verrez dans le journal 'Collector'
-					"Plate-forme : 'Win-64', 'sdk-2.17.0', 'Collector-x.y.z', construit le '05/01/22::16:09:15'" 
+			"Plate-forme : 'Win-64', 'sdk-2.17.0', 'Collector-x.y.z', construit le '05/01/22::16:09:15'" 
 
 		- Lin-64 :
 			-  Générer->Générer' => 
@@ -63,10 +63,9 @@ v 1.3.0 : 01 mai 2022
 				- choisissez '.../lin_316/Collector.cbpugin'
 				- ...
 				=> dans le journal 'Collecter'
-					"Plate-forme : 'Lin-64', 'sdk-2.17.0', 'Collector-x.y.z', construit le '05/01/22::16:09:15'" 
+			"Plate-forme : 'Lin-64', 'sdk-2.17.0', 'Collector-x.y.z', construit le '05/01/22::16:09:15'" 
 				
 	3- Vous devez voir le menu '&Collecter' ou 'Collecteur Toolbar' dans la barre d'outils.
-	
 
 //------------------------------------------------------------------------------
 4 - Démarrage rapide dans 'Code::Blocks' (sans 'Poedit') :
@@ -82,7 +81,7 @@ v 1.3.0 : 01 mai 2022
 			fichier 'trlocale\name_project.po',
 			
 	** Vous pouvez effectuer ces deux opérations en séquence par
-		&Collecter->Lister et Extraire du projet',
+		'&Collecter->Lister et Extraire du projet',
 			
 	3- '&Collecter->Supprimer les temporaires', 
 		qui supprime, si nécessaire, les fichiers temporaires créés lors du listage,
@@ -97,4 +96,4 @@ v 1.3.0 : 01 mai 2022
 5 - Utilisation détaillée
 //------------------------------------------------------------------------------
 
-	Le répertoire 'info' des fichiers contient l'utilisation explicative.
+	Le répertoire 'info' contient l'utilisation explicative.
