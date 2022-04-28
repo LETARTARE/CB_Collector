@@ -42,7 +42,7 @@ v 1.3.0 : May 01, 2022
 	1- install 'Collector-x.y.z' in any directory
 
 	2- in 'Code::Blocks' 
-		- load the project 'Collector-x.y.z.cbp
+		- load the project 'Collector-x.y.z.cbp'
 		- choice target (lin_305, lin_315, win_315, win_316 ... : 305 => wx-3.0.5)
 		- Win-64
 			- 'Build->Build' => 
@@ -70,7 +70,7 @@ v 1.3.0 : May 01, 2022
 4 - Fast Start in 'Code::Blocks' (without 'Poedit') :
 //------------------------------------------------------------------------------
 
-	On a activated project :
+	On an activated project :
 	
 	1- '&Collect->List from project',
 		which lists the files with strings in 'Collector' log,

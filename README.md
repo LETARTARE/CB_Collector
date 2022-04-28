@@ -13,7 +13,7 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 	The extension 'Collector' to generate in directory 'trlocale' a file :
 		- 'name_projet.po' for a single project,
-		- or 'name_projet_workspace.po' for cooperative project (workspace).
+		- or 'leader_name_project.po' for cooperative project (workspace).
 
 	This file is provided to 'Poedit', built-in 'Code::Blocks', which generates
 	file '*.mo', to put in the executable directory for test
@@ -23,7 +23,7 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 	1- 'xgettex.exe' and 'msmerge.exe' must be installed in the system path
 		(system variable PATH), or either with 'codeblocks.exe'
 
-		-> 'Win' : 'Poedit' contient 'xgettext.exe' et 'msmerge.exe'
+		-> 'Win-64' : 'Poedit' contient 'xgettext.exe' et 'msmerge.exe'
 			'http://www.poedit.net/'
 		To install 'Poedit' in 'Code::Blocks' :
 			1- read 'http://wiki.codeblocks.org/index.php?title=Configure_tools',
@@ -39,11 +39,12 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 	1- install 'Collector-x.y.z' in any directory
 
 	2- in 'Code::Blocks' 
-		- load the project 'Collector-x.y.z.cbp
+		- load the project 'Collector-x.y.z.cbp'
 		- choice target (lin_305, lin_315, win_315, win_316 ... : 305 => wx-3.0.5)
 		- Win-64 :
-			- 'Build->Build' => 'win_316\Collector.dll' with size ... KB
-				...
+			- 'Build->Build' => 
+				- 'win_316\Collector.dll' with size ... KB
+				- ...
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '...\win_316\Collector.cbpugin'
 				=> in 'Collector' log
@@ -54,7 +55,7 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '.../lin_316/Collector.cbpugin'
 				=> in 'Collector' log
-					Platform : 'Linux-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15' 
+					**Platform : 'Linux-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15' **
 				
 	3- You see '&Collect' in menu bar or 'Collector Toolbar' in tools bar
 
@@ -62,7 +63,7 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 	On a activated project :
 	
-	1- '&Collect->List project',
+	1- '&Collect->List from project',
 		which lists the files with strings in 'Collector' log,
 
 	2- '&Collect->Extract from project'
