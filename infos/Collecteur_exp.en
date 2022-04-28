@@ -288,7 +288,7 @@ F1- USE ON SINGLE PROJECT
 F-2 USE ON MULTIPLE PROJECTS
 
 	All generated files will be created in the directory :
-		'dir_pilot_project\trlocale\'
+		'dir_leader_project\trlocale\'
 
 	If you have a pilot project, which uses other contributing projects
 	and you want a single translation file, then you need to build a special 

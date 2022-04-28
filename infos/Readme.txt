@@ -11,9 +11,9 @@ v 1.3.0 : May 01, 2022
 	The goal is to translate, in the local language, the development projects
 	under 'Code::Blocks', only those using 'wxWidgets'.
 
-	The extension 'Collector to generate in directory 'trlocale' a file :
+	The extension 'Collector' to generate in directory 'trlocale' a file :
 		- 'name_projet.po' for a single project,
-		- or 'name_projet_workspace.po' for cooperative project (workspace).
+		- or 'leader_project_name.po' for cooperative project (workspace).
 
 	This file is provided to 'Poedit', built-in 'Code::Blocks', which generates
 	file '*.mo', to put in the executable directory for test
