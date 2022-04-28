@@ -30,8 +30,8 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 			2- read 'infos/Collector_exp.en' paragraph 'SETUP 'Poedit',
 
 	2- 'wxrc' must be installed  
-		- either with 'codeblocks' (for Win-64 : 'wxrc.exe' with target 'wxrc_315' or 'wxrc_316')
-		- either with 'wxWidgets' (for Linux-64 : native)
+		- either with 'codeblocks' (for 'Win-64' : 'wxrc.exe' with target 'wxrc_315' or 'wxrc_316')
+		- either with 'wxWidgets' (for 'Lin-64' : native)
 
 
 3- Installation in 'Code::Blocks' (without 'Poedit') :
@@ -48,14 +48,14 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '...\win_316\Collector.cbpugin'
 				=> in 'Collector' log
-					Platform : 'Win-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15' 
+					**Platform : 'Win-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15'** 
 		- Lin-64 :
 			- 'Build->Build' => 'lin_316/Collector.so' with size ... KB
 				...
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '.../lin_316/Collector.cbpugin'
 				=> in 'Collector' log
-					**Platform : 'Linux-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15' **
+					**Platform : 'Linux-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15'**
 				
 	3- You see '&Collect' in menu bar or 'Collector Toolbar' in tools bar
 

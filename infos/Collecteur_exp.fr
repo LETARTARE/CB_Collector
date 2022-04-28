@@ -40,15 +40,15 @@ A- OBJECTIF :
 		  (dupliqué en 'nom_de_projet_pilote.po' exploitable par 'Poedit').
 		  
 	** les deux modes peuvent être enchainés par
-		LISTER puis EXTRAIRE
+		'LISTER puis EXTRAIRE'
 
 	Elle prend en compte les fichiers éligibles suivants :
-		'*.h', '*.cpp', '*.script', '*.xrc', '*.wxs', (à venir *.xml')
+		'*.h', '*.cpp', '*.script', '*.xrc', '*.wxs', (à venir '*.xml')
 	les fichiers '*.xrc', '*.wxs'  génèrent des fichiers temporaires
 		'*_xrc.str???, *_wxs.str???' (??? = numéro)	à l'aide de
 		l'exécutable 'wxrc' (wxWidgets-3.x.y), qui sont ensuite supprimés.
 
-	Il prend en compte le préfixe d'extraction :
+	Elle prend en compte le préfixe d'extraction :
 		1- pour le listage 		: '_'
 		2- pour l'extraction 	: '_'
 
@@ -65,17 +65,17 @@ A- OBJECTIF :
 		   à traduire, ...)
 		8- appelle 'Poedit' pour la traduction et pour compléter l'en-tête.
 		9- dans 'Poedit' traduire à la main, ou automatiquement si vous avez
-            créé une base de traduction automatique TM.
+			créé une base de traduction automatique TM.
 
 	Les points 1 à 7 sont gérés correctement par l'extension chargé au
 	démarrage de 'C::B' et accessible par de nouvelles entrées dans un menu
 	'&Collecter' dans la barre des menus.
-	Les points 8 et 9  ne sont générés que si 'Poedit'	est installé dans le 
+	Les points 8 et 9  ne sont générés que si 'Poedit' est installé dans le 
 	menu 'Outils->Poedit' par vos soins.
 
 			** sur un projet unique :'nom_de_projet.cbp'
 		1- 'Collecter->Lister depuis le projet',
-			qui génère le fichier 'nom_de_projet.lst'.
+			qui génère le fichier 'nom_de_projet.list'.
 		2- 'Collecter->Extraire du projet',
 			qui génère les fichiers 'nom_de_projet.extr' et 'nom_de_projet.po'.
 		3- 'Collecter->Lister puis Extraire le projet,
@@ -90,10 +90,13 @@ A- OBJECTIF :
 			qui réalise l'enchainement des points 4 et 5.
 
 			** actions communes
-		7- Initialiser le graphe d'état de 'Collecter'.
-		8- Supprimer les fichiers temporaires.
-		9- Arréter l'action en cours.
-	
+		7- 'Collecter->Initialiser le graphe d'état',
+			 remet le graphe d'état de 'Collecter' au pont de départ,
+		8- 'Collecter->Supprimer les temporaires',
+			qui supprime les fichiers temporaires dans '...\trlocale\temp',
+		9-  remet le graphe d'état de 'Collecter' au pont de départ,
+		8- 'Collecter->Arréter l'action en cours',
+			qui arréte l'action en cours, soit le listage ou l'extraction.
 	
 
 B- DÉMARRAGE RAPIDE sur un projet unique :
@@ -117,13 +120,14 @@ B- DÉMARRAGE RAPIDE sur un projet unique :
 C- ENVIRONNEMENT de test, à la date du fichier :
 
 	- Systèmes d'exploitation	:
-		- Win-7 64 with Mingw64 avec gcc-8.1.0-seh (wx-3.1.5)
+		- Win-7 64 avec Mingw64 et gcc-8.1.0-seh (wx-3.1.5 et wx-3.1.6)
 		- Leap-15.3 (64 bits) avec gcc-7.1.0 (wx-3.0.5)
 	- Outils	:
-		- Code::Blocks depuis r12524 (sdk 2.2.0 du 2021-09-04),
+		- 'Code::Blocks' depuis r12524 (sdk 2.2.0 du 2021-09-04),
 		jusqu'a r12803 (sdk 2.17.0), , avec 'wxWidgets 3.x.y unicode'
+		- actuellement 'Cb-12803-wx-3.1.6', sdk=2.17.0
 	- Utilitaires	:
-		- 'xgettext', 'msmerge' fournis avec 'Poedit'.
+		- 'xgettext', 'msmerge' fournis avec 'Poedit' v-3.0.1.
 		- 'wxrc' utilitaire de 'wxWidgets' permettant aussi
 			d'extraire les chaînes à traduire des fichiers '*.xrc' et ''*.wxs'.
 	
@@ -133,7 +137,7 @@ C- ENVIRONNEMENT de test, à la date du fichier :
 
 D- CONTENU du paquet compressé livré
 
-	La solution proposée est contenue dans un paquet 'Collector.7z ou .zip'
+	La solution proposée est contenue dans un paquet 'Collector.7z' ou '*.zip'
 	qui comporte :
 
 		1- pour Win-7 une cible 'wxrc_3xy' pour compiler l'utilitaire 'wxrc'
@@ -141,21 +145,20 @@ D- CONTENU du paquet compressé livré
 		   l'exécutable 'codeblocks', ainsi que des fichiers '*.xrc' extrait de
 		   'C::B' pour tests.
 
-		2- une cible 'doc' non compilable contenant :
+		2- une cible 'infos' non compilable contenant :
 			2-1- ce fichier d'aide 'Collecteur_exp.fr' en mode texte 'UTF-8'
 				et son équivalent 'Collector_exp.en' en anglais
 			2-2- deux fichiers texte d'explications rapides :
 				'Alire.txt', 'Readme.txt'
 
 		3- des cibles 'lin_3xy' et 'win_3xy' compilables générant
-			- 'Collector.dll' ou 'Collector.so' la bibliothèue dynamique
-			- 'Collector.zip' contenant les ressouces et le 'manifest.xml'
+			- 'Collector.so' ou 'Collector.dll' la bibliothèue dynamique
+			- 'Collector.zip' contenant les ressources et le 'manifest.xml'
 			- 'Collector.cbplugin' contenant les deux premiers: c'est ce fichier
 			  comprimé qui sera chargé depuis l'environnement 'C::B'
 			  
-		4- pour les cibles 'Win-7' 'wxrc_3xy' qui peuvent être compilées en copiant
+		4- les cibles 'Win-7' : 'wxrc_3xy' peuvent être compilées et elles copient
 		l'exécutable 'wxrc.exe' dans le répertoire où se trouve l'exécutable 'codeblocks'.
-		 situé
 
 E- INSTALLATION du paquet :
 
@@ -180,14 +183,16 @@ E- INSTALLATION du paquet :
 				- $cb = $(#sdk2170_3xy)
 			- dans la cible	: '..._3xy->Variables personnalisées'
 				- Win-7 : 'win_3xy' => $wx = $(#wx3xy_64)
-				- Lin	: 'lin_3xy' ...
+				- Lin	: 'lin_3xy' : utilise 
+					- "`wx-config --cflags  --version=3.0`"
+					- "`wx-config --libs  --version=3.0`"
 
 			4-1-1 vous devrez dans 'C::B' (svn >= r12025 => sdk-2.2.0) dfinir :
 				- les variables globales :'Configuration->Variables globales...'
-					 - #sdk2170_3xy		= "chemin_de_votre_version_source_CB\src"
+					 - #sdk2170_3xy	= "chemin_de_votre_version_source_CB\src"
 					 - #wx3xy_64 	= "chemin_de_votre_version_wx3xx"
 				- le même compilateur sera utilisé pour compiler
-					- wxWidgets-3.x.y'
+					- 'wxWidgets-3.x.y'
 					- version de 'C:B' utilisé pour construire cette extension
 
 			4-1-2 'Win-7' : construire la cible 'wxrc_3xx' :
@@ -196,7 +201,7 @@ E- INSTALLATION du paquet :
 
 			4-1-2 construire la cible '..._3xy'
 			4-1-3 charger manuellement cette extension par le menu :
-				- 'Extensions->Gestion des extensions...->Installer nouveau...'
+				- 'Extensions->Gestion des extensions...->Installer nouvelle...'
 				en choisissant le fichier '....\l..._3xy\Collector.cbplugin'
 
 			4-1-4 vérifier que 'Aide->Extension->Collecteur...' existe et dans
@@ -204,21 +209,21 @@ E- INSTALLATION du paquet :
 	===>
 		Aide à la traduction des projets 'C::B' (sdk-2.17.0)
 		Bienvenue sur 'Collector' : extension d'aide à la traduction des projets sur 'CODE::BLOCKS'.
-		Vous pouvez, par le menu '&Collect' de la barre de menu
-			1- 'List from project' : lister les chaînes de caractères avec le mot clé de sélection ('_').
+		Vous pouvez, par le menu '&Collecter' de la barre de menu
+			1- 'Lister depuis le projet' : lister les chaînes de caractères avec le mot clé de sélection ('_').
 			2- 'Extraire du projet' : extraire les chaînes de caractères vers 'nom_projet.po' avec le mot clé précédent.
 				avec le mot-clé précédent.
-			3- 'Stop action' : interrompt l'action en cours.
+			3- 'Stop action en cours' : interrompt l'action en cours.
 	<===
 			- v ?.?.?  indique la version
 			Votre traducteur est prêt a être utilisé.
 
 		4.2- si des actualisations sont disponibles
 			- à la date de ce fichier :
-				- Win-64, wxWidgets-3.1.6, 'C::B' >= r12724 (sdk >= 2.16.0)
-				- Lin-64, wxWidgets-3.0.5, 'C::B' >= r12025 (sdk >= 2.2.0)
+				- 'Win-64', 'wxWidgets-3.1.6', 'C::B' >= r12724 (sdk >= 2.16.0)
+				- 'Lin-64', 'wxWidgets-3.0.5', 'C::B' >= r12025 (sdk >= 2.2.0)
 			4-2-1 choisir (si elle existe) celle correspondant à
-				- votre système d'exploitation : Win-64, Lin-64
+				- votre système d'exploitation : 'Win-64', 'Lin-64'
 				- votre version de 'C:B' et 'wxWidgets-3.x.y'
 			4-2-2 placer les deux éléments suivants
 				- 'chemin_cb_executable\share\CodeBlocks\Collector.zip'
@@ -251,7 +256,7 @@ F-1 UTILISATION SUR UN PROJET UNIQUE
 			  - exemple '_("...")' : cette chaîne n'a pas besoin de traduction !
 
 		2-3- ensuite, si vous désirez créer les fichiers :
-				'nom_de_projet.po' et 'nom_de_projet.po'
+				'nom_de_projet.po' et 'nom_de_projet.pot'
 			vous devez utiliser le mode 'EXTRAIRE' par le menu principal ou la
 			barre d'outils de
 					'Collecter->Extraire depuis le projet'
@@ -275,7 +280,7 @@ F-1 UTILISATION SUR UN PROJET UNIQUE
 				'nom_de_projet.extr' qui sera ouvert dans l'éditeur,
 			6- l'appel de 'Poedit' qui charge 'nom_de_projet.po'.
 
-			- si 'Poedit' n'apparait pas automatiquement, vous devrez l'appeler
+			** si 'Poedit' n'apparait pas automatiquement, vous devrez l'appeler
 			  manuellement pour charger 'nom_de_projet.po', vous pourrez alors
 			  compléter l'en-tête dans le menu de 'Poedit' :
 				'Catalogue->Configuration...'
@@ -284,7 +289,7 @@ F-1 UTILISATION SUR UN PROJET UNIQUE
 				- Pays,
 				- Jeu de caractères du code source : utf-8
 				- Formes plurielles éventuellement : 'nplurals=2; plural n>1'
-                 (voir "http://translate.sourceforge.net/wiki/l10n/pluralforms")
+					(voir "http://translate.sourceforge.net/wiki/l10n/pluralforms")
 
 		2-4- si vous désirez revenir au mode 'LISTER' utilisez l'initialisation
 			du graphe d'état dans le menu 'Collect' ou la barre d'outil
@@ -292,14 +297,14 @@ F-1 UTILISATION SUR UN PROJET UNIQUE
 F-2 UTILISATION SUR PROJETS MULTIPLES
 
 	Tous les fichiers générés seront créés dans le répertoire :
-		'dir_projet_pilote\trlocale\'
+		'repértoire_projet_pilote\trlocale\'
 
 	Si vous avez un projet pilote, qui utilise d'autres projets contributifs
 	et que vous désirez un fichier de traduction unique, alors vous devez
 	construire un espace de travail particulier qui les englobe tous :
 		exemple :
 		'C::B' avec ses extensions externes pourrait s'appeler
-			'CodeBlocksAndContribPlugins.workspace'
+			'CodeBlocks_wx31_64.workspace'  ou 'CodeBlocks_wx31-unix.workspace '
 	lequel contiendra 'CodeBlocks.cbp' + 'ContribPlugins.worspace' actuel.
 
 	1- chargez cet espace de travail dans 'C::B'
@@ -329,8 +334,8 @@ F-2 UTILISATION SUR PROJETS MULTIPLES
 G- REMARQUES
 
 	1- les fichiers '*.po' et '*.pot' sont notés différemment :
-		- en projet unique  : 'nom_de_projet.pot' et '*.po',
-		- en multiprojets  	: 'nom_de_projet_pilote.po' et '*'.pot',
+		- en projet unique	: 'nom_de_projet.pot' et '*.po',
+		- en multiprojets	: 'nom_de_projet_pilote.po' et '*'.pot',
 		ainsi seuls les fichiers '*.pot' (source) seront différents, alors qu'il
 		ne peut exister qu'un seul 'nom_de_projet_pilote.po' chargé par 'Poedit'.
 
@@ -348,7 +353,7 @@ G- REMARQUES
 			création de répertoire est une opération protégée, 'C::B' vous
 			demandera peut-être la première fois, si vous autorisez l'extension
 			à réaliser cette opération de façon permanente ou pas :
-				- choisissez de façon permanente.
+				-> choisissez de façon permanente.
 
 		3-3- il faudra aussi indiquer ce chemin à 'Poedit' (voir ci-dessous)
 
@@ -358,9 +363,10 @@ G- REMARQUES
 			- éditer la configuration de 'Poedit' et positionner :
 				Paramètres = "$(ACTIVE_EDITOR_FILENAME)"
 				Répertoire de travail = $(PROJECT_DIR)trlocale
+				Options de lancement : cochez la dernière,
 			- respecter les "" car ils permettent d'avoir des noms de projets
 			  avec des espaces (exemple 'Inno Setup' )
-			- '$(PROJECT_DIR)' représente 'rep_projet_pilote',
+			- '$(PROJECT_DIR)' représente 'répertoire_projet_pilote',
 			- '$(PROJECT_DIR)trlocale' définit le répertoire de recherche
 
 	5- si un nom de projet comporte des caractères non gérés par les
@@ -395,17 +401,17 @@ H- A FAIRE
 	- prendre en compte les fichiers '*.xml' ( en cours de résolution )
 	- supprimer les lignes vides dans les chaînes traduites ...
 	- ajouter le préfixe 'wxPLURAL' ??
-	- ajouter d'autres types de projet ...
+	- ajouter d'autres types de projet (Qt, ?) ...
 	- adapter pour MACOX ...
 	- ...
 
 
 I- ANNEXES
 
-	Dans 'Poedit' la traduction automatique nécessite une validation message
-	par message à la main !!!.
-
-	La sauvegarde du fichier 'nom_de_projet.po' génère en plus le fichier
+	Dans 'Poedit' :
+	
+	- la traduction automatique nécessite une validation message par message à la main !!!.
+	- la sauvegarde du fichier 'nom_de_projet.po' génère en plus le fichier
 	'nom_de_projet.mo' dans le même répertoire, si vous avez coché la case
 		'Fichier->Préférences->Editeur'
 		:x: compiler automatiquement les fichiers '.mo' lors de la sauvegarde,
@@ -427,7 +433,7 @@ I- ANNEXES
 				( attention aux '#, fuzzy, c-format' )
 			- sauvegarder et fermer ce fichier.
 
-		1-3- dans 'Poedit' recharger 'nom_de_base.po' pour VéRIFICATION
+		1-3- dans 'Poedit' recharger 'nom_de_projet.po' pour VéRIFICATION
 			- sauvegarder le fichier en générant le 'nom_de_projet.mo',
 			- probablement certaines erreurs apparaitront, dues à la prise en compte
 				des nouvelles chaînes validées par la suppression des '#, fuzzy',
@@ -446,7 +452,7 @@ I- ANNEXES
 			voulu.
 
 	2- une solution alternative serait, dans 'Poedit', d'actualiser le fichier
-		'nom_de_base.po' par
+		'nom_de_projet.po' par
 			'Catalogue->Mettre à jour depuis un fichier POT'
 		 par un ancien fichier 'nom_de_projet.po', déjà traduit préalablement, et
 		 renommé 'nom_de_projet.pot', ainsi 'Poedit' fusionnera les deux fichiers
