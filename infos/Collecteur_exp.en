@@ -3,7 +3,7 @@
  * Purpose:   explaining the plugin 'Collector.cbp'
  * Author:    LETARTARE	(http://forums.codeblocks.org)
  * Created:   2022-05-01
- * Version    1.3.0 UTF-8
+ * Version    1.5.0 UTF-8
  * Copyright: LETARTARE
  * License:   GPL
  ******************************************************************************/
@@ -45,9 +45,10 @@ A- PURPOSE :
 
 	It takes into account the eligible files :
 		'*.h', '*.cpp', '*.script', '*.xrc', '*.wxs', (to come '*.xml')
-	files '*. xrc, *.wxs' generate temporary files 
-	'*_xrc.str???, *_wxs.str???' (??? = number) using of 'wxrc' executable 
-	(wxWidgets-3.1.x), which are then deleted.
+	* files '*. xrc, *.wxs' generate temporary files 
+		'*_xrc.str???, *_wxs.str???' (??? = number) using of 'wxrc' executable 
+		(wxWidgets-3.1.x), which are then deleted.
+	* files '*.xml' using of 'its' rules from '*.its' files
 
 	It takes into account the prefixes of extractions:
 		1- for the listing	: '_'
@@ -123,7 +124,9 @@ C- TEST ENVIRONMENT, to the date of the file :
 			up to r12803 (sdk 2.17.0), with wxWidgets 3.x.y unicode,
 		- actually 'Cb-12803-wx-3.1.6', sdk=2.17.0
 	- Utilities :
-		- 'xgettext', 'msmerge' (using that of 'Poedit')
+		- 'xgettext', 'msmerge' (using that of 'Poedit') and two files
+		   'codeblocks.its', 'codeblocks.loc' to be put in the 'its' 
+		   directory of 'Poedit
 		- 'wxrc' executable of 'wxWidgets' utility, also allowing to extract
 			the string to translate files '*.xrc'
 
@@ -375,12 +378,12 @@ G- NOTES
 
 		On my test environment 'Win-7' :
 
-			Cb-12753-wx3.1.5-(64bit)' with the keyword '_'
+			Cb-12803-wx3.1.6-(64bit)' with the keyword '_'
 			1215 files, 25 targets, 275 eligible files:
 				- listing = 1 min 16 S, with 2033 strings collected,
 				- extraction = 28 S with 88 temporary files
 
-			Cb-r7953 + external extensions
+			Cb-12803 + external extensions
 			in a workspace of 38 projects in total:
 				- listing = 3 min 35 S
 					- 8934 extractable strings in 2453 files of which 636 are elected
@@ -391,7 +394,7 @@ G- NOTES
 
 H- TO DO
 
-	- take into account '*.xml' files ( in progress )
+	- take into account other types of '*.xml' files
 	- remove empty lines in translated strings ...
 	- add 'wxPLURAL' prefix ??
 	- add other project types (Qt, ?) ...

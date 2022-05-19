@@ -2,7 +2,7 @@ Readme.txt  (UTF8)
 
 LETARTARE(http://forums.codeblocks.org)
 
-v 1.3.0 : May 01, 2022 
+v 1.5.0 : May 03, 2022 
 
 //------------------------------------------------------------------------------
 1 - What is this project:
@@ -51,7 +51,7 @@ v 1.3.0 : May 01, 2022
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '...\win_316\Collector.cbpugin'
 				=> in 'Collector' log
-			"Platform : 'Win-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15'"
+			"Platform : 'Win-64', 'sdk-2.17.0', 'Collector-1.5.0', built the '05/03/22::16:09:15'"
 
 		- Lin-64 :
 			- 'Build->Build' => 
@@ -60,7 +60,7 @@ v 1.3.0 : May 01, 2022
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '.../lin_316/Collector.cbpugin'
 				=> in 'Collector' log
-			"Platform : 'Lin-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15'"
+			"Platform : 'Lin-64', 'sdk-2.17.0', 'Collector-1.5.0', built the '05/03/22::16:09:15'"
 	
 				
 	3- You see '&Collect' menu or 'Collector Toolbar' in tools bar

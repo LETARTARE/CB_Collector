@@ -1,10 +1,10 @@
-# Collector-1.3.0, May 01, 2022 (Win-64, Linux-64)
+# Collector-1.6.0, May 20, 2022 (Win-64, Linux-64)
 
 Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 **Versions for all 'Code::Block, sdk >= 2.0.0, svn >= 12004'**
 
-**Last: sdk = 2.17.0, svn = 12724 -> ...**
+**Last: sdk = 2.18.0, svn = 12813 -> ...**
 
 1 - What is this project :
 
@@ -23,7 +23,8 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 	1- 'xgettex.exe' and 'msmerge.exe' must be installed in the system path
 		(system variable PATH), or either with 'codeblocks.exe'
 
-		-> 'Win-64' : 'Poedit' contient 'xgettext.exe' et 'msmerge.exe'
+		-> 'Win-64' : 'Poedit' containt 'xgettext.exe' and 'msmerge.exe'
+		-> 'Lin-64' : 'xgettext' is independent of 'Poedit'
 			'http://www.poedit.net/'
 		To install 'Poedit' in 'Code::Blocks' :
 			1- read 'http://wiki.codeblocks.org/index.php?title=Configure_tools',
@@ -48,14 +49,14 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '...\win_316\Collector.cbpugin'
 				=> in 'Collector' log
-					**Platform : 'Win-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15'** 
+					** Platform : 'Win-64', 'sdk-2.18.0', 'Collector-1.5.0', built the '20/05/22::10:51:52'  
 		- Lin-64 :
-			- 'Build->Build' => 'lin_316/Collector.so' with size ... KB
+			- 'Build->Build' => 'lin_305/Collector.so' with size ... KB
 				...
 			- 'Plugins->Manage plugins... : Install New' 
-				- choice '.../lin_316/Collector.cbpugin'
+				- choice '.../lin_305/Collector.cbpugin'
 				=> in 'Collector' log
-					**Platform : 'Linux-64', 'sdk-2.17.0', 'Collector-x.y.z', built the '05/01/22::16:09:15'**
+					** Platform : 'Linux-64', 'sdk-2.18.0', 'Collector-1.6.0', built the '20/05/22::16:09:15' 
 				
 	3- You see '&Collect' in menu bar or 'Collector Toolbar' in tools bar
 

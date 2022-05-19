@@ -2,8 +2,8 @@
  * Name:      Collector_exp.fr
  * Purpose:   texte explicatif sur l'extension 'Collector.cbp'
  * Author:    LETARTARE	(http://forums.codeblocks.org)
- * Created:   2022-05-01
- * Version    1.3.0 UTF-8
+ * Created:   2022-05-12
+ * Version    1.5.0 UTF-8
  * Copyright: LETARTARE
  * License:   GPL
  ******************************************************************************/
@@ -17,7 +17,7 @@ A- OBJECTIF :
 	On utilise en final 'Poedit' (outil dans 'C::B'), auquel on fournit un
 	fichier	'nom_de_projet.po' directement exploitable par 'Poedit'.
 
-	L'extension binaire 'Collector' permet de générer ce fichier
+	L'extension binaire 'Collecteur' permet de générer ce fichier
 	'nom_de_projet.po' à partir du projet actif dans 'C:B', en se fusionnant
 	au contenu d'un éventuel 'nom_de_projet.po' précédent.
 
@@ -43,10 +43,11 @@ A- OBJECTIF :
 		'LISTER puis EXTRAIRE'
 
 	Elle prend en compte les fichiers éligibles suivants :
-		'*.h', '*.cpp', '*.script', '*.xrc', '*.wxs', (à venir '*.xml')
-	les fichiers '*.xrc', '*.wxs'  génèrent des fichiers temporaires
+		'*.h', '*.cpp', '*.script', '*.xrc', '*.wxs', '*.xml'
+	* les fichiers '*.xrc', '*.wxs'  génèrent des fichiers temporaires
 		'*_xrc.str???, *_wxs.str???' (??? = numéro)	à l'aide de
 		l'exécutable 'wxrc' (wxWidgets-3.x.y), qui sont ensuite supprimés.
+	* les fichiers '*.xml' utilisent les règles 'its' dans des fichiers '*.its'
 
 	Elle prend en compte le préfixe d'extraction :
 		1- pour le listage 		: '_'
@@ -127,7 +128,9 @@ C- ENVIRONNEMENT de test, à la date du fichier :
 		jusqu'a r12803 (sdk 2.17.0), , avec 'wxWidgets 3.x.y unicode'
 		- actuellement 'Cb-12803-wx-3.1.6', sdk=2.17.0
 	- Utilitaires	:
-		- 'xgettext', 'msmerge' fournis avec 'Poedit' v-3.0.1.
+		- 'xgettext', 'msmerge' fournis avec 'Poedit' v-3.0.1 plus deux fichiers
+			'codeblocks.its', 'codeblocks.loc' à mettre dans le répertore 'its' 
+			de 'Poedit'
 		- 'wxrc' utilitaire de 'wxWidgets' permettant aussi
 			d'extraire les chaînes à traduire des fichiers '*.xrc' et ''*.wxs'.
 	
@@ -382,12 +385,12 @@ G- REMARQUES
 
 		Sur mon environnement de test 'Win-7' :
 
-			'Cb-12753-wx3.1.3-(64bit)' avec le mot clé '_'
+			'Cb-12803-wx3.1.6-(64bit)' avec le mot clé '_'
 			: 1215 fichiers, 25 cibles, 275 fichiers éligibles :
 				- listage = 1 min 16 S,   avec 2033 chaînes collectées,
 				- extraction = 28 S  avec 88 fichiers temporaires
 
-			'CodeBlocksr7953 + les extensions externes'
+			'Cb-12803 + les extensions externes'
 			dans un espace de travail de 38 projets au total :
 				- listage = 3 min 35 S
 					- 8934 chaînes extractibles dans 2453 fichiers dont 636 élus
@@ -398,7 +401,7 @@ G- REMARQUES
 
 H- A FAIRE
 
-	- prendre en compte les fichiers '*.xml' ( en cours de résolution )
+	- prendre en compte d'autres type de fichiers '*.xml' 
 	- supprimer les lignes vides dans les chaînes traduites ...
 	- ajouter le préfixe 'wxPLURAL' ??
 	- ajouter d'autres types de projet (Qt, ?) ...
@@ -412,7 +415,7 @@ I- ANNEXES
 	
 	- la traduction automatique nécessite une validation message par message à la main !!!.
 	- la sauvegarde du fichier 'nom_de_projet.po' génère en plus le fichier
-	'nom_de_projet.mo' dans le même répertoire, si vous avez coché la case
+	  'nom_de_projet.mo' dans le même répertoire, si vous avez coché la case
 		'Fichier->Préférences->Editeur'
 		:x: compiler automatiquement les fichiers '.mo' lors de la sauvegarde,
 
