@@ -1,0 +1,8 @@
+<map id="Pre::compileableProjectTargets" name="Pre::compileableProjectTargets">
+<area shape="rect" id="node2" href="$class_create_for_qt.html#ae109f6c3caf1a9a25f9b4a5a49b0c4fc" title="Detects if the current target uses &#39;Qt&#39; libraries,. " alt="" coords="256,49,451,75"/>
+<area shape="rect" id="node3" href="$class_collector.html#a08f5926a5fb84fc870784f6cec385a40" title="Detects project type : &#39;Wx&#39; or &#39;Qt&#39;. " alt="" coords="499,49,685,75"/>
+<area shape="rect" id="node4" href="$class_collector.html#abf69f761754e596b8c380fef9815fc05" title="This method called by project activate allows detect project using the &#39;Wx&#39; or &#39;Qt&#39; libraries..." alt="" coords="733,23,919,50"/>
+<area shape="rect" id="node7" href="$class_collector.html#a333c1be7e5a5235209c3134b877cd0dc" title="This method called by target activate allows detect target using the &#39;Wx&#39; or &#39;Qt&#39; libraries..." alt="" coords="967,74,1147,101"/>
+<area shape="rect" id="node5" href="$class_collector.html#a083060f2bf00f965496c44de767cd7a1" title="Any descendent plugin should override this virtual method and perform any necessary initialization..." alt="" coords="1195,23,1331,50"/>
+<area shape="rect" id="node6" href="$class_collector.html#ac803457aab4e0e05aec92c159d8d5683" title="This method called by plugin is manually loaded. " alt="" coords="969,23,1145,50"/>
+</map>

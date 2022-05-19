@@ -1,0 +1,9 @@
+<map id="CreateForWx::initTailored" name="CreateForWx::initTailored">
+<area shape="rect" id="node2" href="$class_create_for_wx.html#a15e60bb634481a3ce3d125b379bc4139" title="Initialize various &#39;Wx&#39; specific variables. " alt="" coords="235,19,379,45"/>
+<area shape="rect" id="node4" href="$class_create_for_wx.html#a41fa0155a1458ac8f1a7a3b77f369fe4" title="Search all &#39;exe&#39; paths. " alt="" coords="223,81,392,108"/>
+<area shape="rect" id="node3" href="$class_create_for_wx.html#a224e92951a1c4d42847f68108434d83d" title="Initialize specific variables &#39;m_TabmarkersRes&#39;, &#39;m_TabmarkersXml&#39;. " alt="" coords="440,5,629,32"/>
+<area shape="rect" id="node5" href="$class_pre.html#a688dbaca03851352e7dc4bc7bca53193" title="Look for the &#39;_txt&#39; in the configuration file of &#39;CB&#39;. " alt="" coords="461,107,608,133"/>
+<area shape="rect" id="node6" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="696,56,807,83"/>
+<area shape="rect" id="node7" href="$class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="677,157,825,184"/>
+<area shape="rect" id="node8" href="$class_pre.html#a21a32c104d61e8a76ad18eabfd2fb8a4" title="Find the path of an &#39;exe&#39; into &#39;default.conf&#39;. " alt="" coords="689,107,813,133"/>
+</map>

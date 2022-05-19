@@ -1,0 +1,10 @@
+<map id="Pre::Init" name="Pre::Init">
+<area shape="rect" id="node2" href="$class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75" title=" " alt="" coords="127,56,225,83"/>
+<area shape="rect" id="node8" href="$class_pre.html#abf68866bcaffe0e09fcb298bb186c325" title="specific initialisation by inherited type " alt="" coords="120,107,232,133"/>
+<area shape="rect" id="node9" href="$class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="121,157,231,184"/>
+<area shape="rect" id="node3" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="478,5,589,32"/>
+<area shape="rect" id="node4" href="$class_pre.html#a75af572e2d1e33e7d85535e839b28e3b" title="Give a project index. " alt="" coords="285,31,408,57"/>
+<area shape="rect" id="node5" href="$class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="280,81,413,108"/>
+<area shape="rect" id="node7" href="$class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b" title="Create a directory. " alt="" coords="295,132,398,159"/>
+<area shape="rect" id="node6" href="$class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="461,81,605,108"/>
+</map>

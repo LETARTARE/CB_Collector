@@ -1,0 +1,17 @@
+<map id="Collector::SwitchToLog" name="Collector::SwitchToLog">
+<area shape="rect" id="node2" href="$class_collector.html#a083060f2bf00f965496c44de767cd7a1" title="Any descendent plugin should override this virtual method and perform any necessary initialization..." alt="" coords="961,423,1097,450"/>
+<area shape="rect" id="node3" href="$class_collector.html#aa4fd1506b64fe1450fd09bc2564a2097" title="Places the status graph in stop report and Stop current action. " alt="" coords="227,69,384,95"/>
+<area shape="rect" id="node4" href="$class_collector.html#a7bf9d09268b0d66680f8e588f6e5eb80" title="Places the status graph in the listing project report. " alt="" coords="222,221,389,247"/>
+<area shape="rect" id="node8" href="$class_collector.html#abd8a74867db123499a3c56372f5c60e6" title="Places the status graph in the extracting project report. " alt="" coords="211,271,399,298"/>
+<area shape="rect" id="node9" href="$class_collector.html#ab06da23cd0b7810d4123ca13ee4c3513" title="Places the status graph in the listing workspace report. " alt="" coords="219,119,392,146"/>
+<area shape="rect" id="node11" href="$class_collector.html#aaf5b5bdd7218e7bb7db8ec38ce74f441" title="Places the status graph in the extracting workspace report. " alt="" coords="208,18,403,45"/>
+<area shape="rect" id="node12" href="$class_collector.html#a17519955ff8a9ea4095be3823e09bb2e" title="Places the status graph in the cleaning report and Delete the temporary directory. " alt="" coords="461,145,655,171"/>
+<area shape="rect" id="node13" href="$class_collector.html#a08f5926a5fb84fc870784f6cec385a40" title="Detects project type : &#39;Wx&#39; or &#39;Qt&#39;. " alt="" coords="212,398,399,425"/>
+<area shape="rect" id="node14" href="$class_collector.html#abf69f761754e596b8c380fef9815fc05" title="This method called by project activate allows detect project using the &#39;Wx&#39; or &#39;Qt&#39; libraries..." alt="" coords="465,449,651,475"/>
+<area shape="rect" id="node5" href="$class_collector.html#a7930ee28062e4a433303d81f3b984c9b" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="731,145,876,171"/>
+<area shape="rect" id="node7" href="$class_collector.html#acf633a3e356a5af3857bfca8b92be095" title="Places the status grap in the listing and extract report. " alt="" coords="453,246,663,273"/>
+<area shape="rect" id="node6" href="$class_collector.html#a21ea63216efd3b547e514e0d6467bce5" title="Only one method for all events. " alt="" coords="941,145,1116,171"/>
+<area shape="rect" id="node10" href="$class_collector.html#a2229423c367ef0ff18634465b0a1228f" title="Places the status grap in the listing and extract workspace report. " alt="" coords="451,43,665,70"/>
+<area shape="rect" id="node16" href="$class_collector.html#a333c1be7e5a5235209c3134b877cd0dc" title="This method called by target activate allows detect target using the &#39;Wx&#39; or &#39;Qt&#39; libraries..." alt="" coords="713,398,893,425"/>
+<area shape="rect" id="node15" href="$class_collector.html#ac803457aab4e0e05aec92c159d8d5683" title="This method called by plugin is manually loaded. " alt="" coords="715,449,891,475"/>
+</map>

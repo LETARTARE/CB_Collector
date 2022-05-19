@@ -1,0 +1,7 @@
+<map id="CreateForWx::detectLibProject" name="CreateForWx::detectLibProject">
+<area shape="rect" id="node2" href="$class_collector.html#a08f5926a5fb84fc870784f6cec385a40" title="Detects project type : &#39;Wx&#39; or &#39;Qt&#39;. " alt="" coords="255,49,441,75"/>
+<area shape="rect" id="node3" href="$class_collector.html#abf69f761754e596b8c380fef9815fc05" title="This method called by project activate allows detect project using the &#39;Wx&#39; or &#39;Qt&#39; libraries..." alt="" coords="489,23,675,50"/>
+<area shape="rect" id="node6" href="$class_collector.html#a333c1be7e5a5235209c3134b877cd0dc" title="This method called by target activate allows detect target using the &#39;Wx&#39; or &#39;Qt&#39; libraries..." alt="" coords="723,74,903,101"/>
+<area shape="rect" id="node4" href="$class_collector.html#a083060f2bf00f965496c44de767cd7a1" title="Any descendent plugin should override this virtual method and perform any necessary initialization..." alt="" coords="951,23,1087,50"/>
+<area shape="rect" id="node5" href="$class_collector.html#ac803457aab4e0e05aec92c159d8d5683" title="This method called by plugin is manually loaded. " alt="" coords="725,23,901,50"/>
+</map>

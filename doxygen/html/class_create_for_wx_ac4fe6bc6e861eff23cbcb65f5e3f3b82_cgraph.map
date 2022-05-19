@@ -1,0 +1,8 @@
+<map id="CreateForWx::listStringsRes" name="CreateForWx::listStringsRes">
+<area shape="rect" id="node2" href="$class_create_for_wx.html#a0dace6eb9781307cf17f64ebf1e35acc" title="For the &#39;*.xrc&#39; file return &#39;*_xrc.str???&#39;. " alt="" coords="244,21,427,47"/>
+<area shape="rect" id="node3" href="$class_create_for_wx.html#a8a71a31edcb93eda65b284da8f08bcc1" title="Execute &#39;wxrc&#39;. " alt="" coords="241,71,429,98"/>
+<area shape="rect" id="node7" href="$class_create_for_wx.html#aba3dc89c1da9d730e4a12dd292142d29" title="For the &#39;*_xrc.strxxx&#39; file copy to &#39;*.xrc&#39;. " alt="" coords="256,122,415,149"/>
+<area shape="rect" id="node4" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="477,5,656,47"/>
+<area shape="rect" id="node5" href="$class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="493,122,641,149"/>
+<area shape="rect" id="node6" href="$class_create_for_wx.html#a1befe7114da7b5ef5fa487dfa7d031ab" title="Display formatting for resouces wxrc and wks. " alt="" coords="489,71,644,98"/>
+</map>

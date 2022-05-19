@@ -1,0 +1,13 @@
+<map id="Pre::CallMenu" name="Pre::CallMenu">
+<area shape="rect" id="node2" href="$class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="157,53,268,80"/>
+<area shape="rect" id="node3" href="$class_pre.html#a012345db77173db5b8d924dffb387e1a" title="Extract the strings translatable from a project. " alt="" coords="316,53,423,80"/>
+<area shape="rect" id="node4" href="$class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c" title="Extract strings to be translated. " alt="" coords="471,28,604,54"/>
+<area shape="rect" id="node9" href="$class_pre.html#a346ee750d8b28d66efbaf2c4342718e8" title="Extract the strings translatable from worspace. " alt="" coords="473,78,602,105"/>
+<area shape="rect" id="node5" href="$class_collector.html#abd8a74867db123499a3c56372f5c60e6" title="Places the status graph in the extracting project report. " alt="" coords="818,28,1006,54"/>
+<area shape="rect" id="node6" href="$class_collector.html#a7930ee28062e4a433303d81f3b984c9b" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="1320,53,1465,80"/>
+<area shape="rect" id="node8" href="$class_collector.html#acf633a3e356a5af3857bfca8b92be095" title="Places the status grap in the listing and extract report. " alt="" coords="1060,28,1269,54"/>
+<area shape="rect" id="node7" href="$class_collector.html#a21ea63216efd3b547e514e0d6467bce5" title="Only one method for all events. " alt="" coords="1513,53,1688,80"/>
+<area shape="rect" id="node10" href="$class_pre.html#a8684f86d5efbdb8e3d688590d28a3179" title="Extract strings to be translated in workspace. " alt="" coords="652,78,767,105"/>
+<area shape="rect" id="node11" href="$class_collector.html#aaf5b5bdd7218e7bb7db8ec38ce74f441" title="Places the status graph in the extracting workspace report. " alt="" coords="815,78,1009,105"/>
+<area shape="rect" id="node12" href="$class_collector.html#a2229423c367ef0ff18634465b0a1228f" title="Places the status grap in the listing and extract workspace report. " alt="" coords="1057,129,1272,156"/>
+</map>

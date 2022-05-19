@@ -1,0 +1,19 @@
+<map id="Pre::xgettextWarn" name="Pre::xgettextWarn">
+<area shape="rect" id="node2" href="$class_pre.html#a012345db77173db5b8d924dffb387e1a" title="Extract the strings translatable from a project. " alt="" coords="193,78,299,105"/>
+<area shape="rect" id="node12" href="$class_pre.html#a51af576d8b56ed77c362814160d5704a" title="Execute &#39;xgettext&#39; for &#39;listing()&#39; or &#39;extract()&#39;. " alt="" coords="180,205,312,231"/>
+<area shape="rect" id="node3" href="$class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c" title="Extract strings to be translated. " alt="" coords="633,27,767,54"/>
+<area shape="rect" id="node8" href="$class_pre.html#a346ee750d8b28d66efbaf2c4342718e8" title="Extract the strings translatable from worspace. " alt="" coords="395,78,523,105"/>
+<area shape="rect" id="node4" href="$class_collector.html#abd8a74867db123499a3c56372f5c60e6" title="Places the status graph in the extracting project report. " alt="" coords="845,27,1035,54"/>
+<area shape="rect" id="node5" href="$class_collector.html#a7930ee28062e4a433303d81f3b984c9b" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="1348,53,1495,79"/>
+<area shape="rect" id="node7" href="$class_collector.html#acf633a3e356a5af3857bfca8b92be095" title="Places the status grap in the listing and extract report. " alt="" coords="1087,27,1298,54"/>
+<area shape="rect" id="node6" href="$class_collector.html#a21ea63216efd3b547e514e0d6467bce5" title="Only one method for all events. " alt="" coords="1543,53,1719,79"/>
+<area shape="rect" id="node9" href="$class_pre.html#a8684f86d5efbdb8e3d688590d28a3179" title="Extract strings to be translated in workspace. " alt="" coords="643,78,757,105"/>
+<area shape="rect" id="node10" href="$class_collector.html#aaf5b5bdd7218e7bb7db8ec38ce74f441" title="Places the status graph in the extracting workspace report. " alt="" coords="843,78,1037,105"/>
+<area shape="rect" id="node11" href="$class_collector.html#a2229423c367ef0ff18634465b0a1228f" title="Places the status grap in the listing and extract workspace report. " alt="" coords="1085,129,1300,155"/>
+<area shape="rect" id="node13" href="$class_create_for_qt.html#a016857846848b8502683f75d695310ad" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="363,129,554,155"/>
+<area shape="rect" id="node14" href="$class_create_for_qt.html#a8e393905d2da745bae0a49d729b10560" title="Create the file &#39;*.pot&#39; containing all translatable string(s) " alt="" coords="380,179,537,206"/>
+<area shape="rect" id="node15" href="$class_create_for_wx.html#a7d13df1de2f638015374a04219aa2d54" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="360,230,557,257"/>
+<area shape="rect" id="node16" href="$class_create_for_wx.html#a6908a1b974acb17e8dda80a062e9363a" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="375,281,542,323"/>
+<area shape="rect" id="node18" href="$class_create_for_wx.html#a31e8c6e85d2cfd96a224377ac2b0631a" title="Create the file &#39;*.pot&#39; containing all translatable string(s) " alt="" coords="377,347,541,374"/>
+<area shape="rect" id="node17" href="$class_create_for_wx.html#a024b578abef8bb97ef294251021fa11f" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="605,289,795,315"/>
+</map>

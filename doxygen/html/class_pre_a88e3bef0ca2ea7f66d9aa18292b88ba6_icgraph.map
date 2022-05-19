@@ -1,0 +1,22 @@
+<map id="Pre::readFileContents" name="Pre::readFileContents">
+<area shape="rect" id="node2" href="$class_create_for_wx.html#a41fa0155a1458ac8f1a7a3b77f369fe4" title="Search all &#39;exe&#39; paths. " alt="" coords="454,15,623,41"/>
+<area shape="rect" id="node4" href="$class_create_for_wx.html#a4da103897ffcf284926c8f1811f29512" title="Tests readability for chain collection. " alt="" coords="203,91,396,117"/>
+<area shape="rect" id="node6" href="$class_create_for_wx.html#a8a71a31edcb93eda65b284da8f08bcc1" title="Execute &#39;wxrc&#39;. " alt="" coords="205,141,394,168"/>
+<area shape="rect" id="node8" href="$class_create_for_wx.html#aba3dc89c1da9d730e4a12dd292142d29" title="For the &#39;*_xrc.strxxx&#39; file copy to &#39;*.xrc&#39;. " alt="" coords="220,192,379,219"/>
+<area shape="rect" id="node9" href="$class_pre.html#a688dbaca03851352e7dc4bc7bca53193" title="Look for the &#39;_txt&#39; in the configuration file of &#39;CB&#39;. " alt="" coords="225,40,374,67"/>
+<area shape="rect" id="node10" href="$class_pre.html#af6109b9f6b0995eff93782d37b479132" title="Verify integity file. " alt="" coords="251,243,347,269"/>
+<area shape="rect" id="node3" href="$class_create_for_wx.html#a9a7122b5d8f572300659c6b74616dae6" title="Specific initialisation by inherited type. " alt="" coords="681,15,852,41"/>
+<area shape="rect" id="node5" href="$class_create_for_wx.html#a024b578abef8bb97ef294251021fa11f" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="444,91,633,117"/>
+<area shape="rect" id="node7" href="$class_create_for_wx.html#ac4fe6bc6e861eff23cbcb65f5e3f3b82" title="Extract the label of *.xrc and create a temporary file with string(s) " alt="" coords="444,167,633,193"/>
+<area shape="rect" id="node11" href="$class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="483,243,594,269"/>
+<area shape="rect" id="node12" href="$class_pre.html#a012345db77173db5b8d924dffb387e1a" title="Extract the strings translatable from a project. " alt="" coords="713,243,820,269"/>
+<area shape="rect" id="node13" href="$class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c" title="Extract strings to be translated. " alt="" coords="900,217,1033,244"/>
+<area shape="rect" id="node18" href="$class_pre.html#a346ee750d8b28d66efbaf2c4342718e8" title="Extract the strings translatable from worspace. " alt="" coords="903,268,1031,295"/>
+<area shape="rect" id="node14" href="$class_collector.html#abd8a74867db123499a3c56372f5c60e6" title="Places the status graph in the extracting project report. " alt="" coords="1245,217,1435,244"/>
+<area shape="rect" id="node15" href="$class_collector.html#a7930ee28062e4a433303d81f3b984c9b" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="1748,243,1895,269"/>
+<area shape="rect" id="node17" href="$class_collector.html#acf633a3e356a5af3857bfca8b92be095" title="Places the status grap in the listing and extract report. " alt="" coords="1487,217,1698,244"/>
+<area shape="rect" id="node16" href="$class_collector.html#a21ea63216efd3b547e514e0d6467bce5" title="Only one method for all events. " alt="" coords="1943,243,2119,269"/>
+<area shape="rect" id="node19" href="$class_pre.html#a8684f86d5efbdb8e3d688590d28a3179" title="Extract strings to be translated in workspace. " alt="" coords="1081,268,1195,295"/>
+<area shape="rect" id="node20" href="$class_collector.html#aaf5b5bdd7218e7bb7db8ec38ce74f441" title="Places the status graph in the extracting workspace report. " alt="" coords="1243,268,1437,295"/>
+<area shape="rect" id="node21" href="$class_collector.html#a2229423c367ef0ff18634465b0a1228f" title="Places the status grap in the listing and extract workspace report. " alt="" coords="1485,319,1700,345"/>
+</map>
