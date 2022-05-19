@@ -1079,6 +1079,8 @@ _printD("=> Begin 'CreateForWx::listStringsXmlIts(" + _shortfile + ", " + _pathr
     {
         Mes = Lf + Tab + "!!!" + quote(_shortfile) + "has no translatable strings" + " !!!";
         _printError(Mes);
+    // a 'xml' fil withless strings
+        m_nbXmlWithlessString++;
     }
 // all
     Mes = Tab + "  ** " +  "Rules template used :" + quote(_pathrulesIts);
@@ -1109,12 +1111,12 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 // local variables
 	bool ok = false, good = false;
 	wxString name, nameprj, shortfile, longfile, filein, pActualprj ;
-	wxUint32 cells, index = 0;
-	if(!m_Workspace) 	cells = m_FileswithI18n.GetCount()  ;
-	else 				cells = m_FileswithI18nWS.GetCount()  ;
+	wxUint32 nbCells, index = 0;
+	if(!m_Workspace) 	nbCells = m_FileswithI18n.GetCount()  ;
+	else 				nbCells = m_FileswithI18nWS.GetCount()  ;
 
-	Mes = Tab + "--> " + _("Extract of") + Space + strInt(cells) + Space;
-	Mes += _("file(s) by 'xgettext'");
+	Mes = Tab + "--> " + _("Extract of") + Space + strInt(nbCells) + Space;
+	Mes += _("file(s) by 'xgettext' and 'wxrc'");
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
 
@@ -1139,14 +1141,14 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 	wxString dirproject, tempres, ext ;
 	wxUint32 nbprjWS = 0;  wxInt32 nbstring = 0;
 	// range 'g_MaxProgress'
-	BuildLogger::g_MaxProgress = cells ;
+	BuildLogger::g_MaxProgress = nbCells ;
 	BuildLogger::g_CurrentProgress = 0 ;
 
 /// for debug
 //_printError("CreatePot : g_MaxProgress = " + strInt(BuildLogger::g_MaxProgress) + " files");
 
     // read all files in  'm_FileswithI18n' or 'm_FileswithI18nWS'
-	for (wxUint32 i=0; i < cells ; i++ )
+	for (wxUint32 i=0; i < nbCells ; i++ )
 	{
 	// control to pending messages in the event loop
 		 m_pM->Yield();
@@ -1190,7 +1192,11 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 			// project path
 				dirproject = name;
 				++nbprjWS;
-				Mes = Lf + _("Project") + "-" + strIntZ(nbprjWS, 4) + " :" + quote(nameprj) ;
+				Mes = Lf + _("Project") + "-" + strIntZ(nbprjWS, 4) ;
+				Mes += "/" + strIntZ(m_nbPrjextractWS, 4) + " :" + quote(nameprj) ;
+				if (_prjfirst)	Mes += "-->";
+                else			Mes += "-->>";
+                Mes += quote(m_Shortnamepot);
 				Mes += Lf + Tab + _("path") + " :" + quote(dirproject);
 				_printWarn(Mes);
 				continue;
@@ -1218,12 +1224,13 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 		xml = ext.Matches(EXT_XML);
 	// log message
 		++index;
-		Mes =  Tab + "F" + strIntZ(index, 4) + ":" + quote(shortfile);
+		Mes =  Tab + "F" + strIntZ(index, 4) + "/" + strIntZ(nbCells, 4) ;
+		Mes +=  " :"  + quote(shortfile);
 	// it's necessary that file 'm_ShortNamepot' exists already
-		if (_prjfirst)	Mes += " --> ";
-		else			Mes += " -->>";
-		Mes += quote(m_Shortnamepot);
-		// uses 'Collector::MesToLog(...)'
+		//if (_prjfirst)	Mes += " --> ";
+		//else			Mes += " -->>";
+		//Mes += quote(m_Shortnamepot);
+    // uses 'Collector::MesToLog(...)'
 		print (Mes);
 		m_Fileswithstrings.Add(Mes);
 	// replace '*.xrc' by 'm_Temp/*.xrc'  ...

@@ -406,10 +406,10 @@ class Pre : public ColState
             , m_nbTargets = 0
 			/**  \brief
 			 */
-			 ,m_nbFileEligible = 0
+			 ,m_nbFileEligible = 0 , m_nbFileEligibleWS = 0
 			/**  \brief
 			 */
-			 ,m_nbOldStringsPo = 0
+			 ,m_nbOldStringsPo = 0, m_nbXmlWithlessString = 0
 			/**  \brief
 			 */
 			,m_nbStringsWS = 0, m_nbPrjextractWS = 0
@@ -418,7 +418,7 @@ class Pre : public ColState
 			,m_nbNewstrings = 0
 			/**  \brief
 			 */
-			,m_nbFilesprj = 0, m_Bignumber = 100
+			,m_nbFilesprj = 0, m_nbFilesWS = 0, m_Bignumber = 100
 		;
 		wxInt32
             /**  \brief

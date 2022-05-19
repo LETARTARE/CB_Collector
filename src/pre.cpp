@@ -570,28 +570,27 @@ _printD("=> Begin 'Pre::ListingtWS()'");
 
 //1- clean
 	Pre::initFileStrcreated();
+	// date
+    m_Datebegin = date().Mid(0, date().Len());
 //2- message
 	// work begin
-	Mes = Tab + Line77;
-	_print(Mes);
+	_print(Tab + Line77);
 	wxUint32 nbPrj =  m_pMprj->GetProjects()->Count();
 	Mes = "===> " + _("begin 'List workspace' on") + Space + strInt(nbPrj);
 	Mes += Space + _("projects") ;
+    Mes += Lf + Tab + m_Datebegin ;
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
 
 //3- begin workspace
 	m_Workspace = m_State == fbListWS || m_State == fbExtractWS || m_State == fbListExtractWS;
-	m_nbStringsWS = 0; m_nbStrWS = 0;
+	m_nbStringsWS = 0; m_nbStrWS = 0; m_nbXmlWithlessString = 0;
    // projects name array clean
 	m_NameprjWS.Clear();
 	m_FileswithI18nWS.Clear();
 	m_PrjwithI18nWS.Clear();
 
 	m_nbPrjextractWS = 0;
-	wxUint32 nbstringsWS = 0;
-	wxUint32 nbFilesWS = 0;
-	wxUint32 nbEligiblesWS = 0;
 	cbProject * pActualprj;
 	wxString nameprj;
 	bool ok, good;
@@ -607,10 +606,10 @@ _printD("=> Begin 'Pre::ListingtWS()'");
 		{
 		// strings number
 			m_nbStringsWS += m_nbListStrings;
-			nbstringsWS += m_nbListStrings;
-			if (m_nbListStrings)			m_nbPrjextractWS++;
-			nbFilesWS += m_nbFilesprj;
-			nbEligiblesWS += m_nbFileEligible;
+			if (m_nbListStrings)
+                m_nbPrjextractWS++;
+			m_nbFilesWS += m_nbFilesprj;
+			m_nbFileEligibleWS += m_nbFileEligible;
 		}
 		else
 		{
@@ -650,8 +649,11 @@ _printD("=> Begin 'Pre::ListingtWS()'");
 		// it's not a Wx project
 		if (!ok)
 		{
-			Mes = Lf + "==>" + quote(nameprj) +_("is not a 'Wx' project !");
+		    _printError(Lf + Line77);
+			Mes = _("Project") + "-" + strInt(pos) + "==>" ;
+			Mes += quote(nameprj) +_("is not a 'Wx' project !");
 			_printWarn (Mes);
+			 _printError(Line77);
 			continue;
 		}
 	// is project 'Wx' ? withless message:
@@ -670,13 +672,9 @@ _printD("=> Begin 'Pre::ListingtWS()'");
 			}
 		// strings number
 			m_nbStringsWS += m_nbListStrings;
-			nbstringsWS += m_nbListStrings;
-			if (m_nbListStrings)
-			{
-				m_nbPrjextractWS++;
-			}
-			nbFilesWS += m_nbFilesprj;
-			nbEligiblesWS += m_nbFileEligible;
+			if (m_nbListStrings)    m_nbPrjextractWS++;
+			m_nbFilesWS += m_nbFilesprj;
+			m_nbFileEligibleWS += m_nbFileEligible;
 			/// Experimental
 			m_nbStrWS += m_nbStrPrj;
 		}
@@ -686,10 +684,10 @@ _printD("=> Begin 'Pre::ListingtWS()'");
 	{
 	    _print(Lf  + "   " + Line80);
 		Mes = "   ## " + strInt(m_nbStringsWS) + Space + _("extracted strings");
-		Mes += ", " + _("inside") + Space + strInt(nbEligiblesWS) + Space ;
+		Mes += ", " + _("inside") + Space + strInt(m_nbFileEligibleWS) + Space ;
 		Mes += _("elected files") + ", " + _("from");
 		Mes +=  Space + strInt(m_nbPrjextractWS) + Space +_("project(s)");
-		Mes += Lf + "   ## " + _("from") + Space + strInt(nbFilesWS) + Space;
+		Mes += Lf + "   ## " + _("from") + Space + strInt(m_nbFilesWS) + Space;
 		Mes += _("total files.") ;
 		_print(Mes);
 		m_Fileswithstrings.Add(Mes);
@@ -985,6 +983,8 @@ _printD("=> Begin Pre::Init()");
 	m_Mexeishere = ! m_Pathmexe.IsEmpty();
 
 	m_Cancel = false; m_Stop = false;
+// init 'm_begin' for duration in 'S'
+	beginTime();
 
 _printD("    <= End Pre::Init()");
 
@@ -1130,6 +1130,9 @@ _printD("=> Begin 'Pre::listing(" + strInt(_posWS) + ")'");
 //1- message !Worspace
 	if (!m_Workspace)
 	{
+         m_nbXmlWithlessString = 0;
+    // date
+        m_Datebegin = date().Mid(0, date().Len());
 	// work begin
 		Mes = Tab + Line110;
 		_print(Mes);
@@ -1145,12 +1148,9 @@ _printD("=> Begin 'Pre::listing(" + strInt(_posWS) + ")'");
 	if (leaderprj)
 	{
 	// begin listing
-		// date
-		m_Datebegin = date().Mid(0, date().Len());
-		Mes = Tab + m_Datebegin ;
 		if (m_Workspace)
 		{
-			Mes += Lf + Tab + _("'List from workspace' with KEYWORD") + " = ";
+			Mes = Lf + Tab + _("'List from workspace' with KEYWORD") + " = ";
 			Mes += quote(m_Keyword) + "...";
 		}
 		_print(Mes);
@@ -1185,8 +1185,11 @@ _printD("=> Begin 'Pre::listing(" + strInt(_posWS) + ")'");
 		Mes += "-" + strInt(_posWS) + "'";
 	else
 		Mes += Space + _("with KEYWORD") + " =" + quote(m_Keyword) + "...";
+    // date
+   // Mes += Lf + Tab + m_Datebegin;
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
+	// strings number estimation !
     _printWarn(Line80);
     Mes = "** " + _("Estimated number of strings to translate") ;
 	Mes += ", "  + _("wait a little bit")  + " ..." ;
@@ -2663,10 +2666,16 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		    else                Mes +=  strInt(m_nbExtractStrings);
 		}
 		Mes += Space + _("extracted string(s) from") ;
-		Mes += Space + strInt(m_nbFileEligible) + Space + _("elected file(s)") ;
+		//Mes += Space + strInt(m_nbFileEligible) + Space + _("elected file(s)") ;
+		Mes += Space + strInt(m_nbFileEligibleWS) + Space + _("elected file(s)") ;
 		_printWarn(Mes);
 		m_Fileswithstrings.Add(Mes);
-
+        if (m_nbXmlWithlessString)
+        {
+            Mes = Tab + "*** " + _("There are") + Space + strInt(m_nbXmlWithlessString);
+            Mes += Space + _("files 'xml', who are not translatable strings") + "...";
+            _printWarn(Mes);
+        }
 		Mes = "   <-- " +  _("end verify file integrity") +Lf;
 		_printWarn(Mes);
 	}
@@ -3120,6 +3129,7 @@ void Pre::ShowError(const wxString& _mes)
 // Get date
 //
 // Called by  :
+//  1. Pre::Init():1 ,
 //	1. Pre::listing(...):2
 //	2. Collector::OnSaveFileEditor(CodeBlocksEvent& _pEvent):1,
 //	3. Pre::extraction(bool _prjfirst, cbProject * _pProject):
@@ -3169,6 +3179,9 @@ void Pre::endDuration(const wxString & _namefunction)
 }
 ///-----------------------------------------------------------------------------
 //  Begin time 'S'
+//
+// Called by :
+//  1.  Pre::Init(const wxString _type):1,
 //
 wxUint64 Pre::beginTime()
 {

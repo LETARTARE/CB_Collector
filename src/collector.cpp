@@ -1841,18 +1841,25 @@ _printD("=> Begin Collector::OnFilePoModified(...)");
 		_pEvent.Skip();
 		return;
 	}
-
+//_printWarn("before m_calls = " + strInt(m_calls));
 	wxString filename ;
-	EditorBase* editor = _pEvent.GetEditor() ; //, * old = _pEvent.GetOldEditor();
-	if(editor)
+	EditorBase* peditor = _pEvent.GetEditor() ; //, * old = _pEvent.GetOldEditor();
+	if(peditor)
 	{
-		filename = editor->GetFilename();
+//_printWarn("peditor exists ") ;
+		filename = peditor->GetFilename();
+//_printWarn("filename = " + quote(filename) ) ;
 	// verify file name == project_name.po
 		wxString shortname = filename.AfterLast(slash);
 		wxString name =  m_pProject->GetTitle() ;
-		if (shortname == name + ".po" )
+    // il faut triter les deux cas possibles
+        // 1. "*.po"
+        // 2. "*_workspace.po"
+		if (shortname == name + ".po" || shortname == name + "_workspace.po" )
 		{
 			m_calls++;
+//_printWarn("after m_calls = " + strInt(m_calls) );
+//_printWarn("shortname = " + quote(shortname) ) ;
 		// full file 'mo'
 			wxString longname = filename.BeforeLast(cDot) + ".mo" ;
 			if (wxFileName::FileExists(longname))

@@ -733,10 +733,10 @@ _printD("= > Begin (Pre::createPot(" + strBool(_prjfirst) + ")" );
 
 // local variables
 	wxString shortfile, longfile, command , pActualprj ;
-	wxUint32  nbcases ;
-	if(!m_Workspace) 	nbcases = m_FileswithI18n.GetCount()  ;
-	else 				nbcases = m_FileswithI18nWS.GetCount() ;
-	Mes = Tab + "--> " + _("Extract of") + Space  + strInt(nbcases)  + Space ;
+	wxUint32  nbCells ;
+	if(!m_Workspace) 	nbCells = m_FileswithI18n.GetCount()  ;
+	else 				nbCells = m_FileswithI18nWS.GetCount() ;
+	Mes = Tab + "--> " + _("Extract of") + Space  + strInt(nbCells)  + Space ;
 	Mes +=  _("file(s) by 'xgettext'");
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
@@ -750,7 +750,7 @@ _printD("= > Begin (Pre::createPot(" + strBool(_prjfirst) + ")" );
 	//begincommand += " --add-comments=// ";
 
 // analyze all eligible files from 'm_FileswithI18n' or 'm_FileswithI18nWS'
-	for (wxUint32 i=0; i < nbcases ; i++ )
+	for (wxUint32 i=0; i < nbCells ; i++ )
 	{
 	// control to pending messages in the event loop
 		 m_pM->Yield();

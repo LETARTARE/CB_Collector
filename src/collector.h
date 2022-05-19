@@ -339,7 +339,7 @@ class Collector : public cbPlugin, public ColState
     wxString m_Nameactivetarget = wxEmptyString ;
     /** \brief counts the calls from 'OnFilePoModified()'
      */
-	wxUint8 m_calls = 0;
+	wxUint32 m_calls = 0;
 
     /** \brief Global indicators
      */
