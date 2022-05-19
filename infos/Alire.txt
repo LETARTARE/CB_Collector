@@ -2,7 +2,7 @@ Alire.txt (UTF8)
 
 LETARTARE(http://forums.codeblocks.org)
 
-v 1.5.0 : 03 mai 2022 
+v 1.6.0 : 20 mai 2022 
 
 
 //------------------------------------------------------------------------------
@@ -57,13 +57,13 @@ v 1.5.0 : 03 mai 2022
 
 		- Lin-64 :
 			-  Générer->Générer' => 
-				- 'lin_316/Collector.so' avec une taille de ... KB
+				- 'lin_305/Collector.so' avec une taille de ... KB
 				- ...
 			- 'Extensions->Gérer les extensions... : installer une nouvelle'
-				- choisissez '.../lin_316/Collector.cbpugin'
+				- choisissez '.../lin_305/Collector.cbpugin'
 				- ...
 				=> dans le journal 'Collecter'
-			"Plate-forme : 'Lin-64', 'sdk-2.17.0', 'Collector-1.5.0', construit le '05/03/22::16:09:15'" 
+			"Plate-forme : 'Lin-64', 'sdk-2.18.0', 'Collector-1.6.0', construit le '20/05/22::16:09:15'" 
 				
 	3- Vous devez voir le menu '&Collecter' ou 'Collecteur Toolbar' dans la barre d'outils.
 
