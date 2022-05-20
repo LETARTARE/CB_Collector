@@ -13,7 +13,7 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 	The extension 'Collector' to generate in directory 'trlocale' a file :
 		- 'name_projet.po' for a single project,
-		- or 'leader_name_project.po' for cooperative project (workspace).
+		- or 'leader_name_project_workspace.po' for cooperative project (workspace).
 
 	This file is provided to 'Poedit', built-in 'Code::Blocks', which generates
 	file '*.mo', to put in the executable directory for test
@@ -26,6 +26,10 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 		-> 'Win-64' : 'Poedit' containt 'xgettext.exe' and 'msmerge.exe'
 		-> 'Lin-64' : 'xgettext' is independent of 'Poedit'
 			'http://www.poedit.net/'
+			
+        ** you will have to add in the 'gettext\share\its' directory the two files
+            codeblocks.its' and 'codeblocks.loc' provided in '...\its'.
+            
 		To install 'Poedit' in 'Code::Blocks' :
 			1- read 'http://wiki.codeblocks.org/index.php?title=Configure_tools',
 			2- read 'infos/Collector_exp.en' paragraph 'SETUP 'Poedit',

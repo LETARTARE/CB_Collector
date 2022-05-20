@@ -26,14 +26,21 @@ A- OBJECTIF :
 		1-2 sur un espace de travail, avec un projet pilote et des coopérateurs.
 	2- EXTRAIRE les chaînes dans un fichier :
 		- 'nom_de_projet.pot' pour le projet unique,
-		- 'nom_de_projet_pilote.pot' pour l'espace de travail
-		  (dupliqué en 'nom_de_projet_pilote.po' exploitable par 'Poedit').
+		- 'nom_de_projet_pilote_workspace.pot' pour l'espace de travail
+		  (dupliqué en 'nom_de_projet_pilote_workspace.po' exploitable par 'Poedit').
+		  
+	** les deux modes peuvent être enchainés par
+			'LISTER puis EXTRAIRE'
 
 	Il prend en compte les fichiers éligibles suivants :
-		'*.h', '*.cpp', '*.script', '*.xrc', '*.wxs',
-	les deux derniers types génèrent des fichiers temporaires
-		'*_xrc.str???, *_wxs.str???' (??? = numéro)	à l'aide de
-		l'exécutable 'wxrc' (wxWidgets-3.x.y), qui sont ensuite supprimés.
+		'*.h', '*.cpp', '*.script', '*.xml', '*.xrc', '*.wxs',
+		les deux derniers types génèrent des fichiers temporaires
+			'*_xrc.str???, *_wxs.str???' (??? = numéro)	à l'aide de
+			l'exécutable 'wxrc' (wxWidgets-3.x.y), qui sont ensuite supprimés,
+		* les fichiers '*.xml' utilisent les règles de 'its' depuis les fichiers '*.its'
+		  en l'occurence 'codeblocks.its' et 'codeblocks.its' voir : 
+			- 'https://www.w3.org/TR/its/'
+			- 'https://www.gnu.org/software/gettext/manual/html_node/Preparing-ITS-Rules.html'
 
 	Il prend en compte le préfixe d'extraction :
 		1- pour le listage 		: '_'
@@ -54,13 +61,15 @@ A- OBJECTIF :
 		9- dans 'Poedit' traduire à la main, ou automatiquement si vous avez
             créé une base de traduction automatique TM.
 
-	Les points 1 à 8 sont gérés correctement par l'extension chargé au
+	Les points 1 à 7 sont gérés correctement par l'extension chargé au
 	démarrage de 'C::B' et accessible par de nouvelles entrées dans un menu
-	'&Collecter' dans la barre des menus  :
+	'&Collecter' dans la barre des menus.
+	Les points 8 et 9 sont seulement générés si 'Poedit' est installé dans le
+	menu 'Ouitls->Poedit' par vous-même.
 
 			** sur un projet unique :'nom_de_projet.cbp'
 		1- 'Collecter->Lister le projet',
-			qui génère le fichier 'nom_de_projet.lst'.
+			qui génère le fichier 'nom_de_projet.lst'pour vérifier les chaînes proposées.
 		2- 'Collecter->Extraire le projet',
 			qui génère les fichiers 'nom_de_projet.extr' et 'nom_de_projet.po'.
 		3- 'Collecter->Lister puis Extraire le projet,
@@ -68,17 +77,20 @@ A- OBJECTIF :
 
 			** sur l'espace de travail : 'nom_de_projet_pilote.workspace'
 		4- 'Collecter->Lister l'espace de travail'
+			qui génère de lister les chaînes pour vérifier par 'nom_de_projet_pilote_workspace.list'.
 		5- 'Collecter->Extraire l'espace de travail',
-			qui génère les fichiers 'nom_de_projet_pilote.extr' et
-			'nom_de_projet_pilote.po'
+			qui génère les fichiers 'nom_de_projet_pilote_workspace.extr' et 'nom_de_projet_pilote_workspace.po'
 		6- 'Collecter->Lister puis Extraire l'espace de travail',
 			qui réalise l'enchainement des points 4 et 5.
 
 			** actions communes
 		7- Initialiser le graphe d'état de 'Collecter'.
+			initialise graphe d'état de 'Collecter'
 		8- Supprimer les fichiers temporaires.
+			détruit les ficheirs temporaires
 		9- Arréter l'action en cours.
-
+			arrête l'action encours, Lister ou Extraire
+			
 B- DÉMARRAGE RAPIDE sur un projet unique :
 
 	- activer le projet désiré
@@ -104,33 +116,21 @@ C- ENVIRONNEMENT de test, à la date du fichier :
 		- Code::Blocks depuis r12524 (sdk 2.16.0 du 2021-09-04),
 		  jusqu'a r12813 (sdk 2.18.0)
 	- Utilitaires	:
-		- 'xgettext', 'msmerge' fournis avec 'Poedit'.
+		- 'Poedit'
+		- 'xgettext', 'msmerge', '*.its'
+			- et deux fichiers 'its\codeblocks.its', 'its\codeblocks.loc'
+			à recopier dans le répertoire 'its' de 'xgettext\share\its\'
 		- 'wxrc' utilitaire de 'wxWidgets' permettant aussi
 			d'extraire les chaînes à traduire des fichiers '*.xrc' et ''*.wxs'.
+			* fournis avec 'Collecter' pour Win-7.
+			
+		
+	*** NOTE que seules les versions de 'C::B' depuis 'r12025' sont acceptées.
 
-D- CONTENU du paquet compressé livré
+	*** A la date du fichier, aucun test sur 'MACOX'.
 
-	La solution proposée est contenue dans un paquet 'Collector.7z ou .zip'
-	qui comporte :
-
-		1- pour Win-7 une cible 'wxrc-3xx' pour compiler l'utilitaire 'wxrc.exe'
-		   en UNICODE, et le recopier automatiquement dans le répertoire ou se trouve
-		   l'exécutable 'codeblocks', ainsi que des fichiers '*.xrc' extrait de
-		   'C::B' pour tests.
-
-		2- une cible 'infos' non compilable contenant :
-			2-1- ce fichier d'aide 'Collecteur_exp.fr' en mode texte 'UTF-8'
-				et son équivalent 'Collector_exp.en' en anglais
-			2-2- deux fichiers texte d'explications rapides :
-				'Alire.txt', 'Readme.txt'
-
-		3- des cibles 'local-3xx' compilables générant
-			- 'Collector.dll' ou 'Collector.so' la bibliothèue dynamique
-			- 'Collector.zip' contenant les ressouces et le 'manifest.xml'
-			- 'Collector.cbplugin' contenant les deux premiers: c'est ce fichier
-			  comprimé qui sera chargé depuis l'environnement 'C::B'
-
-E- INSTALLATION du paquet :
+			
+D- INSTALLATION du paquet :
 
 	1- on suppose que l'exécutable 'codeblocks' est installé en '$(cb_exe)',
 
@@ -197,7 +197,7 @@ E- INSTALLATION du paquet :
 				- 'chemin_cb_executable\share\CodeBlocks\plugins\Collector.dll'
 			4-2-3 redémarrer 'C::B'
 
-F-1 UTILISATION SUR UN PROJET UNIQUE
+E UTILISATION SUR UN PROJET UNIQUE
 
 	Tous les fichiers générés seront créés dans le répertoire :
 		'dir_projet\trlocale\'
@@ -223,7 +223,7 @@ F-1 UTILISATION SUR UN PROJET UNIQUE
 			  - exemple '_("...")' : cette chaîne n'a pas besoin de traduction !
 
 		2-3- ensuite, si vous désirez créer les fichiers :
-				'nom_de_projet.po' et 'nom_de_projet.po'
+				'nom_de_projet.po' et 'nom_de_projet.pot'
 			vous devez utiliser le mode 'EXTRAIRE' par le menu principal ou la
 			barre d'outils de
 					'Collecter->Extraire 'nom_de_projet'
@@ -247,8 +247,8 @@ F-1 UTILISATION SUR UN PROJET UNIQUE
 					'nom_de_projet.extr' qui sera ouvert dans l'éditeur,
 				6- l'appel de 'Poedit' qui charge 'nom_de_projet.po'.
 
-			- si 'Poedit' n'apparait pas automatiquement, vous devrez l'appeler
-			  manuellement pour charger 'nom_de_base.po', vous pourrez alors
+			** si 'Poedit' n'apparait pas automatiquement, vous devrez l'appeler
+			  manuellement pour charger 'nom_de_projet.po', vous pourrez alors
 			  compléter l'en-tête dans le menu de 'Poedit' :
 				'Catalogue->Configuration...'
 			  en remplissant seulement les champs :
@@ -261,7 +261,7 @@ F-1 UTILISATION SUR UN PROJET UNIQUE
 		2-4- si vous désirez revenir au mode 'LISTER' utilisez l'initialisation
 		du graphe d'état dans le menu 'Collect' ou la barre d'outil
 
-F-2 UTILISATION SUR PROJETS MULTIPLES
+F UTILISATION SUR PROJETS MULTIPLES
 
 	Tous les fichiers générés seront créés dans le répertoire :
 		'dir_projet_pilote\trlocale\'
@@ -271,7 +271,7 @@ F-2 UTILISATION SUR PROJETS MULTIPLES
 	construire un espace de travail particulier qui les englobe tous :
 		exemple :
 		'C::B' avec ses extensions externes pourrait s'appeler
-			'CodeBlocksAndContribPlugins.workspace'
+			'CodeBlocks_wx31_64.workspace' or 'CodeBlocks_wx30-unix.workspace'
 	lequel contiendra 'CodeBlocks.cbp' + 'ContribPlugins.worspace' actuel.
 
 	1- chargez cet espace de travail dans 'C::B'
@@ -286,10 +286,10 @@ F-2 UTILISATION SUR PROJETS MULTIPLES
 
 	3- le préfixe d'extraction utilisé ('_') est rappelé dans le menu ou la
 	   barre d'outil,
-
-		- les projets retenus (basés sur 'wxWidgets') seront analysés en suivant
-			l'ordre de l'arborescence, et les fichiers élus seront listés dans
-			la journal 'Collecter',
+		- les projets retenus (basés sur 'wxWidgets') seront analysés 
+			- tout d"abord le projet pilote 
+			- et ensuite en suivant l'ordre de l'arborescence, les fichiers 
+			élus seront listés dans	le journal 'Collecter',
 		- en fin de listage, le contenu du journal est sauvegardé dans le
 			fichier 'nom_de_projet_pilote.lst', automatiquement ouvert dans
 			l'éditeur.
@@ -297,14 +297,13 @@ F-2 UTILISATION SUR PROJETS MULTIPLES
 	4- pour créer les fichiers 'nom_de_projet_pilote.po' et '*.pot'
 	 suivre la même démarche que pour un projet unique.
 
-
 G- REMARQUES
 
 	1- les fichiers '*.po' et '*.pot' sont notés différemment :
 		- en projet unique  : 'nom_de_projet.pot' et '*.po',
-		- en multiprojets  	: 'nom_de_projet_pilote.po' et '*'.pot',
+		- en multiprojets  	: 'nom_de_projet_pilote_workspace.po' et '*.pot',
 		ainsi seuls les fichiers '*.pot' (source) seront différents, alors qu'il
-		ne peut exister qu'un seul 'nom_de_projet_pilote.po' chargé par 'Poedit'.
+		ne peut exister qu'un seul 'nom_de_projet_pilote_workspace.po' chargé par 'Poedit'.
 
 	2- le projet ou l'espace de travail concerné doit préalablement avoir été
 		COMPLILé avec succès !!, de telle sorte que les fichiers soient
@@ -314,7 +313,7 @@ G- REMARQUES
 	3- emplacement des fichiers générés : 'nom_de_projet_pilote.po', ...
 
 		3-1- les fichiers sont écrit en
-			'dir_projet_pilote\trlocale\name_de_projet_pilote.po'.
+			'dir_projet_pilote\trlocale\name_de_projet_pilote_workspace.po'.
 
 		3-2- si le répertoire 'trlocale' n'existe pas il sera créé, or la
 			création de répertoire est une opération protégée, 'C::B' vous
@@ -346,27 +345,35 @@ G- REMARQUES
 
 	6- utilisation de cette extension sur le projet 'CodeBlocks-xxx.workspace'
 
-		Sur mon environnement de test ''Win-7' :
+		6-1 Sur mon environnement de test ''Win-7'
+			- avec le mot clé '_' et 'codeblocks.its' pour '*.xml'
 
-			'Cb-12813-wx3.1.6-(64bit)' avec le mot clé '_'
-			: 1215 fichiers, 25 cibles, 275 fichiers éligibles :
-				- listage = 1 min 16 S,   avec 2033 chaînes collectées,
-				- extraction = 28 S  avec 88 fichiers temporaires
+			6-1-1 'Cb-12813-wx3.1.6-(64bit)'
+				1215 fichiers, 25 cibles, 275 fichiers éligibles :
+				- listage = 1 min 16 S, avec 2033 chaînes collectées,
+				- extraction = 28 S avec 88 fichiers temporaires
 
-			'CodeBlocks-r12813 + les extensions externes'
-			dans un espace de travail de 38 projets au total :
-				- listage = 3 min 35 S
-					- 8934 chaînes extractibles dans 2453 fichiers dont 636 élus
-				- extraction = 6 min -> ''codeblocks7953.pot'' (1306191 octets)
-					- suppressions de 99 '\r'  ( 2 mm 25 S !)
-					- 41 modifications  de '$$...' en '$...'
-					- 6594 chaînes à traduire
+			6-1-2 'CodeBlocks-r12813 + les extensions externes'
+				dans un espace de travail de 38 projets au total :
+				- listage = 2 min 11 S
+					- 12360 chaînes extractibles dans 4215 fichiers dont 1264 élus
+				- extraction = 6 min 5 S 
+					-> 'codeblocks-12813-wx3.1.6-(64bit)_workspace.pot'( 1 895 413 bytes )
+					- 12360 chaînes à traduire
+					
+		6-2 Sur mon environnement de test 'Leap15.3' :
+			
+			- à venir ...
+			
+		6-3 Sur environnement 'MACOX'
+		
+			- ???
 
 H- A FAIRE
 
 	- supprimer les lignes vides dans les chaînes traduites ...
 	- ajouter le préfixe 'wxPLURAL' ??
-	- ajouter d'autres types de projet ...
+	- ajouter d'autres types de projet (Qt, ?)
 	- adapter pour MACOX ...
 	- ...
 
@@ -394,11 +401,11 @@ I- ANNEXES
 
 		1-2- dans l'explorateur de 'C::B' en mode 'Fichiers' :
 			- charger 'nom_de_projet.po' dans l'éditeur,
-			- supprimer toutes les occurrences de '#, fuzzy',
+			- supprimer toutes les occurrences de '#, fuzzy' (traduction farfelue),
 				( attention aux '#, fuzzy, c-format' )
 			- sauvegarder et fermer ce fichier.
 
-		1-3- dans 'Poedit' recharger 'nom_de_base.po' pour VéRIFICATION
+		1-3- dans 'Poedit' recharger 'nom_de_projet.po' pour VéRIFICATION
 			- sauvegarder le fichier en générant le 'nom_de_projet.mo',
 			- probablement certaines erreurs apparaitront, dues à la prise en compte
 				des nouvelles chaînes validées par la suppression des '#, fuzzy',

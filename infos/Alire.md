@@ -1,18 +1,22 @@
-Alire.md (UTF8)
+# Collecteurr-1.6.0,  20 mai 2022 (Win-64, Linux-64)
 
-LETARTARE(http://forums.codeblocks.org)
+Extension de traduction des apllications (wxWidgets) avec 'Code::Blocks'
 
-v 1.6.0 : 20 mai 2022 
+**Pour toutes les versions 'Code::Block, sdk >= 2.0.0, svn >= 12004'**
+
+**La dernière: sdk = 2.18.0, svn = 12813 -> ...**
 
 A - Quel est ce projet ?
 
-	Le but est de traduire, dans la langue locale, les projets de développement sous 'Code::Blocks', uniquement ceux utilisant 'wxWidgets'.
+	Le but est de traduire, dans la langue locale, les projets de développement sous 'Code::Blocks', 
+	uniquement ceux utilisant 'wxWidgets'.
 
 	L'extension 'Collector' permet de générer, dans le répertoire 'trlocale', un fichier :
-		- 'nom_projet.po' pour un seul projet,
-		- ou 'nom_pilote_projet.po' pour un projet coopératif (workspace).
+		- 'nom_projet.po' pour un seul projet, ou
+		- 'nom_projet_pilote_workspace.po' pour un projet coopératif (workspace).
 
-	Ce fichier est fourni à 'Poedit', intégré à 'Code::Blocks', qui génère un fichier '*.mo', à placer, par l'utilisateur, dans le répertoire exécutable pour le test.
+	Ce fichier est fourni à 'Poedit', intégré à 'Code::Blocks', qui génère un fichier 
+	'*.mo', à placer, par l'utilisateur, dans le répertoire exécutable pour le test.
 
 B- Conditions préalables
 
@@ -24,13 +28,15 @@ B- Conditions préalables
 		Pour installer 'Poedit' dans 'Code::Blocks' :
 			1- lisez 'http://wiki.codeblocks.org/index.php?title=Configure_tools',
 			2- lire 'infos/Collector_exp.en' paragraphe 'SETUP 'Poedit',
+			
+		** vous devrez ajouter dans le répertoire 'gettext\share\its' les deux fichiers
+            codeblocks.its' et 'codeblocks.loc' fournis dans '...\its'.
 
 	2- 'wxrc' doit être installé  
-		- soit avec 'codeblocks.exe' (pour 'Win-64')
+		- soit avec 'codeblocks.exe' (pour 'Win-64' à l'aide des cibles 'wxrc_315', 'wxrc_316')
 		- soit avec 'wxWidgets' (pour 'Lin-64')
 
  C- Installation dans 'Code::Blocks' (sans 'Poedit') :
-
 
 	1- Installez 'Collector-x.y.z' dans n'importe quel répertoire.
 
@@ -45,7 +51,7 @@ B- Conditions préalables
 				- choisissez '...\win_316\Collector.cbpugin'
 				- ...
 				=> vous verrez dans le journal 'Collector'
-			"Plate-forme : 'Win-64', 'sdk-2.17.0', 'Collector-1.5.0', construit le '05/03/22::16:09:15'" 
+			** "Plate-forme : 'Win-64', 'sdk-2.18.0', 'Collector-1.6.0', construit le '20/05/22::10:09:15'" 
 
 		- Lin-64 :
 			-  Générer->Générer' => 
@@ -55,7 +61,7 @@ B- Conditions préalables
 				- choisissez '.../lin_305/Collector.cbpugin'
 				- ...
 				=> dans le journal 'Collecter'
-			"Plate-forme : 'Lin-64', 'sdk-2.18.0', 'Collector-1.6.0', construit le '20/05/22::16:09:15'" 
+			** "Plate-forme : 'Lin-64', 'sdk-2.18.0', 'Collector-1.6.0', construit le '20/05/22::11:09:15'" 
 				
 	3- Vous devez voir le menu '&Collecter' ou 'Collecteur Toolbar' dans la barre d'outils.
 
