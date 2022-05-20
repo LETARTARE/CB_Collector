@@ -1,7 +1,0 @@
-<map id="Pre::recursRmDir" name="Pre::recursRmDir">
-<area shape="rect" id="node2" href="$class_create_for_wx.html#a0ed056f22a319136cb6744977294b7c9" title="Delete all temporary file. " alt="" coords="177,31,348,57"/>
-<area shape="rect" id="node3" href="$class_collector.html#a17519955ff8a9ea4095be3823e09bb2e" title="Places the status graph in the cleaning report and Delete the temporary directory. " alt="" coords="396,5,592,32"/>
-<area shape="rect" id="node6" href="$class_create_for_wx.html#a31e8c6e85d2cfd96a224377ac2b0631a" title="Create the file &#39;*.pot&#39; containing all translatable string(s) " alt="" coords="412,56,576,83"/>
-<area shape="rect" id="node4" href="$class_collector.html#a7930ee28062e4a433303d81f3b984c9b" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="640,5,787,32"/>
-<area shape="rect" id="node5" href="$class_collector.html#a21ea63216efd3b547e514e0d6467bce5" title="Only one method for all events. " alt="" coords="835,5,1011,32"/>
-</map>

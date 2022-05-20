@@ -1,9 +1,0 @@
-<map id="Pre::xgettextOut" name="Pre::xgettextOut">
-<area shape="rect" id="node2" href="$class_pre.html#a51af576d8b56ed77c362814160d5704a" title="Execute &#39;xgettext&#39; for &#39;listing()&#39; or &#39;extract()&#39;. " alt="" coords="172,107,304,133"/>
-<area shape="rect" id="node3" href="$class_create_for_qt.html#a016857846848b8502683f75d695310ad" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="355,5,546,32"/>
-<area shape="rect" id="node4" href="$class_create_for_qt.html#a8e393905d2da745bae0a49d729b10560" title="Create the file &#39;*.pot&#39; containing all translatable string(s) " alt="" coords="372,56,529,83"/>
-<area shape="rect" id="node5" href="$class_create_for_wx.html#a7d13df1de2f638015374a04219aa2d54" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="352,107,549,133"/>
-<area shape="rect" id="node6" href="$class_create_for_wx.html#a6908a1b974acb17e8dda80a062e9363a" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="367,158,534,199"/>
-<area shape="rect" id="node8" href="$class_create_for_wx.html#a31e8c6e85d2cfd96a224377ac2b0631a" title="Create the file &#39;*.pot&#39; containing all translatable string(s) " alt="" coords="369,224,533,251"/>
-<area shape="rect" id="node7" href="$class_create_for_wx.html#a024b578abef8bb97ef294251021fa11f" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="597,165,787,192"/>
-</map>

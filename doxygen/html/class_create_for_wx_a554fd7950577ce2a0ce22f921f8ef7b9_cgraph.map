@@ -1,5 +1,0 @@
-<map id="CreateForWx::detectLibProject" name="CreateForWx::detectLibProject">
-<area shape="rect" id="node2" href="$class_pre.html#a70d06eec2a18717fa4bfc0d9a6c9a2b1" title="Indicates if target is command only. " alt="" coords="255,5,409,32"/>
-<area shape="rect" id="node3" href="$class_create_for_wx.html#a7ed361b57009bad03a2a24c7bef74415" title="Search the &#39;Wx&#39; path and feed &#39;m_Wxpath&#39;. " alt="" coords="256,56,408,83"/>
-<area shape="rect" id="node4" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="457,49,636,90"/>
-</map>

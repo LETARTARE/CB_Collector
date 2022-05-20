@@ -1,8 +1,0 @@
-<map id="CreateForWx::pathWx" name="CreateForWx::pathWx">
-<area shape="rect" id="node2" href="$class_create_for_wx.html#a554fd7950577ce2a0ce22f921f8ef7b9" title="Detects if the current target uses &#39;Wx&#39; libraries,. " alt="" coords="205,49,407,75"/>
-<area shape="rect" id="node3" href="$class_collector.html#a08f5926a5fb84fc870784f6cec385a40" title="Detects project type : &#39;Wx&#39; or &#39;Qt&#39;. " alt="" coords="455,49,641,75"/>
-<area shape="rect" id="node4" href="$class_collector.html#abf69f761754e596b8c380fef9815fc05" title="This method called by project activate allows detect project using the &#39;Wx&#39; or &#39;Qt&#39; libraries..." alt="" coords="689,23,875,50"/>
-<area shape="rect" id="node7" href="$class_collector.html#a333c1be7e5a5235209c3134b877cd0dc" title="This method called by target activate allows detect target using the &#39;Wx&#39; or &#39;Qt&#39; libraries..." alt="" coords="923,74,1103,101"/>
-<area shape="rect" id="node5" href="$class_collector.html#a083060f2bf00f965496c44de767cd7a1" title="Any descendent plugin should override this virtual method and perform any necessary initialization..." alt="" coords="1151,23,1287,50"/>
-<area shape="rect" id="node6" href="$class_collector.html#ac803457aab4e0e05aec92c159d8d5683" title="This method called by plugin is manually loaded. " alt="" coords="925,23,1101,50"/>
-</map>
