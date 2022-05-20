@@ -10,7 +10,7 @@ A- PURPOSE :
 	This is done using 'Poedit' built-in 'C::B', in which is provided a file
 	'project_name.po' directly translatable 'Poedit'.
 
-	The extension script 'Collector.cbp' will generate this file
+	The extension project 'Collector.cbp' will generate this file
 	'project_name.po' from the core project assets in 'C::B'.
 
 	This project is either single core or associated with other cooperative
