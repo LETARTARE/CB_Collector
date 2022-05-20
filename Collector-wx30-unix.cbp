@@ -2,13 +2,13 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Collector-1.5.0-sdk2170-Unix" />
+		<Option title="Collector-1.6.0-sdk2180-Unix" />
 		<Option platforms="Unix;" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Option show_notes="0">
 			<notes>
-				<![CDATA[with cb-12025-q, sdk-2.2.0]]>
+				<![CDATA[with cb-12813-q, sdk-2.18.0]]>
 			</notes>
 		</Option>
 		<Build>
@@ -47,7 +47,7 @@
 					<Mode after="always" />
 				</ExtraCommands>
 				<Environment>
-					<Variable name="cb" value='&quot;$(#sdk2170)&quot;' />
+					<Variable name="cb" value='&quot;$(#sdk2180_305)&quot;' />
 				</Environment>
 			</Target>
 			<Target title="linux_305">
