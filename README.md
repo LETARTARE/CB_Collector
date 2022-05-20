@@ -83,26 +83,26 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 6- Menu and Tool bar
 
-![Menu](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_menu_bar.png  "Menu")
+![Menu](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_menu_bar.png  "Menu")
 
 7- List logs
 
-![ListB](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_beginList.png  "BeginList")
+![ListB](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_beginList.png  "BeginList")
 
-![ListE](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_endList.png   "EndList")
+![ListE](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_endList.png   "EndList")
 
 8- Extract logs
 
-![ExtractB](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_beginExtract.png    "BeginExtract")
+![ExtractB](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_beginExtract.png    "BeginExtract")
 
-![ExtractE](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_endExtract.png  "EndExtract")
+![ExtractE](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_endExtract.png  "EndExtract")
 
 9- Editor
 
-![EDITOR](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_cb12814_editor.png   "EDITOR")
+![EDITOR](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_cb12814_editor.png   "EDITOR")
 
 10- Poedit in French
 
-![Poedit](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_poedit_fr.png    "Poedit")
+![Poedit](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_poedit_fr.png    "Poedit")
 
 	
