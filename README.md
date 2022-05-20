@@ -28,11 +28,11 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 			'http://www.poedit.net/'
 			
         ** you will have to add in the 'gettext\share\its' directory the two files
-            codeblocks.its' and 'codeblocks.loc' provided in '...\its'.
+            'codeblocks.its' and 'codeblocks.loc' provided in '...\its'.
             
 		To install 'Poedit' in 'Code::Blocks' :
 			1- read 'http://wiki.codeblocks.org/index.php?title=Configure_tools',
-			2- read 'infos/Collector_exp.en' paragraph 'SETUP 'Poedit',
+			2- read 'infos/Collector_exp_en.md' paragraph 'SETUP 'Poedit',
 
 	2- 'wxrc' must be installed  
 		- either with 'codeblocks' (for 'Win-64' : 'wxrc.exe' with target 'wxrc_315' or 'wxrc_316')
