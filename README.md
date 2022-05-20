@@ -93,7 +93,7 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 8- Extract logs
 
-![ExtractB](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_beginExtract.png    "BeginExtract")
+![ExtractB](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_beginExtract.png  "BeginExtract")
 
 ![ExtractE](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_endExtract.png  "EndExtract")
 
