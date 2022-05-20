@@ -85,14 +85,24 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 ![Menu](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_menu_bar.png  "Menu")
 
-7- Logs
+7- List logs
 
-![Logs1](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_beginList.png  "BeginList")
+![ListB](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_beginList.png  "BeginList")
 
-![Logs2](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_endList.png   "EndList")
+![ListE](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_endList.png   "EndList")
 
-8- Poedit
+8- Extract logs
 
-![Poedit](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_poedit_fr.png    "Poedit")
+![ExtractB](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_beginExtract.png    "BeginExtract")
+
+![ExtractE](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_endExtract.png  "EndExtract")
+
+9- Editor
+
+![EDITOR](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_cb12814_editor.png   "EDITOR")
+
+10- Poedit in French
+
+![Poedit](https://github.com/LETARTARE/CB_Collector/tree/Images16/collector160_poedit_fr.png    "Poedit")
 
 	
