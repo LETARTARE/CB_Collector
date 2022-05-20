@@ -30,7 +30,7 @@ A- OBJECTIF :
 		  (dupliqué en 'nom_de_projet_pilote_workspace.po' exploitable par 'Poedit').
 		  
 	** les deux modes peuvent être enchainés par
-			'LISTER puis EXTRAIRE'
+		'LISTER puis EXTRAIRE'
 
 	Il prend en compte les fichiers éligibles suivants :
 		'*.h', '*.cpp', '*.script', '*.xml', '*.xrc', '*.wxs',
