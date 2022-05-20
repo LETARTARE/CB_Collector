@@ -81,3 +81,18 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 	The directory 'infos' files contains the explanatory use.
 
+6- Menu and Tool bar
+
+![Menu](https://github.com/LETARTARE/CB_Collector/blob/Images/16/collector160_menu_bar.png  "Menu")
+
+7- Logs
+
+![Logs1](https://github.com/LETARTARE/CB_Collector/blob/Images/16/collector160_beginList.png  "BeginList")
+
+![Logs2](https://github.com/LETARTARE/CB_Collector/blob/Images/16/collector160_endList.png   "EndList")
+
+8- Poedit
+
+![Poedit](https://github.com/LETARTARE/CB_Collector/blob/Images/16/collector160_poedit_fr.png    "Poedit")
+
+	
