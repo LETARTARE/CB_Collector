@@ -1,0 +1,13 @@
+digraph "Pre::endDuration"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node245 [label="Pre::endDuration",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node245 -> Node246 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node246 [label="Pre::date",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb",tooltip="Give a date. "];
+  Node246 -> Node247 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node247 [label="Pre::beginTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e",tooltip="Startup time. "];
+  Node245 -> Node248 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node248 [label="Pre::duration",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a4a35361069bc37bad4ad0c7d363afbe7",tooltip="Give a duration. "];
+}

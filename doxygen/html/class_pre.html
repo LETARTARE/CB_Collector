@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Collector-wx31_64: Pre Class Reference</title>
+<title>Collector: Pre Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,10 +29,10 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="wxwin24x24.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Collector-wx31_64
-   &#160;<span id="projectnumber">1.6.0</span>
+   <div id="projectname">Collector
+   &#160;<span id="projectnumber">1.7.0</span>
    </div>
-   <div id="projectbrief">The goal is to translate, in the local language, the development projectsunder&#39;C::B&#39;directly.</div>
+   <div id="projectbrief">Collect translatable strings from &#39;Code::Blocks&#39; projects</div>
   </td>
  </tr>
  </tbody>
@@ -101,9 +101,6 @@ Inheritance diagram for Pre:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre__inherit__graph.png" border="0" usemap="#_pre_inherit__map" alt="Inheritance graph"/></div>
 <map name="_pre_inherit__map" id="_pre_inherit__map">
-<area shape="rect" id="node3" href="class_create_for_qt.html" title="The class is used to build &#39;Qt&#39; I18n files. " alt="" coords="5,740,141,1199"/>
-<area shape="rect" id="node4" href="class_create_for_wx.html" title="The class is used to build &#39;Wx I18n&#39; files. " alt="" coords="165,762,304,1177"/>
-<area shape="rect" id="node2" href="class_col_state.html" title="This classe share data between classe &#39;Pre&#39; and &#39;Collector&#39;. " alt="" coords="103,5,203,112"/>
 </map>
 </div>
 <div class="dynheader">
@@ -111,7 +108,6 @@ Collaboration diagram for Pre:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre__coll__graph.png" border="0" usemap="#_pre_coll__map" alt="Collaboration graph"/></div>
 <map name="_pre_coll__map" id="_pre_coll__map">
-<area shape="rect" id="node2" href="class_col_state.html" title="This classe share data between classe &#39;Pre&#39; and &#39;Collector&#39;. " alt="" coords="53,5,153,112"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -141,8 +137,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad6c83ed54f3f22abcc25ee1de4581a04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04">ShowError</a> (const wxString &amp;_mes)</td></tr>
 <tr class="memdesc:ad6c83ed54f3f22abcc25ee1de4581a04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call to 'cbMessageBox(_mes, "", wxICON_ERROR)'.  <a href="#ad6c83ed54f3f22abcc25ee1de4581a04">More...</a><br /></td></tr>
 <tr class="separator:ad6c83ed54f3f22abcc25ee1de4581a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6537186bec965c977da90bb2a1feac67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a6537186bec965c977da90bb2a1feac67">ListProject</a> (const wxString &amp;_key, wxInt32 &amp;_nbstr)</td></tr>
+<tr class="memdesc:a6537186bec965c977da90bb2a1feac67"><td class="mdescLeft">&#160;</td><td class="mdescRight"><hr/>
+  <a href="#a6537186bec965c977da90bb2a1feac67">More...</a><br /></td></tr>
+<tr class="separator:a6537186bec965c977da90bb2a1feac67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4324dc0618ec55468f2c1979b2e66f2c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c">ExtractProject</a> ()</td></tr>
+<tr class="memdesc:a4324dc0618ec55468f2c1979b2e66f2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract strings to be translated.  <a href="#a4324dc0618ec55468f2c1979b2e66f2c">More...</a><br /></td></tr>
+<tr class="separator:a4324dc0618ec55468f2c1979b2e66f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9b0b0f3b571d8c8b511ed3134d26bb4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#aa9b0b0f3b571d8c8b511ed3134d26bb4">ListWS</a> (wxInt32 &amp;_nbstr)</td></tr>
+<tr class="memdesc:aa9b0b0f3b571d8c8b511ed3134d26bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">List strings to be translated in workspace.  <a href="#aa9b0b0f3b571d8c8b511ed3134d26bb4">More...</a><br /></td></tr>
+<tr class="separator:aa9b0b0f3b571d8c8b511ed3134d26bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8684f86d5efbdb8e3d688590d28a3179"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a8684f86d5efbdb8e3d688590d28a3179">ExtractWS</a> ()</td></tr>
+<tr class="memdesc:a8684f86d5efbdb8e3d688590d28a3179"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract strings to be translated in workspace.  <a href="#a8684f86d5efbdb8e3d688590d28a3179">More...</a><br /></td></tr>
+<tr class="separator:a8684f86d5efbdb8e3d688590d28a3179"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8fe80b03fa99630abb8e9e91ad4f0b9"><td class="memItemLeft" align="right" valign="top">wxInt32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#af8fe80b03fa99630abb8e9e91ad4f0b9">CallMenu</a> (const wxString &amp;_menuPath)</td></tr>
-<tr class="memdesc:af8fe80b03fa99630abb8e9e91ad4f0b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locate and call a menu from string (e.g. "/Valgrind/Run Valgrind::MemCheck")  <a href="#af8fe80b03fa99630abb8e9e91ad4f0b9">More...</a><br /></td></tr>
+<tr class="memdesc:af8fe80b03fa99630abb8e9e91ad4f0b9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><hr/>
+  <a href="#af8fe80b03fa99630abb8e9e91ad4f0b9">More...</a><br /></td></tr>
 <tr class="separator:af8fe80b03fa99630abb8e9e91ad4f0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a331d34900673347c58a7ad607e80edbd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a331d34900673347c58a7ad607e80edbd">saveAs</a> (wxString &amp;_namefile)</td></tr>
 <tr class="memdesc:a331d34900673347c58a7ad607e80edbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a file to disk with a file dialog.  <a href="#a331d34900673347c58a7ad607e80edbd">More...</a><br /></td></tr>
@@ -163,28 +173,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a325d06dc046499b45fd32e49a3eb1dc2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a325d06dc046499b45fd32e49a3eb1dc2">isAllRight</a> ()</td></tr>
 <tr class="memdesc:a325d06dc046499b45fd32e49a3eb1dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">For globals boolan.  <a href="#a325d06dc046499b45fd32e49a3eb1dc2">More...</a><br /></td></tr>
 <tr class="separator:a325d06dc046499b45fd32e49a3eb1dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38937436b388c95b22a8ccffe7952d95"><td class="memItemLeft" align="right" valign="top">wxInt32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a38937436b388c95b22a8ccffe7952d95">nbStringsToExtract</a> ()</td></tr>
-<tr class="memdesc:a38937436b388c95b22a8ccffe7952d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Give the number of strings to extract.  <a href="#a38937436b388c95b22a8ccffe7952d95">More...</a><br /></td></tr>
-<tr class="separator:a38937436b388c95b22a8ccffe7952d95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24b638659d8e4cbba05c2d4f7bf3b5f7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a24b638659d8e4cbba05c2d4f7bf3b5f7">closeAllExtraFiles</a> ()</td></tr>
+<tr class="memdesc:a24b638659d8e4cbba05c2d4f7bf3b5f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">close all extra files to editor '*.list', '*.extr', '*.po'  <a href="#a24b638659d8e4cbba05c2d4f7bf3b5f7">More...</a><br /></td></tr>
+<tr class="separator:a24b638659d8e4cbba05c2d4f7bf3b5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70d06eec2a18717fa4bfc0d9a6c9a2b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a70d06eec2a18717fa4bfc0d9a6c9a2b1">isCommandTarget</a> (const wxString &amp;_nametarget)</td></tr>
 <tr class="memdesc:a70d06eec2a18717fa4bfc0d9a6c9a2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if target is command only.  <a href="#a70d06eec2a18717fa4bfc0d9a6c9a2b1">More...</a><br /></td></tr>
 <tr class="separator:a70d06eec2a18717fa4bfc0d9a6c9a2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcc8e72795acc9c890945b1cddc610f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#abcc8e72795acc9c890945b1cddc610f2">isCommandTarget</a> (const ProjectBuildTarget *_pBuildTarget)</td></tr>
-<tr class="memdesc:abcc8e72795acc9c890945b1cddc610f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if target is command only.  <a href="#abcc8e72795acc9c890945b1cddc610f2">More...</a><br /></td></tr>
-<tr class="separator:abcc8e72795acc9c890945b1cddc610f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6537186bec965c977da90bb2a1feac67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a6537186bec965c977da90bb2a1feac67">ListProject</a> (const wxString &amp;_key, wxInt32 &amp;_nbstr)</td></tr>
-<tr class="memdesc:a6537186bec965c977da90bb2a1feac67"><td class="mdescLeft">&#160;</td><td class="mdescRight"><hr/>
-  <a href="#a6537186bec965c977da90bb2a1feac67">More...</a><br /></td></tr>
-<tr class="separator:a6537186bec965c977da90bb2a1feac67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4324dc0618ec55468f2c1979b2e66f2c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c">ExtractProject</a> ()</td></tr>
-<tr class="memdesc:a4324dc0618ec55468f2c1979b2e66f2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract strings to be translated.  <a href="#a4324dc0618ec55468f2c1979b2e66f2c">More...</a><br /></td></tr>
-<tr class="separator:a4324dc0618ec55468f2c1979b2e66f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9b0b0f3b571d8c8b511ed3134d26bb4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#aa9b0b0f3b571d8c8b511ed3134d26bb4">ListWS</a> (wxInt32 &amp;_nbstr)</td></tr>
-<tr class="memdesc:aa9b0b0f3b571d8c8b511ed3134d26bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">List strings to be translated in workspace.  <a href="#aa9b0b0f3b571d8c8b511ed3134d26bb4">More...</a><br /></td></tr>
-<tr class="separator:aa9b0b0f3b571d8c8b511ed3134d26bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8684f86d5efbdb8e3d688590d28a3179"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a8684f86d5efbdb8e3d688590d28a3179">ExtractWS</a> ()</td></tr>
-<tr class="memdesc:a8684f86d5efbdb8e3d688590d28a3179"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract strings to be translated in workspace.  <a href="#a8684f86d5efbdb8e3d688590d28a3179">More...</a><br /></td></tr>
-<tr class="separator:a8684f86d5efbdb8e3d688590d28a3179"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_col_state"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_col_state')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_col_state.html">ColState</a></td></tr>
 <tr class="memitem:a453b8e574fbe63f6af24031e77cefe56 inherit pub_methods_class_col_state"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_col_state.html#a453b8e574fbe63f6af24031e77cefe56">ColState</a> ()</td></tr>
 <tr class="memdesc:a453b8e574fbe63f6af24031e77cefe56 inherit pub_methods_class_col_state"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="class_col_state.html#a453b8e574fbe63f6af24031e77cefe56">More...</a><br /></td></tr>
@@ -195,13 +189,24 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a831feadd1c6bef58fa8e77be44a9e7c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a831feadd1c6bef58fa8e77be44a9e7c1">hasLib</a> (const wxString _type, CompileTargetBase *_pContainer)</td></tr>
-<tr class="memdesc:a831feadd1c6bef58fa8e77be44a9e7c1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><hr/>
-  <a href="#a831feadd1c6bef58fa8e77be44a9e7c1">More...</a><br /></td></tr>
-<tr class="separator:a831feadd1c6bef58fa8e77be44a9e7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bdcb3ab0fc5675a7c9422610a0cb284"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a9bdcb3ab0fc5675a7c9422610a0cb284">isCommandOrVirtualTarget</a> (const wxString &amp;_nametarget)</td></tr>
+<tr class="memdesc:a9bdcb3ab0fc5675a7c9422610a0cb284"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if target is command only or a virtual target.  <a href="#a9bdcb3ab0fc5675a7c9422610a0cb284">More...</a><br /></td></tr>
+<tr class="separator:a9bdcb3ab0fc5675a7c9422610a0cb284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb35fc16fe45e87077a49f0e2eb32bba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#afb35fc16fe45e87077a49f0e2eb32bba">isCommandTarget</a> (const ProjectBuildTarget *_pTarget)</td></tr>
+<tr class="memdesc:afb35fc16fe45e87077a49f0e2eb32bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if target is command only.  <a href="#afb35fc16fe45e87077a49f0e2eb32bba">More...</a><br /></td></tr>
+<tr class="separator:afb35fc16fe45e87077a49f0e2eb32bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c13f6286ebbb7a82bd99682dde99344"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a0c13f6286ebbb7a82bd99682dde99344">isCommandOrVirtualTarget</a> (const ProjectBuildTarget *_pTarget)</td></tr>
+<tr class="memdesc:a0c13f6286ebbb7a82bd99682dde99344"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if target is command only or a virtual target.  <a href="#a0c13f6286ebbb7a82bd99682dde99344">More...</a><br /></td></tr>
+<tr class="separator:a0c13f6286ebbb7a82bd99682dde99344"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad69b57decb44dabf2ed92df9d84a0147"><td class="memItemLeft" align="right" valign="top">wxArrayString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#ad69b57decb44dabf2ed92df9d84a0147">compileableProjectTargets</a> ()</td></tr>
 <tr class="memdesc:ad69b57decb44dabf2ed92df9d84a0147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Give compileable targets list for project or virtual target.  <a href="#ad69b57decb44dabf2ed92df9d84a0147">More...</a><br /></td></tr>
 <tr class="separator:ad69b57decb44dabf2ed92df9d84a0147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3a0f75f5c2aac52ce3fe6fd0048ed84"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#ab3a0f75f5c2aac52ce3fe6fd0048ed84">isVirtualTarget</a> (const ProjectBuildTarget *_pTarget)</td></tr>
+<tr class="memdesc:ab3a0f75f5c2aac52ce3fe6fd0048ed84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if target is virtual.  <a href="#ab3a0f75f5c2aac52ce3fe6fd0048ed84">More...</a><br /></td></tr>
+<tr class="separator:ab3a0f75f5c2aac52ce3fe6fd0048ed84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9740530817bd9b6e954e934ac0dc29a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#ac9740530817bd9b6e954e934ac0dc29a">isVirtualTarget</a> (const wxString &amp;_nametarget)</td></tr>
+<tr class="memdesc:ac9740530817bd9b6e954e934ac0dc29a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if target is virtual.  <a href="#ac9740530817bd9b6e954e934ac0dc29a">More...</a><br /></td></tr>
+<tr class="separator:ac9740530817bd9b6e954e934ac0dc29a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf295c590dcdc8b93ef190c23150a134"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134">detectLibProject</a> (cbProject *_pProject, bool _report=true)=0</td></tr>
 <tr class="memdesc:aaf295c590dcdc8b93ef190c23150a134"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects the current libraries for project.  <a href="#aaf295c590dcdc8b93ef190c23150a134">More...</a><br /></td></tr>
 <tr class="separator:aaf295c590dcdc8b93ef190c23150a134"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -269,6 +274,13 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a8ecc4928641aebbd2da6e9221c32aded"><td class="memItemLeft" align="right" valign="top">wxString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a8ecc4928641aebbd2da6e9221c32aded">executeAndGetOutputAndError</a> (const wxString &amp;_command, const bool &amp;_prepend_error=true)</td></tr>
 <tr class="memdesc:a8ecc4928641aebbd2da6e9221c32aded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch a command line.  <a href="#a8ecc4928641aebbd2da6e9221c32aded">More...</a><br /></td></tr>
 <tr class="separator:a8ecc4928641aebbd2da6e9221c32aded"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34f9dacfbfaa9c69dde012674cc21458"><td class="memItemLeft" align="right" valign="top">wxString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a34f9dacfbfaa9c69dde012674cc21458">executeAndGetOutput</a> (const wxString &amp;_command, const bool &amp;_prepend_error=true)</td></tr>
+<tr class="memdesc:a34f9dacfbfaa9c69dde012674cc21458"><td class="mdescLeft">&#160;</td><td class="mdescRight"><hr/>
+  <a href="#a34f9dacfbfaa9c69dde012674cc21458">More...</a><br /></td></tr>
+<tr class="separator:a34f9dacfbfaa9c69dde012674cc21458"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af92fb1137bdad11dd6bd32530ed7d426"><td class="memItemLeft" align="right" valign="top">wxInt32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#af92fb1137bdad11dd6bd32530ed7d426">LaunchExternalTool</a> (const wxString &amp;_toolexe)</td></tr>
+<tr class="memdesc:af92fb1137bdad11dd6bd32530ed7d426"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch an external executable tool.  <a href="#af92fb1137bdad11dd6bd32530ed7d426">More...</a><br /></td></tr>
+<tr class="separator:af92fb1137bdad11dd6bd32530ed7d426"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adccccf940ffaa486db792769f604b081"><td class="memItemLeft" align="right" valign="top">wxString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#adccccf940ffaa486db792769f604b081">xgettextOut</a> (const wxString &amp;_txt)</td></tr>
 <tr class="memdesc:adccccf940ffaa486db792769f604b081"><td class="mdescLeft">&#160;</td><td class="mdescRight">From a text, extract the different strings to be translated.  <a href="#adccccf940ffaa486db792769f604b081">More...</a><br /></td></tr>
 <tr class="separator:adccccf940ffaa486db792769f604b081"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -291,11 +303,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a20b3015ebd4f0ca5e4fcd2fdc6022e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display messages of ending listing or extracting.  <a href="#a20b3015ebd4f0ca5e4fcd2fdc6022e20">More...</a><br /></td></tr>
 <tr class="separator:a20b3015ebd4f0ca5e4fcd2fdc6022e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa162eeb7f1a498bdaa371645a5b071e7"><td class="memItemLeft" align="right" valign="top">wxUint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#aa162eeb7f1a498bdaa371645a5b071e7">freqStr</a> (const wxString &amp;_souce, const wxString &amp;_str)</td></tr>
-<tr class="memdesc:aa162eeb7f1a498bdaa371645a5b071e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of occurrences of _str in the _txt.  <a href="#aa162eeb7f1a498bdaa371645a5b071e7">More...</a><br /></td></tr>
+<tr class="memdesc:aa162eeb7f1a498bdaa371645a5b071e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of occurrences of '_str' in the '_txt'.  <a href="#aa162eeb7f1a498bdaa371645a5b071e7">More...</a><br /></td></tr>
 <tr class="separator:aa162eeb7f1a498bdaa371645a5b071e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e392c946bee7fd92001373399a1df4b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a3e392c946bee7fd92001373399a1df4b">recursRmDir</a> (wxString _rmDir)</td></tr>
-<tr class="memdesc:a3e392c946bee7fd92001373399a1df4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursively deletes non-empty directories.  <a href="#a3e392c946bee7fd92001373399a1df4b">More...</a><br /></td></tr>
-<tr class="separator:a3e392c946bee7fd92001373399a1df4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac79cc09d7d7cf858c712c8c8c9e2cbbb"><td class="memItemLeft" align="right" valign="top">wxString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb">date</a> ()</td></tr>
 <tr class="memdesc:ac79cc09d7d7cf858c712c8c8c9e2cbbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Give a date.  <a href="#ac79cc09d7d7cf858c712c8c8c9e2cbbb">More...</a><br /></td></tr>
 <tr class="separator:ac79cc09d7d7cf858c712c8c8c9e2cbbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -329,24 +338,33 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a0c41270b1d60e164c94c286213bdfd18"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18">openedit</a> (const wxString _file)</td></tr>
 <tr class="memdesc:a0c41270b1d60e164c94c286213bdfd18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display a file to editor.  <a href="#a0c41270b1d60e164c94c286213bdfd18">More...</a><br /></td></tr>
 <tr class="separator:a0c41270b1d60e164c94c286213bdfd18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07dbf60fd3686233daf1df7b85408e99"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a07dbf60fd3686233daf1df7b85408e99">closedit</a> (const wxString _file)</td></tr>
+<tr class="memdesc:a07dbf60fd3686233daf1df7b85408e99"><td class="mdescLeft">&#160;</td><td class="mdescRight">close a file to editor  <a href="#a07dbf60fd3686233daf1df7b85408e99">More...</a><br /></td></tr>
+<tr class="separator:a07dbf60fd3686233daf1df7b85408e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84a8a1143763a2b58ef9b79e70ef3236"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a84a8a1143763a2b58ef9b79e70ef3236">copyFileToDir</a> (const wxString &amp;_namefile)</td></tr>
+<tr class="memdesc:a84a8a1143763a2b58ef9b79e70ef3236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a file to an another directory.  <a href="#a84a8a1143763a2b58ef9b79e70ef3236">More...</a><br /></td></tr>
+<tr class="separator:a84a8a1143763a2b58ef9b79e70ef3236"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af917f0ecc9c5aedb69524ac74eb1004b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b">createDir</a> (const wxString &amp;_dir)</td></tr>
 <tr class="memdesc:af917f0ecc9c5aedb69524ac74eb1004b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a directory.  <a href="#af917f0ecc9c5aedb69524ac74eb1004b">More...</a><br /></td></tr>
 <tr class="separator:af917f0ecc9c5aedb69524ac74eb1004b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e392c946bee7fd92001373399a1df4b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a3e392c946bee7fd92001373399a1df4b">recursRmDir</a> (wxString _rmDir)</td></tr>
+<tr class="memdesc:a3e392c946bee7fd92001373399a1df4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursively deletes non-empty directories.  <a href="#a3e392c946bee7fd92001373399a1df4b">More...</a><br /></td></tr>
+<tr class="separator:a3e392c946bee7fd92001373399a1df4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88e3bef0ca2ea7f66d9aa18292b88ba6"><td class="memItemLeft" align="right" valign="top">wxString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6">readFileContents</a> (const wxString &amp;_filename)</td></tr>
 <tr class="memdesc:a88e3bef0ca2ea7f66d9aa18292b88ba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read contents file.  <a href="#a88e3bef0ca2ea7f66d9aa18292b88ba6">More...</a><br /></td></tr>
 <tr class="separator:a88e3bef0ca2ea7f66d9aa18292b88ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa49a3d0de7b6c7ac7951ce8dd505ecb6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6">saveArray</a> (const wxArrayString &amp;_strarray, const wxChar _mode)</td></tr>
 <tr class="memdesc:aa49a3d0de7b6c7ac7951ce8dd505ecb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save an array to disk and open the file in 'Editor'.  <a href="#aa49a3d0de7b6c7ac7951ce8dd505ecb6">More...</a><br /></td></tr>
 <tr class="separator:aa49a3d0de7b6c7ac7951ce8dd505ecb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed6fd1646a9f1a951260f7c02c2c9583"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#aed6fd1646a9f1a951260f7c02c2c9583">addArrays</a> (wxArrayString &amp;_receive, wxArrayString &amp;_array)</td></tr>
+<tr class="memdesc:aed6fd1646a9f1a951260f7c02c2c9583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an array to an other.  <a href="#aed6fd1646a9f1a951260f7c02c2c9583">More...</a><br /></td></tr>
+<tr class="separator:aed6fd1646a9f1a951260f7c02c2c9583"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7db810e7c49ed541b37cc0118634a560"><td class="memItemLeft" align="right" valign="top">wxString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a7db810e7c49ed541b37cc0118634a560">allStrTable</a> (const wxString &amp;_title, const wxArrayString &amp;_strarray)</td></tr>
 <tr class="memdesc:a7db810e7c49ed541b37cc0118634a560"><td class="mdescLeft">&#160;</td><td class="mdescRight">give a string of table 'title' for debug  <a href="#a7db810e7c49ed541b37cc0118634a560">More...</a><br /></td></tr>
 <tr class="separator:a7db810e7c49ed541b37cc0118634a560"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ab35e8cecf9f6710b14c6c4a862d3a9e9"><td class="memItemLeft" align="right" valign="top">wxUint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#ab35e8cecf9f6710b14c6c4a862d3a9e9">m_nbFilesdeleted</a> = 0</td></tr>
-<tr class="memdesc:ab35e8cecf9f6710b14c6c4a862d3a9e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of files deleted in temporary directory.  <a href="#ab35e8cecf9f6710b14c6c4a862d3a9e9">More...</a><br /></td></tr>
-<tr class="separator:ab35e8cecf9f6710b14c6c4a862d3a9e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a038fc37161d02da7a850f9ae8848fa64"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a038fc37161d02da7a850f9ae8848fa64">m_Win</a> = false</td></tr>
 <tr class="memdesc:a038fc37161d02da7a850f9ae8848fa64"><td class="mdescLeft">&#160;</td><td class="mdescRight">platforms  <a href="#a038fc37161d02da7a850f9ae8848fa64">More...</a><br /></td></tr>
 <tr class="separator:a038fc37161d02da7a850f9ae8848fa64"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -437,11 +455,8 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a9d9259cdcf3e8931bd50674b531aa74c"><td class="mdescLeft">&#160;</td><td class="mdescRight">projects into workspace withfiles text i18n  <a href="#a9d9259cdcf3e8931bd50674b531aa74c">More...</a><br /></td></tr>
 <tr class="separator:a9d9259cdcf3e8931bd50674b531aa74c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3dbc672a4deb4f73f2797f32cf83cc2"><td class="memItemLeft" align="right" valign="top">wxArrayString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#aa3dbc672a4deb4f73f2797f32cf83cc2">m_PrjwithI18nWS</a></td></tr>
-<tr class="memdesc:aa3dbc672a4deb4f73f2797f32cf83cc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">workspace with text i18n  <a href="#aa3dbc672a4deb4f73f2797f32cf83cc2">More...</a><br /></td></tr>
+<tr class="memdesc:aa3dbc672a4deb4f73f2797f32cf83cc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">targets of 'ProjectFile  <a href="#aa3dbc672a4deb4f73f2797f32cf83cc2">More...</a><br /></td></tr>
 <tr class="separator:aa3dbc672a4deb4f73f2797f32cf83cc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f2ac8d4a1107e26239b4549b8894de2"><td class="memItemLeft" align="right" valign="top">wxArrayString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a5f2ac8d4a1107e26239b4549b8894de2">m_FileswithI18nWS</a></td></tr>
-<tr class="memdesc:a5f2ac8d4a1107e26239b4549b8894de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">targets of 'ProjectFile  <a href="#a5f2ac8d4a1107e26239b4549b8894de2">More...</a><br /></td></tr>
-<tr class="separator:a5f2ac8d4a1107e26239b4549b8894de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4025d44069d3a60ddbc94fff798631d9"><td class="memItemLeft" align="right" valign="top">wxArrayString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a4025d44069d3a60ddbc94fff798631d9">m_Targetsfile</a></td></tr>
 <tr class="memdesc:a4025d44069d3a60ddbc94fff798631d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">list files and extracted strings for editing  <a href="#a4025d44069d3a60ddbc94fff798631d9">More...</a><br /></td></tr>
 <tr class="separator:a4025d44069d3a60ddbc94fff798631d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -530,6 +545,9 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a9ec1642fd3906dce5ad8071d3653b7fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25d91f705f5ab41ab9105a796d8a18d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a25d91f705f5ab41ab9105a796d8a18d0">m_isQtProject</a> = false</td></tr>
 <tr class="separator:a25d91f705f5ab41ab9105a796d8a18d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab35e8cecf9f6710b14c6c4a862d3a9e9"><td class="memItemLeft" align="right" valign="top">wxUint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#ab35e8cecf9f6710b14c6c4a862d3a9e9">m_nbFilesdeleted</a> = 0</td></tr>
+<tr class="memdesc:ab35e8cecf9f6710b14c6c4a862d3a9e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of files deleted in temporary directory.  <a href="#ab35e8cecf9f6710b14c6c4a862d3a9e9">More...</a><br /></td></tr>
+<tr class="separator:ab35e8cecf9f6710b14c6c4a862d3a9e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78f75d91faeed5ed855e6aa8a63b71b3"><td class="memItemLeft" align="right" valign="top">wxString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pre.html#a78f75d91faeed5ed855e6aa8a63b71b3">m_namePlugin</a> = wxEmptyString</td></tr>
 <tr class="memdesc:a78f75d91faeed5ed855e6aa8a63b71b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">name of plugin  <a href="#a78f75d91faeed5ed855e6aa8a63b71b3">More...</a><br /></td></tr>
 <tr class="separator:a78f75d91faeed5ed855e6aa8a63b71b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -667,6 +685,59 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aed6fd1646a9f1a951260f7c02c2c9583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed6fd1646a9f1a951260f7c02c2c9583">&#9670;&nbsp;</a></span>addArrays()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Pre::addArrays </td>
+          <td>(</td>
+          <td class="paramtype">wxArrayString &amp;&#160;</td>
+          <td class="paramname"><em>_receive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">wxArrayString &amp;&#160;</td>
+          <td class="paramname"><em>_array</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add an array to an other. </p>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_receive</td><td>: array to receiving </td></tr>
+    <tr><td class="paramname">_array</td><td>: array name to adding </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_aed6fd1646a9f1a951260f7c02c2c9583_icgraph.png" border="0" usemap="#class_pre_aed6fd1646a9f1a951260f7c02c2c9583_icgraph" alt=""/></div>
+<map name="class_pre_aed6fd1646a9f1a951260f7c02c2c9583_icgraph" id="class_pre_aed6fd1646a9f1a951260f7c02c2c9583_icgraph">
+</map>
+</div>
+
+</div>
+</div>
 <a id="a7db810e7c49ed541b37cc0118634a560"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7db810e7c49ed541b37cc0118634a560">&#9670;&nbsp;</a></span>allStrTable()</h2>
 
@@ -751,8 +822,6 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a1dcd66f01fe10cf745c53ca1775a0757_cgraph.png" border="0" usemap="#class_pre_a1dcd66f01fe10cf745c53ca1775a0757_cgraph" alt=""/></div>
 <map name="class_pre_a1dcd66f01fe10cf745c53ca1775a0757_cgraph" id="class_pre_a1dcd66f01fe10cf745c53ca1775a0757_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="183,5,257,32"/>
-<area shape="rect" id="node3" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="305,5,415,32"/>
 </map>
 </div>
 
@@ -784,6 +853,13 @@ Here is the call graph for this function:</div>
 <p>Startup time. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>clock()/1000 </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a2d948e57ad61a7fe18e25d70d5c3929e_icgraph.png" border="0" usemap="#class_pre_a2d948e57ad61a7fe18e25d70d5c3929e_icgraph" alt=""/></div>
+<map name="class_pre_a2d948e57ad61a7fe18e25d70d5c3929e_icgraph" id="class_pre_a2d948e57ad61a7fe18e25d70d5c3929e_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -803,8 +879,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Locate and call a menu from string (e.g. "/Valgrind/Run Valgrind::MemCheck") </p>
-<dl class="section note"><dt>Note</dt><dd>it's a copy of 'CodeBlocks::sc_globals.cpp::CallMenu(const wxString&amp; menuPath)' * </dd></dl>
+<p><hr/>
+ </p>
+<p>Locate and call a menu from string (e.g. "/Valgrind/Run Valgrind::MemCheck") </p><dl class="section note"><dt>Note</dt><dd>it's a copy of 'CodeBlocks::sc_globals.cpp::CallMenu(const wxString&amp; menuPath)' * </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_menuPath</td><td>: Menu item to be called </td></tr>
@@ -812,6 +889,13 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>menu identificateur or wxNOT_FOUND il failed </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_af8fe80b03fa99630abb8e9e91ad4f0b9_icgraph.png" border="0" usemap="#class_pre_af8fe80b03fa99630abb8e9e91ad4f0b9_icgraph" alt=""/></div>
+<map name="class_pre_af8fe80b03fa99630abb8e9e91ad4f0b9_icgraph" id="class_pre_af8fe80b03fa99630abb8e9e91ad4f0b9_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -865,6 +949,91 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if good </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_adb898d671d19f5da736d7d847cd6059d_icgraph.png" border="0" usemap="#class_pre_adb898d671d19f5da736d7d847cd6059d_icgraph" alt=""/></div>
+<map name="class_pre_adb898d671d19f5da736d7d847cd6059d_icgraph" id="class_pre_adb898d671d19f5da736d7d847cd6059d_icgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a24b638659d8e4cbba05c2d4f7bf3b5f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24b638659d8e4cbba05c2d4f7bf3b5f7">&#9670;&nbsp;</a></span>closeAllExtraFiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pre::closeAllExtraFiles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>close all extra files to editor '*.list', '*.extr', '*.po' </p>
+<hr/>
+<dl class="section return"><dt>Returns</dt><dd>true if closed </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a24b638659d8e4cbba05c2d4f7bf3b5f7_cgraph.png" border="0" usemap="#class_pre_a24b638659d8e4cbba05c2d4f7bf3b5f7_cgraph" alt=""/></div>
+<map name="class_pre_a24b638659d8e4cbba05c2d4f7bf3b5f7_cgraph" id="class_pre_a24b638659d8e4cbba05c2d4f7bf3b5f7_cgraph">
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a24b638659d8e4cbba05c2d4f7bf3b5f7_icgraph.png" border="0" usemap="#class_pre_a24b638659d8e4cbba05c2d4f7bf3b5f7_icgraph" alt=""/></div>
+<map name="class_pre_a24b638659d8e4cbba05c2d4f7bf3b5f7_icgraph" id="class_pre_a24b638659d8e4cbba05c2d4f7bf3b5f7_icgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a07dbf60fd3686233daf1df7b85408e99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07dbf60fd3686233daf1df7b85408e99">&#9670;&nbsp;</a></span>closedit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pre::closedit </td>
+          <td>(</td>
+          <td class="paramtype">const wxString&#160;</td>
+          <td class="paramname"><em>_file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>close a file to editor </p>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_file</td><td>: watch file </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if closed </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a07dbf60fd3686233daf1df7b85408e99_icgraph.png" border="0" usemap="#class_pre_a07dbf60fd3686233daf1df7b85408e99_icgraph" alt=""/></div>
+<map name="class_pre_a07dbf60fd3686233daf1df7b85408e99_icgraph" id="class_pre_a07dbf60fd3686233daf1df7b85408e99_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -899,7 +1068,57 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_ad69b57decb44dabf2ed92df9d84a0147_cgraph.png" border="0" usemap="#class_pre_ad69b57decb44dabf2ed92df9d84a0147_cgraph" alt=""/></div>
 <map name="class_pre_ad69b57decb44dabf2ed92df9d84a0147_cgraph" id="class_pre_ad69b57decb44dabf2ed92df9d84a0147_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a70d06eec2a18717fa4bfc0d9a6c9a2b1" title="Indicates if target is command only. " alt="" coords="256,5,411,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_ad69b57decb44dabf2ed92df9d84a0147_icgraph.png" border="0" usemap="#class_pre_ad69b57decb44dabf2ed92df9d84a0147_icgraph" alt=""/></div>
+<map name="class_pre_ad69b57decb44dabf2ed92df9d84a0147_icgraph" id="class_pre_ad69b57decb44dabf2ed92df9d84a0147_icgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a84a8a1143763a2b58ef9b79e70ef3236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84a8a1143763a2b58ef9b79e70ef3236">&#9670;&nbsp;</a></span>copyFileToDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pre::copyFileToDir </td>
+          <td>(</td>
+          <td class="paramtype">const wxString &amp;&#160;</td>
+          <td class="paramname"><em>_namefile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy a file to an another directory. </p>
+<hr/>
+<dl class="section return"><dt>Returns</dt><dd>true if good </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a84a8a1143763a2b58ef9b79e70ef3236_cgraph.png" border="0" usemap="#class_pre_a84a8a1143763a2b58ef9b79e70ef3236_cgraph" alt=""/></div>
+<map name="class_pre_a84a8a1143763a2b58ef9b79e70ef3236_cgraph" id="class_pre_a84a8a1143763a2b58ef9b79e70ef3236_cgraph">
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a84a8a1143763a2b58ef9b79e70ef3236_icgraph.png" border="0" usemap="#class_pre_a84a8a1143763a2b58ef9b79e70ef3236_icgraph" alt=""/></div>
+<map name="class_pre_a84a8a1143763a2b58ef9b79e70ef3236_icgraph" id="class_pre_a84a8a1143763a2b58ef9b79e70ef3236_icgraph">
 </map>
 </div>
 
@@ -938,6 +1157,13 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if it's correct </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_af917f0ecc9c5aedb69524ac74eb1004b_icgraph.png" border="0" usemap="#class_pre_af917f0ecc9c5aedb69524ac74eb1004b_icgraph" alt=""/></div>
+<map name="class_pre_af917f0ecc9c5aedb69524ac74eb1004b_icgraph" id="class_pre_af917f0ecc9c5aedb69524ac74eb1004b_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -976,6 +1202,13 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>true if good </dd></dl>
 
 <p>Implemented in <a class="el" href="class_create_for_wx.html#a31e8c6e85d2cfd96a224377ac2b0631a">CreateForWx</a>, and <a class="el" href="class_create_for_qt.html#a8e393905d2da745bae0a49d729b10560">CreateForQt</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a705a84fb8d191a967f24d63691cbd11b_icgraph.png" border="0" usemap="#class_pre_a705a84fb8d191a967f24d63691cbd11b_icgraph" alt=""/></div>
+<map name="class_pre_a705a84fb8d191a967f24d63691cbd11b_icgraph" id="class_pre_a705a84fb8d191a967f24d63691cbd11b_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -1010,7 +1243,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_ac79cc09d7d7cf858c712c8c8c9e2cbbb_cgraph.png" border="0" usemap="#class_pre_ac79cc09d7d7cf858c712c8c8c9e2cbbb_cgraph" alt=""/></div>
 <map name="class_pre_ac79cc09d7d7cf858c712c8c8c9e2cbbb_cgraph" id="class_pre_ac79cc09d7d7cf858c712c8c8c9e2cbbb_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="128,5,237,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_ac79cc09d7d7cf858c712c8c8c9e2cbbb_icgraph.png" border="0" usemap="#class_pre_ac79cc09d7d7cf858c712c8c8c9e2cbbb_icgraph" alt=""/></div>
+<map name="class_pre_ac79cc09d7d7cf858c712c8c8c9e2cbbb_icgraph" id="class_pre_ac79cc09d7d7cf858c712c8c8c9e2cbbb_icgraph">
 </map>
 </div>
 
@@ -1062,6 +1301,13 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>true : if used </dd></dl>
 
 <p>Implemented in <a class="el" href="class_create_for_qt.html#ae109f6c3caf1a9a25f9b4a5a49b0c4fc">CreateForQt</a>, and <a class="el" href="class_create_for_wx.html#a554fd7950577ce2a0ce22f921f8ef7b9">CreateForWx</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_aaf295c590dcdc8b93ef190c23150a134_icgraph.png" border="0" usemap="#class_pre_aaf295c590dcdc8b93ef190c23150a134_icgraph" alt=""/></div>
+<map name="class_pre_aaf295c590dcdc8b93ef190c23150a134_icgraph" id="class_pre_aaf295c590dcdc8b93ef190c23150a134_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -1091,6 +1337,13 @@ Here is the call graph for this function:</div>
 <p>Give a duration. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>duration 'mS' </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a4a35361069bc37bad4ad0c7d363afbe7_icgraph.png" border="0" usemap="#class_pre_a4a35361069bc37bad4ad0c7d363afbe7_icgraph" alt=""/></div>
+<map name="class_pre_a4a35361069bc37bad4ad0c7d363afbe7_icgraph" id="class_pre_a4a35361069bc37bad4ad0c7d363afbe7_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -1121,6 +1374,13 @@ Here is the call graph for this function:</div>
 <p>Give a duration. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>duration 'mS' </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a791e3c73b0010092c43d718bfcf7e18d_icgraph.png" border="0" usemap="#class_pre_a791e3c73b0010092c43d718bfcf7e18d_icgraph" alt=""/></div>
+<map name="class_pre_a791e3c73b0010092c43d718bfcf7e18d_icgraph" id="class_pre_a791e3c73b0010092c43d718bfcf7e18d_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -1156,7 +1416,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_af92a5e9fae6a6f83f66d4fdeade659b0_cgraph.png" border="0" usemap="#class_pre_af92a5e9fae6a6f83f66d4fdeade659b0_cgraph" alt=""/></div>
 <map name="class_pre_af92a5e9fae6a6f83f66d4fdeade659b0_cgraph" id="class_pre_af92a5e9fae6a6f83f66d4fdeade659b0_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="193,5,316,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_af92a5e9fae6a6f83f66d4fdeade659b0_icgraph.png" border="0" usemap="#class_pre_af92a5e9fae6a6f83f66d4fdeade659b0_icgraph" alt=""/></div>
+<map name="class_pre_af92a5e9fae6a6f83f66d4fdeade659b0_icgraph" id="class_pre_af92a5e9fae6a6f83f66d4fdeade659b0_icgraph">
 </map>
 </div>
 
@@ -1199,11 +1465,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a20b3015ebd4f0ca5e4fcd2fdc6022e20_cgraph.png" border="0" usemap="#class_pre_a20b3015ebd4f0ca5e4fcd2fdc6022e20_cgraph" alt=""/></div>
 <map name="class_pre_a20b3015ebd4f0ca5e4fcd2fdc6022e20_cgraph" id="class_pre_a20b3015ebd4f0ca5e4fcd2fdc6022e20_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="177,5,283,32"/>
-<area shape="rect" id="node5" href="class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="160,56,300,83"/>
-<area shape="rect" id="node3" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="360,5,459,32"/>
-<area shape="rect" id="node4" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="519,5,629,32"/>
-<area shape="rect" id="node6" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="348,56,471,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a20b3015ebd4f0ca5e4fcd2fdc6022e20_icgraph.png" border="0" usemap="#class_pre_a20b3015ebd4f0ca5e4fcd2fdc6022e20_icgraph" alt=""/></div>
+<map name="class_pre_a20b3015ebd4f0ca5e4fcd2fdc6022e20_icgraph" id="class_pre_a20b3015ebd4f0ca5e4fcd2fdc6022e20_icgraph">
 </map>
 </div>
 
@@ -1246,9 +1514,6 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a6a1b28da7cd0dfcfb0eaed44afade226_cgraph.png" border="0" usemap="#class_pre_a6a1b28da7cd0dfcfb0eaed44afade226_cgraph" alt=""/></div>
 <map name="class_pre_a6a1b28da7cd0dfcfb0eaed44afade226_cgraph" id="class_pre_a6a1b28da7cd0dfcfb0eaed44afade226_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="183,5,257,32"/>
-<area shape="rect" id="node4" href="class_pre.html#a4a35361069bc37bad4ad0c7d363afbe7" title="Give a duration. " alt="" coords="172,56,268,83"/>
-<area shape="rect" id="node3" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="316,5,425,32"/>
 </map>
 </div>
 
@@ -1284,18 +1549,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a959385935eed997d2393b62d6b1b21df_cgraph.png" border="0" usemap="#class_pre_a959385935eed997d2393b62d6b1b21df_cgraph" alt=""/></div>
 <map name="class_pre_a959385935eed997d2393b62d6b1b21df_cgraph" id="class_pre_a959385935eed997d2393b62d6b1b21df_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#af6109b9f6b0995eff93782d37b479132" title="Verify integity file. " alt="" coords="169,89,265,115"/>
-<area shape="rect" id="node7" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="741,190,852,217"/>
-<area shape="rect" id="node8" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="339,266,446,293"/>
-<area shape="rect" id="node9" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="555,215,653,242"/>
-<area shape="rect" id="node10" href="class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="164,317,271,343"/>
-<area shape="rect" id="node13" href="class_pre.html#af8fe80b03fa99630abb8e9e91ad4f0b9" title="Locate and call a menu from string (e.g. &quot;/Valgrind/Run Valgrind::MemCheck&quot;) " alt="" coords="165,367,269,394"/>
-<area shape="rect" id="node3" href="class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="319,63,467,90"/>
-<area shape="rect" id="node4" href="class_pre.html#adb898d671d19f5da736d7d847cd6059d" title="Refreshes &#39;_file&#39; by replacing &#39;old&#39; text with the &#39;_new&#39;. " alt="" coords="321,114,465,141"/>
-<area shape="rect" id="node5" href="class_pre.html#a469c4781ddaa703c54e46547f6cd7c84" title="Merge new &#39;_new&#39; file with &#39;_old&#39; file and update &#39;_old&#39; file. " alt="" coords="335,13,450,39"/>
-<area shape="rect" id="node6" href="class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="515,5,693,47"/>
-<area shape="rect" id="node11" href="class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="323,317,463,343"/>
-<area shape="rect" id="node12" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="543,317,665,343"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a959385935eed997d2393b62d6b1b21df_icgraph.png" border="0" usemap="#class_pre_a959385935eed997d2393b62d6b1b21df_icgraph" alt=""/></div>
+<map name="class_pre_a959385935eed997d2393b62d6b1b21df_icgraph" id="class_pre_a959385935eed997d2393b62d6b1b21df_icgraph">
 </map>
 </div>
 
@@ -1327,6 +1587,45 @@ Here is the call graph for this function:</div>
 <p>End time. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>duration from '<a class="el" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. ">beginTime()</a>' </dd></dl>
+
+</div>
+</div>
+<a id="a34f9dacfbfaa9c69dde012674cc21458"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34f9dacfbfaa9c69dde012674cc21458">&#9670;&nbsp;</a></span>executeAndGetOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">wxString Pre::executeAndGetOutput </td>
+          <td>(</td>
+          <td class="paramtype">const wxString &amp;&#160;</td>
+          <td class="paramname"><em>_command</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool &amp;&#160;</td>
+          <td class="paramname"><em>_prepend_error</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><hr/>
+ </p>
 
 </div>
 </div>
@@ -1374,6 +1673,13 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>empty string if it's correct else error message </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a8ecc4928641aebbd2da6e9221c32aded_icgraph.png" border="0" usemap="#class_pre_a8ecc4928641aebbd2da6e9221c32aded_icgraph" alt=""/></div>
+<map name="class_pre_a8ecc4928641aebbd2da6e9221c32aded_icgraph" id="class_pre_a8ecc4928641aebbd2da6e9221c32aded_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -1475,25 +1781,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_aa8a36aa79595248482a3865095fe0a65_cgraph.png" border="0" usemap="#class_pre_aa8a36aa79595248482a3865095fe0a65_cgraph" alt=""/></div>
 <map name="class_pre_aa8a36aa79595248482a3865095fe0a65_cgraph" id="class_pre_aa8a36aa79595248482a3865095fe0a65_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="160,56,293,83"/>
-<area shape="rect" id="node4" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="956,157,1067,184"/>
-<area shape="rect" id="node5" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="189,297,264,324"/>
-<area shape="rect" id="node7" href="class_pre.html#a705a84fb8d191a967f24d63691cbd11b" title="Creating the &#39;name_project.pot&#39; file. " alt="" coords="173,348,280,375"/>
-<area shape="rect" id="node8" href="class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="360,157,467,184"/>
-<area shape="rect" id="node13" href="class_pre.html#a0806999c9d1d04fb3e605dcbc99e21ca" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="163,399,291,425"/>
-<area shape="rect" id="node14" href="class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="171,247,282,273"/>
-<area shape="rect" id="node3" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="341,5,485,32"/>
-<area shape="rect" id="node6" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="359,461,468,488"/>
-<area shape="rect" id="node9" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="554,208,661,235"/>
-<area shape="rect" id="node11" href="class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="537,157,677,184"/>
-<area shape="rect" id="node10" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="769,208,868,235"/>
-<area shape="rect" id="node12" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="757,157,880,184"/>
-<area shape="rect" id="node15" href="class_pre.html#af6109b9f6b0995eff93782d37b479132" title="Verify integity file. " alt="" coords="365,360,461,387"/>
-<area shape="rect" id="node20" href="class_pre.html#af8fe80b03fa99630abb8e9e91ad4f0b9" title="Locate and call a menu from string (e.g. &quot;/Valgrind/Run Valgrind::MemCheck&quot;) " alt="" coords="361,411,465,437"/>
-<area shape="rect" id="node16" href="class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="533,360,681,387"/>
-<area shape="rect" id="node17" href="class_pre.html#adb898d671d19f5da736d7d847cd6059d" title="Refreshes &#39;_file&#39; by replacing &#39;old&#39; text with the &#39;_new&#39;. " alt="" coords="535,411,679,437"/>
-<area shape="rect" id="node18" href="class_pre.html#a469c4781ddaa703c54e46547f6cd7c84" title="Merge new &#39;_new&#39; file with &#39;_old&#39; file and update &#39;_old&#39; file. " alt="" coords="550,461,665,488"/>
-<area shape="rect" id="node19" href="class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="729,454,908,495"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_aa8a36aa79595248482a3865095fe0a65_icgraph.png" border="0" usemap="#class_pre_aa8a36aa79595248482a3865095fe0a65_icgraph" alt=""/></div>
+<map name="class_pre_aa8a36aa79595248482a3865095fe0a65_icgraph" id="class_pre_aa8a36aa79595248482a3865095fe0a65_icgraph">
 </map>
 </div>
 
@@ -1529,27 +1823,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a346ee750d8b28d66efbaf2c4342718e8_cgraph.png" border="0" usemap="#class_pre_a346ee750d8b28d66efbaf2c4342718e8_cgraph" alt=""/></div>
 <map name="class_pre_a346ee750d8b28d66efbaf2c4342718e8_cgraph" id="class_pre_a346ee750d8b28d66efbaf2c4342718e8_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a6b558fd62f6d63d5e9c88b9b3f243d8a" title="Retrieve a project by name. " alt="" coords="183,196,293,223"/>
-<area shape="rect" id="node3" href="class_pre.html#aa8a36aa79595248482a3865095fe0a65" title="Extract the strings translatable from a project. " alt="" coords="185,247,291,273"/>
-<area shape="rect" id="node4" href="class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="341,56,475,83"/>
-<area shape="rect" id="node6" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="1137,157,1248,184"/>
-<area shape="rect" id="node7" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="371,297,445,324"/>
-<area shape="rect" id="node9" href="class_pre.html#a705a84fb8d191a967f24d63691cbd11b" title="Creating the &#39;name_project.pot&#39; file. " alt="" coords="355,348,461,375"/>
-<area shape="rect" id="node10" href="class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="541,157,648,184"/>
-<area shape="rect" id="node15" href="class_pre.html#a0806999c9d1d04fb3e605dcbc99e21ca" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="344,399,472,425"/>
-<area shape="rect" id="node16" href="class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="353,247,463,273"/>
-<area shape="rect" id="node5" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="523,5,667,32"/>
-<area shape="rect" id="node8" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="540,461,649,488"/>
-<area shape="rect" id="node11" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="735,208,842,235"/>
-<area shape="rect" id="node13" href="class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="719,157,859,184"/>
-<area shape="rect" id="node12" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="951,208,1049,235"/>
-<area shape="rect" id="node14" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="939,157,1061,184"/>
-<area shape="rect" id="node17" href="class_pre.html#af6109b9f6b0995eff93782d37b479132" title="Verify integity file. " alt="" coords="547,360,643,387"/>
-<area shape="rect" id="node22" href="class_pre.html#af8fe80b03fa99630abb8e9e91ad4f0b9" title="Locate and call a menu from string (e.g. &quot;/Valgrind/Run Valgrind::MemCheck&quot;) " alt="" coords="543,411,647,437"/>
-<area shape="rect" id="node18" href="class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="715,360,863,387"/>
-<area shape="rect" id="node19" href="class_pre.html#adb898d671d19f5da736d7d847cd6059d" title="Refreshes &#39;_file&#39; by replacing &#39;old&#39; text with the &#39;_new&#39;. " alt="" coords="717,411,861,437"/>
-<area shape="rect" id="node20" href="class_pre.html#a469c4781ddaa703c54e46547f6cd7c84" title="Merge new &#39;_new&#39; file with &#39;_old&#39; file and update &#39;_old&#39; file. " alt="" coords="731,461,846,488"/>
-<area shape="rect" id="node21" href="class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="911,454,1089,495"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a346ee750d8b28d66efbaf2c4342718e8_icgraph.png" border="0" usemap="#class_pre_a346ee750d8b28d66efbaf2c4342718e8_icgraph" alt=""/></div>
+<map name="class_pre_a346ee750d8b28d66efbaf2c4342718e8_icgraph" id="class_pre_a346ee750d8b28d66efbaf2c4342718e8_icgraph">
 </map>
 </div>
 
@@ -1577,27 +1857,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a4324dc0618ec55468f2c1979b2e66f2c_cgraph.png" border="0" usemap="#class_pre_a4324dc0618ec55468f2c1979b2e66f2c_cgraph" alt=""/></div>
 <map name="class_pre_a4324dc0618ec55468f2c1979b2e66f2c_cgraph" id="class_pre_a4324dc0618ec55468f2c1979b2e66f2c_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#aa8a36aa79595248482a3865095fe0a65" title="Extract the strings translatable from a project. " alt="" coords="187,247,293,273"/>
-<area shape="rect" id="node22" href="class_pre.html#a9129591c145d5f21bcc0e29fa84ef490" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_INFORMATION)&#39;. " alt="" coords="189,297,291,324"/>
-<area shape="rect" id="node3" href="class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="341,56,475,83"/>
-<area shape="rect" id="node5" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="1137,157,1248,184"/>
-<area shape="rect" id="node6" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="371,297,445,324"/>
-<area shape="rect" id="node8" href="class_pre.html#a705a84fb8d191a967f24d63691cbd11b" title="Creating the &#39;name_project.pot&#39; file. " alt="" coords="355,348,461,375"/>
-<area shape="rect" id="node9" href="class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="541,157,648,184"/>
-<area shape="rect" id="node14" href="class_pre.html#a0806999c9d1d04fb3e605dcbc99e21ca" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="344,399,472,425"/>
-<area shape="rect" id="node15" href="class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="353,247,463,273"/>
-<area shape="rect" id="node4" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="523,5,667,32"/>
-<area shape="rect" id="node7" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="540,461,649,488"/>
-<area shape="rect" id="node10" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="735,208,842,235"/>
-<area shape="rect" id="node12" href="class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="719,157,859,184"/>
-<area shape="rect" id="node11" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="951,208,1049,235"/>
-<area shape="rect" id="node13" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="939,157,1061,184"/>
-<area shape="rect" id="node16" href="class_pre.html#af6109b9f6b0995eff93782d37b479132" title="Verify integity file. " alt="" coords="547,360,643,387"/>
-<area shape="rect" id="node21" href="class_pre.html#af8fe80b03fa99630abb8e9e91ad4f0b9" title="Locate and call a menu from string (e.g. &quot;/Valgrind/Run Valgrind::MemCheck&quot;) " alt="" coords="543,411,647,437"/>
-<area shape="rect" id="node17" href="class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="715,360,863,387"/>
-<area shape="rect" id="node18" href="class_pre.html#adb898d671d19f5da736d7d847cd6059d" title="Refreshes &#39;_file&#39; by replacing &#39;old&#39; text with the &#39;_new&#39;. " alt="" coords="717,411,861,437"/>
-<area shape="rect" id="node19" href="class_pre.html#a469c4781ddaa703c54e46547f6cd7c84" title="Merge new &#39;_new&#39; file with &#39;_old&#39; file and update &#39;_old&#39; file. " alt="" coords="731,461,846,488"/>
-<area shape="rect" id="node20" href="class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="911,454,1089,495"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a4324dc0618ec55468f2c1979b2e66f2c_icgraph.png" border="0" usemap="#class_pre_a4324dc0618ec55468f2c1979b2e66f2c_icgraph" alt=""/></div>
+<map name="class_pre_a4324dc0618ec55468f2c1979b2e66f2c_icgraph" id="class_pre_a4324dc0618ec55468f2c1979b2e66f2c_icgraph">
 </map>
 </div>
 
@@ -1625,29 +1891,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a8684f86d5efbdb8e3d688590d28a3179_cgraph.png" border="0" usemap="#class_pre_a8684f86d5efbdb8e3d688590d28a3179_cgraph" alt=""/></div>
 <map name="class_pre_a8684f86d5efbdb8e3d688590d28a3179_cgraph" id="class_pre_a8684f86d5efbdb8e3d688590d28a3179_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a346ee750d8b28d66efbaf2c4342718e8" title="Extract the strings translatable from worspace. " alt="" coords="168,221,297,248"/>
-<area shape="rect" id="node24" href="class_pre.html#a9129591c145d5f21bcc0e29fa84ef490" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_INFORMATION)&#39;. " alt="" coords="181,272,284,299"/>
-<area shape="rect" id="node3" href="class_pre.html#a6b558fd62f6d63d5e9c88b9b3f243d8a" title="Retrieve a project by name. " alt="" coords="345,196,456,223"/>
-<area shape="rect" id="node4" href="class_pre.html#aa8a36aa79595248482a3865095fe0a65" title="Extract the strings translatable from a project. " alt="" coords="347,247,454,273"/>
-<area shape="rect" id="node5" href="class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="504,56,637,83"/>
-<area shape="rect" id="node7" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="1300,157,1411,184"/>
-<area shape="rect" id="node8" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="533,297,608,324"/>
-<area shape="rect" id="node10" href="class_pre.html#a705a84fb8d191a967f24d63691cbd11b" title="Creating the &#39;name_project.pot&#39; file. " alt="" coords="517,348,624,375"/>
-<area shape="rect" id="node11" href="class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="704,157,811,184"/>
-<area shape="rect" id="node16" href="class_pre.html#a0806999c9d1d04fb3e605dcbc99e21ca" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="507,399,635,425"/>
-<area shape="rect" id="node17" href="class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="515,247,626,273"/>
-<area shape="rect" id="node6" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="685,5,829,32"/>
-<area shape="rect" id="node9" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="703,461,812,488"/>
-<area shape="rect" id="node12" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="898,208,1005,235"/>
-<area shape="rect" id="node14" href="class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="881,157,1021,184"/>
-<area shape="rect" id="node13" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="1113,208,1212,235"/>
-<area shape="rect" id="node15" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="1101,157,1224,184"/>
-<area shape="rect" id="node18" href="class_pre.html#af6109b9f6b0995eff93782d37b479132" title="Verify integity file. " alt="" coords="709,360,805,387"/>
-<area shape="rect" id="node23" href="class_pre.html#af8fe80b03fa99630abb8e9e91ad4f0b9" title="Locate and call a menu from string (e.g. &quot;/Valgrind/Run Valgrind::MemCheck&quot;) " alt="" coords="705,411,809,437"/>
-<area shape="rect" id="node19" href="class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="877,360,1025,387"/>
-<area shape="rect" id="node20" href="class_pre.html#adb898d671d19f5da736d7d847cd6059d" title="Refreshes &#39;_file&#39; by replacing &#39;old&#39; text with the &#39;_new&#39;. " alt="" coords="879,411,1023,437"/>
-<area shape="rect" id="node21" href="class_pre.html#a469c4781ddaa703c54e46547f6cd7c84" title="Merge new &#39;_new&#39; file with &#39;_old&#39; file and update &#39;_old&#39; file. " alt="" coords="894,461,1009,488"/>
-<area shape="rect" id="node22" href="class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="1073,454,1252,495"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a8684f86d5efbdb8e3d688590d28a3179_icgraph.png" border="0" usemap="#class_pre_a8684f86d5efbdb8e3d688590d28a3179_icgraph" alt=""/></div>
+<map name="class_pre_a8684f86d5efbdb8e3d688590d28a3179_icgraph" id="class_pre_a8684f86d5efbdb8e3d688590d28a3179_icgraph">
 </map>
 </div>
 
@@ -1703,6 +1953,13 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the finded block of text </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a21a32c104d61e8a76ad18eabfd2fb8a4_icgraph.png" border="0" usemap="#class_pre_a21a32c104d61e8a76ad18eabfd2fb8a4_icgraph" alt=""/></div>
+<map name="class_pre_a21a32c104d61e8a76ad18eabfd2fb8a4_icgraph" id="class_pre_a21a32c104d61e8a76ad18eabfd2fb8a4_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -1731,7 +1988,6 @@ Here is the call graph for this function:</div>
 
 <p>Search the elegible files for extracting. </p>
 <dl class="section return"><dt>Returns</dt><dd>numbers good files </dd></dl>
-<p>!!! targets should be explored too !!!</p>
 <p>DEBUG</p>
 <p>&lt;== </p>
 <div class="dynheader">
@@ -1739,7 +1995,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a9077ad6294b11841149aab0d117bbed1_cgraph.png" border="0" usemap="#class_pre_a9077ad6294b11841149aab0d117bbed1_cgraph" alt=""/></div>
 <map name="class_pre_a9077ad6294b11841149aab0d117bbed1_cgraph" id="class_pre_a9077ad6294b11841149aab0d117bbed1_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f" title="Tests readability for chain collection. " alt="" coords="177,5,312,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a9077ad6294b11841149aab0d117bbed1_icgraph.png" border="0" usemap="#class_pre_a9077ad6294b11841149aab0d117bbed1_icgraph" alt=""/></div>
+<map name="class_pre_a9077ad6294b11841149aab0d117bbed1_icgraph" id="class_pre_a9077ad6294b11841149aab0d117bbed1_icgraph">
 </map>
 </div>
 
@@ -1782,9 +2044,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a688dbaca03851352e7dc4bc7bca53193_cgraph.png" border="0" usemap="#class_pre_a688dbaca03851352e7dc4bc7bca53193_cgraph" alt=""/></div>
 <map name="class_pre_a688dbaca03851352e7dc4bc7bca53193_cgraph" id="class_pre_a688dbaca03851352e7dc4bc7bca53193_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="219,5,329,32"/>
-<area shape="rect" id="node3" href="class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="200,56,348,83"/>
-<area shape="rect" id="node4" href="class_pre.html#a21a32c104d61e8a76ad18eabfd2fb8a4" title="Find the path of an &#39;exe&#39; into &#39;default.conf&#39;. " alt="" coords="212,107,336,133"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a688dbaca03851352e7dc4bc7bca53193_icgraph.png" border="0" usemap="#class_pre_a688dbaca03851352e7dc4bc7bca53193_icgraph" alt=""/></div>
+<map name="class_pre_a688dbaca03851352e7dc4bc7bca53193_icgraph" id="class_pre_a688dbaca03851352e7dc4bc7bca53193_icgraph">
 </map>
 </div>
 
@@ -1833,6 +2099,13 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>project pointeur </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a6b558fd62f6d63d5e9c88b9b3f243d8a_icgraph.png" border="0" usemap="#class_pre_a6b558fd62f6d63d5e9c88b9b3f243d8a_icgraph" alt=""/></div>
+<map name="class_pre_a6b558fd62f6d63d5e9c88b9b3f243d8a_icgraph" id="class_pre_a6b558fd62f6d63d5e9c88b9b3f243d8a_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -1870,7 +2143,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the number of occurrences of _str in the _txt. </p>
+<p>Returns the number of occurrences of '_str' in the '_txt'. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_souce</td><td>: text code </td></tr>
@@ -1879,6 +2152,13 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the number of occurrences </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_aa162eeb7f1a498bdaa371645a5b071e7_icgraph.png" border="0" usemap="#class_pre_aa162eeb7f1a498bdaa371645a5b071e7_icgraph" alt=""/></div>
+<map name="class_pre_aa162eeb7f1a498bdaa371645a5b071e7_icgraph" id="class_pre_aa162eeb7f1a498bdaa371645a5b071e7_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -1900,6 +2180,14 @@ Here is the call graph for this function:</div>
 <p>Get the date followed by the time of construction of the plugin. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>date and time </dd></dl>
+<p>TO REVIEW ... </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a0fdec89814261cb970450a316ecb7c7f_icgraph.png" border="0" usemap="#class_pre_a0fdec89814261cb970450a316ecb7c7f_icgraph" alt=""/></div>
+<map name="class_pre_a0fdec89814261cb970450a316ecb7c7f_icgraph" id="class_pre_a0fdec89814261cb970450a316ecb7c7f_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -1921,6 +2209,13 @@ Here is the call graph for this function:</div>
 <p>Get SDK version from 'cbplugin.h'. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>version du SDK ex: "1.19.0" for Code::Blocks 13.12 </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_aed8baffdb77fae0ad8153469cdcdd338_icgraph.png" border="0" usemap="#class_pre_aed8baffdb77fae0ad8153469cdcdd338_icgraph" alt=""/></div>
+<map name="class_pre_aed8baffdb77fae0ad8153469cdcdd338_icgraph" id="class_pre_aed8baffdb77fae0ad8153469cdcdd338_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -1980,58 +2275,15 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a51af576d8b56ed77c362814160d5704a_cgraph.png" border="0" usemap="#class_pre_a51af576d8b56ed77c362814160d5704a_cgraph" alt=""/></div>
 <map name="class_pre_a51af576d8b56ed77c362814160d5704a_cgraph" id="class_pre_a51af576d8b56ed77c362814160d5704a_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="185,5,364,47"/>
-<area shape="rect" id="node3" href="class_pre.html#adccccf940ffaa486db792769f604b081" title="From a text, extract the different strings to be translated. " alt="" coords="215,71,334,98"/>
-<area shape="rect" id="node4" href="class_pre.html#a0806999c9d1d04fb3e605dcbc99e21ca" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="211,122,339,149"/>
 </map>
 </div>
-
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a51af576d8b56ed77c362814160d5704a_icgraph.png" border="0" usemap="#class_pre_a51af576d8b56ed77c362814160d5704a_icgraph" alt=""/></div>
+<map name="class_pre_a51af576d8b56ed77c362814160d5704a_icgraph" id="class_pre_a51af576d8b56ed77c362814160d5704a_icgraph">
+</map>
 </div>
-</div>
-<a id="a831feadd1c6bef58fa8e77be44a9e7c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a831feadd1c6bef58fa8e77be44a9e7c1">&#9670;&nbsp;</a></span>hasLib()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Pre::hasLib </td>
-          <td>(</td>
-          <td class="paramtype">const wxString&#160;</td>
-          <td class="paramname"><em>_type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">CompileTargetBase *&#160;</td>
-          <td class="paramname"><em>_pContainer</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><hr/>
- </p>
-<p>Search libraries in project or target </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">_type</td><td>: in ["_WX", "_QT", "_WX","_WX_QT"] </td></tr>
-    <tr><td class="paramname">_pContainer</td><td>: 'cbProject * Project' or 'ProjectBuildTarget * buildtarget' both inherited of 'CompileTargetBase' </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if finded </dd></dl>
 
 </div>
 </div>
@@ -2067,6 +2319,13 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>return project index </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a75af572e2d1e33e7d85535e839b28e3b_icgraph.png" border="0" usemap="#class_pre_a75af572e2d1e33e7d85535e839b28e3b_icgraph" alt=""/></div>
+<map name="class_pre_a75af572e2d1e33e7d85535e839b28e3b_icgraph" id="class_pre_a75af572e2d1e33e7d85535e839b28e3b_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2108,14 +2367,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_ae5dcb49f219ed8e69e128492e8fc59a1_cgraph.png" border="0" usemap="#class_pre_ae5dcb49f219ed8e69e128492e8fc59a1_cgraph" alt=""/></div>
 <map name="class_pre_ae5dcb49f219ed8e69e128492e8fc59a1_cgraph" id="class_pre_ae5dcb49f219ed8e69e128492e8fc59a1_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75" title=" " alt="" coords="127,56,225,83"/>
-<area shape="rect" id="node8" href="class_pre.html#abf68866bcaffe0e09fcb298bb186c325" title="specific initialisation by inherited type " alt="" coords="120,107,232,133"/>
-<area shape="rect" id="node9" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="121,157,231,184"/>
-<area shape="rect" id="node3" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="478,5,589,32"/>
-<area shape="rect" id="node4" href="class_pre.html#a75af572e2d1e33e7d85535e839b28e3b" title="Give a project index. " alt="" coords="285,31,408,57"/>
-<area shape="rect" id="node5" href="class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="280,81,413,108"/>
-<area shape="rect" id="node7" href="class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b" title="Create a directory. " alt="" coords="295,132,398,159"/>
-<area shape="rect" id="node6" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="461,81,605,108"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_ae5dcb49f219ed8e69e128492e8fc59a1_icgraph.png" border="0" usemap="#class_pre_ae5dcb49f219ed8e69e128492e8fc59a1_icgraph" alt=""/></div>
+<map name="class_pre_ae5dcb49f219ed8e69e128492e8fc59a1_icgraph" id="class_pre_ae5dcb49f219ed8e69e128492e8fc59a1_icgraph">
 </map>
 </div>
 
@@ -2153,11 +2411,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a2fa55792ca24df3e4aa7cab4172cda75_cgraph.png" border="0" usemap="#class_pre_a2fa55792ca24df3e4aa7cab4172cda75_cgraph" alt=""/></div>
 <map name="class_pre_a2fa55792ca24df3e4aa7cab4172cda75_cgraph" id="class_pre_a2fa55792ca24df3e4aa7cab4172cda75_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="350,5,461,32"/>
-<area shape="rect" id="node3" href="class_pre.html#a75af572e2d1e33e7d85535e839b28e3b" title="Give a project index. " alt="" coords="157,31,280,57"/>
-<area shape="rect" id="node4" href="class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="152,81,285,108"/>
-<area shape="rect" id="node6" href="class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b" title="Create a directory. " alt="" coords="167,132,270,159"/>
-<area shape="rect" id="node5" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="333,81,477,108"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a2fa55792ca24df3e4aa7cab4172cda75_icgraph.png" border="0" usemap="#class_pre_a2fa55792ca24df3e4aa7cab4172cda75_icgraph" alt=""/></div>
+<map name="class_pre_a2fa55792ca24df3e4aa7cab4172cda75_icgraph" id="class_pre_a2fa55792ca24df3e4aa7cab4172cda75_icgraph">
 </map>
 </div>
 
@@ -2188,6 +2448,13 @@ Here is the call graph for this function:</div>
 
 <p>Initialization of a table for temporary file. </p>
 <dl class="section return"><dt>Returns</dt><dd>number strings created </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_aa2b44ed6f152aecda674ade4ca12666f_icgraph.png" border="0" usemap="#class_pre_aa2b44ed6f152aecda674ade4ca12666f_icgraph" alt=""/></div>
+<map name="class_pre_aa2b44ed6f152aecda674ade4ca12666f_icgraph" id="class_pre_aa2b44ed6f152aecda674ade4ca12666f_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2226,6 +2493,13 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>true if good </dd></dl>
 
 <p>Implemented in <a class="el" href="class_create_for_wx.html#a9a7122b5d8f572300659c6b74616dae6">CreateForWx</a>, and <a class="el" href="class_create_for_qt.html#adefa13412a1a84ad9b02100c948d35db">CreateForQt</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_abf68866bcaffe0e09fcb298bb186c325_icgraph.png" border="0" usemap="#class_pre_abf68866bcaffe0e09fcb298bb186c325_icgraph" alt=""/></div>
+<map name="class_pre_abf68866bcaffe0e09fcb298bb186c325_icgraph" id="class_pre_abf68866bcaffe0e09fcb298bb186c325_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2266,10 +2540,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_af6109b9f6b0995eff93782d37b479132_cgraph.png" border="0" usemap="#class_pre_af6109b9f6b0995eff93782d37b479132_cgraph" alt=""/></div>
 <map name="class_pre_af6109b9f6b0995eff93782d37b479132_cgraph" id="class_pre_af6109b9f6b0995eff93782d37b479132_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="149,5,297,32"/>
-<area shape="rect" id="node3" href="class_pre.html#adb898d671d19f5da736d7d847cd6059d" title="Refreshes &#39;_file&#39; by replacing &#39;old&#39; text with the &#39;_new&#39;. " alt="" coords="151,56,295,83"/>
-<area shape="rect" id="node4" href="class_pre.html#a469c4781ddaa703c54e46547f6cd7c84" title="Merge new &#39;_new&#39; file with &#39;_old&#39; file and update &#39;_old&#39; file. " alt="" coords="166,107,281,133"/>
-<area shape="rect" id="node5" href="class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="345,99,524,141"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_af6109b9f6b0995eff93782d37b479132_icgraph.png" border="0" usemap="#class_pre_af6109b9f6b0995eff93782d37b479132_icgraph" alt=""/></div>
+<map name="class_pre_af6109b9f6b0995eff93782d37b479132_icgraph" id="class_pre_af6109b9f6b0995eff93782d37b479132_icgraph">
 </map>
 </div>
 
@@ -2292,6 +2569,13 @@ Here is the call graph for this function:</div>
 
 <p>For globals boolan. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if 'm_Init = true' and 'm_Stop = false' and 'm_Cancel = false' </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a325d06dc046499b45fd32e49a3eb1dc2_icgraph.png" border="0" usemap="#class_pre_a325d06dc046499b45fd32e49a3eb1dc2_icgraph" alt=""/></div>
+<map name="class_pre_a325d06dc046499b45fd32e49a3eb1dc2_icgraph" id="class_pre_a325d06dc046499b45fd32e49a3eb1dc2_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2309,6 +2593,106 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a982542e122fbc4d348a008c0e78987dd_icgraph.png" border="0" usemap="#class_pre_a982542e122fbc4d348a008c0e78987dd_icgraph" alt=""/></div>
+<map name="class_pre_a982542e122fbc4d348a008c0e78987dd_icgraph" id="class_pre_a982542e122fbc4d348a008c0e78987dd_icgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9bdcb3ab0fc5675a7c9422610a0cb284"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bdcb3ab0fc5675a7c9422610a0cb284">&#9670;&nbsp;</a></span>isCommandOrVirtualTarget() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pre::isCommandOrVirtualTarget </td>
+          <td>(</td>
+          <td class="paramtype">const wxString &amp;&#160;</td>
+          <td class="paramname"><em>_nametarget</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if target is command only or a virtual target. </p>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_nametarget</td><td>: target name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if it's command target or virtual target </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a9bdcb3ab0fc5675a7c9422610a0cb284_cgraph.png" border="0" usemap="#class_pre_a9bdcb3ab0fc5675a7c9422610a0cb284_cgraph" alt=""/></div>
+<map name="class_pre_a9bdcb3ab0fc5675a7c9422610a0cb284_cgraph" id="class_pre_a9bdcb3ab0fc5675a7c9422610a0cb284_cgraph">
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a9bdcb3ab0fc5675a7c9422610a0cb284_icgraph.png" border="0" usemap="#class_pre_a9bdcb3ab0fc5675a7c9422610a0cb284_icgraph" alt=""/></div>
+<map name="class_pre_a9bdcb3ab0fc5675a7c9422610a0cb284_icgraph" id="class_pre_a9bdcb3ab0fc5675a7c9422610a0cb284_icgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0c13f6286ebbb7a82bd99682dde99344"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c13f6286ebbb7a82bd99682dde99344">&#9670;&nbsp;</a></span>isCommandOrVirtualTarget() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pre::isCommandOrVirtualTarget </td>
+          <td>(</td>
+          <td class="paramtype">const ProjectBuildTarget *&#160;</td>
+          <td class="paramname"><em>_pTarget</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if target is command only or a virtual target. </p>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_pTarget</td><td>: target pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if it's command target or virtual target </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a0c13f6286ebbb7a82bd99682dde99344_cgraph.png" border="0" usemap="#class_pre_a0c13f6286ebbb7a82bd99682dde99344_cgraph" alt=""/></div>
+<map name="class_pre_a0c13f6286ebbb7a82bd99682dde99344_cgraph" id="class_pre_a0c13f6286ebbb7a82bd99682dde99344_cgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2337,30 +2721,45 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if it's command target </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a70d06eec2a18717fa4bfc0d9a6c9a2b1_icgraph.png" border="0" usemap="#class_pre_a70d06eec2a18717fa4bfc0d9a6c9a2b1_icgraph" alt=""/></div>
+<map name="class_pre_a70d06eec2a18717fa4bfc0d9a6c9a2b1_icgraph" id="class_pre_a70d06eec2a18717fa4bfc0d9a6c9a2b1_icgraph">
+</map>
+</div>
 
 </div>
 </div>
-<a id="abcc8e72795acc9c890945b1cddc610f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcc8e72795acc9c890945b1cddc610f2">&#9670;&nbsp;</a></span>isCommandTarget() <span class="overload">[2/2]</span></h2>
+<a id="afb35fc16fe45e87077a49f0e2eb32bba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb35fc16fe45e87077a49f0e2eb32bba">&#9670;&nbsp;</a></span>isCommandTarget() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool Pre::isCommandTarget </td>
           <td>(</td>
           <td class="paramtype">const ProjectBuildTarget *&#160;</td>
-          <td class="paramname"><em>_pBuildTarget</em></td><td>)</td>
+          <td class="paramname"><em>_pTarget</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Indicates if target is command only. </p>
 <hr/>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_pBuildTarget</td><td>: target pointer </td></tr>
+    <tr><td class="paramname">_pTarget</td><td>: target pointer </td></tr>
   </table>
   </dd>
 </dl>
@@ -2386,6 +2785,13 @@ Here is the call graph for this function:</div>
 <p>For globals boolan. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>true if is correct </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a5e59005efa7714a6a1eabfd44cd07222_icgraph.png" border="0" usemap="#class_pre_a5e59005efa7714a6a1eabfd44cd07222_icgraph" alt=""/></div>
+<map name="class_pre_a5e59005efa7714a6a1eabfd44cd07222_icgraph" id="class_pre_a5e59005efa7714a6a1eabfd44cd07222_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2435,6 +2841,13 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>number strings, if &lt; 0 =&gt; error </dd></dl>
 
 <p>Implemented in <a class="el" href="class_create_for_wx.html#a85a2f56c9beb81680b0199b2e0fe39f3">CreateForWx</a>, and <a class="el" href="class_create_for_qt.html#adfad0f06f491c2b5a4a8ffa3338f0fcb">CreateForQt</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a29bfd75a1870d5ee29079fed3aa19c0f_icgraph.png" border="0" usemap="#class_pre_a29bfd75a1870d5ee29079fed3aa19c0f_icgraph" alt=""/></div>
+<map name="class_pre_a29bfd75a1870d5ee29079fed3aa19c0f_icgraph" id="class_pre_a29bfd75a1870d5ee29079fed3aa19c0f_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2452,6 +2865,141 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_ae10818f194c0edbd93c84487241076fb_icgraph.png" border="0" usemap="#class_pre_ae10818f194c0edbd93c84487241076fb_icgraph" alt=""/></div>
+<map name="class_pre_ae10818f194c0edbd93c84487241076fb_icgraph" id="class_pre_ae10818f194c0edbd93c84487241076fb_icgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab3a0f75f5c2aac52ce3fe6fd0048ed84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3a0f75f5c2aac52ce3fe6fd0048ed84">&#9670;&nbsp;</a></span>isVirtualTarget() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pre::isVirtualTarget </td>
+          <td>(</td>
+          <td class="paramtype">const ProjectBuildTarget *&#160;</td>
+          <td class="paramname"><em>_pTarget</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if target is virtual. </p>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_pTarget</td><td>: target pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if it's virtual target </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_ab3a0f75f5c2aac52ce3fe6fd0048ed84_icgraph.png" border="0" usemap="#class_pre_ab3a0f75f5c2aac52ce3fe6fd0048ed84_icgraph" alt=""/></div>
+<map name="class_pre_ab3a0f75f5c2aac52ce3fe6fd0048ed84_icgraph" id="class_pre_ab3a0f75f5c2aac52ce3fe6fd0048ed84_icgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac9740530817bd9b6e954e934ac0dc29a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9740530817bd9b6e954e934ac0dc29a">&#9670;&nbsp;</a></span>isVirtualTarget() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pre::isVirtualTarget </td>
+          <td>(</td>
+          <td class="paramtype">const wxString &amp;&#160;</td>
+          <td class="paramname"><em>_nametarget</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if target is virtual. </p>
+<hr/>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_nametarget</td><td>: target name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if it's virtual target </dd></dl>
+
+</div>
+</div>
+<a id="af92fb1137bdad11dd6bd32530ed7d426"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af92fb1137bdad11dd6bd32530ed7d426">&#9670;&nbsp;</a></span>LaunchExternalTool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">wxInt32 Pre::LaunchExternalTool </td>
+          <td>(</td>
+          <td class="paramtype">const wxString &amp;&#160;</td>
+          <td class="paramname"><em>_toolexe</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Launch an external executable tool. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_toolexe</td><td>: executable name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code, 0 if good </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_af92fb1137bdad11dd6bd32530ed7d426_cgraph.png" border="0" usemap="#class_pre_af92fb1137bdad11dd6bd32530ed7d426_cgraph" alt=""/></div>
+<map name="class_pre_af92fb1137bdad11dd6bd32530ed7d426_cgraph" id="class_pre_af92fb1137bdad11dd6bd32530ed7d426_cgraph">
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_af92fb1137bdad11dd6bd32530ed7d426_icgraph.png" border="0" usemap="#class_pre_af92fb1137bdad11dd6bd32530ed7d426_icgraph" alt=""/></div>
+<map name="class_pre_af92fb1137bdad11dd6bd32530ed7d426_icgraph" id="class_pre_af92fb1137bdad11dd6bd32530ed7d426_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2491,9 +3039,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a17cd9de411485392eb54054e59cb98a6_cgraph.png" border="0" usemap="#class_pre_a17cd9de411485392eb54054e59cb98a6_cgraph" alt=""/></div>
 <map name="class_pre_a17cd9de411485392eb54054e59cb98a6_cgraph" id="class_pre_a17cd9de411485392eb54054e59cb98a6_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="175,5,313,32"/>
-<area shape="rect" id="node3" href="class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="179,56,309,83"/>
-<area shape="rect" id="node4" href="class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="179,107,309,133"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a17cd9de411485392eb54054e59cb98a6_icgraph.png" border="0" usemap="#class_pre_a17cd9de411485392eb54054e59cb98a6_icgraph" alt=""/></div>
+<map name="class_pre_a17cd9de411485392eb54054e59cb98a6_icgraph" id="class_pre_a17cd9de411485392eb54054e59cb98a6_icgraph">
 </map>
 </div>
 
@@ -2538,21 +3090,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a58700da6472228a04e8b26033a63d438_cgraph.png" border="0" usemap="#class_pre_a58700da6472228a04e8b26033a63d438_cgraph" alt=""/></div>
 <map name="class_pre_a58700da6472228a04e8b26033a63d438_cgraph" id="class_pre_a58700da6472228a04e8b26033a63d438_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#aa2b44ed6f152aecda674ade4ca12666f" title="Initialization of a table for temporary file. " alt="" coords="137,5,285,32"/>
-<area shape="rect" id="node3" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="174,56,249,83"/>
-<area shape="rect" id="node5" href="class_pre.html#a9077ad6294b11841149aab0d117bbed1" title="Search the elegible files for extracting. " alt="" coords="149,107,273,133"/>
-<area shape="rect" id="node7" href="class_pre.html#a17cd9de411485392eb54054e59cb98a6" title="List translatables strings from elegible files. " alt="" coords="151,169,272,196"/>
-<area shape="rect" id="node11" href="class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="158,296,265,323"/>
-<area shape="rect" id="node4" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="349,43,458,69"/>
-<area shape="rect" id="node6" href="class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f" title="Tests readability for chain collection. " alt="" coords="336,93,471,120"/>
-<area shape="rect" id="node8" href="class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="334,144,473,171"/>
-<area shape="rect" id="node9" href="class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="338,195,469,221"/>
-<area shape="rect" id="node10" href="class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="339,245,468,272"/>
-<area shape="rect" id="node12" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="350,296,457,323"/>
-<area shape="rect" id="node15" href="class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="333,347,473,373"/>
-<area shape="rect" id="node13" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="533,296,632,323"/>
-<area shape="rect" id="node14" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="692,296,803,323"/>
-<area shape="rect" id="node16" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="521,347,644,373"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a58700da6472228a04e8b26033a63d438_icgraph.png" border="0" usemap="#class_pre_a58700da6472228a04e8b26033a63d438_icgraph" alt=""/></div>
+<map name="class_pre_a58700da6472228a04e8b26033a63d438_icgraph" id="class_pre_a58700da6472228a04e8b26033a63d438_icgraph">
 </map>
 </div>
 
@@ -2590,24 +3134,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a0236657277d3ebf2dc392a6f05e215c5_cgraph.png" border="0" usemap="#class_pre_a0236657277d3ebf2dc392a6f05e215c5_cgraph" alt=""/></div>
 <map name="class_pre_a0236657277d3ebf2dc392a6f05e215c5_cgraph" id="class_pre_a0236657277d3ebf2dc392a6f05e215c5_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#aa2b44ed6f152aecda674ade4ca12666f" title="Initialization of a table for temporary file. " alt="" coords="341,56,489,83"/>
-<area shape="rect" id="node3" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="378,107,453,133"/>
-<area shape="rect" id="node5" href="class_pre.html#a58700da6472228a04e8b26033a63d438" title="Search and memorize strings to be extracted. " alt="" coords="185,157,269,184"/>
-<area shape="rect" id="node12" href="class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="362,259,469,285"/>
-<area shape="rect" id="node18" href="class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="160,360,293,387"/>
-<area shape="rect" id="node4" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="553,5,662,32"/>
-<area shape="rect" id="node6" href="class_pre.html#a9077ad6294b11841149aab0d117bbed1" title="Search the elegible files for extracting. " alt="" coords="353,208,477,235"/>
-<area shape="rect" id="node8" href="class_pre.html#a17cd9de411485392eb54054e59cb98a6" title="List translatables strings from elegible files. " alt="" coords="355,157,476,184"/>
-<area shape="rect" id="node7" href="class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f" title="Tests readability for chain collection. " alt="" coords="540,208,675,235"/>
-<area shape="rect" id="node9" href="class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="538,157,677,184"/>
-<area shape="rect" id="node10" href="class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="542,56,673,83"/>
-<area shape="rect" id="node11" href="class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="543,107,672,133"/>
-<area shape="rect" id="node13" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="554,309,661,336"/>
-<area shape="rect" id="node16" href="class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="537,259,677,285"/>
-<area shape="rect" id="node14" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="737,309,836,336"/>
-<area shape="rect" id="node15" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="896,335,1007,361"/>
-<area shape="rect" id="node17" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="725,259,848,285"/>
-<area shape="rect" id="node19" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="343,411,487,437"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a0236657277d3ebf2dc392a6f05e215c5_icgraph.png" border="0" usemap="#class_pre_a0236657277d3ebf2dc392a6f05e215c5_icgraph" alt=""/></div>
+<map name="class_pre_a0236657277d3ebf2dc392a6f05e215c5_icgraph" id="class_pre_a0236657277d3ebf2dc392a6f05e215c5_icgraph">
 </map>
 </div>
 
@@ -2654,29 +3187,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a6537186bec965c977da90bb2a1feac67_cgraph.png" border="0" usemap="#class_pre_a6537186bec965c977da90bb2a1feac67_cgraph" alt=""/></div>
 <map name="class_pre_a6537186bec965c977da90bb2a1feac67_cgraph" id="class_pre_a6537186bec965c977da90bb2a1feac67_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#ae5dcb49f219ed8e69e128492e8fc59a1" title="Global initialization. " alt="" coords="338,107,405,133"/>
-<area shape="rect" id="node11" href="class_pre.html#a58700da6472228a04e8b26033a63d438" title="Search and memorize strings to be extracted. " alt="" coords="165,233,249,260"/>
-<area shape="rect" id="node3" href="class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75" title=" " alt="" coords="514,107,613,133"/>
-<area shape="rect" id="node9" href="class_pre.html#abf68866bcaffe0e09fcb298bb186c325" title="specific initialisation by inherited type " alt="" coords="507,56,619,83"/>
-<area shape="rect" id="node10" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="509,157,618,184"/>
-<area shape="rect" id="node4" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="879,107,990,133"/>
-<area shape="rect" id="node5" href="class_pre.html#a75af572e2d1e33e7d85535e839b28e3b" title="Give a project index. " alt="" coords="687,157,809,184"/>
-<area shape="rect" id="node6" href="class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="681,5,815,32"/>
-<area shape="rect" id="node8" href="class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b" title="Create a directory. " alt="" coords="697,56,799,83"/>
-<area shape="rect" id="node7" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="863,5,1007,32"/>
-<area shape="rect" id="node12" href="class_pre.html#aa2b44ed6f152aecda674ade4ca12666f" title="Initialization of a table for temporary file. " alt="" coords="297,208,445,235"/>
-<area shape="rect" id="node13" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="334,157,409,184"/>
-<area shape="rect" id="node14" href="class_pre.html#a9077ad6294b11841149aab0d117bbed1" title="Search the elegible files for extracting. " alt="" coords="309,309,433,336"/>
-<area shape="rect" id="node16" href="class_pre.html#a17cd9de411485392eb54054e59cb98a6" title="List translatables strings from elegible files. " alt="" coords="311,385,432,412"/>
-<area shape="rect" id="node20" href="class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="318,259,425,285"/>
-<area shape="rect" id="node15" href="class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f" title="Tests readability for chain collection. " alt="" coords="496,309,631,336"/>
-<area shape="rect" id="node17" href="class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="494,411,633,437"/>
-<area shape="rect" id="node18" href="class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="498,461,629,488"/>
-<area shape="rect" id="node19" href="class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="499,360,628,387"/>
-<area shape="rect" id="node21" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="510,259,617,285"/>
-<area shape="rect" id="node23" href="class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="493,208,633,235"/>
-<area shape="rect" id="node22" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="699,259,797,285"/>
-<area shape="rect" id="node24" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="687,208,809,235"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a6537186bec965c977da90bb2a1feac67_icgraph.png" border="0" usemap="#class_pre_a6537186bec965c977da90bb2a1feac67_icgraph" alt=""/></div>
+<map name="class_pre_a6537186bec965c977da90bb2a1feac67_icgraph" id="class_pre_a6537186bec965c977da90bb2a1feac67_icgraph">
 </map>
 </div>
 
@@ -2717,6 +3234,13 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>number of strings extracted </dd></dl>
 
 <p>Implemented in <a class="el" href="class_create_for_wx.html#a7d13df1de2f638015374a04219aa2d54">CreateForWx</a>, and <a class="el" href="class_create_for_qt.html#a016857846848b8502683f75d695310ad">CreateForQt</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a8749bb215cdcec374ce5ba54f6eb1d96_icgraph.png" border="0" usemap="#class_pre_a8749bb215cdcec374ce5ba54f6eb1d96_icgraph" alt=""/></div>
+<map name="class_pre_a8749bb215cdcec374ce5ba54f6eb1d96_icgraph" id="class_pre_a8749bb215cdcec374ce5ba54f6eb1d96_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2755,6 +3279,13 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>number of strings extracted </dd></dl>
 
 <p>Implemented in <a class="el" href="class_create_for_wx.html#ac4fe6bc6e861eff23cbcb65f5e3f3b82">CreateForWx</a>, and <a class="el" href="class_create_for_qt.html#aa6ad74eae6ca6707326f0504e6257b15">CreateForQt</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_af0380a09af5d19735a1220821492e5fe_icgraph.png" border="0" usemap="#class_pre_af0380a09af5d19735a1220821492e5fe_icgraph" alt=""/></div>
+<map name="class_pre_af0380a09af5d19735a1220821492e5fe_icgraph" id="class_pre_af0380a09af5d19735a1220821492e5fe_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2793,6 +3324,13 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>number of strings extracted </dd></dl>
 
 <p>Implemented in <a class="el" href="class_create_for_wx.html#a024b578abef8bb97ef294251021fa11f">CreateForWx</a>, and <a class="el" href="class_create_for_qt.html#a440dba8b5f858fe0240c777e9319c749">CreateForQt</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a48a5451b9da56e0529fda051e09c35d4_icgraph.png" border="0" usemap="#class_pre_a48a5451b9da56e0529fda051e09c35d4_icgraph" alt=""/></div>
+<map name="class_pre_a48a5451b9da56e0529fda051e09c35d4_icgraph" id="class_pre_a48a5451b9da56e0529fda051e09c35d4_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -2825,30 +3363,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_aa9b0b0f3b571d8c8b511ed3134d26bb4_cgraph.png" border="0" usemap="#class_pre_aa9b0b0f3b571d8c8b511ed3134d26bb4_cgraph" alt=""/></div>
 <map name="class_pre_aa9b0b0f3b571d8c8b511ed3134d26bb4_cgraph" id="class_pre_aa9b0b0f3b571d8c8b511ed3134d26bb4_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#ae5dcb49f219ed8e69e128492e8fc59a1" title="Global initialization. " alt="" coords="474,81,541,108"/>
-<area shape="rect" id="node11" href="class_pre.html#a0236657277d3ebf2dc392a6f05e215c5" title="Search and memorize strings to be extracted from workspace. " alt="" coords="147,233,253,260"/>
-<area shape="rect" id="node3" href="class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75" title=" " alt="" coords="650,107,749,133"/>
-<area shape="rect" id="node9" href="class_pre.html#abf68866bcaffe0e09fcb298bb186c325" title="specific initialisation by inherited type " alt="" coords="643,56,755,83"/>
-<area shape="rect" id="node10" href="class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="645,157,754,184"/>
-<area shape="rect" id="node4" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="1015,157,1126,184"/>
-<area shape="rect" id="node5" href="class_pre.html#a75af572e2d1e33e7d85535e839b28e3b" title="Give a project index. " alt="" coords="823,56,945,83"/>
-<area shape="rect" id="node6" href="class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="817,5,951,32"/>
-<area shape="rect" id="node8" href="class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b" title="Create a directory. " alt="" coords="833,107,935,133"/>
-<area shape="rect" id="node7" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="999,5,1143,32"/>
-<area shape="rect" id="node12" href="class_pre.html#aa2b44ed6f152aecda674ade4ca12666f" title="Initialization of a table for temporary file. " alt="" coords="433,411,581,437"/>
-<area shape="rect" id="node13" href="class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="470,208,545,235"/>
-<area shape="rect" id="node14" href="class_pre.html#a58700da6472228a04e8b26033a63d438" title="Search and memorize strings to be extracted. " alt="" coords="301,309,385,336"/>
-<area shape="rect" id="node21" href="class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="454,259,561,285"/>
-<area shape="rect" id="node15" href="class_pre.html#a9077ad6294b11841149aab0d117bbed1" title="Search the elegible files for extracting. " alt="" coords="445,360,569,387"/>
-<area shape="rect" id="node17" href="class_pre.html#a17cd9de411485392eb54054e59cb98a6" title="List translatables strings from elegible files. " alt="" coords="447,309,568,336"/>
-<area shape="rect" id="node16" href="class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f" title="Tests readability for chain collection. " alt="" coords="632,461,767,488"/>
-<area shape="rect" id="node18" href="class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="630,360,769,387"/>
-<area shape="rect" id="node19" href="class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="634,411,765,437"/>
-<area shape="rect" id="node20" href="class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="635,309,764,336"/>
-<area shape="rect" id="node22" href="class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="646,208,753,235"/>
-<area shape="rect" id="node24" href="class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="629,259,769,285"/>
-<area shape="rect" id="node23" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="835,208,933,235"/>
-<area shape="rect" id="node25" href="class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="823,259,945,285"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_aa9b0b0f3b571d8c8b511ed3134d26bb4_icgraph.png" border="0" usemap="#class_pre_aa9b0b0f3b571d8c8b511ed3134d26bb4_icgraph" alt=""/></div>
+<map name="class_pre_aa9b0b0f3b571d8c8b511ed3134d26bb4_icgraph" id="class_pre_aa9b0b0f3b571d8c8b511ed3134d26bb4_icgraph">
 </map>
 </div>
 
@@ -2902,7 +3423,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a469c4781ddaa703c54e46547f6cd7c84_cgraph.png" border="0" usemap="#class_pre_a469c4781ddaa703c54e46547f6cd7c84_cgraph" alt=""/></div>
 <map name="class_pre_a469c4781ddaa703c54e46547f6cd7c84_cgraph" id="class_pre_a469c4781ddaa703c54e46547f6cd7c84_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="168,5,347,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a469c4781ddaa703c54e46547f6cd7c84_icgraph.png" border="0" usemap="#class_pre_a469c4781ddaa703c54e46547f6cd7c84_icgraph" alt=""/></div>
+<map name="class_pre_a469c4781ddaa703c54e46547f6cd7c84_icgraph" id="class_pre_a469c4781ddaa703c54e46547f6cd7c84_icgraph">
 </map>
 </div>
 
@@ -2926,27 +3453,6 @@ Here is the call graph for this function:</div>
 <p>Plugin name. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>plugin name </dd></dl>
-
-</div>
-</div>
-<a id="a38937436b388c95b22a8ccffe7952d95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38937436b388c95b22a8ccffe7952d95">&#9670;&nbsp;</a></span>nbStringsToExtract()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">wxInt32 Pre::nbStringsToExtract </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Give the number of strings to extract. </p>
-<hr/>
-<dl class="section return"><dt>Returns</dt><dd>number strings </dd></dl>
 
 </div>
 </div>
@@ -2988,7 +3494,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a0c41270b1d60e164c94c286213bdfd18_cgraph.png" border="0" usemap="#class_pre_a0c41270b1d60e164c94c286213bdfd18_cgraph" alt=""/></div>
 <map name="class_pre_a0c41270b1d60e164c94c286213bdfd18_cgraph" id="class_pre_a0c41270b1d60e164c94c286213bdfd18_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="152,5,263,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a0c41270b1d60e164c94c286213bdfd18_icgraph.png" border="0" usemap="#class_pre_a0c41270b1d60e164c94c286213bdfd18_icgraph" alt=""/></div>
+<map name="class_pre_a0c41270b1d60e164c94c286213bdfd18_icgraph" id="class_pre_a0c41270b1d60e164c94c286213bdfd18_icgraph">
 </map>
 </div>
 
@@ -3012,6 +3524,13 @@ Here is the call graph for this function:</div>
 <p>Adjusts variable depending on the platform. </p>
 <hr/>
 <dl class="section return"><dt>Returns</dt><dd>a formatted text </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a7db8c1b2eb192852bfc7e07578cc8618_icgraph.png" border="0" usemap="#class_pre_a7db8c1b2eb192852bfc7e07578cc8618_icgraph" alt=""/></div>
+<map name="class_pre_a7db8c1b2eb192852bfc7e07578cc8618_icgraph" id="class_pre_a7db8c1b2eb192852bfc7e07578cc8618_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -3048,6 +3567,13 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>contents file </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a88e3bef0ca2ea7f66d9aa18292b88ba6_icgraph.png" border="0" usemap="#class_pre_a88e3bef0ca2ea7f66d9aa18292b88ba6_icgraph" alt=""/></div>
+<map name="class_pre_a88e3bef0ca2ea7f66d9aa18292b88ba6_icgraph" id="class_pre_a88e3bef0ca2ea7f66d9aa18292b88ba6_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -3085,6 +3611,13 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if it's </dd></dl>
 <p>recursive call ... </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a3e392c946bee7fd92001373399a1df4b_icgraph.png" border="0" usemap="#class_pre_a3e392c946bee7fd92001373399a1df4b_icgraph" alt=""/></div>
+<map name="class_pre_a3e392c946bee7fd92001373399a1df4b_icgraph" id="class_pre_a3e392c946bee7fd92001373399a1df4b_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -3137,8 +3670,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_a1bfa14311a5693b175f8985e49fc976d_cgraph.png" border="0" usemap="#class_pre_a1bfa14311a5693b175f8985e49fc976d_cgraph" alt=""/></div>
 <map name="class_pre_a1bfa14311a5693b175f8985e49fc976d_cgraph" id="class_pre_a1bfa14311a5693b175f8985e49fc976d_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="187,5,331,32"/>
-<area shape="rect" id="node3" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="203,56,314,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a1bfa14311a5693b175f8985e49fc976d_icgraph.png" border="0" usemap="#class_pre_a1bfa14311a5693b175f8985e49fc976d_icgraph" alt=""/></div>
+<map name="class_pre_a1bfa14311a5693b175f8985e49fc976d_icgraph" id="class_pre_a1bfa14311a5693b175f8985e49fc976d_icgraph">
 </map>
 </div>
 
@@ -3193,8 +3731,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pre_aa49a3d0de7b6c7ac7951ce8dd505ecb6_cgraph.png" border="0" usemap="#class_pre_aa49a3d0de7b6c7ac7951ce8dd505ecb6_cgraph" alt=""/></div>
 <map name="class_pre_aa49a3d0de7b6c7ac7951ce8dd505ecb6_cgraph" id="class_pre_aa49a3d0de7b6c7ac7951ce8dd505ecb6_cgraph">
-<area shape="rect" id="node2" href="class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="160,5,259,32"/>
-<area shape="rect" id="node3" href="class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="307,5,417,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_aa49a3d0de7b6c7ac7951ce8dd505ecb6_icgraph.png" border="0" usemap="#class_pre_aa49a3d0de7b6c7ac7951ce8dd505ecb6_icgraph" alt=""/></div>
+<map name="class_pre_aa49a3d0de7b6c7ac7951ce8dd505ecb6_icgraph" id="class_pre_aa49a3d0de7b6c7ac7951ce8dd505ecb6_icgraph">
 </map>
 </div>
 
@@ -3225,6 +3768,13 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if all right </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a331d34900673347c58a7ad607e80edbd_icgraph.png" border="0" usemap="#class_pre_a331d34900673347c58a7ad607e80edbd_icgraph" alt=""/></div>
+<map name="class_pre_a331d34900673347c58a7ad607e80edbd_icgraph" id="class_pre_a331d34900673347c58a7ad607e80edbd_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -3279,6 +3829,13 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_ad6e796a5a90943a4e4aa89ca4632717f_icgraph.png" border="0" usemap="#class_pre_ad6e796a5a90943a4e4aa89ca4632717f_icgraph" alt=""/></div>
+<map name="class_pre_ad6e796a5a90943a4e4aa89ca4632717f_icgraph" id="class_pre_ad6e796a5a90943a4e4aa89ca4632717f_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -3305,6 +3862,13 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_ad6c83ed54f3f22abcc25ee1de4581a04_icgraph.png" border="0" usemap="#class_pre_ad6c83ed54f3f22abcc25ee1de4581a04_icgraph" alt=""/></div>
+<map name="class_pre_ad6c83ed54f3f22abcc25ee1de4581a04_icgraph" id="class_pre_ad6c83ed54f3f22abcc25ee1de4581a04_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -3331,6 +3895,13 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a9129591c145d5f21bcc0e29fa84ef490_icgraph.png" border="0" usemap="#class_pre_a9129591c145d5f21bcc0e29fa84ef490_icgraph" alt=""/></div>
+<map name="class_pre_a9129591c145d5f21bcc0e29fa84ef490_icgraph" id="class_pre_a9129591c145d5f21bcc0e29fa84ef490_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -3372,6 +3943,13 @@ Here is the call graph for this function:</div>
 <p>' ' == translator comments '.' == automatic comments ',' == flags : fuzzy, c-format, ... '|' == msgid previous-untranslated-string</p>
 <p>lineplus == 'msgid text'</p>
 <p>msgid "" cSpace"............" cSpace"............" msgstr "" // always empty </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_adccccf940ffaa486db792769f604b081_icgraph.png" border="0" usemap="#class_pre_adccccf940ffaa486db792769f604b081_icgraph" alt=""/></div>
+<map name="class_pre_adccccf940ffaa486db792769f604b081_icgraph" id="class_pre_adccccf940ffaa486db792769f604b081_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -3418,6 +3996,13 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a readable message formatted </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_pre_a0806999c9d1d04fb3e605dcbc99e21ca_icgraph.png" border="0" usemap="#class_pre_a0806999c9d1d04fb3e605dcbc99e21ca_icgraph" alt=""/></div>
+<map name="class_pre_a0806999c9d1d04fb3e605dcbc99e21ca_icgraph" id="class_pre_a0806999c9d1d04fb3e605dcbc99e21ca_icgraph">
+</map>
+</div>
 
 </div>
 </div>
@@ -3798,30 +4383,6 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>projects into workspace withfiles text i18n </p>
-
-</div>
-</div>
-<a id="a5f2ac8d4a1107e26239b4549b8894de2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f2ac8d4a1107e26239b4549b8894de2">&#9670;&nbsp;</a></span>m_FileswithI18nWS</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">wxArrayString Pre::m_FileswithI18nWS</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>targets of 'ProjectFile </p>
 
 </div>
 </div>
@@ -5235,7 +5796,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>workspace with text i18n </p>
+<p>targets of 'ProjectFile </p>
 
 </div>
 </div>
@@ -5655,7 +6216,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_pre.html">Pre</a></li>
-    <li class="footer">Generated on Fri May 20 2022 00:10:10 for Collector-wx31_64 by
+    <li class="footer">Generated on Sun May 29 2022 22:45:29 for Collector by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

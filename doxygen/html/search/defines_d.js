@@ -6,7 +6,7 @@ var searchData=
   ['sizele',['SizeLe',['../defines_8h.html#a799696268f44d9dc34647a0208df5ba1',1,'defines.h']]],
   ['sizesep',['SizeSep',['../defines_8h.html#a109f64db69faa7a1c15094dd816269e2',1,'SizeSep():&#160;defines.h'],['../pre_8cpp.html#a109f64db69faa7a1c15094dd816269e2',1,'SizeSep():&#160;pre.cpp']]],
   ['slash',['slash',['../defines_8h.html#a41f762e476e07a7d721ee4351047b85d',1,'defines.h']]],
-  ['space',['Space',['../defines_8h.html#ab8efc174fd44ac155917e1f46ccb56aa',1,'defines.h']]],
+  ['space',['Space',['../defines_8h.html#ab8efc174fd44ac155917e1f46ccb56aa',1,'Space():&#160;defines.h'],['../defines_8h.html#a5abb020015c7a9011442f640bdcdf911',1,'space():&#160;defines.h']]],
   ['strbool',['strBool',['../defines_8h.html#ab66b417931050c7e722e9c5ad36efc99',1,'defines.h']]],
   ['strchar',['strChar',['../defines_8h.html#a7731af821a2863f80bb843eeebd91275',1,'defines.h']]],
   ['strint',['strInt',['../defines_8h.html#a6b7d11bafdd2b93e6f3354a1ccf60216',1,'defines.h']]],

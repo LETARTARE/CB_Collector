@@ -1,0 +1,9 @@
+digraph "Pre::freqStr"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node475 [label="Pre::freqStr",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node475 -> Node476 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node476 [label="CreateForWx::isReadableFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a85a2f56c9beb81680b0199b2e0fe39f3",tooltip="Tests readability for chain collection. "];
+}

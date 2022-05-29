@@ -1,0 +1,18 @@
+digraph "Pre::Initbasic"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node524 [label="Pre::Initbasic",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node524 -> Node525 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node525 [label="Pre::ShowError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04",tooltip="Call to &#39;cbMessageBox(_mes, \"\", wxICON_ERROR)&#39;. "];
+  Node524 -> Node526 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node526 [label="Pre::indexProject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a75af572e2d1e33e7d85535e839b28e3b",tooltip="Give a project index. "];
+  Node524 -> Node527 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node527 [label="Pre::releaseProject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a1bfa14311a5693b175f8985e49fc976d",tooltip="Release all variables. "];
+  Node527 -> Node528 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node528 [label="Pre::detectLibProject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#aaf295c590dcdc8b93ef190c23150a134",tooltip="Detects the current libraries for project. "];
+  Node527 -> Node525 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node524 -> Node529 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node529 [label="Pre::createDir",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b",tooltip="Create a directory. "];
+}

@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-18
+ * Modified:  2022-05-30
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -15,7 +15,7 @@
 ///-----------------------------------------------------------------------------
 /** Version
  */
-#define VERSION_COLLECT wxString("1.6.0")
+#define VERSION_COLLECT wxString("1.7.1")
 
 //=========================================================
 /** \brief  For 'Collector::MesToLog'
@@ -50,12 +50,13 @@
 #define 	Tab			wxString("\t")
 #define 	cTab		'\t'
 #define 	Space		wxString(" ")
+#define 	space(__n)	wxString(' ', __n)
 // not uses 'space' reserved word
 #define 	cSpace		' '
 #define 	Dot			wxString(".")
 #define		cDot		'.'
 
-#define 	EXTRADISPLAY	50
+//#define 	EXTRADISPLAY	50
 
 /** \brief text separator
  */
@@ -65,13 +66,8 @@
 #define		SizeLe		16
 /** \brief lines
  */
-#define     WLine       140
-#define     LineW       wxString('-', WLine)
-#define 	Line80		wxString('-', 80)
-#define 	Line77		wxString('-', 77)
-#define 	Line110		wxString('-', 110)
-//#define 	Line105		wxString('-', 110)
-#define     Dline110    wxString('=', 110)
+#define 	Line(__n)	wxString('-', __n)
+#define     Dline(__n)  wxString('=', __n)
 
 /** @brief surrounded by 'Quote'
  */
@@ -106,6 +102,7 @@
 #define pLm					Manager::Get()->GetLogManager()
 #define __p              	m_LogPageIndex
 #define _print(__a)	    	pLm->Log(__a, __p)
+#define _printBox(__a)	    _print(Lf + DLine(__a.Len()) + Lf + __a + DLine(__a.Len()) )
 #define _printLn			pLm->Log(wxEmptyString, __p)
 #define _printWarn(__a)		pLm->LogWarning(__a, __p)
 #define _printError(__a)	pLm->LogError(__a, __p)
@@ -120,7 +117,7 @@
 /** @brief messages  -> 'Code::Blocks log'
  */
 #define _Print			pLm->Log
-#define _PrintLn			pLm->Log(wxEmptyString)
+#define _PrintLn		pLm->Log(wxEmptyString)
 #define _PrintWarn		pLm->LogWarning
 #define _PrintError		pLm->LogError
 #define _PrintCritical   pLm->LogCritical
@@ -134,7 +131,7 @@
  */
 // to display or not the progression in 'print(__a)'
 //#define PRINT_DISPLAY   true
-#define PRINT_DISPLAY   false
+#define PRINT_DISPLAY       false
 #define print(__a)			Collector::MesToLog(__a, Logger::info)
 #define printLn		   	 	Collector::MesToLog(wxEmptyString, Logger::info)
 #define printWarn(__a)	    Collector::MesToLog(__a, Logger::warning)
@@ -150,6 +147,15 @@
 #define		DOT_EXT_UI		".ui"
 #define		DOT_EXT_MOC		".moc"
 #define		DOT_EXT_QRC		".qrc"
+
+/** @brief news extensions for 'gettext'
+ */
+#define		EXT_PO			"po"
+#define		EXT_POT			"pot"
+#define		EXT_MO			"mo"
+#define		DOT_EXT_PO		".po"
+#define		DOT_EXT_POT		".pot"
+#define		DOT_EXT_MO		".mo"
 
 #include <filefilters.h>
 /// c++ code

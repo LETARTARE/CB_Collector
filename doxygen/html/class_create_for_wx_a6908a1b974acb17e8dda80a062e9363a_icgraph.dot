@@ -1,0 +1,9 @@
+digraph "CreateForWx::listStringsXmlIts"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node86 [label="CreateForWx::listStrings\lXmlIts",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node86 -> Node87 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node87 [label="CreateForWx::listStringsXml",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a024b578abef8bb97ef294251021fa11f",tooltip="List the strings into _shortfile with &#39;xgettext&#39;. "];
+}

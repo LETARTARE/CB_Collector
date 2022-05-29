@@ -1,0 +1,19 @@
+digraph "Pre::GexewithError"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node487 [label="Pre::GexewithError",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node487 -> Node488 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node488 [label="CreateForQt::listStringsCode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_qt.html#a016857846848b8502683f75d695310ad",tooltip="List the strings into _shortfile with &#39;xgettext&#39;. "];
+  Node487 -> Node489 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node489 [label="CreateForQt::createPot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_qt.html#a8e393905d2da745bae0a49d729b10560",tooltip="Create the file &#39;*.pot&#39; containing all translatable string(s) "];
+  Node487 -> Node490 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node490 [label="CreateForWx::listStringsCode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a7d13df1de2f638015374a04219aa2d54",tooltip="List the strings into _shortfile with &#39;xgettext&#39;. "];
+  Node487 -> Node491 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node491 [label="CreateForWx::listStrings\lXmlIts",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a6908a1b974acb17e8dda80a062e9363a",tooltip="List the strings into _shortfile with &#39;xgettext&#39;. "];
+  Node491 -> Node492 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node492 [label="CreateForWx::listStringsXml",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a024b578abef8bb97ef294251021fa11f",tooltip="List the strings into _shortfile with &#39;xgettext&#39;. "];
+  Node487 -> Node493 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node493 [label="CreateForWx::createPot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a31e8c6e85d2cfd96a224377ac2b0631a",tooltip="Create the file &#39;*.pot&#39; containing all translatable string(s) "];
+}

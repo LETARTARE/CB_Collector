@@ -1,7 +1,0 @@
-<map id="Pre::listingWS" name="Pre::listingWS">
-<area shape="rect" id="node2" href="$class_pre.html#aa9b0b0f3b571d8c8b511ed3134d26bb4" title="List strings to be translated in workspace. " alt="" coords="159,5,251,32"/>
-<area shape="rect" id="node3" href="$class_collector.html#ab06da23cd0b7810d4123ca13ee4c3513" title="Places the status graph in the listing workspace report. " alt="" coords="299,5,472,32"/>
-<area shape="rect" id="node4" href="$class_collector.html#a7930ee28062e4a433303d81f3b984c9b" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="783,5,929,32"/>
-<area shape="rect" id="node6" href="$class_collector.html#a2229423c367ef0ff18634465b0a1228f" title="Places the status grap in the listing and extract workspace report. " alt="" coords="520,31,735,57"/>
-<area shape="rect" id="node5" href="$class_collector.html#a21ea63216efd3b547e514e0d6467bce5" title="Only one method for all events. " alt="" coords="977,5,1153,32"/>
-</map>

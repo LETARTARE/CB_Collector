@@ -1,0 +1,19 @@
+digraph "CreateForWx::detectLibProject"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node23 [label="CreateForWx::detectLibProject",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node23 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="Pre::isCommandOrVirtualTarget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a9bdcb3ab0fc5675a7c9422610a0cb284",tooltip="Indicates if target is command only or a virtual target. "];
+  Node24 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="Pre::isCommandTarget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a70d06eec2a18717fa4bfc0d9a6c9a2b1",tooltip="Indicates if target is command only. "];
+  Node24 -> Node26 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="Pre::isVirtualTarget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#ab3a0f75f5c2aac52ce3fe6fd0048ed84",tooltip="Indicates if target is virtual. "];
+  Node23 -> Node27 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="CreateForWx::pathWx",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a7ed361b57009bad03a2a24c7bef74415",tooltip="Search the &#39;Wx&#39; path and feed &#39;m_Wxpath&#39;. "];
+  Node27 -> Node28 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="Pre::addArrays",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#aed6fd1646a9f1a951260f7c02c2c9583",tooltip="Add an array to an other. "];
+  Node27 -> Node29 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="Pre::executeAndGetOutput\lAndError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded",tooltip="Launch a command line. "];
+}

@@ -1,0 +1,19 @@
+digraph "CreateForWx::createPot"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node15 [label="CreateForWx::createPot",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="Pre::GexewithError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a51af576d8b56ed77c362814160d5704a",tooltip="Execute &#39;xgettext&#39; for &#39;listing()&#39; or &#39;extract()&#39;. "];
+  Node16 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="Pre::executeAndGetOutput\lAndError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded",tooltip="Launch a command line. "];
+  Node16 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="Pre::xgettextOut",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#adccccf940ffaa486db792769f604b081",tooltip="From a text, extract the different strings to be translated. "];
+  Node16 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="Pre::xgettextWarn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a0806999c9d1d04fb3e605dcbc99e21ca",tooltip="Retrieves error or warning messages when executing &#39;xgettext&#39;. "];
+  Node15 -> Node20 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="CreateForWx::Cleantemp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a0ed056f22a319136cb6744977294b7c9",tooltip="Delete all temporary file. "];
+  Node20 -> Node21 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="Pre::recursRmDir",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a3e392c946bee7fd92001373399a1df4b",tooltip="Recursively deletes non-empty directories. "];
+}

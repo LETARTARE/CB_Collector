@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-18
+ * Modified:  2022-05-30
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/

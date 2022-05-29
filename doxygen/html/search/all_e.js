@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['parfiles',['parFiles',['../class_xml_res_app.html#a79dd5ac94f802058ba313b5898e67361',1,'XmlResApp']]],
-  ['parfuncname',['parFuncname',['../class_xml_res_app.html#adf20a379f5e5e52c33663986a7db2d39',1,'XmlResApp']]],
-  ['paroutput',['parOutput',['../class_xml_res_app.html#ad4f606df1dcc86def7c04f2bfcbc5866',1,'XmlResApp']]],
-  ['paroutputpath',['parOutputPath',['../class_xml_res_app.html#a6b9491fb31ec0df8d7b8303a488376e2',1,'XmlResApp']]],
-  ['parschemafile',['parSchemaFile',['../class_xml_res_app.html#a69c518120ff0905245055f42a641399f',1,'XmlResApp']]],
-  ['parseparams',['ParseParams',['../class_xml_res_app.html#af01767e17b1e9448017342e78d20347b',1,'XmlResApp::ParseParams(const wxCmdLineParser &amp;cmdline)'],['../class_xml_res_app.html#af01767e17b1e9448017342e78d20347b',1,'XmlResApp::ParseParams(const wxCmdLineParser &amp;cmdline)']]],
   ['pathlibqt',['pathlibQt',['../class_create_for_qt.html#a951fc7f18b5d19b0f76b2647d32a1414',1,'CreateForQt']]],
   ['pathwx',['pathWx',['../class_create_for_wx.html#a7ed361b57009bad03a2a24c7bef74415',1,'CreateForWx']]],
   ['platform',['platForm',['../class_pre.html#a7db8c1b2eb192852bfc7e07578cc8618',1,'Pre']]],
@@ -13,7 +7,6 @@ var searchData=
   ['pre',['Pre',['../class_pre.html',1,'Pre'],['../class_pre.html#a7aed28c8ed215fae794d2374def2881d',1,'Pre::Pre()']]],
   ['pre_2ecpp',['pre.cpp',['../pre_8cpp.html',1,'']]],
   ['pre_2eh',['pre.h',['../pre_8h.html',1,'']]],
-  ['preparetempfiles',['PrepareTempFiles',['../class_xml_res_app.html#af1062a4e0829e3fcc7327740d8af13fa',1,'XmlResApp::PrepareTempFiles()'],['../class_xml_res_app.html#af1062a4e0829e3fcc7327740d8af13fa',1,'XmlResApp::PrepareTempFiles()']]],
   ['prepend',['PREPEND',['../defines_8h.html#ab34e90e0b497a70806003c85e246ba1e',1,'defines.h']]],
   ['prepend_5ferror',['PREPEND_ERROR',['../defines_8h.html#a07b253a511d42d701681bedc7166f3a2',1,'defines.h']]],
   ['print',['print',['../defines_8h.html#a60633e42b3090854789c85879aba00f6',1,'defines.h']]],

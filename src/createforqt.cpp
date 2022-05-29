@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-03-17
+ * Modified:  2022-05-21
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -397,7 +397,7 @@ _printD("=> Begin 'CreateForQt::initTailored()'");
 	if (!ok)	return false;
 	//11- array clean
 		m_Nameprjwx.Clear();
-		m_FileswithI18nWS.Clear();
+		m_FileswithI18n.Clear();
 		m_PrjwithI18nWS.Clear();
 		m_Fileswithstrings.Clear();
 	//12- display Wx
@@ -734,12 +734,15 @@ _printD("= > Begin (Pre::createPot(" + strBool(_prjfirst) + ")" );
 // local variables
 	wxString shortfile, longfile, command , pActualprj ;
 	wxUint32  nbCells ;
-	if(!m_Workspace) 	nbCells = m_FileswithI18n.GetCount()  ;
-	else 				nbCells = m_FileswithI18nWS.GetCount() ;
+    nbCells = m_FileswithI18n.GetCount()  ;
 	Mes = Tab + "--> " + _("Extract of") + Space  + strInt(nbCells)  + Space ;
 	Mes +=  _("file(s) by 'xgettext'");
+	if(!m_Workspace)
+        Mes +=  quote(" -->> ") + dquoteNS(m_Dirlocale + m_Shortnamepot) ;
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
+
+
 	// variables
 	bool ok, good ;
 	// command
@@ -749,7 +752,7 @@ _printD("= > Begin (Pre::createPot(" + strBool(_prjfirst) + ")" );
 	begincommand += " -cTranslators: ";
 	//begincommand += " --add-comments=// ";
 
-// analyze all eligible files from 'm_FileswithI18n' or 'm_FileswithI18nWS'
+// analyze all eligible files from 'm_FileswithI18n'
 	for (wxUint32 i=0; i < nbCells ; i++ )
 	{
 	// control to pending messages in the event loop
@@ -821,8 +824,10 @@ wxUint32 CreateForQt::Cleantemp()
 _printD("=> Begin 'CreateForQt::Cleantemp()'");
 
 // messages
-	Mes = Lf + "---> " + _("begin 'Clean temporary files'");
+	Mes = "---> " + _("begin 'Clean temporary files'");
+	_print(Lf + Line(Mes.Len()));
 	_print(Mes);
+
 	m_Fileswithstrings.Add(Mes);
 
 //1- delete all temporary files of last project
@@ -835,6 +840,7 @@ _printD("=> Begin 'CreateForQt::Cleantemp()'");
 	// messages
 	Mes = Lf + "<--- " + _("end 'Clean temporary files'");
 	_print(Mes);
+	_print(Line(Mes.Len()));
     m_Fileswithstrings.Add(Mes);
 
 _printD("	<= End 'CreateForQt::Cleantemp()' =>" + strInt(nfc)  );

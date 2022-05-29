@@ -1,0 +1,34 @@
+digraph "Pre::saveAs"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node969 [label="Pre::saveAs",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node969 -> Node970 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node970 [label="Pre::copyFileToDir",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a84a8a1143763a2b58ef9b79e70ef3236",tooltip="Copy a file to an another directory. "];
+  Node970 -> Node971 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node971 [label="Pre::endextract",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a959385935eed997d2393b62d6b1b21df",tooltip="Ending extracting. "];
+  Node971 -> Node972 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node972 [label="Pre::extraction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#aa8a36aa79595248482a3865095fe0a65",tooltip="Extract the strings translatable from a project. "];
+  Node972 -> Node973 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node973 [label="Pre::ExtractProject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c",tooltip="Extract strings to be translated. "];
+  Node973 -> Node974 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node974 [label="Collector::OnMenuExtractPrj",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#af7b748977fb136842774e550b6c915b8",tooltip="Places the status graph in the extracting project report. "];
+  Node974 -> Node975 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node975 [label="Collector::callActions",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a772e3452af93d18c7764aed8245af527",tooltip="Call all &#39;OnMenu...()&#39;. "];
+  Node975 -> Node976 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node976 [label="Collector::OnMenuToState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e",tooltip="Only one method for all events. "];
+  Node974 -> Node977 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node977 [label="Collector::OnMenuListExtractPrj",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a24cfe1b83b040784e834277da16e0a68",tooltip="Places the status grap in the listing and extract report. "];
+  Node977 -> Node975 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node972 -> Node978 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node978 [label="Pre::extractionWS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a346ee750d8b28d66efbaf2c4342718e8",tooltip="Extract the strings translatable from worspace. "];
+  Node978 -> Node979 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node979 [label="Pre::ExtractWS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a8684f86d5efbdb8e3d688590d28a3179",tooltip="Extract strings to be translated in workspace. "];
+  Node979 -> Node980 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node980 [label="Collector::OnMenuExtractWS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a0dd8300c95e93daf33d5141d38c74c0d",tooltip="Places the status graph in the extracting workspace report. "];
+  Node980 -> Node975 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node980 -> Node981 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node981 [label="Collector::OnMenuListExtractWS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a6f578e146a373e98a2638c6a509ee193",tooltip="Places the status grap in the listing and extract workspace report. "];
+  Node981 -> Node975 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

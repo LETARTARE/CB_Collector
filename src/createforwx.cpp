@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-18
+ * Modified:  2022-05-28
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -61,18 +61,43 @@ _printD("=> Begin 'CreateForWx::detectLibProject(..., " + strBool(_report) + ")'
 	m_pProject = _pProject ;
 	wxString name = m_pProject->GetTitle();
 // libraries 'Wx' in targets ?
-    m_nbTargets = m_pProject->GetBuildTargetsCount();
-    ProjectBuildTarget * ptarget;
-    wxUint16 nt = 0; m_isWxProject = false;
-    while (nt < m_nbTargets && ! m_isWxProject )
+    m_Nameactivetarget = m_pProject->GetActiveBuildTarget() ;
+    ProjectBuildTarget * pTarget =  m_pProject->GetBuildTarget(m_Nameactivetarget);
+//_print("m_Nameactivetarget : " + quote(m_Nameactivetarget) ) ;
+    m_isWxProject = false ;
+// verify target type : 'virtual' or 'command'
+    //====================================================
+    if(Pre::isCommandOrVirtualTarget(m_Nameactivetarget) )
+    //====================================================
     {
-    // retrieve the target libraries
-        ptarget = m_pProject->GetBuildTarget(nt++);
-        if (!ptarget)       continue;
-        if (isCommandTarget(ptarget)) continue;
+//_printError("it's a command or virtual target ...");
+    // read all real targets
+        wxUint16 nt = 0; m_isWxProject = false;
+        // all targets
+        m_nbTargets = m_pProject->GetBuildTargetsCount();
+        while (nt < m_nbTargets && ! m_isWxProject )
+        {
+        // retrieve the target libraries
+            pTarget = m_pProject->GetBuildTarget(nt++);
+            if (!pTarget)       continue;
+            //====================================================
+            if (Pre::isCommandOrVirtualTarget(pTarget))  continue;
+            //====================================================
+//_print("other target : " + quote(pTarget->GetTitle()) ) ;
     // search all path libaries Wx
-        if(pathWx(ptarget))  m_isWxProject = true;
+            //==============================
+            m_isWxProject = pathWx(pTarget);
+            //==============================
+        }
     }
+    else
+    {
+//_printError("it's a real target ...");
+         //==============================
+         m_isWxProject = pathWx(pTarget);
+         //==============================
+    }
+//_printError(strBool(m_isWxProject));
 
 // finded
     _report = _report && (m_State == fbWaitingForStart);
@@ -84,7 +109,7 @@ _printD("=> Begin 'CreateForWx::detectLibProject(..., " + strBool(_report) + ")'
         InfoWindow::Display(title, txt, 5000);
 	}
 
-_printD("	<= End 'CreateForWx::detectLibProject()' => " + strBool(isWxProject) );
+_printD("	<= End 'CreateForWx::detectLibProject()' => " + strBool(m_isWxProject) );
 
 	return m_isWxProject;
 }
@@ -99,8 +124,7 @@ _printD("	<= End 'CreateForWx::detectLibProject()' => " + strBool(isWxProject) )
 //
 // Call to :
 //		1. Pre::executeAndGetOutputAndError(const wxString& _command, bool _prepend_error) :1,
-// ----------------------------------------------------------------------------
-
+//
 bool CreateForWx::pathWx(ProjectBuildTarget * _pTarget)
 {
 _printD("=> Begin 'CreateForWx::pathWx(...)'" );
@@ -111,6 +135,7 @@ _printD("=> Begin 'CreateForWx::pathWx(...)'" );
 
     wxString nameTarget = _pTarget->GetTitle(), nameProject = pProject->GetTitle();
     m_Dirproject = pProject->GetBasePath();
+//_printError(quote(nameTarget)) ;
 
 // return true if good
 	bool ok = false;
@@ -119,50 +144,62 @@ _printD("=> Begin 'CreateForWx::pathWx(...)'" );
 // for 'Win'
 	if (m_Win)
 	{
-	// path 'Wx'
-		wxString nameinc = wxEmptyString;
-        wxArrayString tabincs = pProject->GetIncludeDirs();
-		wxUint32 ninc = tabincs.GetCount();
-		if (ninc)
+	// include paths + librarie path
+		wxString incdir = wxEmptyString;
+        wxArrayString tabincdirs = pProject->GetIncludeDirs()
+                     ,tablibsdirs = _pTarget->GetLibDirs();
+        // add tabs anfd free the second
+        //======================================
+        Pre::addArrays(tabincdirs, tablibsdirs);
+        //======================================
+		wxUint32 nincdir = tabincdirs.GetCount();
+//_printError("nincdir = " + strInt(nincdir));
+		if (nincdir)
 		{
             wxString  t = "wx"	,t1 = "$(#" + t, t2 = "$(" + t, t3 = "$" + t;
 			wxUint32 u =0;
-			while (u < ninc && !ok )
+			while (u < nincdir && !ok )
 			{
-				nameinc = tabincs.Item(u++).Lower();
-				ok = nameinc.StartsWith(t1)
-					|| nameinc.StartsWith(t2)
-					|| nameinc.StartsWith(t3)
-					|| nameinc.StartsWith(t)
+				incdir = tabincdirs.Item(u++).Lower();
+				ok = incdir.StartsWith(t1)
+					|| incdir.StartsWith(t2)
+					|| incdir.StartsWith(t3)
+					|| incdir.StartsWith(t)
 					;
 			}
-			if (ok)  		namevar = nameinc.BeforeFirst(slash);
+			if (ok)  	namevar = incdir.BeforeFirst(slash);
 		}
-
+    // libraries target + libraries project
 		if (!ok)
 		{
-	// libraries path
-			wxArrayString tablibs = _pTarget->GetLinkLibs();
-			wxUint32 nlib = tablibs.GetCount();
-			if (nlib)
+			wxArrayString tablinksdirs = _pTarget->GetLinkLibs()
+                          , tablibs = pProject->GetLinkLibs();
+            // add tabs free the second
+            //====================================
+            Pre::addArrays(tablinksdirs, tablibs);
+            //====================================
+			wxUint32 nlinksdirs = tablinksdirs.GetCount() ;
+			if (nlinksdirs)
 			{
-				wxString namelib, t1 = "libwx", t2 = "wx";
+				wxString linksdir, t1 = "libwx", t2 = "wx";
 				wxUint32 u=0;
-				while (u < nlib && !ok )
+				while (u < nlinksdirs && !ok )
 				{
-				// replace macros
-					namelib = tablibs.Item(u++);
-					ok = namelib.StartsWith(t1) || namelib.StartsWith(t2);
+					linksdir = tablinksdirs.Item(u++).Lower();
+					ok = linksdir.StartsWith(t1)
+                        || linksdir.StartsWith(t2);
 				}
-				if (ok)  		namevar = namelib.BeforeFirst(slash);
+				if (ok)  	namevar = linksdir.BeforeFirst(slash);
 			}
 		}
-
-// lib finded
+// inc or lib finded
 		if (ok)
 		{
+//_printError("namevar =" + quote(namevar)) ;
+        // replace macros
 			m_pMam->ReplaceMacros(namevar, _pTarget);
 			m_Wxpath = namevar;
+//_printWarn("namevar =" + quote(namevar)) ;
 		}
 		else 	m_Wxpath = wxEmptyString;
 	}
@@ -224,7 +261,9 @@ _printD("=> Begin 'CreateForWx::pathWx(...)'" );
         // 'wx-config --version=3.0 --libs'
             nameopt.Replace("`", wxEmptyString);
         // wx-config --version=3.0 --libs
+            //==================================================================
             response = Pre::executeAndGetOutputAndError(nameopt, PREPEND_ERROR);
+            //==================================================================
             // warning ...
             ok = ! response.Contains("Warning:");
             if (!ok)
@@ -244,7 +283,7 @@ _printD("=> Begin 'CreateForWx::pathWx(...)'" );
         else	  m_Wxpath = wxEmptyString;
     }
 
-_printD("	<= End ' CreateForWx::pathWx()' => " + strBool(ok) );
+_printD("	<= End 'CreateForWx::pathWx()' => " + strBool(ok) );
 
 	return ok;
 }
@@ -316,22 +355,25 @@ _printD("=> Begin 'CreateForWx::initTailored()'");
     if (ok)
     {
     //9- init 'm_Rexe'
+        //=======
         initWx();
+        //=======
 
     //10- find executable paths  ('poedit', 'wxrc', 'xgettext', 'msmerge')
+        //====================
         bool ok = searchExe();
+        //====================
         if (ok)
         {
         //11- array clean
             m_NameprjWS.Clear();
-          //  m_FileswithI18nWS.Clear();
             m_PrjwithI18nWS.Clear();
             m_Fileswithstrings.Clear();
         //12- display Wx
             // changed directory
             wxFileName::SetCwd(m_Dirproject);
             // messages
-            Mes = Lf +  LineW;
+            Mes = Lf +  Line(140);
             _print(Mes);
             Mes = _("Begin") + quote(m_Thename + "-" + VERSION_COLLECT) + ":";
             _print(Mes);
@@ -381,9 +423,9 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 
 	bool ok = false;
 	// ...
-	wxUniChar excla  = '!';
+	wxUniChar excla = '!';
 	wxString tbegin = wxString(excla, 60) + Lf
-		     ,tfin = wxString(excla, 60) + Lf
+		     ,tfin  = wxString(excla, 60) + Lf
 		     ,exe
 		     ,newpath
 		     ;
@@ -392,7 +434,9 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 //7-1 search path 'poedit'
 	// Win-7 (who contains 'xgettext' and 'msmerge')
 	// Linux /usr/bin/xgettext
+	//==================================================
 	wxString pathpoedit = Pre::findPathfromconf(m_Pexe);
+	//==================================================
 	if (pathpoedit.IsEmpty())
 	{
 		Mes = "!! " + _("Could not query the executable") + " 'Poedit' !!" + Lf;
@@ -414,14 +458,14 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 		if (m_Gexeishere)
 		{
 		/// Win-7
-		// 'its' rules "path-poedit\Poeditxxx\GettextTools\share\gettext\its\glade1.its"
+		// 'its' rules "path-poedit\Poeditxxx\GettextTools\share\gettext\its\codeblocks.its"
 			newpath = "GettextTools\\share\\gettext\\its\\";
 			exe.Replace(m_Gexe, newpath, FIRST_TXT);
 			m_PathIts = UnixFilename(exe, wxPATH_NATIVE);
 			// directory in project
 			m_PathLocalIts = UnixFilename(".\\its\\", wxPATH_NATIVE);
         /// Linux
-        //  'its' rules "/usr/share/gettext/its/glade.its"
+        //  'its' rules "/usr/share/gettext/its/codeblocks.its"
 
 		}
 		else
@@ -605,9 +649,18 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 	}
 	else
 	{
-		Mes = "!! " + _("Could not query the executable 'wxrc'") + " !!"+ Lf;
-		Mes += "!! m_Pathrexe = " + dquote(m_Pathrexe) + Lf;
-		Mes += "!!" + _("Files '*.xrc, *.wxs' will not be taken into account.") + " !!" + Lf;
+	     Mes = "!! " + _("Could not query the executable 'wxrc'") + " !!"+ Lf;
+	    if (m_Win)
+        {
+            Mes += "!! " + Lf;
+            Mes += "!! " + _("COMPILE THE TARGET 'win_31x' which will copy 'wxrc' to the right place") + Lf;
+        }
+        else
+        {
+            Mes += "!! m_Pathrexe = " + dquote(m_Pathrexe) + Lf;
+            Mes += "!!" + _("Files '*.xrc, *.wxs' will not be taken into account.") + " !!" + Lf;
+        }
+
 		ShowError(Mes);
 		Mes = tbegin + Mes + tfin;
 		_printError(Mes);
@@ -680,7 +733,9 @@ _printD("=> Begin 'CreateForWx::isReadableFile(" + _file + ", " + strBool(_absol
     if (ok)
     {
     //2- read file
+        //================================================
         wxString source = Pre::readFileContents(namefile);
+        //================================================
         // file length
         wxUint32 lenfile = source.Len();
         ok = lenfile > 0;
@@ -708,7 +763,9 @@ _printD("=> Begin 'CreateForWx::isReadableFile(" + _file + ", " + strBool(_absol
 				for (wxUint16 pos =0; pos < nbCells; pos++)
 				{
 					mark = m_TabMarkersXml.Item(pos);
-					nb = Pre::freqStr(source, mark) ;
+					//==============================
+					nb = Pre::freqStr(source, mark);
+					//==============================
 					nbStr += nb;
         //_printError(Tab + quote(mark) + "=> " + strInt(nb));
 				}
@@ -722,7 +779,9 @@ _printD("=> Begin 'CreateForWx::isReadableFile(" + _file + ", " + strBool(_absol
 				for (wxUint16 pos =0; pos < nbCells; pos++)
 				{
 					mark = m_TabMarkersRes.Item(pos);
+					//==============================
 					nb = Pre::freqStr(source, mark);
+					//==============================
 					nbStr += nb;
         //_printError(Tab + quote(mark) + "=> " + strInt(nb));
 				}
@@ -732,7 +791,9 @@ _printD("=> Begin 'CreateForWx::isReadableFile(" + _file + ", " + strBool(_absol
 			{
 				mark = "_(";
 			// search 'mark'
+                //==================================
 				nbStr += Pre::freqStr(source, mark);
+				//==================================
 			}
 		//_printError("nbStr = " + strInt(nbStr));
 		}
@@ -776,7 +837,9 @@ _printD("=> Begin 'CreateForWx::listStringsCode(" + _shortfile + ")'");
 
 //3- command execute with errors
 	// list string into
-	wxInt32 nbstr = Pre::GexewithError(_shortfile, command, PREPEND);
+	//=====================================================================
+	wxInt32 nbstr = Pre::GexewithError(_shortfile, command, PREPEND_ERROR);
+	//=====================================================================
 
 _printD("	<= End 'CreateForWx::listStringsCode(...) => " + strInt(nbstr) + ")'");
 
@@ -802,7 +865,9 @@ _printD("=> Begin 'CreateForWx::listStringsRes(" + quoteNS(_file) + ")'");
 	// index free
 	wxUint32 indexfree =  m_FileStrcreated.Count();
 	// new name for output
+	//==============================================
 	wxString filemod = expandName(_file, indexfree);
+	//==============================================
 	m_nameFileTemp = m_Temp + filemod.AfterLast(slash);
 	if (m_Workspace)
 	{
@@ -849,12 +914,16 @@ Usage: wxrc [-h] [-v] [-e] [-c] [-p] [-g] [-n <str>] [-o <str>] [--validate]
 	command += dquote(_file);
 
 //3- command execute with errors
+    //============================================
 	wxInt32 nbstr = RexewithError(_file, command);
+	//============================================
 
 //4- copy of temporary file : 'temp/dummy_xrc.strxxx' -> 'temp/dummy.xrc'
 	if (nbstr)
 	{
+        //================================
 		bool ok = copyRes(m_nameFileTemp);
+		//================================
 		if (!ok)
 		{
 			Mes = _("The copy of the") + quote(m_nameFileTemp) + _("file failed");
@@ -885,9 +954,14 @@ _printD("=> Begin 'CreateForWx::RexeWithError(...)'");
 
 //1- execute command line who creates 'xxx_xrc.strnnn' file on disk
 	wxString result;
-	if(_prepend) result = Pre::executeAndGetOutputAndError(_command, PREPEND_ERROR);
-	else	     result = Pre::executeAndGetOutputAndError(_command, NO_PREPEND_ERROR);
-
+	/*
+	bool prepend;
+	if(_prepend)    prepend = PREPEND_ERROR;
+	else	        prepend = NO_PREPEND_ERROR;
+	*/
+	//===========================================================
+    result = Pre::executeAndGetOutputAndError(_command, _prepend);
+    //===========================================================
 	if (result.IsEmpty()) 	return -2;	// ??
 
 //2- if '-v' result error starts with  = "10:16:18: Error: ..\n"
@@ -910,7 +984,9 @@ _printD("=> Begin 'CreateForWx::RexeWithError(...)'");
 //4- print 'm_nameFileTemp' into 'Fileswithstrings'
 	wxInt32 nbstr = 0;
 	// read source 'xxx_xrc.strnnn' => 'm_nameFileTemp'
+    //======================================================
 	wxString source = Pre::readFileContents(m_nameFileTemp);
+    //======================================================
 	if (!source.IsEmpty())
 	{
 		wxArrayString tabmes = GetArrayFromString(source, Lf, true);
@@ -942,7 +1018,9 @@ _printD("=> Begin 'CreateForWx::RexeWithError(...)'");
 		if (m_goodListing)      nbstrBefore = m_nbListStrings;
 		else                	nbstrBefore = m_nbExtractStrings;
 	// contains all strings
+        //==========================================
 		wxString mes = CreateForWx::wxrcOut(source);
+		//==========================================
 
 	// numbers strings
 		if (m_goodListing)      nbstr = m_nbListStrings - nbstrBefore;
@@ -962,7 +1040,7 @@ _printD("=> Begin 'CreateForWx::RexeWithError(...)'");
 		for (wxInt32 n = 0 ; n < nbstrfile; n++)
 		{
         // uses 'Collector::MesToLog(...)'
-			print(Tab + "   " + tabmes.Item(n));
+			print(Tab + space(3) + tabmes.Item(n));
 		}
 		Mes = Tab + "  -> " + _("creates temporary") + quote(m_nameFileTemp);
 		_printWarn(Mes);
@@ -1029,7 +1107,9 @@ _printD("=> Begin 'CreateForWx::listStringsXml(" + _shortfile + ")'");
 	//wxString pathits = m_PathLocalIts + rules;
 
 //3- call 'lisStringXmlIts(...)' with rules
+    //==========================================================
 	wxInt32 nbstr = listStringsXmlIts(longfile, m_PathRulesIts);
+	//==========================================================
 
 _printD("	<= End 'CreateForWx::listStringsXml(...) => " + strInt(nbstr) + ")'");
 
@@ -1074,16 +1154,22 @@ _printD("=> Begin 'CreateForWx::listStringsXmlIts(" + _shortfile + ", " + _pathr
 //_printWarn(quote(command));
 //2- command execute with errors
 	// list string into
-	wxInt32 nbstr = Pre::GexewithError(_shortfile, command, PREPEND);
+	//=====================================================================
+	wxInt32 nbstr = Pre::GexewithError(_shortfile, command, PREPEND_ERROR);
+	//=====================================================================
     if(!nbstr)
     {
-        Mes = Lf + Tab + "!!!" + quote(_shortfile) + "has no translatable strings" + " !!!";
-        _printError(Mes);
+        Mes = Tab + "!!" + quote(_shortfile)+ "!!";
+        _printError(Tab + Line(Mes.Len()) );
+        _printWarn(Mes);
+        _print(Tab + space(2) +  "** " + _("This file has no translatable strings") + cDot);
+        _printError(Tab + Line(Mes.Len()) );
     // a 'xml' fil withless strings
         m_nbXmlWithlessString++;
     }
 // all
-    Mes = Tab + "  ** " +  "Rules template used :" + quote(_pathrulesIts);
+    Mes = Tab + space(2) + "**" +  Space + _("Rules template used") + Space ;
+    Mes += ":" + quote(_pathrulesIts);
     _printWarn(Mes);
 
 _printD("	<= End 'CreateForWx::listStringsXmlIts(...) => " + strInt(nbstr) + ")'");
@@ -1091,7 +1177,9 @@ _printD("	<= End 'CreateForWx::listStringsXmlIts(...) => " + strInt(nbstr) + ")'
 	return nbstr;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+//
+//
 // Called by :
 //		1. Pre::extraction(bool _prjfirst, cbProject * _prj):1,
 //Call to :
@@ -1112,11 +1200,12 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 	bool ok = false, good = false;
 	wxString name, nameprj, shortfile, longfile, filein, pActualprj ;
 	wxUint32 nbCells, index = 0;
-	if(!m_Workspace) 	nbCells = m_FileswithI18n.GetCount()  ;
-	else 				nbCells = m_FileswithI18nWS.GetCount()  ;
+    nbCells = m_FileswithI18n.GetCount()  ;
 
 	Mes = Tab + "--> " + _("Extract of") + Space + strInt(nbCells) + Space;
 	Mes += _("file(s) by 'xgettext' and 'wxrc'");
+	if(!m_Workspace)
+        Mes +=  quote(" --> ") + dquoteNS(m_Dirlocale + m_Shortnamepot) ;
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
 
@@ -1136,7 +1225,7 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 	// command  'xgettext'
 	wxString command , begincommand;
 
-//2- extract all elegible files from 'm_FileswithI18n' or 'm_FileswithI18nWS'
+//2- extract all elegible files from 'm_FileswithI18n'
 	bool code, res, xml ;
 	wxString dirproject, tempres, ext ;
 	wxUint32 nbprjWS = 0;  wxInt32 nbstring = 0;
@@ -1147,18 +1236,18 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 /// for debug
 //_printError("CreatePot : g_MaxProgress = " + strInt(BuildLogger::g_MaxProgress) + " files");
 
-    // read all files in  'm_FileswithI18n' or 'm_FileswithI18nWS'
+    // read all files in  'm_FileswithI18n'
 	for (wxUint32 i=0; i < nbCells ; i++ )
 	{
-	// control to pending messages in the event loop
-		 m_pM->Yield();
 	// analysis stopped manually
 		if (m_Stop)
 		{
 			good = false ;
 			break;
 		}
-		// actualize
+    // control to pending messages in the event loop
+		// c
+	// actualize
 		if (_prjfirst == FIRST_PRJ)  _prjfirst = (i==0);
 
 //2-1- One project only
@@ -1183,7 +1272,7 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 //2-2 Workspace
 		if (m_Workspace)
 		{
-			name =  m_FileswithI18nWS.Item(i);
+			name =  m_FileswithI18n.Item(i);
 		// it's a path : always absolute path
 			if (name.Last() == slash)
 			{
@@ -1226,10 +1315,6 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 		++index;
 		Mes =  Tab + "F" + strIntZ(index, 4) + "/" + strIntZ(nbCells, 4) ;
 		Mes +=  " :"  + quote(shortfile);
-	// it's necessary that file 'm_ShortNamepot' exists already
-		//if (_prjfirst)	Mes += " --> ";
-		//else			Mes += " -->>";
-		//Mes += quote(m_Shortnamepot);
     // uses 'Collector::MesToLog(...)'
 		print (Mes);
 		m_Fileswithstrings.Add(Mes);
@@ -1269,7 +1354,9 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 		command += " -o" + dquote(m_Dirlocale + m_Shortnamepot);
 
 //2-4- command execute : nbstring == 0 it's good
+        //===============================================================
 		nbstring = Pre::GexewithError(filein, command, NO_PREPEND_ERROR);
+		//===============================================================
 		good = ok = nbstring == 0 ;
 		if (!good)
 		{
@@ -1285,7 +1372,9 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 	} // end for
 
 //3- delete all temporary files
+    //=========================================
 	wxInt32 nbfiles = CreateForWx::Cleantemp();
+	//=========================================
 	good = nbfiles >= 0 ;
 	// no files to delete
 	m_FileStrcreated.Clear();
@@ -1370,11 +1459,15 @@ bool CreateForWx::copyRes(wxString _file)
 	if (ok)
 	{
 //2- delete all '\r' for 'xgettext'
+        //==============================================
 		wxString stringsRes = readFileContents(nameres);
+		//==============================================
 		//wxInt32 nb =
 		stringsRes.Replace("\r", "", ALL_TXT) ;
 	//printWarn("Number '\r' : " + strInt(nb));
+        //=====================================
 		ok = cbSaveToFile(nameres, stringsRes);
+		//=====================================
 	}
 
 	return ok;
@@ -1527,26 +1620,36 @@ _printD("=> Begin 'CreateForWx::Cleantemp()'");
 //1- delete all temporary files of last project
 	wxUint32 nfc =0;
 	m_DirlocaleLeader = m_DirprojectLeader + m_Temp ;
-	// récupérer le répertoire du projet pilote 'm_DirprojectLeader'
-	if (!m_DirlocaleLeader.IsEmpty())
+	// get the directory of the leader project 'm_DirprojectLeader
+	ok = ! m_DirlocaleLeader.IsEmpty();
+	if (ok)
 	{
+    // control to pending messages in the event loop
+		m_pM->Yield();
+
 		m_nbFilesdeleted = 0;
+		//==================================
 		ok = recursRmDir(m_DirlocaleLeader);
+		//==================================
 		if (ok)
 		{
 			nfc = m_nbFilesdeleted;
+			ok = nfc > 0;
 			if (nfc)
 			{
 				Mes =  Tab + "***" + quote(strInt(nfc));
 				Mes += _("files have been deleted in the temporary directory.");
+				 _print(Mes);
+                m_Fileswithstrings.Add(Mes);
 			}
-			else
-				Mes = Tab + _("No temporary files to delete.");
-
-			_print(Mes);
-			m_Fileswithstrings.Add(Mes);
 		}
 	}
+
+	if (!ok)
+    {
+        Mes = Tab + _("No temporary files to delete.");
+        _print(Mes);
+    }
 
 //2- init
 	m_FileStrcreated.Clear();
@@ -1554,6 +1657,7 @@ _printD("=> Begin 'CreateForWx::Cleantemp()'");
 	// messages
 	Mes =  "   <-- "  + _("end 'Clean temporary files'");
 	_printWarn(Mes);
+	//_print(Line(Mes.Len()*2));
     m_Fileswithstrings.Add(Mes);
 
 _printD("	<= End 'CreateForWx::Cleantemp()' => " + strInt(nfc)  );

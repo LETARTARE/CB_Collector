@@ -1,0 +1,38 @@
+digraph "Pre::listing"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node704 [label="Pre::listing",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node704 -> Node705 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node705 [label="Pre::initFileStrcreated",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#aa2b44ed6f152aecda674ade4ca12666f",tooltip="Initialization of a table for temporary file. "];
+  Node704 -> Node706 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node706 [label="Pre::date",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb",tooltip="Give a date. "];
+  Node706 -> Node707 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node707 [label="Pre::beginTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e",tooltip="Startup time. "];
+  Node704 -> Node708 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node708 [label="Pre::findGoodfiles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a9077ad6294b11841149aab0d117bbed1",tooltip="Search the elegible files for extracting. "];
+  Node708 -> Node709 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node709 [label="Pre::isReadableFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f",tooltip="Tests readability for chain collection. "];
+  Node704 -> Node710 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node710 [label="Pre::elapsedTimeStr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0",tooltip="Give a string duration. "];
+  Node710 -> Node711 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node711 [label="Pre::elapsedTime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a791e3c73b0010092c43d718bfcf7e18d",tooltip="Give a duration. "];
+  Node704 -> Node712 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node712 [label="Pre::listGoodfiles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a17cd9de411485392eb54054e59cb98a6",tooltip="List translatables strings from elegible files. "];
+  Node712 -> Node713 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node713 [label="Pre::listStringsCode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96",tooltip="Display the strings to be extracted of code file. "];
+  Node712 -> Node714 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node714 [label="Pre::listStringsRes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#af0380a09af5d19735a1220821492e5fe",tooltip="Display the strings to be extracted of resource file. "];
+  Node712 -> Node715 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node715 [label="Pre::listStringsXml",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a48a5451b9da56e0529fda051e09c35d4",tooltip="Display the strings to be extracted of xml file. "];
+  Node704 -> Node716 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node716 [label="Pre::endaction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20",tooltip="Display messages of ending listing or extracting. "];
+  Node716 -> Node717 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node717 [label="Pre::saveArray",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6",tooltip="Save an array to disk and open the file in &#39;Editor&#39;. "];
+  Node717 -> Node718 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node718 [label="Pre::openedit",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a0c41270b1d60e164c94c286213bdfd18",tooltip="Display a file to editor. "];
+  Node718 -> Node719 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node719 [label="Pre::ShowError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04",tooltip="Call to &#39;cbMessageBox(_mes, \"\", wxICON_ERROR)&#39;. "];
+  Node716 -> Node710 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

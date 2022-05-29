@@ -1,0 +1,28 @@
+digraph "Pre::Initbasic"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node530 [label="Pre::Initbasic",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node530 -> Node531 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node531 [label="Pre::Init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#ae5dcb49f219ed8e69e128492e8fc59a1",tooltip="Global initialization. "];
+  Node531 -> Node532 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node532 [label="Pre::ListProject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a6537186bec965c977da90bb2a1feac67",tooltip=" "];
+  Node532 -> Node533 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node533 [label="Collector::OnMenuListPrj",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a7a52cb7e51c2bafa5ca760e2f005f427",tooltip="Places the status graph in the listing project report. "];
+  Node533 -> Node534 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node534 [label="Collector::callActions",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a772e3452af93d18c7764aed8245af527",tooltip="Call all &#39;OnMenu...()&#39;. "];
+  Node534 -> Node535 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node535 [label="Collector::OnMenuToState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e",tooltip="Only one method for all events. "];
+  Node533 -> Node536 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node536 [label="Collector::OnMenuListExtractPrj",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a24cfe1b83b040784e834277da16e0a68",tooltip="Places the status grap in the listing and extract report. "];
+  Node536 -> Node534 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node531 -> Node537 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node537 [label="Pre::ListWS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#aa9b0b0f3b571d8c8b511ed3134d26bb4",tooltip="List strings to be translated in workspace. "];
+  Node537 -> Node538 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node538 [label="Collector::OnMenuListWS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#ad05ff772ab635dd2b018af610c45f666",tooltip="Places the status graph in the listing workspace report. "];
+  Node538 -> Node534 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node538 -> Node539 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node539 [label="Collector::OnMenuListExtractWS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a6f578e146a373e98a2638c6a509ee193",tooltip="Places the status grap in the listing and extract workspace report. "];
+  Node539 -> Node534 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-18
+ * Modified:  2022-05-30
  * Copyright: LETARTARE
  * License:   GPL
  *************************************************************
@@ -41,7 +41,11 @@ BuildLogger* Collector::m_pCollectLog = nullptr ;
 // We are using an anonymous namespace so we don't litter the global one.
 namespace
 {
-	/** \brief name to register this plugin with 'Code::Blocks' : $(name)
+    /** \brief ATTENTION :
+	 *   name to register this plugin into 'Code::Blocks'
+	 *   THIS NAME MUST BE IDENTICAL TO
+	 *	 $(name) IN PROJECT CUSTOM VARIABLE
+	 *   AND IN 'manifest.xml' :: <Plugin name="Collector">
   	 */
   	wxString NamePlugin = "Collector";
 	PluginRegistrant<Collector> reg(NamePlugin);
@@ -163,10 +167,7 @@ void Collector::OnAttach()
 		new cbEventFunctor<Collector, CodeBlocksEvent>(this, &Collector::OnActivateTarget);
 	m_pM->RegisterEventSink(cbEVT_BUILDTARGET_SELECTED, functorTargetSelected);
 //6- handle modified edited file
-	cbEventFunctor<Collector, CodeBlocksEvent>* functorPoModified =
-		new cbEventFunctor<Collector, CodeBlocksEvent>(this, &Collector::OnFilePoModified);
-	m_pM->RegisterEventSink(cbEVT_EDITOR_MODIFIED, functorPoModified);
-
+    // delete see v-1.7.0
 //7- bitmaps from *.zip
 	LoadAllPNG();
 
@@ -210,11 +211,17 @@ void Collector::OnAttach()
 	if (!m_pCreateWx)
 	{
 		Mes = _("Error to create") + Space + "m_pCreateWx";
-		Mes += Lf + _("The plugin is not operational") + " !!"; _printError(Mes);
+		Mes += Lf + _("The plugin part 'Wx' is not operational") + " !!"; _printError(Mes);
 		_PrintError(Mes);
 	//  release plugin
 	    OnRelease(false);
 	}
+	else
+	{
+        Mes = _("Create") + Space + "m_pCreateWx";
+		Mes += Lf + _("The plugin part 'Wx' is operational") ;
+		//_print(Mes);
+    }
 
 //10- builder 'Qt'
 	// construct a new 'm_pCreateQt' m_pProject == nullptr
@@ -222,11 +229,18 @@ void Collector::OnAttach()
 	if (!m_pCreateQt)
 		{
 		Mes = _("Error to create") + Space + "m_pCreateQt" ;
-		Mes += Lf + _("The plugin is not operational") + " !!"; _printError(Mes);
+		Mes += Lf + _("The plugin part 'Qt' is not operational") + " !!"; _printError(Mes);
 		_PrintError(Mes);
 	//  release plugin
 	    OnRelease(false);
 	}
+	else
+	{
+        Mes = _("Create") + Space + "m_pCreateQt";
+		Mes += Lf + _("The plugin part 'Qt' is operational") ;
+		//_print(Mes);
+    }
+
 
 //11- user welcome message
 	if (m_pCreateWx && m_pCreateQt)
@@ -319,7 +333,7 @@ _printD("=> Begin 'Collector::BuildMenu(...)");
 				mCollect->Append(pItem);
 			}
         /*
-			// for Qt
+			// for Qt future
 			label 	= _("Collect") + "-'Qt'";
 			Mes 	= _("Collect for 'Qt' project or workspace") ;
 			pItem  	= new wxMenuItem(mCollect,  idMbarCollectQt , label, Mes);
@@ -683,7 +697,7 @@ _printD("=> Begin 'Collector::CallActions(...)'");
     {
     	case fbNone  			: break;
         case fbWaitingForStart  : break;
-            // OnMenuStop(...) is called directly
+        // OnMenuStop(...) is called directly
         case fbStop             : /*OnMenuStop(_pEvent);*/ break;
         case fbCleanTemp        : OnMenuCleanTemp(_pEvent) ; break;
         // projects
@@ -746,7 +760,6 @@ _printD("=> Begin 'Collector::OnMenuChoiceLib(...)'");
 	}
 
 _printD("    <= End 'Collector::OnMenuChoiceLib(...)'");
-
 }
 
 //-----------------------------------------------------------------------------
@@ -804,23 +817,34 @@ void Collector::OnMenuWaitingForStart(wxCommandEvent& _pEvent)
 {
 _printD("=> Begin 'Collector::OnMenuWaitingForStart(...)'");
 
-    Mes = Tab + _("The current state machine is") + " :" + strState(m_State);
+    Mes = _("The current state machine is") + " :" + strState(m_State);
+    wxUint8 nc = Mes.Len();
+    _print(Lf+ Line(nc));
 	_printWarn(Mes);
 
 	wxUint64 id = _pEvent.GetId();
 	// only good id's
     if (id == idMbarWaitingForStart || id == idTbarWaitingForStart )
-	 {
+	{
 	// modify state machine
 		actualizeGraphState(fbWaitingForStart);
     // progress bar to 0
         BuildLogger::g_CurrentProgress = 0;
         if (m_pCollectLog->m_pProgress)
             m_pCollectLog->m_pProgress->SetValue(BuildLogger::g_CurrentProgress);
-	 }
+    // close extra files    '*.list', '*.extr', '*.po'
+        bool ok = m_pCreateWx->closeAllExtraFiles();
+        if (ok)
+        {
+            Mes = "** " + _("Extra file(s) are closed") + ".";
+            _print( Mes);
+        }
 
-	Mes = Tab + _("The new state machine is") + " : " + strState(m_State) ;
+    }
+
+	Mes = _("The new state machine is") + " : " + strState(m_State) ;
 	_printWarn(Mes);
+    _print(Line(nc));
 
 _printD("    <= End 'Collector::OnMenuWaitingForStart(...)'");
 }
@@ -861,7 +885,9 @@ _printD("=> Begin 'Collector::OnMenuListPrj(...)' with 'checked':" + strBool(_pE
 				key = m_pTbarCboKeys->GetStringSelection();
 		// initialisation progress bar
 			BuildLogger::g_CurrentProgress = 0;
+			//========================================
 			ok = m_pCreateWx->ListProject(key, nbstr);
+			//========================================
 			if (!ok)
 			{
 				Mes = "---> ";
@@ -882,6 +908,7 @@ _printD("=> Begin 'Collector::OnMenuListPrj(...)' with 'checked':" + strBool(_pE
 				}
 				else
 				{
+					Mes += "Collector::OnMenuListPrj(...) => " ;
 					Mes +=  _("An error unknown has") + quote(_("ABORTED")) ;
 				}
 
@@ -933,7 +960,9 @@ _printD("=> Begin 'Collector::OnMenuListPrj(...)' with 'checked':" + strBool(_pE
 		{
 			Mes = _("The listing of the 'Qt' part of")  + quote(m_pProject->GetTitle());
 			Mes += _("is not yet operational") + " ...";
-			_printError(Mes);
+			_printError(Line(Mes.Len()) );
+			_printWarn(Mes);
+			_printError(Line(Mes.Len()) );
 		/*
 		// List chains
             wxString key = "tr";
@@ -991,7 +1020,9 @@ _printD("=> Begin 'Collector::OnMenuExractPrj(...)' with 'checked':" + strBool(_
 		// initialisation progress bar
 			BuildLogger::g_CurrentProgress = 0;
 		// Extract
+            //=================================
 			ok = m_pCreateWx->ExtractProject();
+			//=================================
 			if (!ok)
 			{
 				Mes = "---> ";
@@ -1012,6 +1043,7 @@ _printD("=> Begin 'Collector::OnMenuExractPrj(...)' with 'checked':" + strBool(_
 				}
 				else
 				{
+					Mes += "Collector::OnMenuExtractPrj(...) => " ;
 					Mes +=  _("An error unknown has") + quote(_("ABORTED")) ;
 				}
 
@@ -1032,7 +1064,9 @@ _printD("=> Begin 'Collector::OnMenuExractPrj(...)' with 'checked':" + strBool(_
             m_State = fbExtractPrj;
             Mes = _("The extraction of the 'Qt' part of")  + quote(m_pProject->GetTitle());
 			Mes += _("is not yet operational") + " ...";
-			_printError(Mes);
+			_printError(Line(Mes.Len()) );
+			_printWarn(Mes);
+			_printError(Line(Mes.Len()) );
 		/*	TODO ...
 		// in waiting
             m_State = fbActionExtract;
@@ -1081,7 +1115,9 @@ _printD("=> Begin 'Collector::OnMenuListExtractPrj(...) : 'checked':" + strBool(
 	{
     //1- List
 		_pEvent.SetId(idTbarListPrj);
+		//=====================
 		OnMenuListPrj(_pEvent);
+		//=====================
     //2- Extract
         // the base project 'Wx'
 		if (m_isWxProject)
@@ -1089,7 +1125,9 @@ _printD("=> Begin 'Collector::OnMenuListExtractPrj(...) : 'checked':" + strBool(
             if (m_pCreateWx->isAllRight())
             {
                 _pEvent.SetId(idTbarExtractPrj);
+                //========================
                 OnMenuExtractPrj(_pEvent);
+                //========================
             }
         }
 
@@ -1099,7 +1137,9 @@ _printD("=> Begin 'Collector::OnMenuListExtractPrj(...) : 'checked':" + strBool(
             if (m_pCreateQt->isAllRight())
             {
                 _pEvent.SetId(idTbarExtractPrj);
+                //========================
                 OnMenuExtractPrj(_pEvent);
+                //========================
             }
         }
 	}
@@ -1138,7 +1178,9 @@ _printD("=> Begin 'Collector::OnMenuListWS(...)' with 'checked':" + strBool(_pEv
 		{
 		// initialisation progress bar
 			BuildLogger::g_CurrentProgress = 0;
+			//==============================
 			ok = m_pCreateWx->ListWS(nbstr);
+			//==============================
 			if (!ok)
 			{
 				Mes = "---> ";
@@ -1159,6 +1201,7 @@ _printD("=> Begin 'Collector::OnMenuListWS(...)' with 'checked':" + strBool(_pEv
 				}
 				else
 				{
+					Mes += "Collector::OnMenuListWS(...) => " ;
 					Mes += _("An error unknown has") + quote(_("ABORTED")) ;
 				}
 
@@ -1209,7 +1252,9 @@ _printD("=> Begin 'Collector::OnMenuListWS(...)' with 'checked':" + strBool(_pEv
 		{
 
 			Mes = _("The listage of the 'Qt' workspace is not yet operational") + " ...";
+			_printError(Line(Mes.Len()) );
 			_printWarn(Mes);
+			_printError(Line(Mes.Len()) );
 		/*
             m_State = fbListWS;
 			ok = m_pCreateQt->ListWS();
@@ -1265,8 +1310,9 @@ _printD("=> Begin 'Collector::OnMenuExractWS(...)' with 'checked':" + strBool(_p
 			BuildLogger::g_CurrentProgress = 0;
 		//
 			m_State = fbExtractWS ;
-		//
+            //============================
 			ok = m_pCreateWx->ExtractWS();
+			//============================
 			if (!ok)
 			{
 				Mes = "---> ";
@@ -1287,6 +1333,7 @@ _printD("=> Begin 'Collector::OnMenuExractWS(...)' with 'checked':" + strBool(_p
 				}
 				else
 				{
+					Mes += "Collector::OnMenuExtractWS(...) => " ;
 					Mes += _("An error unknown has") + quote(_("ABORTED")) ;
 				}
 
@@ -1305,7 +1352,9 @@ _printD("=> Begin 'Collector::OnMenuExractWS(...)' with 'checked':" + strBool(_p
 		if (m_isQtProject)
 		{
 			Mes = _("The extraction of the 'Qt' workspace is not yet operational") +" ...";
+			_printError(Line(Mes.Len()) );
 			_printWarn(Mes);
+			_printError(Line(Mes.Len()) );
 		/*
              m_State = fbExtractWS ;
 			ok = m_pCreateQt->ExtractWS();
@@ -1349,7 +1398,9 @@ _printD("=> Begin 'Collector::OnMenuListExtractWS('checked':" + strBool(_pEvent.
 	{
     //1- List
         _pEvent.SetId(idTbarListWS);
+        //====================
         OnMenuListWS(_pEvent);
+        //====================
 	//2- Extract
         // the base project 'Qt'
 		if (m_isWxProject)
@@ -1357,7 +1408,9 @@ _printD("=> Begin 'Collector::OnMenuListExtractWS('checked':" + strBool(_pEvent.
             if (m_pCreateWx->isAllRight())
             {
                 _pEvent.SetId(idTbarExtractWS);
+                //=======================
                 OnMenuExtractWS(_pEvent);
+                //=======================
             }
         }
 
@@ -1367,7 +1420,9 @@ _printD("=> Begin 'Collector::OnMenuListExtractWS('checked':" + strBool(_pEvent.
             if (m_pCreateQt->isAllRight())
             {
                 _pEvent.SetId(idTbarExtractWS);
+                //=======================
                 OnMenuExtractWS(_pEvent);
+                //=======================
             }
         }
 	}
@@ -1404,14 +1459,18 @@ _printD("=> Begin 'Collector::OnMenuCleanTemp(...)'" );
 	// the base project 'Wx'
 		if (m_isWxProject)
 		{
-			 m_pCreateWx->Cleantemp();
+            //=======================
+            m_pCreateWx->Cleantemp();
+            //=======================
 		}
 
 	// the base project 'Qt'
 		if (m_isQtProject)
 		{
 			Mes = _("The 'CleanTmp' of the 'Qt' is not yet operational") + " ...";
+			_printError(Line(Mes.Len()) );
 			_printWarn(Mes);
+			_printError(Line(Mes.Len()) );
 			/*
 			ok = m_pCreateQt->Cleantemp();
 			if (!ok)
@@ -1456,13 +1515,15 @@ _printD("=> Begin 'Collector::detectTypeProject(..., " + strBool(_report) + ")'"
 	m_isWxProject = m_isQtProject = false;
 
 // 'Wx' libraries ?
-	if (_report) m_isWxProject = m_pCreateWx->detectLibProject(_pProject, WITH_REPORT);
-	else         m_isWxProject = m_pCreateWx->detectLibProject(_pProject, NO_REPORT);
+    //================================================================
+	m_isWxProject = m_pCreateWx->detectLibProject(_pProject, _report);
+	//================================================================
 	if (m_isWxProject)		m_typeProject = "_WX";
 
 // 'Qt' libraries ?
-	if (_report) m_isQtProject = m_pCreateQt->detectLibProject(_pProject, WITH_REPORT);
-	else		 m_isQtProject = m_pCreateQt->detectLibProject(_pProject, NO_REPORT);
+    //================================================================
+    m_isQtProject = m_pCreateQt->detectLibProject(_pProject, _report);
+    //================================================================
 	if (m_isQtProject)		m_typeProject = "_QT";
 
 // 'Wx' and 'Qt' : differents targets !!
@@ -1491,8 +1552,9 @@ _printD("=>	Begin 'Collector::OnPluginLoaded(...)");
 /*
 	Mes = "Collector::OnPluginLoaded(...) -> ";
 	Mes +=  " 'Collector' is manually loaded";
-	Mes += Space + "-> m_initDone = " + strBool(m_initDone) ; _printWarn(Mes) ;
-*/
+	//Mes += Space + "-> m_initDone = " + strBool(m_initDone) ;
+	_printWarn(Mes) ;
+**/
 // the active project
 	m_pProject = m_pMprj->GetActiveProject();
 	if (m_pProject)
@@ -1500,7 +1562,9 @@ _printD("=>	Begin 'Collector::OnPluginLoaded(...)");
 	// pseudo event : call 'OnActivateProject(CodeBlocksEvent& _pEvent)'
 		m_pseudoEvent = true;
 		CodeBlocksEvent evt(cbEVT_PROJECT_ACTIVATE, 0, m_pProject, 0, this);
+		//=====================
 		OnActivateProject(evt);
+		//=====================
 	}
 
 	Mes.Clear();
@@ -1579,10 +1643,10 @@ void Collector::SwitchToLog()
 	}
 }
 ///-----------------------------------------------------------------------------
-// Append text to log
+// Append text to log and drives the progress bar
 //
 // Called by :
-//	1. all printxxx(wxString)
+//	1. all 'printxxx(wxString)' not '_printxxx(...)'
 //
 void Collector::MesToLog(wxString _text, const Logger::level _lv)
 {
@@ -1633,8 +1697,8 @@ _printD("=> Begin 'Collector::OnActivateProject(...)");
 	cbProject *pPrj = _pEvent.GetProject();
 	if(!pPrj)
 	{
-		Mes = _("no project supplied") ;
-		Mes += " !!"; _printError(Mes);
+		Mes = Space + "Collector::OnActivateProject() : ";
+		Mes += _("no project supplied") + " !!"; _printError(Mes);
 		_pEvent.Skip(!m_pseudoEvent);
 		m_pseudoEvent = false;
 		return;
@@ -1651,7 +1715,9 @@ _printD("=> Begin 'Collector::OnActivateProject(...)");
 	Mes += quoteNS(m_pProject->GetTitle()  + "::" + m_Nameactivetarget)  ;
 	Mes +=  Space ;
 // detect project type
+    //=========================================================
 	wxString type = detectTypeProject(m_pProject, WITH_REPORT);
+	//=========================================================
 	if (type == wxEmptyString)
 	{
 		Mes +=  _("uses an unsupported library")   + " !!";
@@ -1716,8 +1782,7 @@ _printD("=> Begin 'Collector::OnActivatetarget(...)");
 		_pEvent.Skip(); return;
 	}
 
-// a target can exist
-// nor a 'Q't or 'Wx' project
+// a target can exist : nor a 'Q't nor 'Wx' project
 	if (!m_isQtProject && !m_isWxProject)
 	{
 		_pEvent.Skip(); return;
@@ -1733,7 +1798,8 @@ _printD("=> Begin 'Collector::OnActivatetarget(...)");
 	cbProject *pPrj = _pEvent.GetProject();
 	if(!pPrj)
 	{
-		Mes = Space + _("no project supplied") + " !!"; _printError(Mes);
+        Mes = Space + "Collector::OnActivateTarget() : ";
+		Mes += _("no project supplied") + " !!"; _printError(Mes);
 		_pEvent.Skip();
 		return;
 	}
@@ -1764,7 +1830,9 @@ _printD("=> Begin 'Collector::OnActivatetarget(...)");
 		_pEvent.Skip(); 	return;
 	}
 // is a command target
+    //===========================================
 	if (m_pCreateWx->isCommandTarget(nametarget))
+	//===========================================
 	{
 		Mes =  Tab + quote("::" + nametarget);
 		Mes += Tab + _("is a command target") + " !!" ; _printWarn(Mes);
@@ -1780,7 +1848,9 @@ _printD("=> Begin 'Collector::OnActivatetarget(...)");
 		Mes += quoteNS(m_pProject->GetTitle()  + "::" + m_Nameactivetarget)  ;
 		Mes +=  Space ;
 	// detect project type
+        //=========================================================
 		wxString type = detectTypeProject(m_pProject, WITH_REPORT);
+		//=========================================================
 		if (type == wxEmptyString)
 		{
 			Mes +=  _("uses an unsupported library")   + " !!";
@@ -1812,80 +1882,12 @@ _printD("=> Begin 'Collector::OnActivatetarget(...)");
 		actualizeGraphState(fbWaitingForStart);
 	}
 
+	Mes.Clear();
 // DEBUG
 //* *******************************************************
 //	m_pCreateWx->endDuration("OnActivateTarget(...)");
 //* *******************************************************
 _printD("	<= End ' Collector::OnActivatetarget(...)");
-
-	Mes.Clear();
-// The event processing system continues searching
-	_pEvent.Skip();
-}
-
-///-----------------------------------------------------------------------------
-//	When 'Poedit' has modified 'project_name.po' from editor
-//	Called twice :
-//		1- when 'Poedit' modify 'project_name.po'
-//		2- when user accept to save the old file 'project_name.po'
-//
-// Called by :
-//	1. event 'cbEVT_EDITOR_MODIFIED'
-//
-void Collector::OnFilePoModified(CodeBlocksEvent& _pEvent)
-{
-_printD("=> Begin Collector::OnFilePoModified(...)");
-// only one call
-	if (m_calls)
-	{
-		_pEvent.Skip();
-		return;
-	}
-//_printWarn("before m_calls = " + strInt(m_calls));
-	wxString filename ;
-	EditorBase* peditor = _pEvent.GetEditor() ; //, * old = _pEvent.GetOldEditor();
-	if(peditor)
-	{
-//_printWarn("peditor exists ") ;
-		filename = peditor->GetFilename();
-//_printWarn("filename = " + quote(filename) ) ;
-	// verify file name == project_name.po
-		wxString shortname = filename.AfterLast(slash);
-		wxString name =  m_pProject->GetTitle() ;
-    // il faut triter les deux cas possibles
-        // 1. "*.po"
-        // 2. "*_workspace.po"
-		if (shortname == name + ".po" || shortname == name + "_workspace.po" )
-		{
-			m_calls++;
-//_printWarn("after m_calls = " + strInt(m_calls) );
-//_printWarn("shortname = " + quote(shortname) ) ;
-		// full file 'mo'
-			wxString longname = filename.BeforeLast(cDot) + ".mo" ;
-			if (wxFileName::FileExists(longname))
-			{
-			// display 'm_pCollectLog'
-				SwitchToLog();
-				Mes = "**" + quote(EXTERN_TRANSLATOR) + _("has created") ;
-				Mes += quote(name + ".mo") + _("to directory") + " :" ;
-				_printWarn(Mes) ;
-				Mes = Tab + quote(longname.BeforeLast(slash) + slash) ;
-				_print(Mes) ;
-			 // save (*.mo'
-				bool ret = m_pCreateWx->saveAs(longname);
-				if (ret)
-				{
-					Mes =  "** " + _("File") + quote(name + ".mo") + _("is copied to directory") + " :";
-					_printWarn(Mes);
-					Mes = Tab + quote(longname.BeforeLast(slash) + slash);
-					_print(Mes) ;
-				}
-				_print(Line110);
-			}
-		}
-	}
-
-_printD("	<= End Collector::OnFilePoModified(...)");
 
 // The event processing system continues searching
 	_pEvent.Skip();
@@ -1932,7 +1934,7 @@ _printD("   <= End Collector::LoadPNG(...)");
     return bmp;
 }
 ///-----------------------------------------------------------------------------
-//	Extract all image PNG from 'Collector.zip'
+//	Extract all images PNG from 'Collector.zip'
 //
 // Called by :
 //	1. Collector::OnAttach():1,
@@ -1981,7 +1983,7 @@ _printD("   <= End Collector::LoadAllPNG()");
 
 // -----------------------------------------------------------------------------
 // Update the state of all menu items, recursively, by generating
-//	wxEVT_UPDATE_UI events for them
+//	'wxEVT_UPDATE_UI' events for them
 //
 // Called by : receive enough
 //

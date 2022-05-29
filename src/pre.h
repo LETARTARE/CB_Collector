@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-18
+ * Modified:  2022-05-30
  * Copyright: LETARTARE
  * License:   GPL
  *************************************************************
@@ -83,6 +83,28 @@ class Pre : public ColState
 		 */
 		void ShowError(const wxString& _mes);
 
+///-----------------------------------------------------------------------------
+		/** \brief Collect strings to be translated
+		 *  @param  _key : word key for translation
+		 *  @param  _nbstr : all strings to extract
+		 *  \return true is good
+		 */
+		bool ListProject(const wxString& _key, wxInt32 & _nbstr);
+		/** \brief Extract strings to be translated
+		 *  \return true is good
+		 */
+		bool ExtractProject();
+		/** \brief List strings to be translated in workspace
+		 *  @param  _nbstr : all strings to extract
+		 *  \return true is good
+		 */
+		bool ListWS(wxInt32 & _nbstr);
+		/** \brief Extract strings to be translated in workspace
+		 *  \return true is good
+		 */
+		bool ExtractWS();
+///-----------------------------------------------------------------------------
+
 		/** \brief Locate and call a menu from string (e.g. "/Valgrind/Run Valgrind::MemCheck")
 		 *  \note it's a copy of 'CodeBlocks::sc_globals.cpp::CallMenu(const wxString& menuPath)'		 *
 		 *  \param _menuPath : Menu item to be called
@@ -115,58 +137,51 @@ class Pre : public ColState
 		 *  \return true if 'm_Init = true' and 'm_Stop = false' and 'm_Cancel = false'
 		 */
         bool isAllRight();
-        /** \brief Give the number of strings to extract
-		 *  \return number strings
+
+        /** \brief close all extra files to editor '*.list', '*.extr', '*.po'
+		 *  \return true if closed
 		 */
-		wxInt32 nbStringsToExtract();
+        bool closeAllExtraFiles();
 
 		/** \brief Indicates if target is command only
 		 *	@param _nametarget : target name
 		 *  @return true if it's command target
 		 */
 		bool isCommandTarget(const wxString& _nametarget) ;
-		/** \brief Indicates if target is command only
-		 *	@param _pBuildTarget : target pointer
-		 *  @return true if it's command target
-		 */
-		bool isCommandTarget(const ProjectBuildTarget * _pBuildTarget) ;
-
-///-----------------------------------------------------------------------------
-		/** \brief Collect strings to be translated
-		 *  @param  _key : word key for translation
-		 *  @param  _nbstr : all strings to extract
-		 *  \return true is good
-		 */
-		bool ListProject(const wxString& _key, wxInt32 & _nbstr);
-		/** \brief Extract strings to be translated
-		 *  \return true is good
-		 */
-		bool ExtractProject();
-		/** \brief List strings to be translated in workspace
-		 *  @param  _nbstr : all strings to extract
-		 *  \return true is good
-		 */
-		bool ListWS(wxInt32 & _nbstr);
-		/** \brief Extract strings to be translated in workspace
-		 *  \return true is good
-		 */
-		bool ExtractWS();
-///-----------------------------------------------------------------------------
 
 	protected:
 
-		/** \brief Search libraries in project or target
-		 *  @param _type : in ["_WX", "_QT", "_WX","_WX_QT"]
-		 *  @param _pContainer : 'cbProject * Project' or 'ProjectBuildTarget * buildtarget'
-		 *	 both inherited of 'CompileTargetBase'
-		 *  @return true if finded
-		*/
-		bool hasLib(const wxString _type, CompileTargetBase * _pContainer) ;
+		/** \brief Indicates if target is command only or a virtual target
+		 *	@param _nametarget : target name
+		 *  @return true if it's command target or virtual target
+		 */
+        bool isCommandOrVirtualTarget(const wxString& _nametarget) ;
+		/** \brief Indicates if target is command only
+		 *	@param _pTarget : target pointer
+		 *  @return true if it's command target
+		 */
+		bool isCommandTarget(const ProjectBuildTarget * _pTarget) ;
+		/** \brief Indicates if target is command only or a virtual target
+		 *	@param _pTarget : target pointer
+		 *  @return true if it's command target or virtual target
+		 */
+        bool isCommandOrVirtualTarget(const ProjectBuildTarget * _pTarget) ;
 
 		/**  \brief Give compileable targets list for project or virtual target
 		 *   @return a table : of compileable target name
 		 */
 		wxArrayString compileableProjectTargets();
+
+        /** \brief Indicates if target is virtual
+		 *	@param _pTarget : target pointer
+		 *  @return true if it's virtual target
+		 */
+		bool isVirtualTarget(const ProjectBuildTarget * _pTarget) ;
+		 /** \brief Indicates if target is virtual
+		 *	@param _nametarget : target name
+		 *  @return true if it's virtual target
+		 */
+		bool isVirtualTarget(const wxString& _nametarget) ;
 
 	protected:
 	// ----------------------------- pure virtual ------------------------------
@@ -308,6 +323,14 @@ class Pre : public ColState
 		 */
 		wxString executeAndGetOutputAndError(const wxString& _command,
 											const bool& _prepend_error = true) ;
+        wxString executeAndGetOutput(const wxString& _command,
+                                    const bool& _prepend_error = true) ;
+
+        /** \brief Launch  an external executable tool
+         *	\param _toolexe : executable name
+		 *  \return error code, 0 if good
+		 */
+        wxInt32 LaunchExternalTool(const wxString& _toolexe);
 		/** \brief From a text, extract the different strings to be translated
 		 *  \param _txt : one line of text
 		 *  \return a string formatted in successive lines
@@ -352,23 +375,12 @@ class Pre : public ColState
 		bool endaction(const wxChar& _mode);
 
 // -----------------------------------------------------------------------------
-		/** \brief Returns the number of occurrences of _str in the _txt
+		/** \brief Returns the number of occurrences of '_str' in the '_txt'
 		 *  \param _souce :  text code
 		 *  \param _str : to find
 		 *  \return the number of occurrences
 		 */
 		wxUint32 freqStr(const wxString& _souce, const wxString& _str);
-
-// -----------------------------------------------------------------------------
-	   /** \brief Recursively deletes non-empty directories
-		 *	 @param _rmDir : directory name
-		 *   @return true if it's
-		 */
-		bool recursRmDir(wxString _rmDir);
-		/** \brief Number of files deleted in temporary directory
-		 */
-		wxUint32 m_nbFilesdeleted = 0;
-// -----------------------------------------------------------------------------
 
 // ----------------------------- variables -------------------------------------
 	protected:
@@ -467,9 +479,6 @@ class Pre : public ColState
 			/** \brief projects into workspace withfiles text i18n
 			 */
 			,m_PrjwithI18nWS
-			/** \brief workspace with text i18n
-			 */
-			,m_FileswithI18nWS
 			/** \brief targets of 'ProjectFile
 			 */
 			,m_Targetsfile
@@ -599,12 +608,33 @@ class Pre : public ColState
 		 *  \return true if opened
 		 */
 		bool openedit(const wxString _file);
+		/** \brief close a file to editor
+		 *  \param _file : watch file
+		 *  \return true if closed
+		 */
+		bool closedit(const wxString _file);
+
+		/** \brief Copy a file to an another directory
+		 *  \return	true if good
+		 */
+		bool copyFileToDir(const wxString& _namefile);
 
 		/** \brief Create a directory
 		 *	@param _dir : dirrectory name
 		 *  @return true if it's correct
 		 */
 		bool createDir (const wxString& _dir) ;
+
+// -----------------------------------------------------------------------------
+	   /** \brief Recursively deletes non-empty directories
+		 *	 @param _rmDir : directory name
+		 *   @return true if it's
+		 */
+		bool recursRmDir(wxString _rmDir);
+		/** \brief Number of files deleted in temporary directory
+		 */
+		wxUint32 m_nbFilesdeleted = 0;
+// -----------------------------------------------------------------------------
 
 		/**  \brief Read contents file
 		 *	 @param _filename : file name
@@ -618,6 +648,11 @@ class Pre : public ColState
          *	@return true if all right
          */
 		bool saveArray (const wxArrayString& _strarray, const wxChar _mode)  ;
+        /** \brief Add an array to an other
+         *  @param _receive : array to receiving
+         *	@param _array : array name to adding
+         */
+		void addArrays(wxArrayString& _receive, wxArrayString& _array);
 
 		/** \brief give a string of table 'title' for debug
 		 *	@param _title : title name

@@ -115,7 +115,7 @@ C- TEST ENVIRONMENT, to the date of the file :
 		- Leap-15.3 (64 bits) with gcc-7.1.0 (wx-3.0.5)
 	- Tools :
 		- Code::Blocks from r121524 (sdk 2.2.0, 2021-09-04)
-			up to r12813 (sdk 2.18.0), with wxWidgets 3.x.y unicode,
+			up to r12818 (sdk 2.18.0), with wxWidgets 3.x.y unicode,
 		- actually 'Cb-12813-wx-3.1.6', sdk=2.178.0
 	- Utilities :
 		- 'Poedit',
@@ -338,24 +338,54 @@ G- NOTES
 
 		- with the keyword '_'  and 'codeblocks.its' for '*.xml'
 		
-		6-1 On my test environment 'Win-7' :
+		6-1 On my test environment 'Win-7' : 'Collector-1.7.1'
+			- with keyword '_' and 'codeblocks.its' for '*.xml'
 
-			6-1-1 Cb-12813-wx3.1.6-(64bit)' 
-				1215 files, 25 targets, 275 eligible files:
-				- listing = 1 min 16 S, with 2033 strings collected,
-				- extraction = 28 S with 88 temporary files
+			6-1-1 Cb-12818-wx3.1.5-(64bit)' 
+				with 1 project containing 1216 total files 
+				- listing
+					- 7789 detected strings inside 398 elected files,
+					- duration : 0 min), 48 S
+				- extraction 
+					- 7789 detected strings inside 398 elected files.
+					- 133 temporary files,
+					- Cb-12818-wx3.1.5-(64 bit).pot'  (852 409 bytes) 
+					- duration : 1 min, 8 S
 
-			6-1-2 Cb-12813 + external extensions
-				in a workspace of 48 projects in total:
-				- listing = 2 min 11 S
-					- 12360 extractable strings in 4215 files of which 1264 are elected
-				- extraction = 6 min 5 S 
-                    -> 'codeblocks-12813-wx3.1.6-(64bit)_workspace.pot' ( 1 895 413 bytes )
-					- 12360 strings to be translated
+			6-1-2 Cb-12818 + external extensions + 'Collector-1.7.1'
+				in a workspace of 51 project(s) containing 2980 total files
+				- listing 
+					- 13388 detected strings, inside 875 elected files,
+					- duration : 1 min 55 S,
+				- extraction                     
+					- 13388 extracted strings, inside 875 elected files,
+					- 183 temporary files,
+					- 'codeblocks-12818-wx3.1.5-(64bit)_workspace.pot' (2 030 046 bytes),
+					- duration : 4 min 8 S 
 					
-		6-2 On my test environment 'Leap-15.3' :
+		6-2 On my test environment 'Leap-15.3' :  'Collector-1.7.1'
 			
-			- coming soon ...
+			6-2-1 Cb-12818-wx3.0.5-(64bit)' 
+				with 1 project containing 1216 total files
+				- listing
+					- 7778 detected strings inside 392 elected files,
+					- duration : 0 min), 43 S
+				- extraction 
+					- 7778 detected strings inside 392 elected files.
+					- 133 temporary files,
+					- Cb-12818-wx3.1.5-(64 bit).pot'  (851 202 bytes) 
+					- duration : 0 min, 28 S				
+
+			6-2-2 Cb-12818 + external extensions + 'Collector-1.7.1'
+				in a workspace of 43 project(s) containing 2654 total files
+				- listing 
+					- 10573 detected strings, inside 735 elected files,
+					- duration : 0 min 55 S,
+				- extraction 
+                    -> 'codeblocks-12818-wx3.0.5-(64bit)_workspace.pot' ( 1 906 549 bytes )
+					- 10573 extracted strings, inside 735 elected files,
+					- 157 temporary files,
+					- duration : 1 min 35 S 
 			
 		6-3 On environment 'MACOX' :
 		

@@ -1,4 +1,4 @@
-# Collecteurr-1.6.0,  20 mai 2022 (Win-64, Linux-64)
+# Collecteurr-1.7.1,  30 mai 2022 (Win-64, Linux-64)
 
 Extension de traduction des apllications (wxWidgets) avec 'Code::Blocks'
 

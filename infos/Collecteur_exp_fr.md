@@ -112,7 +112,7 @@ C- ENVIRONNEMENT de test, à la date du fichier :
 		- Leap-15.3 (64 bits) avec gcc-7.1.0 (wx-3.0.5)
 	- Outils	:
 		- Code::Blocks depuis r12524 (sdk 2.16.0 du 2021-09-04),
-		  jusqu'a r12813 (sdk 2.18.0)
+		  jusqu'a r12818 (sdk 2.18.0), avec wxWidgets 3.x.y unicode,
 	- Utilitaires	:
 		- 'Poedit'
 		- 'xgettext', 'msmerge', '*.its'
@@ -330,25 +330,54 @@ G- REMARQUES
 
 	6- utilisation de cette extension sur le projet 'CodeBlocks-xxx.workspace'
 
-		6-1 Sur mon environnement de test ''Win-7'
+		6-1 Sur mon environnement de test ''Win-7' : 'Collecteurr-1.7.1'
 			- avec le mot clé '_' et 'codeblocks.its' pour '*.xml'
 
-			6-1-1 'Cb-12813-wx3.1.6-(64bit)'
-				1215 fichiers, 25 cibles, 275 fichiers éligibles :
-				- listage = 1 min 16 S, avec 2033 chaînes collectées,
-				- extraction = 28 S avec 88 fichiers temporaires
+			6-1-1 'Cb-12818-wx3.1.5-(64bit)'
+				avec 1 projet contenant 1216 fichiers,
+				- listage 
+					- 7789 chaines détectées depuis 398 fichiers éligibles,
+					- durée : 0 min), 48 S
+				- extraction 
+					- 7789 chaines extraites depuis 398 fichiers éligibles,
+					- 133 fichiers temporaires,
+					- Cb-12818-wx3.1.5-(64 bit).pot'  (852 409 bytes) 
+					- durée : 1 min, 8 S				
 
-			6-1-2 'CodeBlocks-r12813 + les extensions externes'
-				dans un espace de travail de 38 projets au total :
-				- listage = 2 min 11 S
-					- 12360 chaînes extractibles dans 4215 fichiers dont 1264 élus
-				- extraction = 6 min 5 S 
-					-> 'codeblocks-12813-wx3.1.6-(64bit)_workspace.pot'( 1 895 413 bytes )
-					- 12360 chaînes à traduire
+			6-1-2 'CodeBlocks-r12818 + les extensions externes + 'Collecteur-1.7.1'
+				dans un espace de travail de 43 projets contenant au total 7962 fichiers,
+				- listage 
+					- 12677 chaines détectées depuis  2412 fichiers éligibles,
+					- durée : 0 min 55 S,
+				- extraction 
+                    -> 'codeblocks-12818-wx3.0.5-(64bit)_workspace.pot' ( 2 022 699 bytes )
+					- 12677 chaines extraites depuis  2412 fichiers éligibles,
+					- 172 fichiers temporaires,
+					- durée : 1 min 35 S 
 					
-		6-2 Sur mon environnement de test 'Leap15.3' :
+		6-2 Sur mon environnement de test 'Leap15.3' :  'Collecteurr-1.7.1'
 			
-			- à venir ...
+			6-2-1 Cb-12818-wx3.0.5-(64bit)' 
+				avec 1 projet contenant 1216 fichiers,
+				- listage
+					- 7778 chaines détectées depuis 392 fichiers éligibles,
+					- durée : 0 min), 43 S
+				- extraction 
+					- 7778 chaines extraites depuis 392 fichiers éligibles,
+					- 133 fichiers temporaires,
+					- Cb-12818-wx3.1.5-(64 bit).pot'  (851 202 bytes) 
+					- durée : 0 min, 28 S				
+
+			6-2-2 Cb-12818 + les extensions externes + 'Collector-1.7.1'
+				dans un espace de travail de 43 projets contenant au total 2654 fichiers,
+				- listing 
+					- 10573 chaines détectées depuis 735 fichiers éligibles,
+					- durée : 0 min 55 S,
+				- extraction 
+                    -> 'codeblocks-12818-wx3.0.5-(64bit)_workspace.pot' ( 1 906 549 octets )
+					- 10573 chaines extraites depuis 735 fichiers éligibles,
+					- 157 fichiers temporaires,
+					- durée : 1 min 35 S 
 			
 		6-3 Sur environnement 'MACOX'
 		

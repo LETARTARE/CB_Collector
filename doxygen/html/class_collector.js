@@ -17,7 +17,6 @@ var class_collector =
     [ "OnActivateProject", "class_collector.html#abfc8e261c95da61d0a710879b2f98d87", null ],
     [ "OnActivateTarget", "class_collector.html#ab8069e3f15134c29f53848b563f53eda", null ],
     [ "OnAttach", "class_collector.html#a083060f2bf00f965496c44de767cd7a1", null ],
-    [ "OnFilePoModified", "class_collector.html#ae2594c4d9bdc5cccb4a026f0a6c4e51d", null ],
     [ "OnMenuChoiceLib", "class_collector.html#a1f641a4e492e68db65733ed38c8b3e39", null ],
     [ "OnMenuCleanTemp", "class_collector.html#a9610e93061089e82eab969be649adeeb", null ],
     [ "OnMenuExtractPrj", "class_collector.html#af7b748977fb136842774e550b6c915b8", null ],

@@ -1,4 +1,4 @@
-# Collector-1.6.0, May 20, 2022 (Win-64, Linux-64)
+# Collector-1.7.1, May 30, 2022 (Win-64, Linux-64)
 
 Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 

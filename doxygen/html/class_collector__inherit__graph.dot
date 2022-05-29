@@ -1,0 +1,10 @@
+digraph "Collector"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node0 [label="{Collector\n|+ m_pCollectLog\l- m_pCreateWx\l- m_pCreateQt\l- m_pProject\l- m_isQtProject\l- m_isQtActiveTarget\l- m_isWxProject\l- m_isWxXActiveTarget\l- m_typeProject\l- m_pseudoEvent\l- Mes\land 33 more...\l- idMbarCollect\l- idMbarCollectWx\l- idMbarCollectQt\l- idMbarListPrj\l- idMbarListWS\l- idMbarExtractPrj\l- idMbarExtractWS\l- idMbarListExtractPrj\l- idMbarListExtractWS\l- idMbarWaitingForStart\land 15 more...\l|+ Collector()\l+ ~Collector()\l+ Configure()\l+ GetConfigurationPriority()\l+ GetConfigurationGroup()\l+ BuildMenu()\l+ BuildToolBar()\l+ MesToLog()\l# OnAttach()\l# OnRelease()\l# OnPluginLoaded()\l# OnActivateProject()\l# OnActivateTarget()\l- DECLARE_EVENT_TABLE()\l- OnMenuToState()\l- actualizeGraphState()\l- callActions()\l- OnMenuChoiceLib()\l- OnMenuWaitingForStart()\l- OnMenuListPrj()\l- OnMenuExtractPrj()\l- OnMenuListExtractPrj()\l- OnMenuListWS()\land 10 more...\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node1 [label="{cbPlugin\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{ColState\n|# m_State\l|+ ColState()\l+ ~ColState()\l# strState()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_col_state.html",tooltip="This classe share data between classe &#39;Pre&#39; and &#39;Collector&#39;. "];
+}

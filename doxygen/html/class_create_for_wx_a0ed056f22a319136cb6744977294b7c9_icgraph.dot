@@ -1,0 +1,15 @@
+digraph "CreateForWx::Cleantemp"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node6 [label="CreateForWx::Cleantemp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Collector::OnMenuCleanTemp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a9610e93061089e82eab969be649adeeb",tooltip="Places the status graph in the cleaning report and Delete the temporary directory. "];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Collector::callActions",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a772e3452af93d18c7764aed8245af527",tooltip="Call all &#39;OnMenu...()&#39;. "];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Collector::OnMenuToState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e",tooltip="Only one method for all events. "];
+  Node6 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="CreateForWx::createPot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a31e8c6e85d2cfd96a224377ac2b0631a",tooltip="Create the file &#39;*.pot&#39; containing all translatable string(s) "];
+}

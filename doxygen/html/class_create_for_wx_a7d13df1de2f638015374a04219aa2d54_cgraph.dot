@@ -1,0 +1,15 @@
+digraph "CreateForWx::listStringsCode"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node60 [label="CreateForWx::listStringsCode",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node60 -> Node61 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 [label="Pre::GexewithError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a51af576d8b56ed77c362814160d5704a",tooltip="Execute &#39;xgettext&#39; for &#39;listing()&#39; or &#39;extract()&#39;. "];
+  Node61 -> Node62 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node62 [label="Pre::executeAndGetOutput\lAndError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded",tooltip="Launch a command line. "];
+  Node61 -> Node63 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node63 [label="Pre::xgettextOut",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#adccccf940ffaa486db792769f604b081",tooltip="From a text, extract the different strings to be translated. "];
+  Node61 -> Node64 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node64 [label="Pre::xgettextWarn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a0806999c9d1d04fb3e605dcbc99e21ca",tooltip="Retrieves error or warning messages when executing &#39;xgettext&#39;. "];
+}

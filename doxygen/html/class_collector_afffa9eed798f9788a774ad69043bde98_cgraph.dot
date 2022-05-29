@@ -1,0 +1,11 @@
+digraph "Collector::actualizeGraphState"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node4 [label="Collector::actualizeGraph\lState",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ColState::strState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_col_state.html#ab0e0c201acbe2047e08c8a84e7a1da6b",tooltip="Returns a string corresponding to the state of the &#39;Collector&#39; state graph. "];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Pre::setStop",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#ad6e796a5a90943a4e4aa89ca4632717f",tooltip="Set stop complement file creating. "];
+}

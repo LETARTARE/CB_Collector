@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-18
+ * Modified:  2022-05-30
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -309,10 +309,6 @@ class Collector : public cbPlugin, public ColState
       * @param _pEvent Contains the event which call this method
       */
     void OnActivateTarget(CodeBlocksEvent& _pEvent);
-    /** \brief This method called by file editor modified
-      * @param _pEvent Contains the event which call this method
-      */
-    void OnFilePoModified(CodeBlocksEvent& _pEvent);
 
   private:
 
@@ -345,8 +341,6 @@ class Collector : public cbPlugin, public ColState
      */
     bool Debug = true, Withlog =  true ;
 
-  private:
-
     /** \brief Detects project type : 'Wx' or 'Qt'
      *  @param _pProject : the active project.
      *  @param _report : display report if true.
@@ -354,7 +348,6 @@ class Collector : public cbPlugin, public ColState
      */
     wxString detectTypeProject(cbProject * _pProject, const bool _report = false);
 
-private:
     /** \brief Show a log
      *  @param _indexLog : page index
      */
@@ -372,8 +365,6 @@ private:
 	bool LoadAllPNG();
 
   private:
-
-
 
     /** \brief Index of our log tab (can this change during run time ??)
      */

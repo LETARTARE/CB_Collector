@@ -1,0 +1,30 @@
+digraph "Pre::isStopped"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node652 [label="Pre::isStopped",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node652 -> Node653 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node653 [label="Collector::OnMenuListPrj",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a7a52cb7e51c2bafa5ca760e2f005f427",tooltip="Places the status graph in the listing project report. "];
+  Node653 -> Node654 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node654 [label="Collector::callActions",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a772e3452af93d18c7764aed8245af527",tooltip="Call all &#39;OnMenu...()&#39;. "];
+  Node654 -> Node655 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node655 [label="Collector::OnMenuToState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e",tooltip="Only one method for all events. "];
+  Node653 -> Node656 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node656 [label="Collector::OnMenuListExtractPrj",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a24cfe1b83b040784e834277da16e0a68",tooltip="Places the status grap in the listing and extract report. "];
+  Node656 -> Node654 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node652 -> Node657 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node657 [label="Collector::OnMenuExtractPrj",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#af7b748977fb136842774e550b6c915b8",tooltip="Places the status graph in the extracting project report. "];
+  Node657 -> Node654 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node657 -> Node656 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node652 -> Node658 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node658 [label="Collector::OnMenuListWS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#ad05ff772ab635dd2b018af610c45f666",tooltip="Places the status graph in the listing workspace report. "];
+  Node658 -> Node654 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node658 -> Node659 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node659 [label="Collector::OnMenuListExtractWS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a6f578e146a373e98a2638c6a509ee193",tooltip="Places the status grap in the listing and extract workspace report. "];
+  Node659 -> Node654 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node652 -> Node660 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node660 [label="Collector::OnMenuExtractWS",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a0dd8300c95e93daf33d5141d38c74c0d",tooltip="Places the status graph in the extracting workspace report. "];
+  Node660 -> Node654 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node660 -> Node659 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

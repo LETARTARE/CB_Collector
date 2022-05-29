@@ -1,0 +1,39 @@
+digraph "Collector::OnActivateTarget"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node151 [label="Collector::OnActivateTarget",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node151 -> Node152 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node152 [label="Pre::isCommandTarget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a70d06eec2a18717fa4bfc0d9a6c9a2b1",tooltip="Indicates if target is command only. "];
+  Node151 -> Node153 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node153 [label="Collector::detectTypeProject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a08f5926a5fb84fc870784f6cec385a40",tooltip="Detects project type : &#39;Wx&#39; or &#39;Qt&#39;. "];
+  Node153 -> Node154 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node154 [label="Collector::SwitchToLog",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#a2ac54bb5839f0a7469edfa5f9d23424b"];
+  Node153 -> Node155 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node155 [label="CreateForWx::detectLibProject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a554fd7950577ce2a0ce22f921f8ef7b9",tooltip="Detects if the current target uses &#39;Wx&#39; libraries,. "];
+  Node155 -> Node156 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node156 [label="Pre::isCommandOrVirtualTarget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a9bdcb3ab0fc5675a7c9422610a0cb284",tooltip="Indicates if target is command only or a virtual target. "];
+  Node156 -> Node152 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node156 -> Node157 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node157 [label="Pre::isVirtualTarget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#ab3a0f75f5c2aac52ce3fe6fd0048ed84",tooltip="Indicates if target is virtual. "];
+  Node155 -> Node158 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node158 [label="CreateForWx::pathWx",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a7ed361b57009bad03a2a24c7bef74415",tooltip="Search the &#39;Wx&#39; path and feed &#39;m_Wxpath&#39;. "];
+  Node158 -> Node159 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node159 [label="Pre::addArrays",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#aed6fd1646a9f1a951260f7c02c2c9583",tooltip="Add an array to an other. "];
+  Node158 -> Node160 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node160 [label="Pre::executeAndGetOutput\lAndError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded",tooltip="Launch a command line. "];
+  Node153 -> Node161 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node161 [label="CreateForQt::detectLibProject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_qt.html#ae109f6c3caf1a9a25f9b4a5a49b0c4fc",tooltip="Detects if the current target uses &#39;Qt&#39; libraries,. "];
+  Node161 -> Node162 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node162 [label="CreateForQt::hasLibQt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_qt.html#a107f2e77b04d02abf4d34b977aae051b",tooltip="Search &#39;Qt&#39; libraries in project or target. "];
+  Node161 -> Node163 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node163 [label="Pre::compileableProjectTargets",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#ad69b57decb44dabf2ed92df9d84a0147",tooltip="Give compileable targets list for project or virtual target. "];
+  Node163 -> Node156 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node151 -> Node164 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node164 [label="Collector::actualizeGraph\lState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collector.html#afffa9eed798f9788a774ad69043bde98",tooltip="Enable the menu items of &#39;&Collect&#39; and tools bar &#39;Collector&#39;. "];
+  Node164 -> Node165 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node165 [label="ColState::strState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_col_state.html#ab0e0c201acbe2047e08c8a84e7a1da6b",tooltip="Returns a string corresponding to the state of the &#39;Collector&#39; state graph. "];
+  Node164 -> Node166 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node166 [label="Pre::setStop",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#ad6e796a5a90943a4e4aa89ca4632717f",tooltip="Set stop complement file creating. "];
+}

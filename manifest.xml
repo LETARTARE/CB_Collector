@@ -3,7 +3,7 @@
     <SdkVersion major="2" minor="18" release="0" />
     <Plugin name="Collector">
         <Value title="Collector" translatable="yes"/>
-        <Value version="1.6.0-2022/05/15" />
+        <Value version="1.7.1-2022/05/30" />
         <Value  description="Help translating for 'C::B' (sdk-2.18.0) projects
 Welcome to 'Collector' : plugin for help translate projects in 'CODE::BLOCKS'
 	You can, by menu 'Collect' on menu bar

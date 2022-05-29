@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['debug',['Debug',['../class_collector.html#a1c3a99b249c0b0d62c961fd3d5a80d0f',1,'Collector']]]
+  ['ext_5fwxs',['EXT_WXS',['../class_pre.html#a93c351ac71c96ecb1773ea51324adc7a',1,'Pre']]]
 ];

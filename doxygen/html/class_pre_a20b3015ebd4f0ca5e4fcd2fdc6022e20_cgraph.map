@@ -1,7 +1,0 @@
-<map id="Pre::endaction" name="Pre::endaction">
-<area shape="rect" id="node2" href="$class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="177,5,283,32"/>
-<area shape="rect" id="node5" href="$class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="160,56,300,83"/>
-<area shape="rect" id="node3" href="$class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="360,5,459,32"/>
-<area shape="rect" id="node4" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="519,5,629,32"/>
-<area shape="rect" id="node6" href="$class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="348,56,471,83"/>
-</map>
