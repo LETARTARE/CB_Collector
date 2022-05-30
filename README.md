@@ -1,4 +1,4 @@
-# Collector-1.6.0, May 20, 2022 (Win-64, Linux-64)
+# Collector-1.7.1, May 30, 2022 (Win-64, Linux-64)
 
 Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
@@ -28,16 +28,15 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 			'http://www.poedit.net/'
 			
         ** you will have to add in the 'gettext\share\its' directory the two files
-            'codeblocks.its' and 'codeblocks.loc' provided in '...\its'.
+            codeblocks.its' and 'codeblocks.loc' provided in '...\its'.
             
 		To install 'Poedit' in 'Code::Blocks' :
 			1- read 'http://wiki.codeblocks.org/index.php?title=Configure_tools',
-			2- read 'infos/Collector_exp_en.md' paragraph 'SETUP 'Poedit',
+			2- read 'infos/Collector_exp.en' paragraph 'SETUP 'Poedit',
 
 	2- 'wxrc' must be installed  
 		- either with 'codeblocks' (for 'Win-64' : 'wxrc.exe' with target 'wxrc_315' or 'wxrc_316')
 		- either with 'wxWidgets' (for 'Lin-64' : native)
-
 
 3- Installation in 'Code::Blocks' (without 'Poedit') :
 
@@ -60,7 +59,7 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '.../lin_305/Collector.cbpugin'
 				=> in 'Collector' log
-					** Platform : 'Linux-64', 'sdk-2.18.0', 'Collector-1.6.0', built the '20/05/22::16:09:15' 
+					** Platform : 'Linux-64', 'sdk-2.18.0', 'Collector-1.6.0', built the '20/05/22::11:09:15' 
 				
 	3- You see '&Collect' in menu bar or 'Collector Toolbar' in tools bar
 
@@ -73,36 +72,20 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 	2- '&Collect->Extract from project'
 		which extracts the strings and creates the file 'trlocale\name_project.po'
+		
+	** You can perform these two operations in sequence by
+		'Collect->List and Extract from project',
 			
 	3- item '&Collect->Removes temporary files' 
 		which eliminates, if necessary, potential temporary files created during listing.
+		
+	4- '&Collect->Go to start state', 
+		to correctly restart the next listing,
+	
+	5- '&Collect->Stop current action',
+		stops the current listing or extraction.
 
 5 - Detailed use
 
 	The directory 'infos' files contains the explanatory use.
 
-6- Menu and Tool bar
-
-![Menu](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_menu_bar.png  "Menu")
-
-7- List logs
-
-![ListB](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_beginList.png  "BeginList")
-
-![ListE](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_endList.png   "EndList")
-
-8- Extract logs
-
-![ExtractB](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_beginExtract.png  "BeginExtract")
-
-![ExtractE](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_endExtract.png  "EndExtract")
-
-9- Editor
-
-![EDITOR](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_cb12814_editor.png   "EDITOR")
-
-10- Poedit in French
-
-![Poedit](https://github.com/LETARTARE/CB_Collector/blob/Images16/collector160_poedit_fr.png    "Poedit")
-
-	
