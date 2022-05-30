@@ -1,0 +1,6 @@
+<map id="Pre::findGoodfiles" name="Pre::findGoodfiles">
+<area shape="rect" id="node2" href="$class_pre.html#a4bdd0bce15252c98d161d824de1fa57b" title="Tests readability for chain collection. " alt="" coords="179,5,314,32"/>
+<area shape="rect" id="node3" href="$class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="177,56,316,83"/>
+<area shape="rect" id="node4" href="$class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="182,107,311,133"/>
+<area shape="rect" id="node5" href="$class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="181,157,312,184"/>
+</map>

@@ -1,9 +1,0 @@
-digraph "Pre::copyFileToDir"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node97 [label="Pre::copyFileToDir",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node97 -> Node98 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node98 [label="Pre::saveAs",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pre.html#a331d34900673347c58a7ad607e80edbd",tooltip="Save a file to disk with a file dialog. "];
-}

@@ -1,9 +1,0 @@
-digraph "CreateForWx::initWx"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node52 [label="CreateForWx::initWx",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
-  Node52 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node53 [label="CreateForWx::initTabResXml",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_create_for_wx.html#a224e92951a1c4d42847f68108434d83d",tooltip="Initialize specific variables &#39;m_TabmarkersRes&#39;, &#39;m_TabmarkersXml&#39;. "];
-}

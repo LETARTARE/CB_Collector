@@ -1,0 +1,8 @@
+<map id="Pre::closeAllExtraFiles" name="Pre::closeAllExtraFiles">
+<area shape="rect" id="node2" href="$class_collector.html#ad9c3e1c71bd059224523e86f2e3680e4" title="Places the state graph on hold for selection. " alt="" coords="208,5,383,47"/>
+<area shape="rect" id="node3" href="$class_pre.html#a6537186bec965c977da90bb2a1feac67" title=" " alt="" coords="239,71,351,98"/>
+<area shape="rect" id="node4" href="$class_collector.html#a7a52cb7e51c2bafa5ca760e2f005f427" title="Places the status graph in the listing project report. " alt="" coords="431,71,597,98"/>
+<area shape="rect" id="node5" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="903,71,1048,98"/>
+<area shape="rect" id="node7" href="$class_collector.html#a24cfe1b83b040784e834277da16e0a68" title="Places the status grap in the listing and extract report. " alt="" coords="645,97,855,123"/>
+<area shape="rect" id="node6" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="1096,71,1271,98"/>
+</map>

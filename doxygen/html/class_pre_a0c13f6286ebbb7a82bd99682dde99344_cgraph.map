@@ -1,0 +1,5 @@
+<map id="Pre::isCommandOrVirtualTarget" name="Pre::isCommandOrVirtualTarget">
+<area shape="rect" id="node2" href="$class_pre.html#a9bdcb3ab0fc5675a7c9422610a0cb284" title="Indicates if target is command only or a virtual target. " alt="" coords="260,31,467,57"/>
+<area shape="rect" id="node3" href="$class_pre.html#a70d06eec2a18717fa4bfc0d9a6c9a2b1" title="Indicates if target is command only. " alt="" coords="515,5,669,32"/>
+<area shape="rect" id="node4" href="$class_pre.html#ab3a0f75f5c2aac52ce3fe6fd0048ed84" title="Indicates if target is virtual. " alt="" coords="525,56,659,83"/>
+</map>

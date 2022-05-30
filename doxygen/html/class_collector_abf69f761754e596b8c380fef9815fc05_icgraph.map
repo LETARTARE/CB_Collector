@@ -1,0 +1,4 @@
+<map id="Collector::OnActivateProject" name="Collector::OnActivateProject">
+<area shape="rect" id="node2" href="$class_collector.html#a083060f2bf00f965496c44de767cd7a1" title="Any descendent plugin should override this virtual method and perform any necessary initialization..." alt="" coords="465,5,603,32"/>
+<area shape="rect" id="node3" href="$class_collector.html#ac803457aab4e0e05aec92c159d8d5683" title="This method called by plugin is manually loaded. " alt="" coords="240,31,417,57"/>
+</map>

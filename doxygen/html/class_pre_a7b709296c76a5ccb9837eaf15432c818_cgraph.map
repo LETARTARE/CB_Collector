@@ -1,0 +1,6 @@
+<map id="Pre::Initbase" name="Pre::Initbase">
+<area shape="rect" id="node2" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="346,5,457,32"/>
+<area shape="rect" id="node3" href="$class_pre.html#af30c851a73edab59c4a64c3b8ddc9531" title="Release all variables. " alt="" coords="148,56,281,83"/>
+<area shape="rect" id="node5" href="$class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b" title="Create a directory. " alt="" coords="163,107,266,133"/>
+<area shape="rect" id="node4" href="$class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project, it&#39;s a virtual pure. " alt="" coords="329,56,473,83"/>
+</map>

@@ -4,7 +4,7 @@ var searchData=
   ['debug',['Debug',['../class_collector.html#a1c3a99b249c0b0d62c961fd3d5a80d0f',1,'Collector']]],
   ['declare_5fevent_5ftable',['DECLARE_EVENT_TABLE',['../class_collector.html#aa313a85f7a5352ed99ee02650830b53f',1,'Collector']]],
   ['defines_2eh',['defines.h',['../defines_8h.html',1,'']]],
-  ['detectlibproject',['detectLibProject',['../class_create_for_qt.html#ae109f6c3caf1a9a25f9b4a5a49b0c4fc',1,'CreateForQt::detectLibProject()'],['../class_create_for_wx.html#a554fd7950577ce2a0ce22f921f8ef7b9',1,'CreateForWx::detectLibProject()'],['../class_pre.html#aaf295c590dcdc8b93ef190c23150a134',1,'Pre::detectLibProject()']]],
+  ['detectlibproject',['detectLibProject',['../class_pre.html#aaf295c590dcdc8b93ef190c23150a134',1,'Pre::detectLibProject()'],['../class_create_for_qt.html#ae109f6c3caf1a9a25f9b4a5a49b0c4fc',1,'CreateForQt::detectLibProject()'],['../class_create_for_wx.html#a554fd7950577ce2a0ce22f921f8ef7b9',1,'CreateForWx::detectLibProject()']]],
   ['detecttypeproject',['detectTypeProject',['../class_collector.html#a08f5926a5fb84fc870784f6cec385a40',1,'Collector']]],
   ['dline',['Dline',['../defines_8h.html#a0608ce3d3666198e29bb0bdcdd8c6d9b',1,'defines.h']]],
   ['dot',['Dot',['../defines_8h.html#ae8a4b0c3578b007c05bb651c80b7b19e',1,'defines.h']]],

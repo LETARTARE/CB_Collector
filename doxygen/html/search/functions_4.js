@@ -8,7 +8,7 @@ var searchData=
   ['endtime',['endTime',['../class_pre.html#af11d715ebed1df61538f5bcc47a76812',1,'Pre']]],
   ['executeandgetoutput',['executeAndGetOutput',['../class_pre.html#a34f9dacfbfaa9c69dde012674cc21458',1,'Pre']]],
   ['executeandgetoutputanderror',['executeAndGetOutputAndError',['../class_pre.html#a8ecc4928641aebbd2da6e9221c32aded',1,'Pre']]],
-  ['expandname',['expandName',['../class_create_for_qt.html#a12b208365724032bea7b40db502d5a98',1,'CreateForQt::expandName()'],['../class_create_for_wx.html#a0dace6eb9781307cf17f64ebf1e35acc',1,'CreateForWx::expandName()'],['../class_pre.html#a51d0a972f0f29a9c019f43505f6bff3a',1,'Pre::expandName()']]],
+  ['expandname',['expandName',['../class_pre.html#a51d0a972f0f29a9c019f43505f6bff3a',1,'Pre::expandName()'],['../class_create_for_qt.html#a12b208365724032bea7b40db502d5a98',1,'CreateForQt::expandName()'],['../class_create_for_wx.html#a0dace6eb9781307cf17f64ebf1e35acc',1,'CreateForWx::expandName()']]],
   ['extraction',['extraction',['../class_pre.html#aa8a36aa79595248482a3865095fe0a65',1,'Pre']]],
   ['extractionws',['extractionWS',['../class_pre.html#a346ee750d8b28d66efbaf2c4342718e8',1,'Pre']]],
   ['extractproject',['ExtractProject',['../class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c',1,'Pre']]],

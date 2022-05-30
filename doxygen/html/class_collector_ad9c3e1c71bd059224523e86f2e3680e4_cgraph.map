@@ -1,0 +1,7 @@
+<map id="Collector::OnMenuWaitingForStart" name="Collector::OnMenuWaitingForStart">
+<area shape="rect" id="node2" href="$class_col_state.html#ab0e0c201acbe2047e08c8a84e7a1da6b" title="Returns a string corresponding to the state of the &#39;Collector&#39; state graph. " alt="" coords="444,5,571,32"/>
+<area shape="rect" id="node3" href="$class_collector.html#afffa9eed798f9788a774ad69043bde98" title="Enable the menu items of &#39;&amp;Collect&#39; and tools bar &#39;Collector&#39;. " alt="" coords="228,53,396,94"/>
+<area shape="rect" id="node5" href="$class_pre.html#a24b638659d8e4cbba05c2d4f7bf3b5f7" title="close all extra files to editor &#39;*.list&#39;, &#39;*.extr&#39;, &#39;*.po&#39; " alt="" coords="235,119,389,145"/>
+<area shape="rect" id="node4" href="$class_pre.html#ad6e796a5a90943a4e4aa89ca4632717f" title="Set stop complement file creating. " alt="" coords="460,60,555,87"/>
+<area shape="rect" id="node6" href="$class_pre.html#a07dbf60fd3686233daf1df7b85408e99" title="close a file to editor " alt="" coords="460,119,555,145"/>
+</map>

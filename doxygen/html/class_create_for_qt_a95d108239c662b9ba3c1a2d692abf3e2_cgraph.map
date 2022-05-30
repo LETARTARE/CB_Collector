@@ -1,0 +1,6 @@
+<map id="CreateForQt::createPot" name="CreateForQt::createPot">
+<area shape="rect" id="node2" href="$class_pre.html#a51af576d8b56ed77c362814160d5704a" title="Execute &#39;xgettext&#39;. " alt="" coords="211,71,343,98"/>
+<area shape="rect" id="node3" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="391,5,569,47"/>
+<area shape="rect" id="node4" href="$class_pre.html#adccccf940ffaa486db792769f604b081" title="From a text, extract the different strings to be translated. " alt="" coords="421,71,539,98"/>
+<area shape="rect" id="node5" href="$class_pre.html#a0806999c9d1d04fb3e605dcbc99e21ca" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="416,122,544,149"/>
+</map>

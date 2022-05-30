@@ -1,0 +1,6 @@
+<map id="Collector" name="Collector">
+<area shape="rect" id="node3" href="$class_col_state.html" title="This classe share data between classe &#39;Pre&#39; and &#39;Collector&#39;. " alt="" coords="81,5,181,112"/>
+<area shape="rect" id="node5" href="$class_pre.html" title="This class supports inherited classes to collect strings to be translated. " alt="" coords="152,161,349,693"/>
+<area shape="rect" id="node4" href="$class_create_for_wx.html" title="The class is used to build &#39;Wx I18n&#39; files. " alt="" coords="152,765,291,1179"/>
+<area shape="rect" id="node6" href="$class_create_for_qt.html" title="The class is used to build &#39;Qt&#39; I18n files. " alt="" coords="315,743,451,1201"/>
+</map>

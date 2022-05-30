@@ -9,7 +9,7 @@ var searchData=
   ['eol',['Eol',['../defines_8h.html#a31aaad529146b8d0418b7a56b55deaa3',1,'Eol():&#160;defines.h'],['../pre_8cpp.html#a31aaad529146b8d0418b7a56b55deaa3',1,'Eol():&#160;pre.cpp'],['../pre_8cpp.html#a31aaad529146b8d0418b7a56b55deaa3',1,'Eol():&#160;pre.cpp'],['../pre_8cpp.html#a31aaad529146b8d0418b7a56b55deaa3',1,'Eol():&#160;pre.cpp']]],
   ['executeandgetoutput',['executeAndGetOutput',['../class_pre.html#a34f9dacfbfaa9c69dde012674cc21458',1,'Pre']]],
   ['executeandgetoutputanderror',['executeAndGetOutputAndError',['../class_pre.html#a8ecc4928641aebbd2da6e9221c32aded',1,'Pre']]],
-  ['expandname',['expandName',['../class_create_for_qt.html#a12b208365724032bea7b40db502d5a98',1,'CreateForQt::expandName()'],['../class_create_for_wx.html#a0dace6eb9781307cf17f64ebf1e35acc',1,'CreateForWx::expandName()'],['../class_pre.html#a51d0a972f0f29a9c019f43505f6bff3a',1,'Pre::expandName()']]],
+  ['expandname',['expandName',['../class_pre.html#a51d0a972f0f29a9c019f43505f6bff3a',1,'Pre::expandName()'],['../class_create_for_qt.html#a12b208365724032bea7b40db502d5a98',1,'CreateForQt::expandName()'],['../class_create_for_wx.html#a0dace6eb9781307cf17f64ebf1e35acc',1,'CreateForWx::expandName()']]],
   ['ext_5fcpp',['EXT_CPP',['../defines_8h.html#aae8f2a3e3452ea18090dfc46895d8913',1,'defines.h']]],
   ['ext_5fcxx',['EXT_CXX',['../defines_8h.html#a1aec56f6b5a419c7dd298cfead105dce',1,'defines.h']]],
   ['ext_5fh',['EXT_H',['../defines_8h.html#a756e4d5d7366024c2af007057a9c087a',1,'defines.h']]],

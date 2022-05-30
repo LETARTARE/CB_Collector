@@ -1,0 +1,6 @@
+<map id="CreateForWx::Cleantemp" name="CreateForWx::Cleantemp">
+<area shape="rect" id="node2" href="$class_collector.html#a9610e93061089e82eab969be649adeeb" title="Places the status graph in the cleaning report and Delete the temporary directory. " alt="" coords="223,5,417,32"/>
+<area shape="rect" id="node5" href="$class_create_for_wx.html#a31e8c6e85d2cfd96a224377ac2b0631a" title="Create the file &#39;*.pot&#39; containing all translatable string(s) " alt="" coords="239,56,401,83"/>
+<area shape="rect" id="node3" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="465,5,611,32"/>
+<area shape="rect" id="node4" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="659,5,833,32"/>
+</map>
