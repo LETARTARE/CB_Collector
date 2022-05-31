@@ -1,7 +1,7 @@
 <map id="ColState::strState" name="ColState::strState">
 <area shape="rect" id="node2" href="$class_collector.html#afffa9eed798f9788a774ad69043bde98" title="Enable the menu items of &#39;&amp;Collect&#39; and tools bar &#39;Collector&#39;. " alt="" coords="180,241,348,283"/>
 <area shape="rect" id="node6" href="$class_collector.html#ad9c3e1c71bd059224523e86f2e3680e4" title="Places the state graph on hold for selection. " alt="" coords="406,5,581,47"/>
-<area shape="rect" id="node3" href="$class_collector.html#accc308865bf090c7e65bd4f806ccc328" title="Return plugin&#39;s configuration panel. " alt="" coords="422,71,565,98"/>
+<area shape="rect" id="node3" href="$class_collector.html#accc308865bf090c7e65bd4f806ccc328" title="This method is called by Code::Blocks and is used by the plugin to add any menu items it needs on Cod..." alt="" coords="422,71,565,98"/>
 <area shape="rect" id="node4" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="1095,198,1269,225"/>
 <area shape="rect" id="node5" href="$class_collector.html#a328df4e05a99ed3233d942d8fb77a6d3" title="Places the status graph in stop report and Stop current action. " alt="" coords="415,173,572,199"/>
 <area shape="rect" id="node7" href="$class_collector.html#a7a52cb7e51c2bafa5ca760e2f005f427" title="Places the status graph in the listing project report. " alt="" coords="410,223,577,250"/>

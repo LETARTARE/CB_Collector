@@ -1,0 +1,14 @@
+<map id="Pre::executeAndGetOutput" name="Pre::executeAndGetOutput">
+<area shape="rect" id="node2" href="$class_pre.html#af92fb1137bdad11dd6bd32530ed7d426" title="Launch an external executable tool. " alt="" coords="232,53,396,80"/>
+<area shape="rect" id="node3" href="$class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="444,53,555,80"/>
+<area shape="rect" id="node4" href="$class_pre.html#aa8a36aa79595248482a3865095fe0a65" title="Extract the strings translatable from a project. " alt="" coords="603,53,709,80"/>
+<area shape="rect" id="node5" href="$class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c" title="Extract strings to be translated. " alt="" coords="757,28,891,54"/>
+<area shape="rect" id="node10" href="$class_pre.html#a346ee750d8b28d66efbaf2c4342718e8" title="Extract the strings translatable from worspace. " alt="" coords="759,78,889,105"/>
+<area shape="rect" id="node6" href="$class_collector.html#af7b748977fb136842774e550b6c915b8" title="Places the status graph in the extracting project report. " alt="" coords="1105,28,1293,54"/>
+<area shape="rect" id="node7" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="1607,53,1752,80"/>
+<area shape="rect" id="node9" href="$class_collector.html#a24cfe1b83b040784e834277da16e0a68" title="Places the status grap in the listing and extract report. " alt="" coords="1347,28,1556,54"/>
+<area shape="rect" id="node8" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="1800,53,1975,80"/>
+<area shape="rect" id="node11" href="$class_pre.html#a8684f86d5efbdb8e3d688590d28a3179" title="Extract strings to be translated in workspace. " alt="" coords="939,78,1053,105"/>
+<area shape="rect" id="node12" href="$class_collector.html#a0dd8300c95e93daf33d5141d38c74c0d" title="Places the status graph in the extracting workspace report. " alt="" coords="1101,78,1296,105"/>
+<area shape="rect" id="node13" href="$class_collector.html#a6f578e146a373e98a2638c6a509ee193" title="Places the status grap in the listing and extract workspace report. " alt="" coords="1344,129,1559,156"/>
+</map>

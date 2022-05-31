@@ -1,0 +1,6 @@
+<map id="NodeContainsFilename" name="NodeContainsFilename">
+<area shape="rect" id="node2" href="$class_xml_res_app.html#aeee3dcbb628d572e2d9aba92b3092571" title="XmlResApp::FindFilesInXML" alt="" coords="209,5,395,32"/>
+<area shape="rect" id="node3" href="$class_xml_res_app.html#af1062a4e0829e3fcc7327740d8af13fa" title="XmlResApp::PrepareTempFiles" alt="" coords="443,5,645,32"/>
+<area shape="rect" id="node4" href="$class_xml_res_app.html#a12fe23d9eae9b5821252ff6fc91042c3" title="XmlResApp::CompileRes" alt="" coords="693,5,860,32"/>
+<area shape="rect" id="node5" href="$class_xml_res_app.html#a8fd467e1c432752cdae362c57857f69d" title="XmlResApp::OnRun" alt="" coords="908,5,1045,32"/>
+</map>

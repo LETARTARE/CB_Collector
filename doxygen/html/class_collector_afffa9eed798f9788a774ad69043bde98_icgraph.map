@@ -1,5 +1,5 @@
 <map id="Collector::actualizeGraphState" name="Collector::actualizeGraphState">
-<area shape="rect" id="node2" href="$class_collector.html#accc308865bf090c7e65bd4f806ccc328" title="Return plugin&#39;s configuration panel. " alt="" coords="247,5,390,32"/>
+<area shape="rect" id="node2" href="$class_collector.html#accc308865bf090c7e65bd4f806ccc328" title="This method is called by Code::Blocks and is used by the plugin to add any menu items it needs on Cod..." alt="" coords="247,5,390,32"/>
 <area shape="rect" id="node3" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="920,165,1095,192"/>
 <area shape="rect" id="node4" href="$class_collector.html#a328df4e05a99ed3233d942d8fb77a6d3" title="Places the status graph in stop report and Stop current action. " alt="" coords="240,107,397,133"/>
 <area shape="rect" id="node5" href="$class_collector.html#ad9c3e1c71bd059224523e86f2e3680e4" title="Places the state graph on hold for selection. " alt="" coords="231,158,406,199"/>

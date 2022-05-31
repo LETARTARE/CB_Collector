@@ -1,0 +1,8 @@
+<map id="XmlResApp::GetInternalFileName" name="XmlResApp::GetInternalFileName">
+<area shape="rect" id="node2" href="$class_xml_res_app.html#af1062a4e0829e3fcc7327740d8af13fa" title="XmlResApp::PrepareTempFiles" alt="" coords="532,25,735,52"/>
+<area shape="rect" id="node5" href="$class_xml_res_app.html#aeee3dcbb628d572e2d9aba92b3092571" title="XmlResApp::FindFilesInXML" alt="" coords="279,25,464,52"/>
+<area shape="rect" id="node6" href="$class_xml_res_app.html#a84b15977db6272a6e740a47f123e1c6c" title="XmlResApp::MakePackageCPP" alt="" coords="268,76,475,102"/>
+<area shape="rect" id="node7" href="$class_xml_res_app.html#a87df223de76f2698aea55269ee719b48" title="XmlResApp::MakePackagePython" alt="" coords="523,126,744,153"/>
+<area shape="rect" id="node3" href="$class_xml_res_app.html#a12fe23d9eae9b5821252ff6fc91042c3" title="XmlResApp::CompileRes" alt="" coords="792,76,959,102"/>
+<area shape="rect" id="node4" href="$class_xml_res_app.html#a8fd467e1c432752cdae362c57857f69d" title="XmlResApp::OnRun" alt="" coords="1007,76,1144,102"/>
+</map>

@@ -1,4 +1,4 @@
-# Collecteurr-1.7.1,  30 mai 2022 (Win-64, Linux-64)
+# Collecteurr-1.7.2,  31 mai 2022 (Win-64, Linux-64)
 
 Extension de traduction des apllications (wxWidgets) avec 'Code::Blocks'
 
@@ -45,13 +45,13 @@ B- Conditions préalables
 		- choisissez la cible (lin_305, lin_315, win_315, win_316 ... : 305 => wx-3.0.5)
 		- Win-64
 			- 'Générer->Générer' => 
-				- 'win_316\Collector.dll' avec une taille de ... KB
+				- 'win_315\Collector.dll' avec une taille de ... KB
 				- ...
 			- 'Extensions->Gérer les extensions... : installer une nouvelle' 
-				- choisissez '...\win_316\Collector.cbpugin'
+				- choisissez '...\win_315\Collector.cbpugin'
 				- ...
 				=> vous verrez dans le journal 'Collector'
-			** "Plate-forme : 'Win-64', 'sdk-2.18.0', 'Collector-1.6.0', construit le '20/05/22::10:09:15'" 
+			** "Plate-forme : 'Win-64', 'sdk-2.18.0', 'Collector-1.7.2', construit le '20/05/31::10:09:15'" 
 
 		- Lin-64 :
 			-  Générer->Générer' => 

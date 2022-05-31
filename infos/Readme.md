@@ -52,7 +52,8 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '...\win_315\Collector.cbpugin'
 				=> in 'Collector' log
-					** Platform : 'Win-64', 'sdk-2.18.0', 'Collector-1.7.2', built the '20/05/31::10:51:52'  
+					** Platform : 'Win-64', 'sdk-2.18.0', 'Collector-1.7.2', built the '20/05/31
+::10:51:52'  
 		- Lin-64 :
 			- 'Build->Build' => 'lin_305/Collector.so' with size ... KB
 				...
