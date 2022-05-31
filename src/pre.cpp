@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-28
+ * Modified:  2022-05-31
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -296,8 +296,6 @@ _printD("    <= End 'Pre::CallMenu(...) => " + strInt(idMenu) );
     return idMenu;
 }
 
-
-
 // ----------------------------------------------------------------------------
 // Called by :
 //	1. CreateForWx::searchExe():1,
@@ -373,7 +371,6 @@ _printD("=> Begin 'Pre::ListProject(...)'" );
     //===================
 
 	m_Workspace = (m_State == fbListWS) || (m_State == fbExtractWS);
-
 	m_Keyword = _key;
 // list strings from the first project
     //==========================
@@ -381,7 +378,7 @@ _printD("=> Begin 'Pre::ListProject(...)'" );
 	//==========================
 	if (!ok)
 	{
-        Mes =  "'Pre::ListProject(...)'" + _("Erreur") + " ...";
+        Mes =  "'Pre::ListProject(...)'" + _("Error") + " ...";
         _printError(Mes);
 	}
 
@@ -414,7 +411,7 @@ _printD("=> Begin Pre::ExtractProject()" );
 		//==========================================
 		if(!ok)
 		{
-            Mes = "'Pre::ExtractProject()' => " + _("Erreur") + "...";
+            Mes = "'Pre::ExtractProject()' => " + _("Error") + " ...";
             _printError(Mes);
 		}
 	}
@@ -454,14 +451,6 @@ _printD("=> Begin 'Pre::ListWS()'");
     //==============
     if (!m_Init)	return false;
 
-    // close the files
-        //  - 'leader_project_name_workspace.list',
-        //  - 'leader_project_name_workspace.extr',
-        //  - 'leader_project_name_workspace.po'
-    //===================
-   // closeAllExtraFiles();
-    //===================
-
 // launch listingWS()
     //==========================
     bool ok  = Pre::listingWS();
@@ -496,7 +485,7 @@ _printD("=> Begin 'Pre::ExtractWS()'" );
 		//=======================
 		if (!ok)
 		{
-            Mes = "Pre::extractionWS() => " + _("Erreur ...") ;
+            Mes = "Pre::extractionWS() => " + _("Error")  + " ...";
             _printError(Mes);
 		}
 	}
@@ -871,7 +860,7 @@ _printD("=> Begin 'Pre::extraction(" + strBool(_prjfirst) + ", ...)'" );
 		//=======================
 		if (!good)
 		{
-            Mes = "'Pre::extraction()' => " + _("Erreur") + "...";
+            Mes = "'Pre::extraction()' => " + _("Error") + " ...";
             _printError(Mes);
 		}
 	}
@@ -985,39 +974,16 @@ _printD("=> Begin 'Pre::endextract()'" );
 	// new strings to merge inside '*.po' ?
 	if (m_nbFileEligible)
 	{
-	// execute 'Translator'
-        if (m_Win)
-        {
-        // execute synchronous mode : wait until it finishes
-            Mes =  "   ==> " + _("Execute") + quote(EXTERN_TRANSLATOR);
-            wxString nameItem = _("&Tools") + "/" + EXTERN_TRANSLATOR;
-            Mes += _("by menu entrie") + Space +  quoteNS( nameItem);
-            _printWarn( Mes );
-        // launches the menu
-            //=====================================
-            wxInt16  id  = Pre::CallMenu(nameItem);
-            //=====================================
-            Mes +=  ", " + _("identifier")  + " = " + strInt(id);
-            m_Fileswithstrings.Add(Mes);
-        }
-        else
-        if (m_Linux)
-        {
-        // execute synchronous mode : wait until it finishes
-            Mes = "   ==> " + _("Execute") + quote(EXTERN_TRANSLATOR);
-            _printWarn(Mes);
-        // synchronous
-            //============================================
-            wxInt32 ret  = LaunchExternalTool(m_Pathpexe);
-            //============================================
-            bool good = ret == 0;
-            m_Fileswithstrings.Add(Mes);
-        }
-        else
-        if(m_Mac)
-        {
-            // TODO ...
-        }
+	// execute 'Translator' asynchronous mode
+		Mes = "   ==> " + _("Execute") + quote(EXTERN_TRANSLATOR);
+		_printWarn(Mes);
+	// synchronous
+		//============================================
+		wxInt32 ret  = LaunchExternalTool(m_Pathpexe);
+		//============================================
+		good = ret == 0;
+		m_Fileswithstrings.Add(Mes);
+
     // copy of the '*.mo' in the right place
         wxString moName = m_Namepo.BeforeLast(cDot) + DOT_EXT_MO;
         //================================
@@ -1087,7 +1053,7 @@ bool Pre::copyFileToDir(const wxString& _namefile)
             {
                 Mes = "** " + _("The copy is not possible on the original") + " !!" ;
                 _printWarn(Mes);
-                Mes = Tab + _("File") + quote(shortname + DOT_EXT_MO) ;
+                Mes = Tab + _("File") + quote(shortname) ;
                 Mes += _("already exist in the directory") + " !!";
                 _print(Mes);
             }
@@ -1521,7 +1487,16 @@ _printD("=> Begin 'Pre::endaction(" + quoteNS(strChar(_mode) ) + ")'" );
 		_printWarn(Mes);
 		m_Fileswithstrings.Add(Mes);
     }
-    // just for statistics on '*.xml' files
+// *.po and taille
+    if (_mode == 'E')
+    {
+        wxString namepo = m_Namepo.AfterLast(slash).Prepend(m_Dirlocale);
+        Mes = Tab + " =>" + quote(namepo) + " (" + strInt(m_sizeFilePo) ;
+        Mes += Space + _("bytes") + ")";
+        _printWarn(Mes);
+        m_Fileswithstrings.Add(Mes);
+    }
+// just for statistics on '*.xml' files
     if (m_nbXmlWithlessString)
     {
         Mes = Tab + "*** " + _("There are") + Space + strInt(m_nbXmlWithlessString);
@@ -2346,10 +2321,14 @@ _printD("	<= End 'Pre::xgettextOut(...)");
 }
 
 //-----------------------------------------------------------------------------
-// Execute tool program (always synchronous).
+// Execute tool program (always asynchronous).
 //
 // Called by :
 //      1. Pre::endextract():1,
+//
+// Call to :
+//      1. wxString Pre::executeAsyncAndGetOutput(const wxString& _command,
+//                                                const bool& _prepend_error):1,
 //
 wxInt32 Pre::LaunchExternalTool(const wxString& _toolexe)
 {
@@ -2364,12 +2343,13 @@ wxInt32 Pre::LaunchExternalTool(const wxString& _toolexe)
 //_print("Command = " + quote(command) );
 // launch '
     //======================================================================
-    wxString result = Pre::executeAndGetOutputAndError(command, NO_PREPEND);
+    // asynchronous and no hided
+    wxString result = Pre::executeAsyncAndGetOutput(command, PREPEND);
     //======================================================================
     if (!result.IsEmpty())
     {
         // Warning : Gdk-WARNING, Gtk-CRITICAL => assertion ...
-       // _printWarn(markNS(result));
+        //_printWarn(markNS(result));
     }
 
     return ret;
@@ -2379,12 +2359,11 @@ wxInt32 Pre::LaunchExternalTool(const wxString& _toolexe)
 // Execute another program (always synchronous).
 //
 // Called by :
-//	1. CreateForWx::pathWx(CompileTargetBase * _pcontainer)
+//	1. CreateForWx::pathWx(CompileTargetBase * _pcontainer):1,
 //	2. Pre::mergeFiles(wxString _new, wxString _old):1,
 //	3. Pre::GexewithError(wxString _shortfile, wxString _command, bool _prepend):1,
 //	4. CreateForWx::RexewithError(const wxString& _shortfile, const wxString& _command,
-//								  const bool& _prepend)
-//  5. Pre::LaunchExternalTool(const wxString& _toolexe):1,
+//								  const bool& _prepend):1,
 //
 wxString Pre::executeAndGetOutputAndError(const wxString& _command, const bool& _prepend_error)
 {
@@ -2413,19 +2392,21 @@ _printD("	<= End 'Pre::executeAndGetOutputAndError(...)' =>" + Eol + quote(str_o
 }
 
 ///-----------------------------------------------------------------------------
-// Execute another program (always asynchronous).
+// Execute another program (always asynchronous and no hided).
 //
-//  1.
-
-wxString Pre::executeAndGetOutput(const wxString& _command, const bool& _prepend_error)
+//  call by :
+//
+//      1. wxInt32 Pre::LaunchExternalTool(const wxString& _toolexe):1,
+//
+wxString Pre::executeAsyncAndGetOutput(const wxString& _command, const bool& _prepend_error)
 {
 _printD("=> Begin 'Pre::executeAndGetOutputAndError(...)'");
 
 	wxArrayString output;
 	wxArrayString error;
-	//===============================================
-	wxExecute(_command, output, error, wxEXEC_ASYNC);
-	//===============================================
+	//===============================================================
+	wxExecute(_command, output, error, wxEXEC_ASYNC | wxEXEC_NOHIDE);
+	//===============================================================
 
 	wxString str_out;
 
@@ -2585,7 +2566,7 @@ _printD("	<= End 'Pre::findProject(" + _name + ", " + strInt(_index) + ")'" );
 	return pPrj;
 }
 // ----------------------------------------------------------------------------
-// Retrieve a project index  by name : uses 'm_pProjects' table and 'm_nbProjects'
+// Retrieve a project index by name : uses 'm_pProjects' table and 'm_nbProjects'
 //
 // Called by :
 //		1. Pre::Initbasic(const wxString /*_type*/):1,
@@ -2720,10 +2701,11 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		return false;
 	}
 
-	wxUint32 lensource = source.Len();
+	m_sizeFilePo = source.Len();
+
 	Mes = Lf + "   --> " +  _("Verify file integrity");
 	Mes += quote(m_Shortnamepot);
-	Mes += " (" + strInt(lensource) + Space + _("bytes") + ")";
+	Mes += " (" + strInt(m_sizeFilePo) + Space + _("bytes") + ")";
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
 
@@ -2817,7 +2799,7 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 	{
 	//3-1 find "\r" and delete into valid line
 		wxString wait = wxEmptyString;
-		if (lensource >= 70000)
+		if (m_sizeFilePo >= BIGFILE)
 			wait += Tab + _("PLEASE WAIT") + " ...";
 		else
 			wait += " ...";
@@ -3000,11 +2982,12 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 			m_Fileswithstrings.Add(Mes);
 			m_nbNewstrings = nbdots;
 		}
+	}
 
 //8-  end
-		Mes = "   <-- " +  _("end verify file integrity") + Lf;
-		_printWarn(Mes);
-	}
+    Mes = "   <-- " +  _("end verify file integrity") + Lf;
+    _printWarn(Mes);
+
 	Mes = wxEmptyString;
 
 _printD("	<= End 'Pre::integrity()'");
@@ -3047,8 +3030,6 @@ bool Pre::changeContents(wxString& _source, const wxString& _old, wxString& _new
 		}
 	}
 
-//source = _source.Mid(0, 582);
-//_printError("source:" + Eol + source);
 _printD("	<= End 'Pre::changeContents(...)' => " + strBool(ok) );
 
 	return ok;
@@ -3091,7 +3072,6 @@ _printD("=> Begin 'Pre::mergeFiles(" +  _oldpo + ", " + _newpot + ")");
 //_printWarn(quote(result));
 	if (!result.IsEmpty())
 	{
-	// not error
 	// error : ATTENTION 'msmerge' messages uses the local language !!
 		if (result.Find(_("done")) ==  wxNOT_FOUND )		return 0;
 		// delete all progress  indicator :  cDot == '.'
@@ -3141,6 +3121,7 @@ bool Pre::isCommandTarget(const ProjectBuildTarget * _pTarget)
 
 	return _pTarget->GetTargetType() == ::ttCommandsOnly;
 }
+
 ///-----------------------------------------------------------------------------
 // Gives if a target is a command target
 //
@@ -3158,11 +3139,11 @@ bool Pre::isCommandTarget(const wxString& _nametarget)
 
 	return isCommandTarget(m_pProject->GetBuildTarget(_nametarget) );
 }
+/*
 ///-----------------------------------------------------------------------------
 // Gives if a target is a virtual target
 //
 //	Called by :
-//
 //
 bool Pre::isVirtualTarget(const ProjectBuildTarget * _pTarget)
 {
@@ -3173,6 +3154,7 @@ bool Pre::isVirtualTarget(const ProjectBuildTarget * _pTarget)
 
     return pProject->HasVirtualBuildTarget(_pTarget->GetTitle())  ;
 }
+*/
 ///-----------------------------------------------------------------------------
 // Gives if a target is a virtual target
 //
@@ -3185,6 +3167,7 @@ bool Pre::isVirtualTarget(const wxString& _nametarget)
 
     return m_pProject->HasVirtualBuildTarget(_nametarget)  ;
 }
+
 ///-----------------------------------------------------------------------------
 // Gives if a target is a command or virtual target
 //
@@ -3678,6 +3661,9 @@ wxUint64 Pre::endTime()
 ///-----------------------------------------------------------------------------
 //  Elapsed time 'S'
 //
+// Call by :
+//      1. wxString Pre::elapsedTimeStr(const wxUint64 _begin):1,
+//
 wxUint64 Pre::elapsedTime(const wxUint64 _begin)
 {
 	if (_begin)
@@ -3693,6 +3679,13 @@ wxUint64 Pre::elapsedTime(const wxUint64 _begin)
 }
 ///-----------------------------------------------------------------------------
 //  Elapsed time 'S' in string
+//
+//  Called by :
+//      1. bool Pre::listing(const wxUint32& _posWS):1,
+//      2. bool Pre::endaction(const wxChar& _mode):1,
+//
+//  Call to :
+//      1. wxUint64 Pre::elapsedTime(const wxUint64 _begin):1,
 //
 wxString Pre::elapsedTimeStr(const wxUint64 _begin)
 {
@@ -3731,5 +3724,4 @@ _printD("	<= End 'Pre::allStrTable(...)");
 
 	return mes;
 }
-
 // ----------------------------------------------------------------------------

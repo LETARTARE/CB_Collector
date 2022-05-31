@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-30
+ * Modified:  2022-05-31
  * Copyright: LETARTARE
  * License:   GPL
  *************************************************************
@@ -323,7 +323,7 @@ class Pre : public ColState
 		 */
 		wxString executeAndGetOutputAndError(const wxString& _command,
 											const bool& _prepend_error = true) ;
-        wxString executeAndGetOutput(const wxString& _command,
+        wxString executeAsyncAndGetOutput(const wxString& _command,
                                     const bool& _prepend_error = true) ;
 
         /** \brief Launch  an external executable tool
@@ -394,7 +394,7 @@ class Pre : public ColState
 		/** \brief platforms Mac
 		 */
 			 ,m_Mac = false
-			 ;
+        ;
 
 		/** \brief array of all projects
 	     */
@@ -410,7 +410,7 @@ class Pre : public ColState
 		/**  \brief
 		 */
 		wxUint32
-			/**  \brief
+			/**  \brief various index
 			 */
             m_indexPrjLeader = 0, m_indexFirst = 0, m_indexLast = 0
 			/**  \brief
@@ -431,6 +431,9 @@ class Pre : public ColState
 			/**  \brief
 			 */
 			,m_nbFilesprj = 0, m_nbFilesWS = 0, m_Bignumber = 100
+			/** \brief
+			 */
+			,m_sizeFilePo = 0
 		;
 		wxInt32
             /**  \brief

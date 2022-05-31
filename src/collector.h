@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-30
+ * Modified:  2022-05-31
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -129,25 +129,6 @@ class Collector : public cbPlugin, public ColState
     virtual int GetConfigurationGroup() const
 		{ return cgContribPlugin; }
 
-    /** \brief Return plugin's configuration panel.
-      * @param _parent The parent window.
-      * @return A pointer to the plugin's cbConfigurationPanel. It is deleted by the caller.
-      * \note NOT USED
-      */
-  //  virtual cbConfigurationPanel* GetConfigurationPanel(wxWindow* _parent)
-		//{ return 0 ;}
-
-    /** \brief Return plugin's configuration panel for projects.
-      * The panel returned from this function will be added in the project's
-      * configuration dialog.
-      * @param _parent The parent window.
-      * @param _project The project that is being edited.
-      * @return A pointer to the plugin's cbConfigurationPanel. It is deleted by the caller.
-      * \note NOT USED
-      */
-   // virtual cbConfigurationPanel* GetProjectConfigurationPanel(wxWindow* _parent, cbProject* _project)
-	//	{ return 0 ;}
-
     /** \brief This method is called by Code::Blocks and is used by the plugin
       * to add any menu items it needs on Code::Blocks's menu bar.\n
       * It is a pure virtual method that needs to be implemented by all
@@ -156,26 +137,6 @@ class Collector : public cbPlugin, public ColState
       * @param _pMenuBar the wxMenuBar to create items in
       */
     virtual void BuildMenu(wxMenuBar* _pMenuBar);
-
-    /** \brief This method is called by Code::Blocks core modules (EditorManager,
-      * ProjectManager etc) and is used by the plugin to add any menu
-      * items it needs in the module's popup menu. For example, when
-      * the user right-clicks on a project file in the project tree,
-      * ProjectManager prepares a popup menu to display with context
-      * sensitive options for that file. Before it displays this popup
-      * menu, it asks all attached plugins (by asking PluginManager to call
-      * this method), if they need to add any entries
-      * in that menu. This method is called.\n
-      * If the plugin does not need to add items in the menu,
-      * just do nothing ;)
-      * @param _type the module that's preparing a popup menu
-      * @param _menu pointer to the popup menu
-      * @param _data pointer to FileTreeData object (to access/modify the file tree)
-
-      * \note NOT USED
-      */
-  //  virtual void BuildModuleMenu(const ModuleType _type, wxMenu* _menu, const FileTreeData* _data = 0)
-	//	{ return ;}
 
     /** \brief This method is called by 'Code::Blocks' and is used by the plugin
       * to add any toolbar items it needs on Code::Blocks's toolbar.\n
@@ -186,16 +147,6 @@ class Collector : public cbPlugin, public ColState
       * @return The plugin should return true if it needed the toolbar, false if not
       */
     virtual bool BuildToolBar(wxToolBar* _pToolBar) ;
-
-     /** \brief Execute the plugin.
-      *
-      * This is the only function needed by a 'cbToolPlugin'
-      * This will be called when the user selects the plugin from the "Plugins"
-      * menu.
-      * \note NOT USED
-      */
-  //  virtual int Execute()
-//		{ return 0 ;}
 
   protected:
     /** \brief Any descendent plugin should override this virtual method and
@@ -312,6 +263,10 @@ class Collector : public cbPlugin, public ColState
 
   private:
 
+    /** \brief Global used to record different messages for the construction report
+     */
+    wxString Mes = wxEmptyString;
+
     /** \brief Actual active project
      */
     cbProject* m_pProject = nullptr;
@@ -327,21 +282,11 @@ class Collector : public cbPlugin, public ColState
      */
     bool m_pseudoEvent = false;
 
-    /** \brief Global used to record different messages for the construction report
-     */
-    wxString Mes = wxEmptyString;
 	/** \brief The name active target
      */
     wxString m_Nameactivetarget = wxEmptyString ;
-    /** \brief counts the calls from 'OnFilePoModified()'
-     */
-	wxUint32 m_calls = 0;
 
-    /** \brief Global indicators
-     */
-    bool Debug = true, Withlog =  true ;
-
-    /** \brief Detects project type : 'Wx' or 'Qt'
+   /** \brief Detects project type : 'Wx' or 'Qt'
      *  @param _pProject : the active project.
      *  @param _report : display report if true.
      *  @return type : '_WX' or '_QT' or ""

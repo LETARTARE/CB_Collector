@@ -310,8 +310,9 @@ _printD("=> Begin 'CreateForQt::isElegible(" + _file + ")'");
 		}
 	} // end ok
 
-_printD("	<= End 'CreateForQt::isElegible(...)'");
 */
+
+_printD("	<= End 'CreateForQt::isElegible(...)'");
 	//return ok	;
 	return nbStr;
 }

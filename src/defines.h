@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-30
+ * Modified:  2022-05-31
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -15,7 +15,7 @@
 ///-----------------------------------------------------------------------------
 /** Version
  */
-#define VERSION_COLLECT wxString("1.7.1")
+#define VERSION_COLLECT wxString("1.7.2")
 
 //=========================================================
 /** \brief  For 'Collector::MesToLog'
@@ -57,6 +57,8 @@
 #define		cDot		'.'
 
 //#define 	EXTRADISPLAY	50
+
+#define     BIGFILE     70000
 
 /** \brief text separator
  */

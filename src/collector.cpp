@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-30
+ * Modified:  2022-05-31
  * Copyright: LETARTARE
  * License:   GPL
  *************************************************************
@@ -256,25 +256,10 @@ void Collector::OnAttach()
 	//  release plugin
 	    OnRelease(false);
 	}
-/*
-/// ******************************** TEST **************************************
-//12- test
-	if (m_pMplug)
-	{
-	// retrieve an object of this plugin
-		cbPlugin* plug = m_pMplug->FindPluginByName(NamePlugin);
-		if (plug)
-		{
-			//wxUint32 type = plug->GetType();
-			//_printError("Plugin type = " + strInt(type));
-			//
-		//	MesToLog("It's a test", Logger::error)  ;
-		}
-	}
-/// ****************************************************************************
-*/
+
 	Mes.Clear();
 }
+
 //-----------------------------------------------------------------------------
 // Construct menu on 'menuBar'
 //
@@ -502,7 +487,7 @@ _printD("=> Begin 'Collector::OnMenuToState(...)'");
     if (id == idMbarExtractWS  || id == idTbarExtractWS)
         State = fbExtractWS;
     else
-    if (id == idMbarListExtractWS  || id == idTbarListExtractWS)
+    if (id == idMbarListExtractWS || id == idTbarListExtractWS)
     // is a macro state : 'fbListWS' followed by 'fbExtractWS'
         State = fbListExtractWS;
     else
@@ -839,7 +824,6 @@ _printD("=> Begin 'Collector::OnMenuWaitingForStart(...)'");
             Mes = "** " + _("Extra file(s) are closed") + ".";
             _print( Mes);
         }
-
     }
 
 	Mes = _("The new state machine is") + " : " + strState(m_State) ;
@@ -1083,8 +1067,7 @@ _printD("=> Begin 'Collector::OnMenuExractPrj(...)' with 'checked':" + strBool(_
 ///-----------------------------------------------------------------------------
 	// enable menu item : first state
 		actualizeGraphState(fbWaitingForStart);
-	//	counter for file modified
-		m_calls = 0;
+
 		SwitchToLog() ;
 	}
 
@@ -1402,7 +1385,7 @@ _printD("=> Begin 'Collector::OnMenuListExtractWS('checked':" + strBool(_pEvent.
         OnMenuListWS(_pEvent);
         //====================
 	//2- Extract
-        // the base project 'Qt'
+        // the base project 'Wx'
 		if (m_isWxProject)
 		{
             if (m_pCreateWx->isAllRight())

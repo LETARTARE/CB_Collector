@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-28
+ * Modified:  2022-05-31
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -42,7 +42,7 @@ CreateForWx::~CreateForWx()
 	//m_pProject = nullptr;  m_pMam = nullptr; m_pMprj = nullptr;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Detection of a 'Wx' Project : it contains at least one target 'Wx'
 //
 // Called by :
@@ -114,7 +114,7 @@ _printD("	<= End 'CreateForWx::detectLibProject()' => " + strBool(m_isWxProject)
 	return m_isWxProject;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Allows to be called only with 'ProjectBuildTarget *' parameter
 // which inherits from 'CompilerTargetBase' which inherits from 'CompileOptionsBase'
 // The methods used are all methods of 'CompileOptionsBase'.
@@ -217,8 +217,8 @@ _printD("=> Begin 'CreateForWx::pathWx(...)'" );
         wxUint32 nopts = tab.GetCount();
         if (nopts)
         {
-        // for debug
-           // _print(allStrTable(nameTarget + " => " + _("Linker options"), tab));
+// for debug
+  // _print(allStrTable(nameTarget + " => " + _("Linker options"), tab));
         // search t1
             wxUint32 u=0;
             while (u < nopts && !ok )
@@ -293,7 +293,7 @@ _printD("	<= End 'CreateForWx::pathWx()' => " + strBool(ok) );
 // Called by :
 //     1. CreateForWx::initTailored(const wxString _type):1,
 //
-///-----------------------------------------------------------------------------
+//
 void CreateForWx::initWx()
 {
 _printD("Begin 'CreateForWx::initWx()'" );
@@ -323,12 +323,12 @@ _printD("	<= End 'CreateForWx::initWx()'" );
 }
 
 ///-----------------------------------------------------------------------------
+//   Feed table for resource files and xml files
 //
 // Called by :
 //     1. CreateForWx::initTailored(const wxString _type):1,
 //
-///-----------------------------------------------------------------------------
-
+//
 void  CreateForWx::initTabResXml()
 {
 //
@@ -345,7 +345,7 @@ void  CreateForWx::initTabResXml()
 //		1. Pre::Init():1,
 // Call	to :
 //		1. CreateForWx::searchExe():1,
-///-----------------------------------------------------------------------------
+//
 bool CreateForWx::initTailored(const wxString /*_type*/)
 {
 _printD("=> Begin 'CreateForWx::initTailored()'");
@@ -409,7 +409,8 @@ _printD("	<= End 'CreateForWx::initTailored()' => " + strBool(ok) );
 	return ok;
 }
 
-// ----------------------------------------------------------------------------
+///-----------------------------------------------------------------------------
+// Searc all executable path
 //
 // Called by :
 //		1. CreateForWx::initTailored():1,
@@ -466,7 +467,6 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 			m_PathLocalIts = UnixFilename(".\\its\\", wxPATH_NATIVE);
         /// Linux
         //  'its' rules "/usr/share/gettext/its/codeblocks.its"
-
 		}
 		else
 		{
@@ -687,7 +687,7 @@ _printD("	<= End 'CreateForWx::searchExe()'");
 	return ok;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 //	nbstr : number strings, if  < 0 =>  error
 //
 // Called by
@@ -697,7 +697,7 @@ _printD("	<= End 'CreateForWx::searchExe()'");
 // Call to :
 //    1. Pre::readFileContents(const wxString& _filename):1,
 //
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 wxInt32 CreateForWx::isReadableFile(const wxString& _file, const bool _absolute)
 {
 _printD("=> Begin 'CreateForWx::isReadableFile(" + _file + ", " + strBool(_absolute) + ")'");
@@ -803,13 +803,13 @@ _printD("	<= End 'CreateForWx::isReadableFile(...)' => " + strInt(nbStr) );
 
 	return nbStr;
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 //
 // Called by :
 //		1. Pre::listGoodfiles(bool _verify):1,
 // Call to :
 //		1. Pre::GexewithError(wxString, wxString, bool):1,
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 wxInt32 CreateForWx::listStringsCode(const wxString& _shortfile)
 {
 _printD("=> Begin 'CreateForWx::listStringsCode(" + _shortfile + ")'");
@@ -846,7 +846,7 @@ _printD("	<= End 'CreateForWx::listStringsCode(...) => " + strInt(nbstr) + ")'")
 	return nbstr;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 //
 // Called by :
 //		1. Pre::listGoodfiles(bool _verify):1,
@@ -854,7 +854,7 @@ _printD("	<= End 'CreateForWx::listStringsCode(...) => " + strInt(nbstr) + ")'")
 // Call to :
 //		1. CreateForWx::expandName(wxString _file, wxInt32 _indexfree):1,
 //		1. CreateForWx::RexewithError(wxString, wxString, bool):1,
-// ----------------------------------------------------------------------------
+//
 wxInt32 CreateForWx::listStringsRes(wxString& _file)
 {
 _printD("=> Begin 'CreateForWx::listStringsRes(" + quoteNS(_file) + ")'");
@@ -936,7 +936,7 @@ _printD("	<= End 'CreateForWx::listStringsRes(...) => " + strInt(nbstr) + ")'");
 	return nbstr;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Display formatting for resources
 // Called by :
 //		1. CreateForWx::listStringsRes(wxString _file):2,
@@ -1058,7 +1058,7 @@ _printD("	<= End 'CreateForWx::RexeWithError(...)'");
 	return nbstr;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 //
 // Called by :
 //		1. Pre::listGoodfiles(bool _verify):1,
@@ -1115,13 +1115,13 @@ _printD("	<= End 'CreateForWx::listStringsXml(...) => " + strInt(nbstr) + ")'");
 
 	return nbstr;
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 //
 // Called by :
 //		1. CreateForWx::listStringsXml(const wxString& _shortfile):1,
 // Call to :
 //		1. Pre::GexewithError(wxString, wxString, bool):1,
-// ----------------------------------------------------------------------------
+//
 wxInt32 CreateForWx::listStringsXmlIts(const wxString& _shortfile, wxString _pathrulesIts)
 {
 _printD("=> Begin 'CreateForWx::listStringsXmlIts(" + _shortfile + ", " + _pathrulesIts + ")'");
@@ -1178,7 +1178,7 @@ _printD("	<= End 'CreateForWx::listStringsXmlIts(...) => " + strInt(nbstr) + ")'
 }
 
 // -----------------------------------------------------------------------------
-//
+// Creating a file '*.pot'
 //
 // Called by :
 //		1. Pre::extraction(bool _prjfirst, cbProject * _prj):1,
@@ -1239,6 +1239,8 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
     // read all files in  'm_FileswithI18n'
 	for (wxUint32 i=0; i < nbCells ; i++ )
 	{
+    // control to pending messages in the event loop
+        m_pM->Yield();
 	// analysis stopped manually
 		if (m_Stop)
 		{
@@ -1390,8 +1392,8 @@ _printD("	<= End 'CreateForWx::createPot(...)' => " + strBool(ok && good) );
 	return ok && good ;
 }
 
-// ----------------------------------------------------------------------------
-// Modify ressource or xml file name
+// -----------------------------------------------------------------------------
+// Modify ressource or xml file name-
 //		=> 'xxxx_wxs.str???' or 'xxxx_wrc.str???' or ...
 //		??? is an insertion index in 'm_FileStrCreated'
 //
@@ -1399,7 +1401,7 @@ _printD("	<= End 'CreateForWx::createPot(...)' => " + strBool(ok && good) );
 //		1. wxInt32 CreateForWx::listStringsRes(wxString& _file):1,
 //
 // Call to : none
-// ----------------------------------------------------------------------------
+//
 wxString CreateForWx::expandName(wxString _file, wxInt32 _indexfree)
 {
 _printD("=> Begin 'CreateForWx::expandName(" + quote(_file) + ", " + strInt(_indexfree) + ")");
@@ -1436,7 +1438,7 @@ _printD("	<= End 'CreateForWx::expandName(" + _file + ")'");
 
 	return  _file;
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Copy a temporary file to orginal
 //	'xxxx_wxs.str???' => 'xxxx.wxs'
 //	'xxxx_wrc.str???' => 'xxxx.xrc'
@@ -1445,7 +1447,7 @@ _printD("	<= End 'CreateForWx::expandName(" + _file + ")'");
 //		1.  CreateForWx::listStringsRes(wxString& _file):1,
 //
 // Call to : none
-// -----------------------------------------------------------------------------
+//
 bool CreateForWx::copyRes(wxString _file)
 {
 	bool ok = true;
@@ -1473,8 +1475,9 @@ bool CreateForWx::copyRes(wxString _file)
 	return ok;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Display formatting for resources  ( 'wxrc' executable )
+//
 // Called by :
 //		1. CreateForWx::RexewithError(const wxString& _shortfile,
 //									  const wxString& _command,
@@ -1598,7 +1601,7 @@ _printD("	<= End 'CreateForWx::wxrcOut(...)'");
 	return result;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Delete all temporary file
 //
 // Called by :
@@ -1664,5 +1667,4 @@ _printD("	<= End 'CreateForWx::Cleantemp()' => " + strInt(nfc)  );
 
 	return nfc;
 }
-
 ///-----------------------------------------------------------------------------
