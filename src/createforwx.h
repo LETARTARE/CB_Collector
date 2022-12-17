@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-31
+ * Modified:  2022-12-10
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -13,7 +13,7 @@
 #include "pre.h"
 //------------------------------------------------------------------------------
 /**	\class CreateForWx
- *	@brief The class is used to build 'Wx I18n' files
+ *	@brief The class is used to build 'Wx I18n' files ...
  *
  */
 class CreateForWx  : public Pre
@@ -61,7 +61,7 @@ class CreateForWx  : public Pre
 		void initWx();
 		/** \brief Initialize specific variables 'm_TabmarkersRes', 'm_TabmarkersXml'
 		 */
-		void initTabResXml();
+		void initArrayBanned();
 
 	   /** \brief Search all 'exe' paths
 	    *  \return true if all finded
@@ -89,18 +89,12 @@ class CreateForWx  : public Pre
 		 *  \return number finded strings  or -1 if error
 		 */
 		wxInt32  listStringsCode(const wxString& _shortfile) override;
-		/** \brief List the strings into _shortfile with 'xgettext'
+		/** \brief List the strings into _shortfile with 'xgettext' and 'its'
 		 *  \note  Overloading a pure virtual method
 		 *  \param _shortfile : the file with strings or not
 		 *  \return number finded strings  or -1 if error
 		 */
 		wxInt32  listStringsXml(const wxString& _shortfile) override;
-		/** \brief List the strings into _shortfile with 'xgettext'
-		 *  \param _shortfile : the file with strings or not
-		 *  \param _pathrulesIts : the file '*.its' with translate rules
-		 *  \return number finded strings  or -1 if error
-		 */
-		wxInt32  listStringsXmlIts(const wxString& _shortfile, wxString _pathrulesIts );
 		/** \brief Extract the label of *.xrc and create a temporary file  with string(s)
 		 *  \note  Overloading a pure virtual method
 		 *  \param _file : 'namefile '*.xrc'
@@ -121,10 +115,11 @@ class CreateForWx  : public Pre
 
 		/** \brief  Display formatting for resouces wxrc and wks
 		 *  \note  Overloading a pure virtual method
-		 *  \param _txt : raw text
-		 *  \return a string formatted in successive lines
+		 *  \param _txt : raw text  => _txt filtered or not
+		 * \param _shortfile :  it's a name file just to didplay
+		 *  \return false if _txt is filtered
 		 */
-		wxString wxrcOut(const wxString _txt);
+		bool wxrcOut(wxString& _txt, wxString _shortfile = "");
 		/** \brief Execute 'wxrc'
 		 *  \param _shortfile :  it's a file for extract strings
 		 *  \param _command : command line fot 'xgettext'
@@ -139,39 +134,14 @@ class CreateForWx  : public Pre
 		 *  \param  _prjfirst : true if it's the first file
 		 *  \return true if good
 		 */
-		bool createPot(bool _prjfirst) override;
+		bool creatingPot(bool _prjfirst) override ;
 
-	public:
-		/**  \brief executables are here ?
+    public:
+		/** \brief Create the heder for file '*.pot'
+		 *  \return number lins created
 		 */
-		bool m_Pexeishere = false
-			,m_Gexeishere  = false
-			,m_Mexeishere  = false
-		    ,m_Rexeishere  = false
-		    ;
-	private:
-		wxString
-			/** \brief Contains file name
-			*/
-			m_filename = wxEmptyString
-			;
+		wxUint16 iniHeaderPo();
 
-		/** \brief Provides the type of libraries in ["", "_WX", "_QT"]
-		 */
-		const wxString m_lib = "_WX";
-
-		/** \brief  markers finded into '*.wxs' or '*.xrc'
-		 */
-		wxString m_marksRes = 	"<label <item <help <caption <note <message "
-								"<title <hint <tooltip "
-		/** \brief  markers finded into '*.xml'
-		 */
-				,m_marksXml = 	"title description thanksto name summary developer_name "
-								"checkMessage caption category type error <comment <p <li "
-				;
-		/** \brief  Initialized by 'InitTabRes()'
-		 */
-		wxArrayString m_TabMarkersRes, m_TabMarkersXml ;
 };
 
 #endif // _CREATEFORWX_H

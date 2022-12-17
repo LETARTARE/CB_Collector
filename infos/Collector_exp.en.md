@@ -37,7 +37,7 @@ A- PURPOSE :
 		'*.h', '*.cpp', '*.script', , '*.xml', '*.xrc', '*.wxs'
 		the last two types generate temporary files
 			'*_xrc.str???, *_wxs.str???' (??? = number) using of 'wxrc' 
-			executable (wxWidgets-3.1.x), which are then deleted.
+			executable (wxWidgets-3.2.x), which are then deleted.
 		* files '*.xml' using of 'its' rules from '*.its' files
 		  in this case 'codeblocks.its' et 'codeblocks.its' see : 
 		  - 'https://www.w3.org/TR/its/'
@@ -68,17 +68,27 @@ A- PURPOSE :
 	
 			** on a single project: 'project_name.cbp
 		1- 'Collect->List from project',
-			generates the file 'project_name.lst' opened in the editor, to check the proposed strings.
-		2- 'Collect->Extract from project',
-			generates the files 'project_name.extr' and 'project_name.po', also opened in the editor.
+			generates the tracking file 'project_name.lst' opened in the editor, to check the proposed strings.
+		2- 'Collect->Extract from project', 
+			generates the tracking file 'project_name.extr' opened in the editor,
+			then the translation files
+				- 'project_name.dup' (with duplicated strings) and then 
+				- 'project_name.uni' (without duplicated strings) 
+				also opened in the editor and finally
+				- 'project_name.pot' for the external translator.
 		3- 'Collect->List and Extract from project'
 			realizes the sequence of points 1 and 2.
 			
 			** for a workspace with leader project : 'project_name.workspace'
 		4- 'Collect->List from workspace'
-            		allows 'LIST' to extract strings for check to 'leader_project_name_workspace.list'.
+            generates the tracking file 'pilot_workspace_project_name.list' opened in the editor,
 		5- 'Collect->Extract from workspace',
-            		generates 'leader_project_name_workspace.extr' then 'leader_project_name_workspace.po'.
+            generates the tracking file 'project_name_pilot_workspace.extr' opened in the editor,
+			then the translation files
+				- 'pilot_workspace_project_name.dup' (with duplicate strings) and then 
+				- 'pilot_workspace_project_name.uni' (without duplicated strings) 
+				also opened in the editor and finally
+				- 'pilot_workspace_project_name.pot' for the external translator.
 		6- 'Collect->List and Extract workspace'
 			realizes the sequence of points 4 and 5.
 			
@@ -86,7 +96,7 @@ A- PURPOSE :
 		7- 'Collect->Init to first state',
 			initialize the state graph of 'Collect'
 		8- 'Collect->Clean temporary',
-			delete temporary files,
+			delete temporary files on disk,
 		9- 'Collect->Stop current action',
 			stop the current action, list or extract.
 
@@ -104,19 +114,19 @@ B- QUICK START onto single project :
 	- Activate 'Collect->Extract from project' (retains the prefix of 'List'), which :
 		- extracts the strings from the elected files in a 'Collect' log
 		- duplicates the log page results in the editor under the name 'project_name.extr'.
-		- creates (or merges with) the file 'project_name.po
-		- creates a copy of 'project_name.pot'.
+		- creates (or merges with) the file 'project_name.dup' then 'nom_de_projet.uni'
+		- creates a copy of 'nom_de_projet.uni' to 'project_name.pot'.
 
 
 C- TEST ENVIRONMENT, to the date of the file :
 
 	- OS 	:
-		- Win-7 64 bits with Mingw64 and gcc-8.1.0-seh (wx-3.1.5)
-		- Leap-15.3 (64 bits) with gcc-7.1.0 (wx-3.0.5)
+		- Win-7 (64 bits) with Mingw64 and gcc-8.1.0-seh (wx-3.2.1)
+		- Leap-15.4 (64 bits) with gcc-8.2.1 (wx-3.2.)
 	- Tools :
-		- Code::Blocks from r121524 (sdk 2.2.0, 2021-09-04)
-			up to r12818 (sdk 2.18.0), with wxWidgets 3.x.y unicode,
-		- actually 'Cb-12813-wx-3.1.6', sdk=2.178.0
+		- Code::Blocks from r12124 (sdk 2.2.0, 2021-09-04)
+			up to r12896 (sdk 2.23.0), with wxWidgets 3.x.y unicode,
+		- actually 'Cb-13118-wx-3.2.1', sdk=2.23.0
 	- Utilities :
 		- 'Poedit',
 		- 'xgettext', 'msmerge',  '*.its'
@@ -151,16 +161,16 @@ D- INSTALLING the package:
 			- in the project :
 				'Project->Generation options...->Collector->Custom Variables'.
 				- $name = Collector
-				- $cb = $(#sdk2180_3xy)
+				- $cb = $(#sdk2230_3xy)
 			- in the target: '..._3xy->Custom variables'
 				- Win-7 : 'win_3xy' => $wx = $(#wx3xy_64)
 				- Lin 	: 'lin_3xy' use
-					- "`wx-config --cflags  --version=3.0`"
-					- "`wx-config --libs  --version=3.0`"
+					- "`wx-config --cflags  --version=3.2`"
+					- "`wx-config --libs  --version=3.2`"
 
 			5-1-1 you will need to in 'C::B' (svn >= r12025 => sdk-2.2.0) define :
 				- global variables: 'Configuration->Global variables...'
-					 - #sdk2180_3xy = "path_of_your_version_source_CB-sdk\src"
+					 - #sdk2230_3xy = "path_of_your_version_source_CB-sdk\src"
 					 - #wx3xy_64 	= "path_of_your_version_wx3xx"
 				- the same compiler will be used to compile
 					-' wxWidgets-3.x.y'
@@ -178,7 +188,7 @@ D- INSTALLING the package:
 			5-1-4 check that 'Help->Plugins->Collector...' exists and in
 			where you will find a start of the working procedure:
 	===>	
-		Help translating for 'C::B' (sdk-2.18.0) projects
+		Help translating for 'C::B' (sdk-2.23.0) projects
 		Welcome to 'Collector' : plugin for help translate projects in 'CODE::BLOCKS'
 		You can, by menu '&Collect' on menu bar
 			1- 'List from project' : list strings with selection keyword ('_').
@@ -191,9 +201,8 @@ D- INSTALLING the package:
 		
 		5.2- if updates are available
 			- on the date of this file :
-				- 'Win-64', 'wxWidgets-3.1.6', 'C::B' >= r12724 (sdk >= 2.16.0)
-				- 'Lin-64', 'wxWidgets-3.0.5', 'C::B' >= r12025 (sdk >= 2.2.0)
-				** Linux, wxWidgets3.1.5, in progress ...
+				- 'Win-64', 'wxWidgets-3.2.1', 'C::B' >= r12724 (sdk >= 2.16.0)
+				- 'Lin-64', 'wxWidgets-3.2.1', 'C::B' >= r12025 (sdk >= 2.2.0)
 			5-2-1 choose (if it exists) the one corresponding to
 				- your operating system: 'Win-64', 'Lin-64'
 				- your version of 'C:B' and 'wxWidgets-3.x.y'
@@ -226,7 +235,7 @@ E- USE ON SINGLE PROJECT
 			  - example '_("...")': this string does not need translation!
 
 		2-3- then, if you want to create the :
-			'project_name.po' and 'project_name.pot'
+			'project_name.po' and 'project_name.dup'
 			you must use the 'EXTRACT' mode via the main menu or the toolbar of
 			'Collect->Extract from project'
 
@@ -240,7 +249,7 @@ E- USE ON SINGLE PROJECT
 				- replacing its possible strings "$$..." by "$...",
 				- replacing its possible strings "%%..." with "%...",
 				- modifying the header using some 'C::B' macros,
-			3- copying the file 'project_name.po' -> '*.pot', or merging the first with
+			3- copying the file 'project_name.uni' -> '*.po', or merging the first with
 			   the second if it already exists,
 			4- opening the 'project_name.po' file in the editor for checking and modifying
 			   the header if necessary,
@@ -271,7 +280,7 @@ F USE ON MULTIPLE PROJECTS
 	then you need to build a special workspace that encompasses them all:
 		example :
 		C::B' with its external extensions could be called
-		'CodeBlocks_wx31_64.workspace' or 'CodeBlocks_wx30-unix.workspace'
+		'CodeBlocks_wx32_64.workspace' or 'CodeBlocks_wx32-unix.workspace'
 		which will contain the current 'CodeBlocks.cbp' + 'ContribPlugins.worspace'.
 
 	1- load this workspace into 'C::B
@@ -293,14 +302,14 @@ F USE ON MULTIPLE PROJECTS
 		- at the end of the listing, the contents of the log are saved in the file 
 		 'leader_project_name_workspace.po.list', automatically opened in the editor.
 
-	4- to create the 'leader_project_name_workspace.po' and '*.pot' files follow the same procedure as for a single project.
+	4- to create the 'leader_project_name_workspace.po' and '*.dup' files follow the same procedure as for a single project.
 
 G- NOTES
 
-	1- '*.po' and '*.pot' files are noted differently:
-		- in single project	: 'project_name.pot' and '*.po',
-		- in multi-projects	: 'leader_project_name_workspace.po' and '*.pot',
-		so only the '*.pot' (source) files will be different, whereas there can only be one can exist only 
+	1- '*.po' and '*.dup' files are noted differently:
+		- in single project	: 'project_name.dup' and '*.po',
+		- in multi-projects	: 'leader_project_name_workspace.po' and '*.dup',
+		so only the '*.dup' (source) files will be different, whereas there can only be one can exist only 
 		one 'leader_project_name_workspace.po' loaded by 'Poedit'.
 
 	2- the project or workspace concerned must first have been successfully	compiled, so that the files 
@@ -338,10 +347,10 @@ G- NOTES
 
 		- with the keyword '_'  and 'codeblocks.its' for '*.xml'
 		
-		6-1 On my test environment 'Win-7' : 'Collector-1.7.1'
+		6-1 On my test environment 'Win-7' : 'Collector-1.7.8'
 			- with keyword '_' and 'codeblocks.its' for '*.xml'
 
-			6-1-1 Cb-12818-wx3.1.5-(64bit)' 
+			6-1-1 Cb-13118-wx3.2.1-(64bit)' 
 				with 1 project containing 1216 total files 
 				- listing
 					- 7789 detected strings inside 398 elected files,
@@ -349,10 +358,10 @@ G- NOTES
 				- extraction 
 					- 7789 detected strings inside 398 elected files.
 					- 133 temporary files,
-					- Cb-12818-wx3.1.5-(64 bit).pot'  (852 409 bytes) 
+					- Cb-13118-wx3.2.1-(64 bit).dup'  (852 409 bytes) 
 					- duration : 1 min, 8 S
 
-			6-1-2 Cb-12818 + external extensions + 'Collector-1.7.1'
+			6-1-2 Cb-13118 + external extensions + 'Collector-1.7.8'
 				in a workspace of 51 project(s) containing 2980 total files
 				- listing 
 					- 13388 detected strings, inside 875 elected files,
@@ -360,12 +369,12 @@ G- NOTES
 				- extraction                     
 					- 13388 extracted strings, inside 875 elected files,
 					- 183 temporary files,
-					- 'codeblocks-12818-wx3.1.5-(64bit)_workspace.pot' (2 030 046 bytes),
+					- 'codeblocks-13118-wx3.2.1-(64bit)_workspace.dup' (2 030 046 bytes),
 					- duration : 4 min 8 S 
 					
-		6-2 On my test environment 'Leap-15.3' :  'Collector-1.7.1'
+		6-2 On my test environment 'Leap-15.3' :  'Collector-1.7.8'
 			
-			6-2-1 Cb-12818-wx3.0.5-(64bit)' 
+			6-2-1 Cb-13118-wx3.2.1-(64bit)' 
 				with 1 project containing 1216 total files
 				- listing
 					- 7778 detected strings inside 392 elected files,
@@ -373,16 +382,16 @@ G- NOTES
 				- extraction 
 					- 7778 detected strings inside 392 elected files.
 					- 133 temporary files,
-					- Cb-12818-wx3.1.5-(64 bit).pot'  (851 202 bytes) 
+					- Cb-13118-wx3.2.1-(64 bit).dup'  (851 202 bytes) 
 					- duration : 0 min, 28 S				
 
-			6-2-2 Cb-12818 + external extensions + 'Collector-1.7.1'
+			6-2-2 Cb-13118 + external extensions + 'Collector-1.7.8'
 				in a workspace of 43 project(s) containing 2654 total files
 				- listing 
 					- 10573 detected strings, inside 735 elected files,
 					- duration : 0 min 55 S,
 				- extraction 
-                    -> 'codeblocks-12818-wx3.0.5-(64bit)_workspace.pot' ( 1 906 549 bytes )
+                    -> 'codeblocks-13118-wx3.2.1-(64bit)_workspace.dup' ( 1 906 549 bytes )
 					- 10573 extracted strings, inside 735 elected files,
 					- 157 temporary files,
 					- duration : 1 min 35 S 

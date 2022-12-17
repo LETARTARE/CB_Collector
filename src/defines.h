@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-31
+ * Modified:  2022-12-15
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -15,7 +15,7 @@
 ///-----------------------------------------------------------------------------
 /** Version
  */
-#define VERSION_COLLECT wxString("1.7.2")
+#define VERSION_COLLECT wxString("1.7.8")
 
 //=========================================================
 /** \brief  For 'Collector::MesToLog'
@@ -39,22 +39,29 @@
 
 /** @brief end of line for Win/Linux/OX
  */
+#define 	cCr			'\r'
 #define 	Cr 			wxString("\r")
+#define 	cLf			'\n'
 #define 	Lf 			wxString("\n")
 #define 	CrLf 		wxString("\r\n")
 #define 	Eol 		wxString("\r\n")
-#define 	Quote 		wxString("'")
 #define     cQuote      '\''
+#define 	Quote 		wxString("'")
 #define		Dquote  	wxString("\"")
 #define     cDquote     '"'
 #define 	Tab			wxString("\t")
 #define 	cTab		'\t'
+#define 	cSpace		' '
+// not uses 'space' reserved word
 #define 	Space		wxString(" ")
 #define 	space(__n)	wxString(' ', __n)
-// not uses 'space' reserved word
-#define 	cSpace		' '
-#define 	Dot			wxString(".")
 #define		cDot		'.'
+#define 	Dot			wxString(".")
+#define		cScol		';'
+#define 	Scol		wxString(";")
+#define 	Scol2		wxString(";;")
+//#define 	tLf			wxString("\\n")
+#define 	LfScol 			wxString("\n;")
 
 //#define 	EXTRADISPLAY	50
 
@@ -62,8 +69,8 @@
 
 /** \brief text separator
  */
-#define 	SepD 		char(13) 	// 0xD, \n
-#define 	SepA 		char(10)	// 0xA, \r
+#define 	SepD 		char(13) 	// 0xD, \r
+#define 	SepA 		char(10)	// 0xA, \n
 #define 	SizeSep 	2
 #define		SizeLe		16
 /** \brief lines
@@ -77,26 +84,29 @@
 #define 	quoteNS(__s)	(Quote + wxString(__s) + Quote)
 #define 	dquote(__s)		(Space + Dquote + wxString(__s) + Dquote + Space)
 #define 	dquoteNS(__s)	(Dquote + wxString(__s) + Dquote)
-#define 	markNS(__s)		("=>" + Eol + wxString(__s) + Eol + "<=")
+#define 	markNS(__s)		("=>" + Lf + wxString(__s) + Lf + "<=")
 // for __s is a string, __c is a character
 #define     within(__s, __c) (__s.AfterFirst('__c').BeforeLast('__c') )
 
 /** \brief  for print an integer and a boolean withless space
  */
 #define strInt(__n)			( wxString()<<__n )
+	#define iToStr(__n)			( wxString()<<__n )
 // length constant = __l
 #define strIntZ(__n, __l)	( wxString('0', __l-(strInt(__n).Len())) += strInt(__n) )
 // for __s is a string, __l is a number
 #define strZ(__s, __l)		( __s.Prepend( (__s.Len() <= __l) ? wxString('0', __l-__s.Len()) : "" ) )
 #define strBool(__b)		( wxString()<<(__b==0 ? _("false" ): _("true")) )
+	#define bToStr(__b)			( wxString()<<(__b==0 ? _("false" ): _("true")) )
 #define strChar(__c)		wxString(__c)
+	#define cToStr(__c)		wxString(__c)
 
 #include <wx/filefn.h>
 /** @brief directory separator
- *  use "...." +  strSlash ,  not  "...."  +  Slash !!
+ *  use "...." +  strSlash ,  not  "...."  +  cSlash !!
  */
-#define 	slash 		wxFILE_SEP_PATH
-#define 	strSlash  	wxString(slash)
+#define 	cSlash 		wxFILE_SEP_PATH
+#define 	strSlash  	wxString(cSlash)
 ///-----------------------------------------------------------------------------
 #include <logmanager.h>
 /** @brief Methods withless progress bar  -> 'Collector' log
@@ -108,12 +118,16 @@
 #define _printLn			pLm->Log(wxEmptyString, __p)
 #define _printWarn(__a)		pLm->LogWarning(__a, __p)
 #define _printError(__a)	pLm->LogError(__a, __p)
-#define _printCritical(__a) pLm->LogCritical(__a, __p)
+//#define _printCritical(__a) pLm->LogCritical(__a, __p)
 
 #ifdef WITH_MES_DEBUG
-	#define _printD(__a)	pLm->Log(__a, __p)
+	#define _printD(__a)		pLm->Log(__a, __p)
+	#define _printWarnD(__a)	pLm->LogWarn(__a, __p)
+	#define _printErrorD(__a)	pLm->LogError(__a, __p)
 #else
 	#define _printD(__a)
+	#define _printWarnD(__a)
+	#define _printErrorD(__a)
 #endif
 
 /** @brief messages  -> 'Code::Blocks log'
@@ -122,7 +136,7 @@
 #define _PrintLn		pLm->Log(wxEmptyString)
 #define _PrintWarn		pLm->LogWarning
 #define _PrintError		pLm->LogError
-#define _PrintCritical   pLm->LogCritical
+//#define _PrintCritical  pLm->LogCritical
 /** @brief messages  -> 'Code::Blocks Debug log'
  */
 #define DPrint			pLm->DebugLog
@@ -138,7 +152,7 @@
 #define printLn		   	 	Collector::MesToLog(wxEmptyString, Logger::info)
 #define printWarn(__a)	    Collector::MesToLog(__a, Logger::warning)
 #define printError(__a)	    Collector::MesToLog(__a, Logger::error)
-#define printCritical(__a)	Collector->MesToLog(__a, Logger::critical)
+//#define printCritical(__a)	Collector->MesToLog(__a, Logger::critical)
 
 ///-----------------------------------------------------------------------------
 /** @brief news extensions for 'Qt'
@@ -158,6 +172,12 @@
 #define		DOT_EXT_PO		".po"
 #define		DOT_EXT_POT		".pot"
 #define		DOT_EXT_MO		".mo"
+// for messages 'gettext'
+#define 	T_FLAG			"#, "
+#define 	T_COMM			"#. "
+#define 	T_MES			"#: "
+#define		T_FUZZY			T_FLAG"fuzzy"
+#define 	T_BANNED		T_COMM"banned"
 
 #include <filefilters.h>
 /// c++ code
@@ -233,6 +253,12 @@
 
 #define VERIFY_ONLY			true
 #define NO_VERIFY			false
+
+#define FROM_LEFT			false
+#define FROM_RIGHT			true
+
+#define TRIM_SPACE			true
+#define NO_TRIM_SPACE		false
 ///-----------------------------------------------------------------------------
 
 #endif // _DEFINES_H_

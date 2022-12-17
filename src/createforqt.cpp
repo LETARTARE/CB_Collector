@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-21
+ * Modified:  2022-11-24
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -77,7 +77,7 @@ _printD("=> Begin 'CreateForQt::detectLibProject (..., " + strBool(_report) + ")
 	if (isQtProject && _report)
 	{
 		wxString nametarget = m_pProject->GetTitle() ;
-		wxString title = _("The project") +  quote(m_Nameproject) + _("uses 'Qt' libraries !") ;
+		wxString title = _("The project") +  quote(m_Nameproject) + _("uses 'Qt' libraries") + " !" ;
 		wxString txt =  quote( m_namePlugin ) + _("can generate the translatable strings") + "..." ;
 		// also to 'Code::Blocks' log
 	    InfoWindow::Display(title, txt, 5000);
@@ -124,8 +124,8 @@ wxString CreateForQt::pathlibQt(CompileTargetBase * _pContainer)
 //Mes = Lf + _("Local variable path 'Qt' => '") + path; Mes += "'"; _print(Mes);
 				path_nomacro =  path ;
 				// remove "\lib"
-				path_nomacro = path_nomacro.BeforeLast(slash) ;
-				path_nomacro += wxString(slash)  ;
+				path_nomacro = path_nomacro.BeforeLast(cSlash) ;
+				path_nomacro += wxString(cSlash)  ;
 			}
 			else
 			{  // use global variable ?
@@ -138,8 +138,8 @@ wxString CreateForQt::pathlibQt(CompileTargetBase * _pContainer)
 //Mes = Lf + _("Global variable path Qt => '") + path;Mes += "'"; _print(Mes);
 					path_nomacro =  path ;
 					// remove "\lib"
-					path_nomacro = path_nomacro.BeforeLast(slash) ;
-					path_nomacro += wxString(slash)  ;
+					path_nomacro = path_nomacro.BeforeLast(cSlash) ;
+					path_nomacro += wxString(cSlash)  ;
 				}
 				// no variable ! , absolute path ?
 				else
@@ -171,7 +171,7 @@ bool CreateForQt::findTargetQtexe(CompileTargetBase * _pBuildTarget)
 // Mes = Lf + "'Qt'" + _(" path for the target = ") + quote(qtpath); _print(Mes);
 	if(qtpath.IsEmpty() || qtpath == "\\" )
 	{
-		Mes = _("No library path 'Qt' in the target") + Lf + _("or nothing library !")  ;
+		Mes = _("No library path 'Qt' in the target") + Lf + _("or nothing library") + " !"  ;
 		Mes += Lf +  _("Check that you have a correct path to the 'Qt' path libraries") + " !" ;
 		Mes += Lf + _("Cannot continue") ;
 		_printError(Mes);
@@ -335,7 +335,7 @@ _printD("=> Begin 'CreateForQt::listStringsCode(" + _shortfile + ")'");
 	if (m_Workspace) 	longfile.Prepend(m_Dirproject);
 //2- build command : 'xgettext -C -k_ infile -o- ....'
 	wxString key = "-k" + m_Keyword;
-	wxString command = m_Pathgexe + " --c++ --from-code=UTF-8 " + key;
+	wxString command = m_PathGexe + " --c++ --from-code=UTF-8 " + key;
 	// for qt format
 	//command += " --qt";
 	// inputfile
@@ -347,19 +347,21 @@ _printD("=> Begin 'CreateForQt::listStringsCode(" + _shortfile + ")'");
 	// text indent
 	command += " -i";
 	// files sorted
-	command += " -F";
+	//command += " -F";
 	// data sorted to out
 	//command += " -s" ;
 	// text width before new line
-	command += " -w 180";
+	//command += " -w 180";
+	command += " -w 80";
+	//command += " --no-wrap " ;
 
 //_print("command :" + quote(command));
 //3- command execute with errors
 	// list string into
-	wxInt32 nbstr = Pre::GexewithError(_shortfile, command, true);
+	wxInt32 nbstr = Pre::GexewithError(_shortfile, command, PREPEND_ERROR);
 //print("_shortfile :" + _shortfile + " => ok :" + strBool(ok));
 
-	if (nbstr >0)
+	if (nbstr > 0)
 	{
 //4- print file name
 		Mes = Tab + "-----> " + _("Elected") + strInt(m_nbFileEligible) + "-"  +  quote(_shortfile);;
@@ -371,7 +373,7 @@ _printD("=> Begin 'CreateForQt::listStringsCode(" + _shortfile + ")'");
 	}
 	else
 	{
-		// TO DO
+		// TO DO ...
 	}
 
 _printD("	<= End 'CreateForQt::listStringsCode(...) => " + strInt(nbstr) + ")'");
@@ -560,12 +562,12 @@ wxString CreateForQt::nameCreated(const wxString& _file)
 {
 	wxString name  = _file.BeforeLast(cDot) ;
 	wxString fout ;
-	if (name.Find(slash) > 0)
+	if (name.Find(cSlash) > 0)
 	{
 	// short name
-		name = name.AfterLast(slash) ;
+		name = name.AfterLast(cSlash) ;
 	// before path
-		fout += _file.BeforeLast(slash) + wxString(slash) ;
+		fout += _file.BeforeLast(cSlash) + wxString(cSlash) ;
 	}
 	wxString ext  = _file.AfterLast(cDot)  ;
 //1- file *.ui  (forms)
@@ -584,7 +586,7 @@ wxString CreateForQt::nameCreated(const wxString& _file)
 	if (ext.Matches(EXT_CPP) )
 		fout +=  name + DOT_EXT_MOC ;
 
-	fout = fout.AfterLast(slash) ;
+	fout = fout.AfterLast(cSlash) ;
 
 	return fout  ;
 }
@@ -721,96 +723,32 @@ _printD("	<= End 'Pre::hasLibQt(...)' => " + strBool(ok));
 
 // /////////////////////////// Search into files //////////////////////////////
 
-// ----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Creating a file '*.pot'
 //
 // Called by :
-//     1. Pre::extraction(bool _prjfirst, cbProject * _pProject)
+//		1. Pre::extraction(bool _prjfirst, cbProject * _prj):1,
+//Call to :
+//		1. Pre::GexewithError(wxString _shortfile, wxString _command, bool _prepend):1,
 //
-// Call to :
-// ----------------------------------------------------------------------------
-bool CreateForQt::createPot(bool _prjfirst)
+bool CreateForQt::creatingPot(bool _prjfirst)
 {
-_printD("= > Begin (Pre::createPot(" + strBool(_prjfirst) + ")" );
+_printD("=> Begin 'CreateForQt::creatingPot(" + strBool(_prjfirst) + ")" );
+
+    if (m_PathGexe.empty())
+    {
+        Mes = " !!! 'xgettext' " + _("not defined") + " !!!" ;
+        _printError(Mes);
+        return false;
+    }
 
 // local variables
-	wxString shortfile, longfile, command , pActualprj ;
-	wxUint32  nbCells ;
-    nbCells = m_FileswithI18n.GetCount()  ;
-	Mes = Tab + "--> " + _("Extract of") + Space  + strInt(nbCells)  + Space ;
-	Mes +=  _("file(s) by 'xgettext'");
-	if(!m_Workspace)
-        Mes +=  quote(" -->> ") + dquoteNS(m_Dirlocale + m_Shortnamepot) ;
-	_printWarn(Mes);
-	m_Fileswithstrings.Add(Mes);
+	bool ok = false, good = false;
 
+_printD("	<= End 'CreateForQt::creatingPot(...)' => " + strBool(ok && good) );
 
-	// variables
-	bool ok, good ;
-	// command
-	wxString key = "-k" + m_Keyword;
-	wxString begincommand = m_Pathgexe + " -C --from-code=UTF-8 " + key;
-// test to extract comments before the key
-	begincommand += " -cTranslators: ";
-	//begincommand += " --add-comments=// ";
-
-// analyze all eligible files from 'm_FileswithI18n'
-	for (wxUint32 i=0; i < nbCells ; i++ )
-	{
-	// control to pending messages in the event loop
-		 m_pM->Yield();
-	// analysis stopped manually
-		if (m_Stop)
-		{
-			good = false ; break;
-		}
-
-		if (_prjfirst) 	_prjfirst = i==0;
-	//1- absolute name inputfile
-		shortfile = m_FileswithI18n.Item(i);
-		if (m_Workspace) 		longfile = m_Dirproject + shortfile;
-		else					longfile = shortfile;
-//_printError("longfile = " + quote(longfile));
-	//2- build command : xgettext -C -n -k_ -o Namepot infile
-		Mes =  Tab + strInt(i+1) + "- '" + shortfile;
-		command = begincommand;
-		// inputfile
-		command += dquote(longfile);
-		if (_prjfirst == true)
-		{
-			Mes += quote(" --> ");
-		}
-		else
-		{
-		// --join-existing :  attach messages to join existing file
-			//command += " -j ";
-			Mes += "' -->> '";
-		}
-		// output to *.pot'
-		command += " -o "+ dquoteNS(m_Namepot) ;
-		Mes += m_Shortnamepot + Quote;
-		// message
-		_print (Mes);
-		m_Fileswithstrings.Add(Mes);
-//_print(command)
-	//3- command execute
-		ok = Pre::GexewithError(shortfile, command, false);
-		if(!ok)
-        {
-           //   return false
-        }
-
-
-	} // end for
-// 'Stop'
-	if (!good)	return false;;
-
-	// no files to delete
-	m_FileStrcreated.Clear();
-	m_FileStrcreated.Add(m_NameprojectLeader);
-
-_printD("	<= End 'Pre::extraction()' => " + strBool(good) );
-
-	return true;
+	return ok && good ;
 }
 
 // ----------------------------------------------------------------------------

@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-31
+ * Modified:  2022-12-10
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -102,7 +102,7 @@ class Collector : public cbPlugin, public ColState
 
     /** \brief  event table
      */
-    DECLARE_EVENT_TABLE();
+    DECLARE_EVENT_TABLE()
 // ----------------------------------------------------------------------------
 
   public:
@@ -358,7 +358,7 @@ class Collector : public cbPlugin, public ColState
 
     /** \brief bitmaps for menu and tool items
      */
-    wxBitmap m_bmLogoWx = wxBitmap(), m_bmLogoQt = wxBitmap()
+    wxBitmapBundle m_bmLogoWx = wxBitmap(), m_bmLogoQt = wxBitmap()
 		,m_bmList = wxBitmap(), m_bmListOff = wxBitmap()
 		,m_bmListPlus = wxBitmap(), m_bmListPlusOff = wxBitmap()
 		,m_bmExtract = wxBitmap(), m_bmExtractOff = wxBitmap()

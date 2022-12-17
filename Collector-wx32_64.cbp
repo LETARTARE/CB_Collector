@@ -2,16 +2,16 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Collector-1.7.4-810seh-317-sdk2190" />
+		<Option title="Collector-1.7.8-810seh-321-sdk2230" />
 		<Option platforms="Windows;" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="win_317_2190">
+			<Target title="win_321_2230">
 				<Option platforms="Windows;" />
 				<Option output="$(TARGET_NAME)/Collector" prefix_auto="0" extension_auto="1" />
-				<Option object_output="objs/$(TARGET_NAME)" />
-				<Option external_deps="wxrc_315/wxrc.exe;" />
+				<Option object_output="objs32_64/$(TARGET_NAME)" />
+				<Option external_deps="wxrc_321/wxrc.exe;" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -37,8 +37,8 @@
 				</ResourceCompiler>
 				<Linker>
 					<Add library="codeblocks" />
-					<Add library="wxmsw31u" />
-					<Add directory="$cb/devel31_64" />
+					<Add library="wxmsw32u" />
+					<Add directory="$cb/devel32_64" />
 				</Linker>
 				<ExtraCommands>
 					<Add after="zip -j9  $(TARGET_NAME)\Collector.zip manifest.xml" />
@@ -48,12 +48,13 @@
 					<Mode after="always" />
 				</ExtraCommands>
 				<Environment>
-					<Variable name="cb" value="$(#sdk2190_317)" />
-					<Variable name="wx" value="$(#wx317_64)" />
+					<Variable name="cb" value="$(#sdk2230_321)" />
+					<Variable name="wx" value="$(#wx321_64)" />
 				</Environment>
 			</Target>
-			<Target title="wxrc_317">
+			<Target title="wxrc_321">
 				<Option output="$(TARGET_NAME)/wxrc" prefix_auto="1" extension_auto="1" />
+				<Option object_output="objs32_64" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
@@ -65,14 +66,14 @@
 					<Add directory="$wx/include/wx/msw/" />
 				</ResourceCompiler>
 				<Linker>
-					<Add library="wxmsw31u" />
+					<Add library="wxmsw32u" />
 				</Linker>
 				<ExtraCommands>
 					<Add after="cmd /c  xcopy /Y $(TARGET_OUTPUT_DIR)wxrc.exe  $(CODEBLOCKS)" />
 					<Mode after="always" />
 				</ExtraCommands>
 				<Environment>
-					<Variable name="wx" value="$(#wx317_64)" />
+					<Variable name="wx" value="$(#wx321_64)" />
 				</Environment>
 			</Target>
 			<Target title="doc">
@@ -112,9 +113,6 @@
 		<Unit filename="infos/Readme.md">
 			<Option target="doc" />
 		</Unit>
-		<Unit filename="infos/wx/msgmerge.aide">
-			<Option target="doc" />
-		</Unit>
 		<Unit filename="its/codeblocks.its">
 			<Option target="doc" />
 		</Unit>
@@ -122,64 +120,58 @@
 			<Option target="doc" />
 		</Unit>
 		<Unit filename="manifest.xml">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="res/dummy.xrc">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="sdk/sdk.his">
 			<Option target="doc" />
 		</Unit>
 		<Unit filename="src/buildlogger.cpp">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/buildlogger.h">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/collector.cpp">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/collector.h">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/colstate.cpp">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/colstate.h">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/createforqt.cpp">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/createforqt.h">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/createforwx.cpp">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/createforwx.h">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/defines.h">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/mondrian.ico">
-			<Option target="wxrc_317" />
+			<Option target="wxrc_321" />
 		</Unit>
 		<Unit filename="src/pre.cpp">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
 		<Unit filename="src/pre.h">
-			<Option target="win_317_2190" />
+			<Option target="win_321_2230" />
 		</Unit>
-		<Unit filename="src/wxrc315.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="src/wxrc316.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="src/wxrc317.cpp">
-			<Option target="wxrc_317" />
+		<Unit filename="src/wxrc321.cpp">
+			<Option target="wxrc_321" />
 		</Unit>
 		<Extensions>
 			<DoxyBlocks>

@@ -1,10 +1,10 @@
-# Collector-1.7.2, May 31, 2022 (Win-64, Linux-64)
+# Collector-1.7.8, December 17, 2022 (Win-64, Linux-64)
 
 Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 **Versions for all 'Code::Block, sdk >= 2.0.0, svn >= 12004'**
 
-**Last: sdk = 2.18.0, svn = 12813 -> ...**
+**Last: sdk = 2.23.0, svn = 12896 -> ...**
 
 1 - What is this project :
 
@@ -20,10 +20,10 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 2- Prerequisites
 
-	1- 'xgettex.exe' and 'msmerge.exe' must be installed in the system path
+	1- 'xgettex.exe', 'msmerge.exe' and 'msguniq.exe'  must be installed in the system path
 		(system variable PATH), or either with 'codeblocks.exe'
 
-		-> 'Win-64' : 'Poedit' containt 'xgettext.exe' and 'msmerge.exe'
+		-> 'Win-64' : 'Poedit' containt 'xgettext.exe', 'msmerge.exe', 'msguniq.exe'
 		-> 'Lin-64' : 'xgettext' is independent of 'Poedit'
 			'http://www.poedit.net/'
 			
@@ -35,7 +35,7 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 			2- read 'infos/Collector_exp.en' paragraph 'SETUP 'Poedit',
 
 	2- 'wxrc' must be installed  
-		- either with 'codeblocks' (for 'Win-64' : 'wxrc.exe' with target 'wxrc_315' or 'wxrc_316')
+		- either with 'codeblocks' (for 'Win-64' : 'wxrc.exe' with target 'wxrc_320' or 'wxrc_321')
 		- either with 'wxWidgets' (for 'Lin-64' : native)
 
 3- Installation in 'Code::Blocks' (without 'Poedit') :
@@ -44,22 +44,22 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
 	2- in 'Code::Blocks' 
 		- load the project 'Collector-x.y.z.cbp'
-		- choice target (lin_305, lin_315, win_315, win_316 ... : 305 => wx-3.0.5)
+		- choice target (lin_320, lin_321, win_320, win_321 ... : 320 => wx-3.2.0)
 		- Win-64 :
 			- 'Build->Build' => 
-				- 'win_315\Collector.dll' with size ... KB
+				- 'win_321\Collector.dll' with size ... KB
 				- ...
 			- 'Plugins->Manage plugins... : Install New' 
-				- choice '...\win_315\Collector.cbpugin'
+				- choice '...\win_321\Collector.cbpugin'
 				=> in 'Collector' log
-					** Platform : 'Win-64', 'sdk-2.18.0', 'Collector-1.7.2', built the '20/05/31::10:51:52'  
+					** Platform : 'Win-64', 'sdk-2.23.0', 'Collector-1.7.8', built the '22/12/17::10:51:52'  
 		- Lin-64 :
-			- 'Build->Build' => 'lin_305/Collector.so' with size ... KB
+			- 'Build->Build' => 'lin_321/Collector.so' with size ... KB
 				...
 			- 'Plugins->Manage plugins... : Install New' 
-				- choice '.../lin_305/Collector.cbpugin'
+				- choice '.../lin_321/Collector.cbpugin'
 				=> in 'Collector' log
-					** Platform : 'Linux-64', 'sdk-2.18.0', 'Collector-1.7.2', built the '20/05/22::11:09:15' 
+					** Platform : 'Linux-64', 'sdk-2.23.0', 'Collector-1.7.8', built the '20/05/31::11:09:15' 
 				
 	3- You see '&Collect' in menu bar or 'Collector Toolbar' in tools bar
 

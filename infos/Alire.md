@@ -1,10 +1,10 @@
-# Collecteurr-1.7.2,  31 mai 2022 (Win-64, Linux-64)
+# Collecteurr-1.7.8,  17 décembre 2022 (Win-64, Linux-64)
 
 Extension de traduction des apllications (wxWidgets) avec 'Code::Blocks'
 
 **Pour toutes les versions 'Code::Block, sdk >= 2.0.0, svn >= 12004'**
 
-**La dernière: sdk = 2.18.0, svn = 12813 -> ...**
+**La dernière: sdk = 2.23.0, svn = 12896 -> ...**
 
 A - Quel est ce projet ?
 
@@ -20,10 +20,10 @@ A - Quel est ce projet ?
 
 B- Conditions préalables
 
-	1- 'xgettex.exe' et 'msmerge.exe' doivent être installés dans le chemin du système
+	1- 'xgettex' et 'msmerge'et 'msguniq' doivent être installés dans le chemin du système
 		(variable système PATH), ou soit avec 'codeblocks'.
 
-		-> Poedit contient "xgettext" et "msmerge"
+		-> Poedit contient "xgettext" et "msmerge" et "msguniq"
 			http://www.poedit.net'
 		Pour installer 'Poedit' dans 'Code::Blocks' :
 			1- lisez 'http://wiki.codeblocks.org/index.php?title=Configure_tools',
@@ -33,7 +33,7 @@ B- Conditions préalables
             codeblocks.its' et 'codeblocks.loc' fournis dans '...\its'.
 
 	2- 'wxrc' doit être installé  
-		- soit avec 'codeblocks.exe' (pour 'Win-64' à l'aide des cibles 'wxrc_315', 'wxrc_316')
+		- soit avec 'codeblocks.exe' (pour 'Win-64' à l'aide de la cible 'wxrc_321')
 		- soit avec 'wxWidgets' (pour 'Lin-64')
 
  C- Installation dans 'Code::Blocks' (sans 'Poedit') :
@@ -42,26 +42,26 @@ B- Conditions préalables
 
 	2- dans 'Code::Blocks' 
 		- chargez le projet 'Collector-x.y.z.cbp'.
-		- choisissez la cible (lin_305, lin_315, win_315, win_316 ... : 305 => wx-3.0.5)
+		- choisissez la cible (lin_320, lin_321, win_320, wx_321 ... : 320 => wx-3.2.0)
 		- Win-64
 			- 'Générer->Générer' => 
-				- 'win_315\Collector.dll' avec une taille de ... KB
+				- 'win_321\Collector.dll' avec une taille de ... KB
 				- ...
 			- 'Extensions->Gérer les extensions... : installer une nouvelle' 
-				- choisissez '...\win_315\Collector.cbpugin'
+				- choisissez '...\win_321\Collector.cbpugin'
 				- ...
 				=> vous verrez dans le journal 'Collector'
-			** "Plate-forme : 'Win-64', 'sdk-2.18.0', 'Collector-1.7.2', construit le '20/05/31::10:09:15'" 
+			** "Plate-forme : 'Win-64', 'sdk-2.23.0', 'Collector-1.7.8', construit le '22/12/317::10:09:15'" 
 
 		- Lin-64 :
 			-  Générer->Générer' => 
-				- 'lin_305/Collector.so' avec une taille de ... KB
+				- 'lin_321/Collector.so' avec une taille de ... KB
 				- ...
 			- 'Extensions->Gérer les extensions... : installer une nouvelle'
-				- choisissez '.../lin_305/Collector.cbpugin'
+				- choisissez '.../lin_321/Collector.cbpugin'
 				- ...
 				=> dans le journal 'Collecter'
-			** "Plate-forme : 'Lin-64', 'sdk-2.18.0', 'Collector-1.6.0', construit le '20/05/22::11:09:15'" 
+			** "Plate-forme : 'Lin-64', 'sdk-2.23.0', 'Collector-1.7.8', construit le '22/12/317::10:09:15'" 
 				
 	3- Vous devez voir le menu '&Collecter' ou 'Collecteur Toolbar' dans la barre d'outils.
 

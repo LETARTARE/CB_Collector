@@ -63,22 +63,32 @@ A- OBJECTIF :
 
 	Les points 1 à 7 sont gérés correctement par l'extension chargé au démarrage de 'C::B' 
 	et accessible par de nouvelles entrées dans un menu '&Collecter' dans la barre des menus.
-	Les points 8 et 9 sont seulement générés si 'Poedit' est installé dans le menu 'Ouitls->Poedit' 
+	Les points 8 et 9 sont seulement générés si 'Poedit' est installé dans le menu 'Outils->Poedit' 
 	par vous-même.
 
 			** sur un projet unique :'nom_de_projet.cbp'
 		1- 'Collecter->Lister le projet',
-			génère le fichier 'nom_de_projet.lst' ouvert dans l'éditeur, pour vérifier les chaînes proposées.
+			génère le fichier de suivi 'nom_de_projet.lst' ouvert dans l'éditeur, pour vérifier les chaînes proposées.
 		2- 'Collecter->Extraire le projet',
-			génère les fichiers 'nom_de_projet.extr' et 'nom_de_projet.po', aussi ouverts dans l'éditeur.
+			génère le fichier de suivi 'nom_de_projet.extr' ouvert dans l'éditeur,
+			puis les fichiers de traduction
+				- 'nom_de_projet.dup' (avec chaînes dupliquées) puis 
+				- 'nom_de_projet.uni' (sans chaînes dupliquées) 
+				aussi ouverts dans l'éditeur et enfin
+				- 'nom_de_projet.pot' destiné à traducteur externe.
 		3- 'Collecter->Lister puis Extraire le projet,
 			réalise l'enchainement des points 1 et 2.
 
 			** sur l'espace de travail : 'nom_de_projet_pilote.workspace'
 		4- 'Collecter->Lister l'espace de travail'
-			génère de lister les chaînes pour vérifier par 'nom_de_projet_pilote_workspace.list'.
+			génère le fichier de suivi 'nom_de_projet_pilote_workspace.list' ouvert dans l'éditeur,
 		5- 'Collecter->Extraire l'espace de travail',
-			génère les fichiers 'nom_de_projet_pilote_workspace.extr' et 'nom_de_projet_pilote_workspace.po'
+			génère le fichier de suivi 'nom_de_projet_pilote_workspace.extr' ouvert dans l'éditeur,
+			puis les fichiers de traduction
+				- 'nom_de_projet_pilote_workspace.dup' (avec chaînes dupliquées) puis 
+				- 'nom_de_projet_pilote_workspace.uni' (sans chaînes dupliquées) 
+				aussi ouverts dans l'éditeur et enfin
+				- 'nom_de_projet_pilote_workspace.pot' destiné au traducteur externe.
 		6- 'Collecter->Lister puis Extraire l'espace de travail',
 			réalise l'enchainement des points 4 et 5.
 
@@ -86,7 +96,7 @@ A- OBJECTIF :
 		7- Initialiser le graphe d'état de 'Collecter'.
 			initialise le graphe d'état de 'Collecter'
 		8- Supprimer les fichiers temporaires.
-			détruit les fichiers temporaires
+			détruit les fichiers temporaires sur le disque
 		9- Arréter l'action en cours.
 			arrête l'action encours, Lister ou Extraire
 			
@@ -102,20 +112,20 @@ B- DÉMARRAGE RAPIDE sur un projet unique :
 	- activer 'Collecter->Extraire' (conserve le préfixe de 'Lister'), ce qui :
 		- extrait les chaînes des fichiers élus dans un le journal 'Collecter'
 		- duplique dans l'éditeur les résultats de page du journal sous le nom 'nom_de_projet.extr'.
-		- crée (ou fusionne avec) le fichier 'nom_de_projet.po'
-		- crée une copie de 'nom_de_projet.pot'.
+		- crée (ou fusionne avec) le fichier 'nom_de_projet.dup' puis 'nom_de_projet.uni'
+		- crée une copie de 'nom_de_projet.uni' vers 'nom_de_projet.pot'.
 
 C- ENVIRONNEMENT de test, à la date du fichier :
 
 	- Systèmes d'exploitation	:
-		- Win-7 64 with Mingw64 avec gcc-8.1.0-seh (wx-3.1.5)
-		- Leap-15.3 (64 bits) avec gcc-7.1.0 (wx-3.0.5)
+		- Win-7 64 with Mingw64 avec gcc-8.1.0-seh (wx-3.2.1)
+		- Leap-15.4 (64 bits) avec gcc-8.2.1 (wx-3.2.1)
 	- Outils	:
 		- Code::Blocks depuis r12524 (sdk 2.16.0 du 2021-09-04),
-		  jusqu'a r12818 (sdk 2.18.0), avec wxWidgets 3.x.y unicode,
+		  jusqu'a r13118 (sdk 2.23.0), avec wxWidgets 3.2.1 unicode,
 	- Utilitaires	:
 		- 'Poedit'
-		- 'xgettext', 'msmerge', '*.its'
+		- 'xgettext', 'msmerge', 'msguniq', '*.its'
 			- et deux fichiers 'its\codeblocks.its', 'its\codeblocks.loc'
 			à recopier dans le répertoire 'its' de 'xgettext\share\its\'
 		- 'wxrc' utilitaire de 'wxWidgets' permettant aussi d'extraire les chaînes 
@@ -148,16 +158,16 @@ D- INSTALLATION de l'extension :
 				'Projet->Options de génération...'
 					->Collecteur->Variables personnalisées'
 				- $name = Collector
-				- $cb = $(#sdk2180)
+				- $cb = $(#sdk2230)
 			- dans la cible	: 'local_3xx->Variables personnalisées'
 				- Win-7 : $wx = $(#wx3xx_64)
 				- Linux	: 'lin_3xy' qui utilise
-					- "`wx-config --cflags  --version=3.0`"
-					- "`wx-config --libs  --version=3.0`"
+					- "`wx-config --cflags  --version=3.2`"
+					- "`wx-config --libs  --version=3.2`"
 					
 			5-1-1 vous devrez dans 'C::B' (svn >= r12025 => sdk-2.2.0) définir :
 				- les variables globales :'Configuration->Variables globales...'
-					 - #sdk2180	= "chemin_de_votre_version_source_CB-sdk\src"
+					 - #sdk2230	= "chemin_de_votre_version_source_CB-sdk\src"
 					 - #wx3xx_64 	= "chemin_de_votre_version_wx3xx"
 				- le même compilateur sera utilisé pour compiler
 					- wxWidgets-3.x.x'
@@ -186,9 +196,8 @@ D- INSTALLATION de l'extension :
 
 		5.2- si des actualisations sont disponibles
 			- actuellement :
-				- Win64, wxWidgets3.1.6, 'C::B' >= r12025 (sdk >= 2.2.0)
-				- Linux, wxWidgets3.0.5, 'C::B' >= r12025 (sdk >= 2.2.0)
-				** Linux, wxWidgets3.1.5, en cours de réalisation ...
+				- Win64, wxWidgets3.2.1, 'C::B' >= r12025 (sdk >= 2.2.0)
+				- Linux, wxWidgets3.2.1, 'C::B' >= r12025 (sdk >= 2.2.0)
 			5-2-1 choisir (si elle existe) celle correspondant à
 				- votre système d'exploitation : Win64, Lin64
 				- votre version de 'C:B' et 'wxWidgets'
@@ -229,13 +238,13 @@ E UTILISATION SUR UN PROJET UNIQUE
 
 			- l'utilisation de 'Extraire'  permet de démarrer
 
-			1- l'extraction des chaînes à partir des fichiers élus dans un fichier 'nom_de_projet.po',
+			1- l'extraction des chaînes à partir des fichiers élus dans un fichier 'nom_de_projet.dup',
 			2- la vérification d'intégrité de ce dernier fichier en
 				- supprimant les caractères éventuels "\r",
 				- remplaçant ses chaînes éventuelles "$$..." par "$...",
 				- remplaçant ses chaînes éventuelles "%%..." par "%...",
 				- modifiant l'en-tête à l'aide de quelques macros de 'C::B',
-			3- la copie du fichier 'nom_de_projet.po' -> '*.pot', ou la fusion du premier avec le 
+			3- la copie du fichier 'nom_de_projet.uni' -> '*.po', ou la fusion du premier avec le 
 			   second s'il existe déjà,
 			4- l'ouverture dans l'éditeur du fichier 'nom_de_projet.po' pour vérifications et 
 			   modifications de l'en-tête éventuellement,
@@ -266,7 +275,7 @@ F UTILISATION SUR PROJETS MULTIPLES
 	qui les englobe tous :
 		exemple :
 		'C::B' avec ses extensions externes pourrait s'appeler
-		'CodeBlocks_wx31_64.workspace' ou 'CodeBlocks_wx30-unix.workspace'
+		'CodeBlocks_wx32_64.workspace' ou 'CodeBlocks_wx32-unix.workspace'
 		lequel contiendra 'CodeBlocks.cbp' + 'ContribPlugins.worspace' actuel.
 
 	1- chargez cet espace de travail dans 'C::B'
@@ -291,10 +300,10 @@ F UTILISATION SUR PROJETS MULTIPLES
 
 G- REMARQUES
 
-	1- les fichiers '*.po' et '*.pot' sont notés différemment :
-		- en projet unique : 'nom_de_projet.pot' et '*.po',
-		- en multiprojets  : 'nom_de_projet_pilote_workspace.po' et '*.pot',
-		ainsi seuls les fichiers '*.pot' (source) seront différents, alors qu'il
+	1- les fichiers '*.dup', '*.po' et '*.pot' sont notés différemment :
+		- en projet unique : 'nom_de_projet.dup' et '*.po',
+		- en multiprojets  : 'nom_de_projet_pilote_workspace.dup' et '*.po',
+		ainsi seuls les fichiers '*.dup' (source) seront différents, alors qu'il
 		ne peut exister qu'un seul 'nom_de_projet_pilote_workspace.po' chargé par 'Poedit'.
 
 	2- le projet ou l'espace de travail concerné doit préalablement avoir été COMPLILé avec succès !!, 
@@ -330,10 +339,10 @@ G- REMARQUES
 
 	6- utilisation de cette extension sur le projet 'CodeBlocks-xxx.workspace'
 
-		6-1 Sur mon environnement de test ''Win-7' : 'Collecteurr-1.7.1'
+		6-1 Sur mon environnement de test ''Win-7' : 'Collecteurr-1.7.8'
 			- avec le mot clé '_' et 'codeblocks.its' pour '*.xml'
 
-			6-1-1 'Cb-12818-wx3.1.5-(64bit)'
+			6-1-1 'Cb-13118-wx3.2.1-(64bit)'
 				avec 1 projet contenant 1216 fichiers,
 				- listage 
 					- 7789 chaines détectées depuis 398 fichiers éligibles,
@@ -341,23 +350,23 @@ G- REMARQUES
 				- extraction 
 					- 7789 chaines extraites depuis 398 fichiers éligibles,
 					- 133 fichiers temporaires,
-					- Cb-12818-wx3.1.5-(64 bit).pot'  (852 409 bytes) 
+					- Cb-13118-wx3.2.1-(64 bit).dup'  (852 409 bytes) 
 					- durée : 1 min, 8 S				
 
-			6-1-2 'CodeBlocks-r12818 + les extensions externes + 'Collecteur-1.7.1'
+			6-1-2 'CodeBlocks-r13118 + les extensions externes + 'Collecteur-1.7.8'
 				dans un espace de travail de 43 projets contenant au total 7962 fichiers,
 				- listage 
 					- 12677 chaines détectées depuis  2412 fichiers éligibles,
 					- durée : 0 min 55 S,
 				- extraction 
-                    -> 'codeblocks-12818-wx3.0.5-(64bit)_workspace.pot' ( 2 022 699 bytes )
+                    -> 'codeblocks-13118-wx3.2.1-(64bit)_workspace.dup' ( 2 022 699 bytes )
 					- 12677 chaines extraites depuis  2412 fichiers éligibles,
 					- 172 fichiers temporaires,
 					- durée : 1 min 35 S 
 					
-		6-2 Sur mon environnement de test 'Leap15.3' :  'Collecteurr-1.7.1'
+		6-2 Sur mon environnement de test 'Leap15.4' :  'Collecteurr-1.7.8'
 			
-			6-2-1 Cb-12818-wx3.0.5-(64bit)' 
+			6-2-1 Cb-13118-wx3.2.1-(64bit)' 
 				avec 1 projet contenant 1216 fichiers,
 				- listage
 					- 7778 chaines détectées depuis 392 fichiers éligibles,
@@ -365,16 +374,16 @@ G- REMARQUES
 				- extraction 
 					- 7778 chaines extraites depuis 392 fichiers éligibles,
 					- 133 fichiers temporaires,
-					- Cb-12818-wx3.1.5-(64 bit).pot'  (851 202 bytes) 
+					- Cb-13118-wx3.2.1-(64 bit).dup'  (851 202 bytes) 
 					- durée : 0 min, 28 S				
 
-			6-2-2 Cb-12818 + les extensions externes + 'Collector-1.7.1'
+			6-2-2 Cb-13118 + les extensions externes + 'Collector-1.7.8'
 				dans un espace de travail de 43 projets contenant au total 2654 fichiers,
 				- listing 
 					- 10573 chaines détectées depuis 735 fichiers éligibles,
 					- durée : 0 min 55 S,
 				- extraction 
-                    -> 'codeblocks-12818-wx3.0.5-(64bit)_workspace.pot' ( 1 906 549 octets )
+                    -> 'codeblocks-13118-wx3.2.1-(64bit)_workspace.dup' ( 1 906 549 octets )
 					- 10573 chaines extraites depuis 735 fichiers éligibles,
 					- 157 fichiers temporaires,
 					- durée : 1 min 35 S 

@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-04-05
+ * Modified:  2022-11-24
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -116,20 +116,20 @@ class CreateForQt  : public Pre
 		 *  \param  _prjfirst : true if it's the first file
 		 *  \return true if good
 		 */
-		bool createPot(bool _prjfirst) override ;
+		bool creatingPot(bool _prjfirst) override ;
 
 	private:
 
 		wxString
 		/** \brief Contains all defines 'Qt' for executables
 		 */
-			m_DefinesQt,
+			m_DefinesQt
 		/** Contains all path include 'Qt' for executables
 		 */
-			m_IncPathQt,
+			,m_IncPathQt
 		/** \brief Contains file name
 		 */
-			m_filename
+	//		,m_filename
 			;
 
 		/** \brief executables are here ?

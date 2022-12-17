@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-31
+ * Modified:  2022-12-15
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -60,12 +60,6 @@ Pre::Pre(const wxString & _nameplugin, int _logindex) :
 #elif defined(__WXMAC__)
 	m_Mac = true; m_Win = m_Linux = false;
 #endif
-	// all projects in a table
-	if (m_pMprj)
-	{
-		m_pProjects = m_pMprj->GetProjects();
-		m_nbProjects = m_pProjects->Count();
-	}
 }
 ///-----------------------------------------------------------------------------
 //	Destructor
@@ -120,6 +114,10 @@ wxString Pre::platForm()
 #else
 	Mes += "-32'";
 #endif
+// search lang = "xx_XX"
+    m_locale.Init();
+    m_lang =  m_locale.GetCanonicalName();
+    Mes += "-" + quoteNS(m_lang) ;
 
 	return Mes ;
 }
@@ -150,15 +148,15 @@ wxString Pre::namePlugin()		{return m_namePlugin;}
 // Give values globales variables
 //
 // Called by :
-//     1. Collector::OnMenuListPrj(wxCommandEvent& _pEvent):1,
-//     2. Collector::OnMenuExtractPrj(wxCommandEvent& _pEvent):1,
-//		3. Collector::OnMenuListWS(wxCommandEvent& _pEvent):1,
-//     4. Collector::OnMenuExtractWS(wxCommandEvent& _pEvent);1,
+//  1. Collector::OnMenuListPrj(wxCommandEvent& _pEvent):1,
+//  2. Collector::OnMenuExtractPrj(wxCommandEvent& _pEvent):1,
+//  3. Collector::OnMenuListWS(wxCommandEvent& _pEvent):1,
+//  4. Collector::OnMenuExtractWS(wxCommandEvent& _pEvent);1,
 //
 bool Pre::isInitialized()		{return m_Init;}
 
 // Called by :
-//	1. Collector::OnMenuListPrj(wxCommandEvent& _pEvent):1
+//  1. Collector::OnMenuListPrj(wxCommandEvent& _pEvent):1
 //	2. Collector::OnMenuExtractPrj(wxCommandEvent& _pEvent):1
 // 	3. Collector::OnMenuListWS(wxCommandEvent& _pEvent):1
 //	4. Collector::OnMenuExtractWS(wxCommandEvent& _pEvent):1
@@ -174,10 +172,18 @@ bool Pre::isStopped()			{return m_Stop;}
 bool Pre::isCancelled()			{return m_Cancel;}
 
 // Called by :
+//  1. Collector::OnMenuListPrj(wxCommandEvent& _pEvent):1,
+//  2. Collector::OnMenuExtractPrj(wxCommandEvent& _pEvent):1,
+//  3. Collector::OnMenuListWS(wxCommandEvent& _pEvent):1,
+//  4. Collector::OnMenuExtractWS(wxCommandEvent& _pEvent):1,
+
+bool Pre::hasNoproject()         {return m_nbProjects == 0 ;}
+
+// Called by :
 //	1. Collector::OnMenuListExtractPrj(wxCommandEvent& _pEvent):1
 //	2. Collector::OnMenuListExtractWS(wxCommandEvent& _pEvent):1
 //
-bool Pre::isAllRight()		    {return m_Init && ! m_Stop && ! m_Cancel;}
+bool Pre::isAllRight()  {return m_Init && ! m_Stop && ! m_Cancel && m_nbProjects;}
 
 ///-----------------------------------------------------------------------------
 // Give the date followed by the time of construction of the plugin
@@ -188,10 +194,6 @@ bool Pre::isAllRight()		    {return m_Init && ! m_Stop && ! m_Cancel;}
 wxString Pre::GetDateBuildPlugin()
 {
     wxString str = _("date error !");
-    // search lang = "xx_XX"
-//     wxString lang =  wxLocale::GetLanguageInfo(wxLANGUAGE_DEFAULT)->GetLocaleName();
-// _printWarn(quote(lang));
-
 // path of '*.so' or 'lib*.so'
 	if (! m_pMam)
 		m_pMam = m_pM->GetMacrosManager();
@@ -224,79 +226,6 @@ wxString Pre::GetDateBuildPlugin()
 }
 
 // ----------------------------------------------------------------------------
-// Locate and call a menu from string (e.g. "/Valgrind/Run Valgrind::MemCheck")
-// it's a copy of 'CodeBlocks::sc_globals.cpp::CallMenu(const wxString& menuPath)'
-// return menu identificateur or wxNOT_FOUND il failed
-//
-// Called by;
-//	1. Pre::endextract():1,
-//
-// ----------------------------------------------------------------------------
-wxInt32 Pre::CallMenu(const wxString& _menuPath)
-{
-_printD("=> Begin 'Pre::CallMenu(" + _menuPath + ")'" );
-
-// this code is partially based on MenuItemsManager::CreateFromString()
-	wxMenuBar* mbar;
-	if(m_pM)
-		mbar = m_pM->GetAppFrame()->GetMenuBar();
-	if (!mbar) 	return   wxNOT_FOUND;
-	// dummy value ??
-	wxInt32 idMenu = 8 ;
-// this code is partially based on 'MenuItemsManager::CreateFromString()'
-    wxMenu* menu = nullptr;
-    size_t pos = 0;
-    while (true)
-    {
-	// ignore consecutive slashes of '_menuPath'
-        while (pos < _menuPath.Length() && _menuPath.GetChar(pos) == '/')
-			++pos;
-	// find next slash
-        size_t nextPos = pos;
-        while (nextPos < _menuPath.Length() && _menuPath.GetChar(++nextPos) != '/')  ;
-	// 'nextPos'
-        wxString current = _menuPath.Mid(pos, nextPos - pos);
-//_printWarn("... " + quote(current));
-        if (current.IsEmpty())       break;
-	// the last
-        bool isLast = nextPos >= _menuPath.Length();
-	// current holds the current search string
-        if (!menu) // no menu yet? look in menubar
-        {
-            wxInt32 menuPos = mbar->FindMenu(current);
-            if (menuPos == wxNOT_FOUND)		break; // failed
-            else							menu = mbar->GetMenu(menuPos);
-        }
-        else
-        {
-            if (isLast)
-            {
-                wxInt32 id = menu->FindItem(current);
-                if (id != wxNOT_FOUND)
-                {
-				// wx >= 3.0 : execute menu item
-                    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, id);
-                    mbar->GetEventHandler()->ProcessEvent(evt);
-				// done
-                    idMenu = id;
-//_printWarn(quote(_menuPath) + "=> id : " + strInt(idMenu)  );
-                }
-                break;
-            }
-            wxInt32 existing = menu->FindItem(current);
-            if (existing != wxNOT_FOUND)	menu = menu->GetMenuItems()[existing]->GetSubMenu();
-            else						    break; // failed
-        }
-        // prepare for next loop
-        pos = nextPos;
-    }
-
-_printD("    <= End 'Pre::CallMenu(...) => " + strInt(idMenu) );
-
-    return idMenu;
-}
-
-// ----------------------------------------------------------------------------
 // Called by :
 //	1. CreateForWx::searchExe():1,
 //
@@ -324,7 +253,7 @@ _printD("=> Begin 'Pre::findPathfromconf(" + _txt + ")'" );
 	//==============================================
 	if (conf.IsEmpty())
 	{
-		Mes = "!!" + quote(m_Nameconf)+ _("is empty") + " !!";
+		Mes = "!!" + _("The file") + quote(m_Nameconf)+ _("is empty") + " !!";
 		_printError(Mes);
 		ShowError(Mes);
 
@@ -362,14 +291,19 @@ _printD("	<= End 'Pre::findPathfromconf(" + path + ")'" );
 bool Pre::ListProject(const wxString& _key, wxInt32& _nbstr)
 {
 _printD("=> Begin 'Pre::ListProject(...)'" );
-
+    //===================
 	m_Init = Pre::Init();
+	//===================
 	if (! m_Init)		return false;
-    // close the files 'project_name.list', 'project_name.extr' , 'project_name.po'
-    //===================
-    closeAllExtraFiles();
-    //===================
-
+// initialze 'm_to' to actual time
+	m_tL0 = elapsed(0);
+// close the files 'project_name.list', 'project_name.dup' 'project_name.extr' , 'project_name.po'
+    //========================
+    Pre::closeAllExtraFiles();
+    //========================
+// lines header 'm_FilesCreatingPOT'
+    m_nbHeader =  _nbstr;
+// workspace or not
 	m_Workspace = (m_State == fbListWS) || (m_State == fbExtractWS);
 	m_Keyword = _key;
 // list strings from the first project
@@ -405,6 +339,8 @@ _printD("=> Begin Pre::ExtractProject()" );
 	bool ok = m_Init && m_goodListing ;
 	if (ok)
 	{
+    // initialze 'm_tE0' to actual time
+        m_tE0 = elapsed(0);
 	// launch extraction
         //==========================================
 		ok = Pre::extraction(FIRST_PRJ, m_pProject);
@@ -446,15 +382,22 @@ bool Pre::ListWS(wxInt32 & _nbstr)
 _printD("=> Begin 'Pre::ListWS()'");
 
 // basic init : ... m_NameProjectLeader, m_indexProjectLeader, ...
-    //==============
-    m_Init = Init();
-    //==============
+    //===================
+    m_Init = Pre::Init();
+    //===================
     if (!m_Init)	return false;
+
+// initialze 'm_tL0' to actual time
+    m_tL0 = elapsed(0);
 
 // launch listingWS()
     //==========================
     bool ok  = Pre::listingWS();
     //==========================
+    if (!ok)
+    {
+        /// TODO ...
+    }
 
     _nbstr = m_nbListStrings;
 
@@ -479,6 +422,10 @@ _printD("=> Begin 'Pre::ExtractWS()'" );
 	bool ok = m_Init && m_goodListing;
 	if (ok)
 	{
+    // initialze 'm_tE0' to actual time
+        //=================
+        m_tE0 = elapsed(0);
+        //=================
 	// launch extractionWS
         //=======================
 		ok = Pre::extractionWS();
@@ -515,18 +462,19 @@ bool Pre::extractionWS()
 _printD("=> Begin 'Pre::extractionWS()'");
 
 	bool ok = false ; m_Cancel = false;
-    //========================================
-    m_Datebegin = date().Mid(0, date().Len());
-    //========================================
 //1- message
 	// work begin
 	_print(Lf + Tab + Line(77));
 	wxUint32 nprj =  m_pMprj->GetProjects()->Count();
 	Mes = "===> " + _("begin 'Extract workspace' on") + Space + strInt(nprj);
 	Mes += Space + _("projects") ;
-    Mes += Lf + Tab + m_Datebegin ;
+    //=============================
+    Mes += Lf + Tab + Pre::date() ;
+    //=============================
 	_print(Mes);
 	m_Fileswithstrings.Add(Mes);
+	// test project number
+	if (hasNoproject())   return false;
 
 //2- begin workspace
 	m_Workspace = m_State == fbListWS || m_State == fbExtractWS || m_State == fbListExtractWS;
@@ -540,7 +488,7 @@ _printD("=> Begin 'Pre::extractionWS()'");
 	//=============================================
 	cbProject * pPrj = findProject(nameprj, index);
 	//=============================================
-	if (pPrj && index >=0 && index < int(m_nbProjects))
+	if (pPrj && index >= 0 && index < int(m_nbProjects))
 	{
 	// finded project
         //===============================
@@ -548,6 +496,7 @@ _printD("=> Begin 'Pre::extractionWS()'");
 		//===============================
 		if(!ok)
 		{
+		    // TODO ...
 		}
 	}
 	else
@@ -575,31 +524,38 @@ bool Pre::listingWS()
 {
 _printD("=> Begin 'Pre::ListingtWS()'");
 
-//1- clean
+//1- clean 'm_FileStrcreated'
     //========================
 	Pre::initFileStrcreated();
 	//========================
-	// date : initialize 'm_begin'
-    m_Datebegin = date().Mid(0, date().Len());
 
 //2- message
 	// work begin
-	_print(Tab + Line(77));
 	wxUint32 nbPrj =  m_pMprj->GetProjects()->Count();
+	if (!nbPrj)
+    {
+    // no project
+      //  Mes = _("No project loaded") + " !!";
+      //  _printError(Mes);
+        return false;
+    }
+    _print(Tab + Line(77));
 	Mes = "===> " + _("begin 'List workspace' on") + Space + strInt(nbPrj);
 	Mes += Space + _("projects") ;
-    Mes += Lf + Tab + m_Datebegin ;
+    //=============================
+    Mes += Lf + Tab + Pre::date() ;
+    //=============================
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
 
 //3- begin workspace
 	m_Workspace = m_State == fbListWS || m_State == fbExtractWS || m_State == fbListExtractWS;
 	m_nbStringsWS = 0; m_nbStrWS = 0; m_nbXmlWithlessString = 0;
-
+	// These two tables must remain synchronous in size
     m_FileswithI18n.Clear();
-    // projects name array clean
-	m_NameprjWS.Clear();
 	m_PrjwithI18nWS.Clear();
+	// projects name array clean
+	m_NameprjWS.Clear();
 
 	m_nbPrjextractWS = 0;
 	cbProject * pActualprj;
@@ -659,7 +615,7 @@ _printD("=> Begin 'Pre::ListingtWS()'");
         }
 	// actual project not active
         //=====================================
-		ok = releaseProject(pActualprj, false);
+		ok = releaseProject(pActualprj, NO_POT);
 		//=====================================
 		// it's not a Wx project
 		if (!ok)
@@ -702,7 +658,8 @@ _printD("=> Begin 'Pre::ListingtWS()'");
 /// DEBUG
       //  if (!NO_CODE || !NO_RES || !NO_XML)
         {
-            Mes = space(3) + "## " + strInt(m_nbStrWS) + Space + _("all detected code/res strings");
+            Mes = space(3) + "## " + strInt(m_nbStrWS) + Space ;
+            Mes += _("all detected code/res strings");
             _printError(Line(Mes.Len()));
             _printWarn(Mes);
             _printError(Line(Mes.Len()));
@@ -715,8 +672,11 @@ _printD("=> Begin 'Pre::ListingtWS()'");
 		Pre::releaseProject(m_pProjectleader, WITH_POT);
 		//==============================================
 		m_DirprojectLeader = m_Dirproject.Mid(0, m_Dirproject.Len());
+//_printError("Pre::listingWS() => m_DirprojectLeader = " + quote(m_DirprojectLeader) );
 //8- duration and save list
+        //=========================
 		good = Pre::endaction('L');
+		//=========================
 	}
 	else
 	{
@@ -741,7 +701,7 @@ _printD("	<= End 'CreateForWx::ListingWS()' => " + strBool(good)  );
 //	1. Pre::releaseProject(cbProject * _pProject, bool _with = true):1,
 //	2. Pre::date():2,
 //	3. Pre::bigproject(wxUint32 _nbfile):1,
-//	4. CreateForWx::createPot(bool _prjfirst):1,
+//	4. CreateForWx::creatingPot(bool _prjfirst):1,
 //	5. Pre::xgettextWarn(const wxString& _txt, const bool& _withpot):1,
 //	6. Pre::endextract();1,
 //
@@ -757,7 +717,7 @@ _printD("=> Begin 'Pre::extraction(" + strBool(_prjfirst) + ", ...)'" );
 	{
 	// launch from 'extractionWX'
 		m_pProject = _pProject;
-	// withless modify 'Namepot' if exists
+	// without modify 'Namepot' if exists
         //======================================
 		Pre::releaseProject(m_pProject, NO_POT);
 		//======================================
@@ -776,7 +736,8 @@ _printD("=> Begin 'Pre::extraction(" + strBool(_prjfirst) + ", ...)'" );
 		Mes = quote(m_Keyword);
 		Mes += _("is not right keyword for extract into 'Wx'") + " !!!" + Eol;
 		Mes += _("Would you continue ?");
-		wxInt32 choice = cbMessageBox(Mes, "!!!" + _("Warning") + " !!!", wxICON_QUESTION | wxYES_NO);
+		wxInt32 choice = cbMessageBox(Mes, "!!!" + _("Warning") + " !!!"
+									  ,wxICON_QUESTION | wxYES_NO);
 		if (choice == wxID_NO)
 		{
 				m_Cancel = true;
@@ -787,15 +748,14 @@ _printD("=> Begin 'Pre::extraction(" + strBool(_prjfirst) + ", ...)'" );
 	if (! m_Workspace)
 	{
 		m_Fileswithstrings.Clear();
-		//========================================
-		m_Datebegin = date().Mid(0, date().Len());
-		//========================================
 		if (m_State != fbListExtractPrj)
 		{
 			_print(Line(110));
 		}
-		Mes = space(3) + _("Build file") + quote(m_Dirlocale + m_Shortnamepot);
-		Mes += Lf + Tab + m_Datebegin;
+		Mes = space(3) + _("Build file") + quote(m_Dirlocale + m_Shortnamedup);
+		//=============================
+        Mes += Lf + Tab + Pre::date() ;
+        //=============================
 		_print(Mes);
 		Mes =  "===> " + _("begin 'Extract from project' with KEYWORD") + " = ";
 		Mes += quote(m_Keyword) + "...";
@@ -809,22 +769,25 @@ _printD("=> Begin 'Pre::extraction(" + strBool(_prjfirst) + ", ...)'" );
 //4- create files pot
 	// path leader project
 		if (m_Workspace) 	wxFileName::SetCwd(m_DirprojectLeader);
+//_printError("Pre::extraction(...) => m_DirprojectLeader = " + quote(m_DirprojectLeader) );
 	// create *.pot, call inherited
         //=============================
-		bool ok = createPot(_prjfirst);
+		bool ok = creatingPot(_prjfirst);
 		//=============================
 		if (! ok)
 		{
 			if (! m_Stop)
 			{
 				Mes = "Pre::extraction(...) : ";
-				Mes += _("Unable to extract file") + quote(m_Shortnamepot) + " !!";
-				//=============
-				ShowError(Mes);
-				//=============
+				Mes += _("Unable to extract file") + quote(m_Shortnamedup) + " !!";
+				//==================
+				Pre::ShowError(Mes);
+				//==================
 				_printError(Mes);
 				m_Fileswithstrings.Add(Mes);
+				//==================
 				Pre::endaction('E');
+				//==================
 				_print(m_Theend);
 			}
 			return false;
@@ -836,7 +799,7 @@ _printD("=> Begin 'Pre::extraction(" + strBool(_prjfirst) + ", ...)'" );
 			if (! m_Warnpot.IsEmpty() )
 			{
 				Mes = Lf + Tab + "** " + _("Warnings inside");
-				Mes += quote(m_Shortnamepot) + "**" + Eol;
+				Mes += quote(m_Shortnamedup) + "**" + Eol;
 			// formatting output file
                 //============================================
 				Mes += Pre::xgettextWarn(m_Warnpot, WITH_POT);
@@ -887,21 +850,26 @@ bool Pre::endextract()
 {
 _printD("=> Begin 'Pre::endextract()'" );
 
-	bool good = true;
-	bool del  = false;
+	bool good = true, del  = false;
 //0- choice for delete
-	// TODO : go to 'Settings' ...
+	Mes = Lf + "   --> " + _("begin") + Space + quote(_("Replaces unwanted characters")) ;
+	_printWarn(Mes);
+	m_Fileswithstrings.Add(Mes);
+// TODO : go to 'Settings' ...
 	if (m_Warnpot.IsEmpty())
 	{
-		Mes = "1- " + _("Replace some macro") + "..."  + Lf;
-		Mes += "2- " + _("Find and replace :") + Lf;
-		Mes += "  2-1- '\\r' -> ''" + Lf;
-		Mes += "  2-2- '$$...' -> '$...'" + Lf;
-		Mes += "  2-3- '%%...' -> '%...'" + Lf;
-		Mes += Lf + _("For a big project, this may take several minutes") + " ..." + Lf;
-		Mes += _("Do you want replace ?");
-		wxString title = _("Check the integrity of") + quote(m_Shortnamepot);
-		del = cbMessageBox(Mes, title, wxICON_QUESTION | wxYES_NO) == wxID_YES;
+		Mes  = Tab + "1- " + _("Replace some macro") + "..."  + Lf;
+		Mes += Tab + "2- " + _("Find and replace :") + Lf;
+		Mes += Tab + "  2-1- '\\r' -> ''" + Lf;
+		Mes += Tab + "  2-2- '$$...' -> '$...'" + Lf;
+		Mes += Tab + "  2-3- '%%...' -> '%...'";
+	//	Mes += Lf + _("For a very big project, this may take several minutes") + " ..." + Lf;
+	//	Mes += _("Do you want replace ?");
+	//	wxString title = _("Check the integrity of") + quote(m_Shortnamedup);
+	//	del = cbMessageBox(Mes, title, wxICON_QUESTION | wxYES_NO) == wxID_YES;
+		_print(Mes);
+		m_Fileswithstrings.Add(Mes);
+		del = true;
 	}
 	else
 	{
@@ -909,11 +877,15 @@ _printD("=> Begin 'Pre::endextract()'" );
 		Mes += quote("\\r")  ;
 		Mes +=  _("which is not tolerated by 'xgettext'") +  ", " ;
 		Mes += _("also they will not be taken into account") ;
-		Mes +=  "..." ;
+		Mes +=  "..."  ;
 		_printWarn(Mes);
 		m_Fileswithstrings.Add(Mes);
 		del = true;
 	}
+// end
+	Mes = "   <-- " + _("end") + Space + quote(_("Replaces unwanted characters")) ;
+	_printWarn(Mes);
+	m_Fileswithstrings.Add(Mes);
 
 	Mes = wxEmptyString;
 	if (m_Gexeishere)
@@ -926,16 +898,16 @@ _printD("=> Begin 'Pre::endextract()'" );
 		if (!good)
 		{
 			Mes = _("Error during verifing file integrity");
-			Mes += quote(m_Shortnamepot);
+			Mes += quote(m_Shortnamedup);
 			_print(Mes);
-			//=============
-			ShowError(Mes);
-			//=============
+			//==================
+			Pre::ShowError(Mes);
+			//==================
 			wxChar mode = 'E';
 			if (m_goodListing) 	mode = 'L';
-			//==============================================
-			good = Pre::saveArray(m_Fileswithstrings, mode);
-			//==============================================
+			//====================================================
+			good = Pre::saveArrayToDisk(m_Fileswithstrings, mode);
+			//====================================================
 		}
 	} // end m_Gexeishere
 
@@ -951,8 +923,11 @@ _printD("=> Begin 'Pre::endextract()'" );
 	}
 
 	_print(space(3) + Line(80));
+
 //3- open '*.po' to editor
-	wxString shortname = m_Namepo.AfterLast(slash).Prepend(m_Dirlocale);
+//_printError("m_Namepo :" + quote(m_Namepo)) ;
+	wxString shortname = m_Namepo.AfterLast(cSlash).Prepend(m_Dirlocale);
+//_printError("shortname :" + quote(shortname)) ;
 	if (wxFileName::FileExists(shortname) )
 	{
         //=========================
@@ -974,12 +949,13 @@ _printD("=> Begin 'Pre::endextract()'" );
 	// new strings to merge inside '*.po' ?
 	if (m_nbFileEligible)
 	{
-	// execute 'Translator' asynchronous mode
-		Mes = "   ==> " + _("Execute") + quote(EXTERN_TRANSLATOR);
+	// Launching 'Translator' synchronous mode
+		Mes = "   ==> " + _("Launching") + quote(EXTERN_TRANSLATOR);
 		_printWarn(Mes);
+		m_Fileswithstrings.Add(Mes);
 	// synchronous
 		//============================================
-		wxInt32 ret  = LaunchExternalTool(m_Pathpexe);
+		wxInt32 ret = LaunchExternalTool(m_PathPexe);
 		//============================================
 		good = ret == 0;
 		m_Fileswithstrings.Add(Mes);
@@ -1016,7 +992,7 @@ _printD("	<= End 'Pre::endextract()' => " + strBool(good) );
 //
 bool Pre::copyFileToDir(const wxString& _namefile)
 {
-    wxString longname = _namefile, shortname = longname.AfterLast(slash);
+    wxString longname = _namefile, shortname = longname.AfterLast(cSlash);
     // '*.mo' created ?
 	bool ok = wxFileName::FileExists(longname);
 	if (ok)
@@ -1026,13 +1002,13 @@ bool Pre::copyFileToDir(const wxString& _namefile)
 		Mes = Tab + "**" + quote(EXTERN_TRANSLATOR) + _("has created") ;
 		Mes += quote(shortname) + _("to directory") + " :" ;
 		_printWarn(Mes) ;
-		Mes =  Tab + quote(longname.BeforeLast(slash) + slash) ;
+		Mes =  Tab + quote(longname.BeforeLast(cSlash) + cSlash) ;
 		_print(Mes) ;
 		Mes = "   <== " + _("end") + quote(EXTERN_TRANSLATOR);
 		_printWarn(Mes);
 
 	// copy this file to another location ?
-		wxString title = _("Copy le file") + quote(shortname) ;
+		wxString title = _("Copy the file") + quote(shortname) ;
 		Mes = _("Do you want to copy this file to another location") + " ?";
 		wxInt32 choice = cbMessageBox(Mes, title, wxICON_QUESTION | wxYES_NO);
 		if (choice == wxID_YES)
@@ -1046,7 +1022,7 @@ bool Pre::copyFileToDir(const wxString& _namefile)
                 Mes =  Lf + Tab + "** " + _("File") + quote(shortname) ;
                 Mes += _("is copied to directory") + " :";
                 _printWarn(Mes);
-                Mes =  Tab + quote(longname.BeforeLast(slash) + slash);
+                Mes =  Tab + quote(longname.BeforeLast(cSlash) + cSlash);
                 _print(Mes) ;
             }
             else
@@ -1082,21 +1058,18 @@ bool Pre::Init(const wxString _type)
 {
 _printD("=> Begin Pre::Init()");
 
-    //==========================
-	if (!Pre::Initbasic(_type) )	return false;
-    // call inherited
-	if (!initTailored(_type))	return false;
-	//==========================
+    //============================
+	if (! Pre::Initbasic(_type) )	return false;
+    // call inherited virtual
+	if (! initTailored(_type) )	    return false;
+	//=============================
 	// actualize booleens
-	m_Pexeishere = ! m_Pathgexe.IsEmpty();
-	m_Gexeishere = ! m_Pathgexe.IsEmpty();
-	m_Mexeishere = ! m_Pathmexe.IsEmpty();
+	m_Pexeishere = ! m_PathGexe.IsEmpty();
+	m_Gexeishere = ! m_PathGexe.IsEmpty();
+	m_Mexeishere = ! m_PathMexe.IsEmpty();
+	m_Uexeishere = ! m_PathUexe.IsEmpty();
 
 	m_Cancel = false; m_Stop = false;
-// init 'm_begin' for duration in 'S'
-    //==========
-	beginTime();
-	//==========
 
 _printD("    <= End Pre::Init()");
 
@@ -1151,6 +1124,7 @@ _printD("=> Begin 'Pre::Initbasic()'");
 		m_Eol = CrLf;
 	// executable names
 		m_Pexe = "Poedit.exe"; m_Gexe = "xgettext.exe";	m_Mexe = "msgmerge.exe";
+		m_Uexe = "msguniq.exe";
 	// configuration CodeBlocks file name
 		m_Nameconf = "default.conf";
 	}
@@ -1159,6 +1133,7 @@ _printD("=> Begin 'Pre::Initbasic()'");
 	{
 		m_Eol = Lf;
 		m_Pexe = "poedit"; m_Gexe = "xgettext";	m_Mexe = "msgmerge";
+		m_Uexe = "msguniq";
 		m_Nameconf = "default.conf" ;//  ???
 	}
 	else
@@ -1166,6 +1141,7 @@ _printD("=> Begin 'Pre::Initbasic()'");
 	{
 		m_Eol = Cr;
 		m_Pexe = "poedit"; m_Gexe = "xgettext";	m_Mexe = "msgmerge";
+		m_Uexe = "msguniq";
 		m_Nameconf = "default.conf" ;//  ???
 	}
 
@@ -1185,19 +1161,21 @@ _printD("=> Begin 'Pre::Initbasic()'");
 	m_pProjectleader = m_pProject;
 	m_NameprojectLeader = m_pProject->GetTitle();
 	m_DirprojectLeader = m_pProject->GetBasePath();
+//_printError("Pre::Initbasic() => m_DirprojectLeader = " + quote(m_DirprojectLeader) );
 	// targets associated with a file
 	m_Targetsfile.Clear();
 	// all projects
 	m_pProjects = m_pMprj->GetProjects();
-	if(m_pProjects->IsEmpty())
+	if(m_pProjects && m_pProjects->IsEmpty())
         return false;
 
     m_nbProjects = m_pProjects->Count();
-//_printWarn("m_nbProjects = " + strInt(m_nbProjects) );
+    if (hasNoproject())   return false;
+
 //7- index leader project
-    //===================================================
-    wxInt32 index = indexProject(m_NameprojectLeader);
-    //===================================================
+    //================================================
+    wxInt32 index = Pre::indexProject(m_NameprojectLeader);
+    //================================================
     if (index >= 0 )    m_indexPrjLeader = index;
     else
         return false;
@@ -1209,15 +1187,15 @@ _printD("=> Begin 'Pre::Initbasic()'");
 //9- create directories into 'm_pProject'
 		Mes = _("Could not create directory") + " :";
 	//9.1 'm_Dirlocale'
-        //===============================
-		bool ok = createDir(m_Dirlocale);
-		//===============================
+        //====================================
+		bool ok = Pre::createDir(m_Dirlocale);
+		//====================================
 		if (ok)
 		{
 		//9.2 'm_Temp''
-            //=====================
-			ok = createDir(m_Temp);
-			//=====================
+            //==========================
+			ok = Pre::createDir(m_Temp);
+			//==========================
 			if (!ok)
 			{
 				Mes += quote(m_Temp) + "!" ;
@@ -1264,28 +1242,27 @@ _printD("=> Begin 'Pre::listing(" + strInt(_posWS) + ")'");
 	{
     // 'xml' withless tanslatable strings
          m_nbXmlWithlessString = 0;
-    // date, initialize 'm_begin'
-        //========================================
-        m_Datebegin = date().Mid(0, date().Len());
-        //========================================
 	// work begin
         wxString mes = Tab + _("Work path") + " :" + quote(m_Dirproject);
         _print(Tab + Line(mes.Len()));
 		Mes = Tab + _("The active project") + Space + quoteNS(m_Nameproject);
 		Mes += ", " + strInt(m_nbFilesprj) + Space + _("files");
-        Mes += Lf + Tab + m_Datebegin ;
+        //=============================
+        Mes += Lf + Tab + Pre::date() ;
+        //=============================
 		_printWarn(Mes);
 		_print(mes);
 		m_Fileswithstrings.Add(Mes + mes);
 
 		m_DirprojectLeader = m_Dirproject.Mid(0, m_Dirproject.Len());
+//_printError("Pre::listing() => m_DirprojectLeader = " + quote(m_DirprojectLeader) );
 	}
 //2- project leader  or  '_posWS == 0'
 	bool leaderprj =_posWS == m_indexPrjLeader;
 	if (leaderprj && m_Workspace)
 	{
         Mes = Lf + Tab + _("'List from workspace' with KEYWORD") + " = ";
-        Mes += quote(m_Keyword) + "...";
+        Mes += quote(m_Keyword) + "..." + Lf ;
         _print(Mes);
         m_Fileswithstrings.Add(Mes);
 	}
@@ -1299,7 +1276,7 @@ _printD("=> Begin 'Pre::listing(" + strInt(_posWS) + ")'");
 			Mes += " *** " + _("PROJECT LEADER") + " *** ";
         // formatting
         wxString line =  wxString('=', Mes.Length());
-        _print(Lf + line); _print(Mes); _print(line);
+        _print(line); _print(Mes); _print(line);
     // add into array
 		m_Fileswithstrings.Add(Mes);
 		Mes = Tab + _("Project path") + " :" + quote(m_Dirproject);
@@ -1312,17 +1289,15 @@ _printD("=> Begin 'Pre::listing(" + strInt(_posWS) + ")'");
 		_printWarn(Mes) ;
 	}
 
-	Mes = "---> " + _("begin 'List from project") ;
-	if (m_Workspace)
-		Mes += "-" + strInt(_posWS) + "'";
-	else
-		Mes += Space + _("with KEYWORD") + " =" + quote(m_Keyword) + "...";
+	Mes = Lf + "---> " + _("begin 'List from project'") ;
+	if (m_Workspace)   Mes += "-" + strInt(_posWS) + "'";
+	else    Mes += Space + _("with KEYWORD") + " =" + quote(m_Keyword) + "...";
 
   	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
-	// strings number estimation !
-    Mes = "** " + _("Estimated number of strings to translate") ;
-	Mes += ", "  + _("wait a little bit")  + " ..." ;
+// strings number estimation !
+    Mes = "** " + _("Estimated number of strings to translate") + ", " ;
+	Mes += _("wait a little bit")  + " ..." ;
 	// aline '----   '
 	ncline = Mes.Len();
 	_printWarn(Line(ncline) );
@@ -1341,14 +1316,16 @@ _printD("=> Begin 'Pre::listing(" + strInt(_posWS) + ")'");
 	m_goodListing = true;
 	m_nbListStrings = 0;
 	// only for one project
-	if (!m_Workspace)  m_FileswithI18n.Clear();
+	if (!m_Workspace)   m_FileswithI18n.Clear();
 
 //5-1- find elegibles files and calculate the strings detected number
     //=====================================
 	m_nbListStrings = Pre::findGoodfiles();
 	//=====================================
+	// actual time
+	m_tI = elapsed(0) ;
 	Mes =  "** ... " + strInt(m_nbListStrings) ;
-	Mes += Tab + _("duration") + " = " + elapsedTimeStr(m_begin);
+    Mes += Tab + _("duration") + " = " + dtimeStr(m_tI - m_tL0);
     _print(Mes);
     // aline '----   '
     _printWarn(Line(ncline) );
@@ -1364,25 +1341,26 @@ _printD("=> Begin 'Pre::listing(" + strInt(_posWS) + ")'");
 		return false;
 	}
 // range of progress bar
-	BuildLogger::g_MaxProgress = m_nbListStrings ;
+	BuildLogger::g_MaxProgress = m_nbListStrings + wxUint32(m_nbListStrings/5) ;
 	BuildLogger::g_CurrentProgress = 0 ;
 
 /// debug
 //_printError("Listing : g_MaxProgress = " + strInt(BuildLogger::g_MaxProgress) + " marks");
-
-    Mes = Tab  + "# " + _("Elected files") + "..." ;
+/*
+// debug
+if (m_Workspace)
+{
+_printWarn("m_indexFirstFile = " + iToStr(m_indexFirstFile) + " => " + m_FileswithI18n.Item(m_indexFirstFile));
+_printWarn("m_indexLastFile = " + iToStr(m_indexLastFile) + " => " + m_FileswithI18n.Item(m_indexLastFile));
+}
+*/
+	wxInt32 nbfiles = m_indexLastFile - m_indexFirstFile ;
+    Mes = Lf + Tab  + "# " + _("There are") + Space + iToStr(nbfiles) + Space ;
+    Mes += _("elected files") + " ..." ;
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
 
 //5-2- find elegibles files
-// debug
-/*
-if (m_Workspace)
-{
-_print("m_indexFirst = " + strInt(m_indexFirst) + " => " + m_FileswithI18n.Item(m_indexFirst));
-_print("m_indexLast = " + strInt(m_indexLast) + " => " + m_FileswithI18n.Item(m_indexLast));
-}
-*/
     //=====================================
 	m_nbListStrings = Pre::listGoodfiles();
 	//=====================================
@@ -1397,14 +1375,6 @@ _print("m_indexLast = " + strInt(m_indexLast) + " => " + m_FileswithI18n.Item(m_
 	}
 	else
 	{
-	/*
-	// 'm_FileswithI18n' is filled
-		Mes = Lf + Tab + "# " + strInt(m_nbListStrings) + Space ;
-		Mes += _("collecting strings into") + Space;
-		Mes += strInt(m_nbFileEligible) + Space + _("elegible(s) file(s)") ;
-		_printWarn(Mes);
-		m_Fileswithstrings.Add(Mes);
-*/
         if (!NO_CODE || !NO_RES || !NO_XML)
         {
         /// Experimental : display the detected strings in project '_("'
@@ -1412,7 +1382,6 @@ _print("m_indexLast = " + strInt(m_indexLast) + " => " + m_FileswithI18n.Item(m_
             _printError(Mes);
             m_Fileswithstrings.Add(Mes);
         }
-
 		_printLn;
 	// end listing message
 		if (m_Workspace)
@@ -1443,7 +1412,7 @@ _printD("	<= End 'Pre::listing()' => " + strBool(good) );
 //		3. Pre::listingWS():1,
 //
 // Call to :
-//		1. Pre::saveArray (const wxArrayString& _strarray,  wxChar _mode):1,
+//		1. Pre::saveArrayToDisk (const wxArrayString& _strarray,  wxChar _mode):1,
 //		2. Pre::date():2,
 //
 bool Pre::endaction(const wxChar& _mode)
@@ -1457,7 +1426,7 @@ _printD("=> Begin 'Pre::endaction(" + quoteNS(strChar(_mode) ) + ")'" );
         Mes = space(3) + "## "+ _("From") + Space + strInt(m_nbPrjextractWS) + Space ;
         Mes +=_("project(s) containing") + Space + strInt(m_nbFilesWS) + Space ;
         Mes += _("total files") ;
-        _print(Lf + space(3) + Line(Mes.Len()) );
+        _print(space(3) + Line(Mes.Len()) );
         _print(Mes);
         m_Fileswithstrings.Add(Mes);
     // extracted or detected strings
@@ -1487,19 +1456,20 @@ _printD("=> Begin 'Pre::endaction(" + quoteNS(strChar(_mode) ) + ")'" );
 		_printWarn(Mes);
 		m_Fileswithstrings.Add(Mes);
     }
-// *.po and taille
+// '*.po' and size  => display size '*.po'
     if (_mode == 'E')
     {
-        wxString namepo = m_Namepo.AfterLast(slash).Prepend(m_Dirlocale);
-        Mes = Tab + " =>" + quote(namepo) + " (" + strInt(m_sizeFilePo) ;
-        Mes += Space + _("bytes") + ")";
+        wxString namepo = m_Namepo.AfterLast(cSlash).Prepend(m_Dirlocale);
+		Mes = Tab + _("to the file") + quote(namepo);
+        Mes += " (" + strInt(m_sizeFilePo) + Space + _("bytes") + ")";
         _printWarn(Mes);
         m_Fileswithstrings.Add(Mes);
     }
+// Experimental
 // just for statistics on '*.xml' files
     if (m_nbXmlWithlessString)
     {
-        Mes = Tab + "*** " + _("There are") + Space + strInt(m_nbXmlWithlessString);
+        Mes = Tab + "*** " + _("There exists") + Space + strInt(m_nbXmlWithlessString);
         Mes += Space + _("files 'xml', who are not translatable strings") + "...";
         _printError(Lf +Tab + Line(Mes.Len()) );
         _printWarn(Mes);
@@ -1507,43 +1477,50 @@ _printD("=> Begin 'Pre::endaction(" + quoteNS(strChar(_mode) ) + ")'" );
     }
 
 // file opened
-    //==================================================
-	bool ok = Pre::saveArray(m_Fileswithstrings, _mode);
-	//==================================================
-// end
-	if (!m_Workspace)
-	{
-		if (_mode == 'E')
-		{
-			m_goodListing = false;
-			Mes =  "<=== " + _("end 'Extract from project'");
-		}
-	// work end
-		if (_mode == 'L')
-		{
-			Mes =  "<--- " + _("end 'List from project'") ;
-		}
-	}
-	else
-	{
-		if (_mode == 'E')
-		{
-			m_goodListing = false;
-			Mes =  "<=== " + _("end 'Extract from workspace'");
-		}
-	// work end
-		if (_mode == 'L')
-		{
-			Mes =  "<=== " + _("end 'List from workspace'") ;
-		}
-	}
-	Mes += " : " + _("all right.");
-	_printWarn(Lf + Mes);
+    //========================================================
+	bool ok = Pre::saveArrayToDisk(m_Fileswithstrings, _mode);
+	//========================================================
+
+// end messages
+    if (_mode == 'E')
+    {
+        m_goodListing = false;
+    // actual time - old time
+        m_dtE = elapsed(0) - m_tE0;
+        Mes = Lf + Tab + _("duration") + " = " + dtimeStr(m_dtE);
+        _print(Mes);
+        m_Fileswithstrings.Add(Mes);
+
+        Mes = Lf + "<=== ";
+        if (!m_Workspace)    Mes += _("end 'Extract from project'");
+        else                 Mes += _("end 'Extract from workspace'");
+    }
+    else
+// work end
+    if (_mode == 'L')
+    {
+    // actual time
+        m_dtL = elapsed(0) - m_tL0;
+        Mes = Lf + Tab + _("duration") + " = " + dtimeStr(m_dtL);
+        _print(Mes);
+        m_Fileswithstrings.Add(Mes);
+
+        Mes = Lf + "<--- " ;
+        if (!m_Workspace)   Mes += _("end 'List from project'") ;
+        else                Mes += _("end 'List from workspace'") ;
+    }
+
+	Mes += " : " + _("all right") + Dot + Lf;
+	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
 
-	Mes = Lf + Tab + _("duration") + " = " + elapsedTimeStr(m_begin) + Lf;
-	_print(Mes);
-	m_Fileswithstrings.Add(Mes);
+	if (_mode == 'E')
+    {
+    // total duration : List and Extract
+        Mes =  _("Total duration") + " : " + dtimeStr(m_dtL + m_dtE) + Lf;
+        _print(Mes);
+        m_Fileswithstrings.Add(Mes);
+    }
 
 _printD("	<= End 'Pre::endaction()' => " + strBool(ok));
 
@@ -1566,13 +1543,13 @@ _printD("=> Begin 'Pre::initFileStrcreated()'");
 	// is empty
 	if (nfc == 0)
 	{
-	// box 0 for active project
+	// cell 0 for active project
 		m_FileStrcreated.Add(m_NameprojectLeader, 1);
 		nfc++;
 	}
 	else
 	{
-	// verify box 0 for active project
+	// verify cell 0 for active project
 		bool same = m_FileStrcreated.Index(m_NameprojectLeader) == 0;
 		// without temporary file
 		if (nfc == 1)
@@ -1627,19 +1604,26 @@ _printD("=> Begin 'Pre::findGoodfiles()'" );
 // number eligibles  files
 	m_nbFileEligible = 0;
 // the first project
-    // directory
+    // the directory of the current project
     m_FileswithI18n.Add(m_Dirproject);
-    m_indexFirst = m_FileswithI18n.Index(m_Dirproject) + 1;
+//_printError(m_FileswithI18n.Last());
+    // the first file of the current project
+    m_indexFirstFile = m_FileswithI18n.Index(m_Dirproject) + 1;
     // project name
-	if (! m_Workspace)      m_PrjwithI18nWS.Add(m_Nameproject);
+	//if (! m_Workspace)      m_PrjwithI18nWS.Add(m_Nameproject);
+	if (m_Workspace)
+	{
+        m_PrjwithI18nWS.Add(m_Nameproject);
+//_printWarn(iToStr(m_PrjwithI18nWS.GetCount()) + " projects I18n " + m_PrjwithI18nWS.Last());
+    }
 
-    wxInt32  index;
+    wxInt32  index, nbmax;
 	m_Cancel = false;
 	bool  okcode, okres, okxml;
 	bool sameprj = false, finded = false;
 	wxString ext, result;
-
-	m_pM->Yield();
+// control to pending messages in the event loop
+	//m_pM->Yield();
 
 // all files of current project : !!! targets should be explored too !!!
     // for modulo calculate : it's a compromise
@@ -1649,9 +1633,9 @@ _printD("=> Begin 'Pre::findGoodfiles()'" );
 
 	for (wxUint32 nf = 0; nf < m_nbFilesprj; nf++)
 	{
+	/// Mandatory to avoid slowing down the estimation !!
 	// control to pending messages in the event loop
-       // if (nf && nf%100 == 0)      m_pM->Yield();
-       // if (nf && nf%val == 0)      m_pM->Yield();
+      //  m_pM->Yield();
 	// analysis stopped manually
 		if (m_Stop)
 		{
@@ -1677,7 +1661,7 @@ _printD("=> Begin 'Pre::findGoodfiles()'" );
 	// elegible file
 		elegible = okcode || okres || okxml;
 		if (!elegible)  continue;
-	/// DEBUG
+	/// for DEBUG
 		//if (okcode) continue;
 		//if (okres) continue;
 		//if (okxml) continue;
@@ -1689,6 +1673,7 @@ _printD("=> Begin 'Pre::findGoodfiles()'" );
 		//==========================================
 		good = nbStr > 0;
 		if (!good)	continue;
+//_printError("nbStr = " + iToStr(nbStr) + " in " + quote(filein) );
 	// all marks
         nbStrAll += nbStr;
 	// update tables
@@ -1703,12 +1688,21 @@ _printD("=> Begin 'Pre::findGoodfiles()'" );
 		// m_Workspace
 		else
 		{
-        // index of the first from begin
+        // index of the first from begin ?
 			index = m_FileswithI18n.Index(filein);
-			finded = index != wxNOT_FOUND ;
+			finded = index != -1 ;
 			sameprj = false;
 		// file exists already
-			if (finded) 	sameprj = m_PrjwithI18nWS.Item(index) == m_Nameproject;
+			if (finded)
+			{
+			// preventing the indexes of the two tables from becoming out of sync
+				nbmax = m_PrjwithI18nWS.GetCount();
+				Mes = "Pre::findGoodfiles() => m_FileswithI18n::index = " + iToStr(index);
+				Mes += ", m_PrjwithI18nWS::max = " + iToStr(nbmax) ;
+				wxASSERT_MSG( index < nbmax , Mes);
+			// assert  before
+                sameprj = m_PrjwithI18nWS.Item(index) == m_Nameproject;
+            }
 		// not finded or not same project
 			if (!finded || !sameprj)
 			{
@@ -1719,7 +1713,7 @@ _printD("=> Begin 'Pre::findGoodfiles()'" );
 		} // workspace
 	} // end for nf
 
-    m_indexLast = m_FileswithI18n.Index(m_FileswithI18n.Last(), true, true) ;
+    m_indexLastFile = m_FileswithI18n.Index(m_FileswithI18n.Last(), true, true) ;
     m_nbStrPrj = nbStrAll;
 
 _printD("	<= End 'Pre::findGoodfiles(...)'");
@@ -1750,29 +1744,29 @@ _printD("=> Begin 'Pre::listGoodfiles()'" );
 	wxUint32 nbFiles = m_FileswithI18n.Count();
 	if(!m_Workspace)
     {
-        m_indexFirst = 0;
-        m_indexLast = 0;
-        if (nbFiles)    m_indexLast = nbFiles-1;
+        m_indexFirstFile = 0;
+        m_indexLastFile = 0;
+        if (nbFiles)    m_indexLastFile = nbFiles-1;
     }
 
 	// only a directory !
     if (nbFiles < 1) return 0;
 
 // begin : only the part used of current projct
-	for (wxUint32 nf = m_indexFirst; nf <= m_indexLast  ; nf++)
+	for (wxUint32 nf = m_indexFirstFile; nf <= m_indexLastFile  ; nf++)
 	{
+    // control to pending messages in the event loop
+		m_pM->Yield();
 	// analysis stopped manually
 		if (m_Stop)
 		{
 			good = false;
 			break;
 		}
-    // control to pending messages in the event loop
-		m_pM->Yield();
     // all names
         name =  m_FileswithI18n.Item(nf);
         // it's a directory => other project
-        if (name.Last() == slash) continue ;
+        if (name.Last() == cSlash) continue ;
      // read file name
         filein = m_FileswithI18n.Item(nf);
 	//-----------------------------------------------------------------
@@ -1789,7 +1783,7 @@ _printD("=> Begin 'Pre::listGoodfiles()'" );
 		elegible = okcode || okres || okxml;
 		if (!elegible)  continue;
 	//--------------------------------------------------------------------
-	//1- extensions *.h, *.cpp, *.hpp, *.cxx, *.hxx, *.script
+	//1- extensions '*.h, *.cpp, *.hpp, *.cxx, *.hxx, *.script' : code C++
 		if (okcode)
 		{
 		/// ------------------------------
@@ -1805,9 +1799,11 @@ _printD("=> Begin 'Pre::listGoodfiles()'" );
 			if (good) nbStrCode += nbStr;
 			else 	continue;
 //_printError("Code:: nbStr = " + strInt(nbStr));
+		// debug
+		//	listFiltered("okcode");
 		}
 		else
-	//2- extensions *.wxrc, *.wks
+	//2- extensions '*.wxrc, *.wks'
 		if (okres)
 		{
 		/// ------------------------------
@@ -1824,8 +1820,10 @@ _printD("=> Begin 'Pre::listGoodfiles()'" );
 			if (good) nbStrRes += nbStr;
 			else 	continue;
 //_printError("Res:: nbStr = " + strInt(nbStr));
+		// debug
+		//	listFiltered("okres");
 		}
-    //3- extensions *.xml
+    //3- extensions '*.xml'
 		if (okxml)
 		{
 		/// ------------------------------
@@ -1840,9 +1838,10 @@ _printD("=> Begin 'Pre::listGoodfiles()'" );
 			good = nbStr > 0;
 			if (good) nbStrXml += nbStr;
 			else 	continue;
-//_printError("Xml:: nbStr = " + strInt(nbStr));
+//_printError("Xml:: nbStr = " + strInt(nbStr))
+		// debug
+		//	listFiltered("okxml");
 		}
-
 	// all choice
 		m_nbListStrings = nbStrCode + nbStrRes + nbStrXml ;
 		if (m_nbListStrings < 0 )
@@ -1880,15 +1879,15 @@ wxUint32 Pre::freqStr(const wxString& _source, const wxString& _str)
 	return nbStr;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// Execute 'xgettext' on a file and retrieve errors and result
+//
 // Called by :
 //		1. CreateForWx::listStringsCode(wxString):1,
 //		2. CreateForWx::listStringsXmlIts(const wxString& _shortfile, wxString _rulesIts)
-//		3. CreateForWx::createPot(bool):1,
 
-//		4. CreateForQt::listStringsCode(wxString _shortfile)
-//		5.
-//		6. CreateForQt::createPot(bool _prjfirst)
+//		//4. CreateForQt::listStringsCode(wxString _shortfile)
+//		//6. CreateForQt::creatingPot(bool _prjfirst)
 
 // Call to :
 //		1. Pre::executeAndGetOutputAndError(const wxString& _command, const bool& _prepend_error):1,
@@ -1898,10 +1897,9 @@ wxUint32 Pre::freqStr(const wxString& _source, const wxString& _str)
 wxInt32  Pre::GexewithError(const wxString& _shortfile, const wxString& _command,
 							const bool& _prepend)
 {
-_printD("=> Begin 'Pre::GexewithError(" + _shortfile + ", " + strBool(_prepend) +  ")''");
+_printD("=> Begin 'Pre::GexewithError(" + _shortfile + ", " + strBool(_prepend) +  ")'");
 
 // command, error alone, error in first :: see 'src\msw\utilsexec.cpp'
-	bool  with_string = false;;
 	//====================================================================
 	wxString result = Pre::executeAndGetOutputAndError(_command, PREPEND);
 	//====================================================================
@@ -1909,10 +1907,10 @@ _printD("=> Begin 'Pre::GexewithError(" + _shortfile + ", " + strBool(_prepend) 
 	if (result.IsEmpty() && _prepend)		return 0;
 
 //_printError("result = " + quote(result) );
-	wxUint32 nstrBefore,  nbStr =0 ;
-	bool with_warn = false;
+	wxUint32 nstrBefore,  nbStr = 0 ;
 	wxInt32 pos, posw;
-	wxString mes, tmp, header;
+	bool with_warn = false, with_string = false;;;
+	wxString msg, tmp, header, txt;
 	wxArrayString tabmes;
 // --------------------
 // A- for 'liststring()'
@@ -1928,26 +1926,60 @@ _printD("=> Begin 'Pre::GexewithError(" + _shortfile + ", " + strBool(_prepend) 
         // search 'xgettext:'
 			pos = result.Find(m_Gexe + ":");
 		// it's an error  message
-			// for xml : "StartTag: invalid element name" (malformed)
+			// for xml :
+			//	1- "StartTag: invalid element name" (malformed)
+			//	2- "Premature end of data" => 'cannot be read'
 			if (pos !=  wxNOT_FOUND)
 			{
 				result = result.BeforeLast('\n');
-				mes = _("Error") + " : " ;
-				if (result.Contains("StartTag:")) mes += _("'Xml' malformed") ;
-				mes += Eol + "=>" + quote(result) + "<=";
-				m_Fileswithstrings.Add(mes);
-				_printError(mes);
+				msg = _("Error") + " : " ;
+				if (result.Contains("StartTag:")) msg += _("'Xml' malformed") ;
+				if (result.Contains("Premature end of data")) msg += _("Xml cannot be read");
+				msg += Eol + "=>" + quote(result) + "<=";
+				m_Fileswithstrings.Add(msg);
+				_printError(msg);
 				return  wxNOT_FOUND;
 			}
-		// -----------------------------------------
+		// ---------------------------------------------
+        // a line contains '« \r »' : warning and string
+        //----------------------------------------------
+        /// message filtering like ( both lines are on one line )
+// 'cpp_test/cctest_frame.cpp:327:
+//  AVERTISSEMENT : un message à traduire ne doit pas contenir de séquence d'échappement « \r »'
+/// suivi de
+// #: cpp_test/cctest_frame.cpp:107
+// msgid "CC Testing"
+// msgstr ""
+/// message filtering like ( both lines are on one line )
+// 'cpp_test/cctest_frame.cpp:327:
+//  AVERTISSEMENT : un message à traduire ne doit pas contenir de séquence d'échappement « \r »'
+/// suivi de
+// #: cpp_test/cctest_frame.cpp:107
+// msgid "CC Testing"
+// msgstr ""
+			posw = result.Find("#:");
+			// it's an warning  message for text contains '\r'
+			if (posw !=  wxNOT_FOUND)
+			{
+// txt = result.BeforeFirst('#');
+//_printError("contains '#:' in posw = " + iToStr(posw) + Lf + markNS(txt) );
+            // delete before '#:'
+                result = result.Mid(posw) ;
+                with_string = true;
+//_printWarn(result);
+			}
+			else
+            {
+        // -----------------------------------------
 		// no error but possibly warning and string
 		// -----------------------------------------
 		// string ?
-			pos = result.Find("#");
-			with_string = pos !=  wxNOT_FOUND;
-		// warning ?
-			posw = result.Find("warning:");
-			with_warn = posw !=  wxNOT_FOUND;
+                pos = result.Find("#");
+                with_string = pos !=  wxNOT_FOUND;
+            // warning ?
+                posw = result.Find("warning:") ;
+                with_warn = posw !=  wxNOT_FOUND;
+            }
 		// ----------------------------------------
 
 	// --------------
@@ -1955,33 +1987,38 @@ _printD("=> Begin 'Pre::GexewithError(" + _shortfile + ", " + strBool(_prepend) 
 	// --------------
 			if (!with_warn && with_string)
 			{
+//_printWarn("	1 => !with_warn && with_string ...");
 			// 1.1
 				if (m_Formatxgettext)
 				{
 				// all strings to extracts
                     //=============================
-					mes = Pre::xgettextOut(result);
+					msg = Pre::xgettextOut(result);
 					//=============================
+//_printError(quote(msg));
 				}
-			//1.2- bumbers strings
+			//1.2- numbers strings
                 if (m_goodListing)      nbStr = m_nbListStrings - nstrBefore;
                 else                	nbStr = m_nbExtractStrings - nstrBefore;
 			// header
 				++m_nbFileEligible;
-				_printLn;
-				header = Tab + "E" + strIntZ(m_nbFileEligible, 4) + "-" ;
+				header = Lf + Tab + "E" + strIntZ(m_nbFileEligible, 4) + "-" ;
 				header += quote(_shortfile) + " ==> " + strInt(nbStr) + Space + _("string(s)");
 				_printWarn(header);
 				m_Fileswithstrings.Add(header);
 			// list numbers line
-				m_Fileswithstrings.Add(mes);
-			// display is realized by 'xgettextOut'
-				tabmes = GetArrayFromString(mes, Lf, true);
+				m_Fileswithstrings.Add(msg);
+			// display 'tabmes' line by line
+				wxString line;
+				tabmes = ::GetArrayFromString(msg, Lf, TRIM_SPACE);
 				nbStr = tabmes.GetCount();
 				for (wxUint32 n = 0 ; n < nbStr; n++)
 				{
-                // uses 'Collector::MesToLog(...)'
-					print(Tab + space(3) + tabmes.Item(n));
+					line = tabmes.Item(n);
+					line.Prepend(Tab + space(3)) ;
+				// uses 'Collector::MesToLog(...)'
+					if (tabmes.Item(n).Left(1) == '!')	printWarn(line);
+					else								print(line);
 				}
 			}
 			else
@@ -1990,36 +2027,37 @@ _printD("=> Begin 'Pre::GexewithError(" + _shortfile + ", " + strBool(_prepend) 
 	// -------------------
 			if (with_warn && with_string)
 			{
-	// NOT USED ???
+//_printWarn("	2 => with_warn && with_string ...");
 			// get warning before the first '#'
-				mes = result.Mid(0, pos);
+				msg = result.Mid(0, pos);
+//_printError(markNS(msg));
 				// formatting
 				//===================================
-				mes = Pre::xgettextWarn(mes, NO_POT);
+				msg = Pre::xgettextWarn(msg, NO_POT);
 				//===================================
-				mes = Tab + "    * " + _("Warning(s)") + " : " + Eol + mes;
-				m_Fileswithstrings.Add(mes);
-				_printWarn(mes);
+				msg.Prepend(Tab + "    * " + _("Warning(s)") + " : " + Eol) ;
+				m_Fileswithstrings.Add(msg);
+				_printWarn(msg);
 			// delete warning inside 'result'
 				result.Remove(0, pos);
 			// output file
-				mes = Tab + "    ** " + _("translatable strings") + " : " + Eol;
+				msg = Tab + "    ** " + _("translatable strings") + " : " + Eol;
 				if (m_Formatxgettext)
 				{
 				// _print file name if elegible file
                     //==============================
-					mes += Pre::xgettextOut(result);
+					msg += Pre::xgettextOut(result);
 					//==============================
-                    //_printWarn(mes);
+                    //_printWarn(msg);
 				}
-				m_Fileswithstrings.Add(mes);
+				m_Fileswithstrings.Add(msg);
 			// print 'Collector log'
                 if (m_goodListing)  	nbStr = m_nbListStrings - nstrBefore;
                 else                	nbStr = m_nbExtractStrings - nstrBefore;
 				Mes += _("string(s)") + " ...";
 				_print(Mes);
 			// display is realized by 'xgettextOut'
-				tabmes = GetArrayFromString(mes, Lf, true);
+				tabmes = ::GetArrayFromString(msg, Lf, TRIM_SPACE);
 				nbStr = tabmes.GetCount();
 				for (wxUint32 n = 0 ; n < nbStr; n++)
 				{
@@ -2032,26 +2070,31 @@ _printD("=> Begin 'Pre::GexewithError(" + _shortfile + ", " + strBool(_prepend) 
 	// -------------------
 			if (with_warn && ! with_string)
 			{
+//_printWarn("	3 => with_warn && !with_string ...");
 			// get total warning
-				mes = result;
+				msg = result;
 			// formatting
                 //===================================
-				mes = Pre::xgettextWarn(mes, NO_POT);
+				msg = Pre::xgettextWarn(msg, NO_POT);
 				//===================================
-				mes = Tab + "    * " + _("Warning(s)") + " : " + Eol + mes;
-				m_Fileswithstrings.Add(mes);
-				_print(mes);
+				msg.Prepend(Tab + "    * " + _("Warning(s)") + " : " + Eol);
+				m_Fileswithstrings.Add(msg);
+				_print(msg);
 			}
 	// ------------------------
 	// 4- impossible : see away
 	// ------------------------
+			else
+			{
+//_printWarn("	4 => !with_warn && !with_string ...");
+			}
 		} // result is no empty
 	} // end _prepend
 
 // ------------------------------------
-// B- for 'createPot()'  extract = true
+// B- for 'creatingPot()'  extract = true
 // ------------------------------------
-	if ( ! _prepend)
+	if (! _prepend)
 	{
 	// result contains only warning
 		m_Warnpot = result.Mid(0, result.Len());
@@ -2067,16 +2110,16 @@ _printD("=> Begin 'Pre::GexewithError(" + _shortfile + ", " + strBool(_prepend) 
 			// memorize warning *.pot
 				m_Warnpot = result.Mid(0, pos);
 			// ignore warning to *.pot
-				mes = result.Remove(0, pos);
+				msg = result.Remove(0, pos);
 			// print
 				Mes = Tab + "    * " + _("Warning(s) inside") ;
 				Mes += quote(_shortfile) + Eol;
 				_print (Mes);
 			// formatting output file
                 //===================================
-				mes = Pre::xgettextWarn(mes, NO_POT);
+				msg = Pre::xgettextWarn(msg, NO_POT);
 				//===================================
-				Mes += mes;
+				Mes += msg;
 				m_Fileswithstrings.Add(Mes);
 				nbStr =  wxNOT_FOUND;
 			} // end pos
@@ -2084,22 +2127,22 @@ _printD("=> Begin 'Pre::GexewithError(" + _shortfile + ", " + strBool(_prepend) 
 		else
 		{
 		// it's an error  message : NO TRANSLATE HERE
-			mes = "No such file or directory";
-			pos = result.Find(mes);
+			msg = _("No such file or directory");
+			pos = result.Find(msg);
 			if (pos !=  wxNOT_FOUND)
 			{
-				mes = _(mes) + " :" + Eol ;
-				mes += markNS(result.BeforeLast('\n'));
-				m_Fileswithstrings.Add(mes);
-				_printError(mes);
+				msg +=  " :" + Eol ;
+				msg += markNS(result.BeforeLast('\n'));
+				m_Fileswithstrings.Add(msg);
+				_printError(msg);
 				return  wxNOT_FOUND;
 			}
 			else
 			{
 			// an other error ...
-				mes = markNS(result);
-			///	m_Fileswithstrings.Add(mes);
-			///	_printWarn(mes);
+				msg = markNS(result);
+			///	m_Fileswithstrings.Add(msg);
+				_printWarn(msg);
 			}
 		}
 	}  // end extract (! _prepend)
@@ -2116,15 +2159,15 @@ _printD("	<= End 'Pre::GexewithError(...) => " + strInt(nbStr) );
 //
 // Call to :
 //
-wxString Pre::xgettextWarn(const wxString& _txt, const bool& _withpot)
+wxString Pre::xgettextWarn(wxString & _txt, const bool& _withpot)
 {
 _printD("=> Begin 'Pre::xgettextWarn(" + _txt + ", " + strBool(_withpot) + ")'");
 
 // mandatory 'Lf' not Eol !
-	wxArrayString tabwarn = GetArrayFromString(_txt, Lf, false);
+	wxArrayString tabwarn = ::GetArrayFromString(_txt, Lf, NO_TRIM_SPACE);
 	wxString line, linebefore = wxEmptyString, tmp = wxEmptyString;
 	wxInt32 pos, nl = tabwarn.GetCount();
-	for (wxInt32 u=0; u < nl; u++)
+	for (wxInt32 u = 0; u < nl; u++)
 	{
 		line = tabwarn.Item(u);
 		if (linebefore.Matches(line))  	continue;
@@ -2135,7 +2178,7 @@ _printD("=> Begin 'Pre::xgettextWarn(" + _txt + ", " + strBool(_withpot) + ")'")
 		if (pos !=  wxNOT_FOUND)
 			line.Remove(0, pos + 1);
 	// analyse file
-		if (_withpot == false && (line.Find(m_Shortnamepot) ==  wxNOT_FOUND) )
+		if (_withpot == false && (line.Find(m_Shortnamedup) ==  wxNOT_FOUND) )
 		{
 		// find first ':'
 			if (line.Find(":") !=  wxNOT_FOUND)
@@ -2149,8 +2192,8 @@ _printD("=> Begin 'Pre::xgettextWarn(" + _txt + ", " + strBool(_withpot) + ")'")
 			}
 		}
 		else
-	// analyse *.pot
-		if (_withpot && (line.Find(m_Shortnamepot) != wxNOT_FOUND) )
+	// analyse '*.dup'
+		if (_withpot && (line.Find(m_Shortnamedup) != wxNOT_FOUND) )
 		{
 		// find first ':'
 			if (line.Find(":") != wxNOT_FOUND)
@@ -2169,62 +2212,96 @@ _printD("=> Begin 'Pre::xgettextWarn(" + _txt + ", " + strBool(_withpot) + ")'")
 		}
 	}
 
-_printD("	<= End 'Pre::xgettextWarn(...) => " + tmp + ")'");
+_print("	<= End 'Pre::xgettextWarn(...) => " + tmp + ")'");
 
 	return tmp;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// Generate out file for '*.po' : remove banned strings
+//
 // Called by :
 //	1. Pre::GexewithError(wxString _shortfile, wxString _command, bool _prepend):2,
 //
 // Call to : none
 //
-wxString Pre::xgettextOut(const wxString& _txt)
+wxString Pre::xgettextOut(wxString& _txt)
 {
-_printD("=> Begin 'Pre::xgettextOut(" + markNS(_txt) + "')");
+_printErrorD("=> Begin 'Pre::xgettextOut(" + markNS(_txt) + "')");
 // --------------------------------------------------------
 // One PO file entry has the following schematic structure:
 //
-// white-space
+// white-space or 'Lf'
 // #  translator-comments
 // #. extracted-comments
-// #: reference...
 // #, flag...
 // #| msgid previous-untranslated-string
+// #: reference...
+// #: reference...
 // msgid untranslated-string
 // msgstr translated-string
 // ---------------------------------------------------------
 
 // extract lines
-	wxArrayString tabout = GetArrayFromString(_txt, Lf, false);
-	wxString line, lineplus, result = wxEmptyString, tmp, strNbline ;
+	wxArrayString tabout = ::GetArrayFromString(_txt, Lf, NO_TRIM_SPACE);
+	wxString line, lineplus, linepot, result = wxEmptyString, tmp, strNbline, refbanned;
 	wxChar ca, cb;
-	bool  plural = false , several = false;
-	wxUint32 nbl = 0, nbLines = tabout.GetCount();
+	bool  endheader = false,
+		  plural = false , several = false, banned = false;
+	wxUint32 nbl = 0, nbLines = tabout.GetCount(), nbr
+			 ,nbrefbanned = 0, nbbeginblock =0, nbendblock = 0;
+	m_ArrayFiltered.Clear();
 	m_Strwitherror = false;
-// all lines
-	for (wxUint32 u=0; u < nbLines ; u++)
+// all lines of 'tabout'
+	for (wxUint32 u = 0; u < nbLines ; u++)
 	{
-		line = tabout.Item(u);
-		if (line.Matches(wxEmptyString) )	continue;
+		linepot = line = tabout.Item(u);
+//_printWarn(iToStr(u) + " : " + quote(line) );
+		if (line.IsEmpty())
+            continue;
+	// no space (...) on left
+		line.Trim(FROM_LEFT);
+/// TO VERIFY
+// delete all '\r'
+//nbr = line.Replace("\\r", "", ALL_TXT);
+//if (nbr)   _printError(iToStr(nbr) + " in " + quote(line) );
+	/// "# " => translator comments
+		if (line.StartsWith("# ") )
+			continue;
 
-	// new line '#'
 		ca = line.GetChar(0);
+	/// '#'
 		if (ca == '#')
 		{
+		/// ---------------- begin block ---------------------------
+		///	#. traductor comment
+		/// #: files references
+		/// #: src\pre.cpp:1025 src\pre.cpp:1034 src\pre.cpp:1043
+		///	#: src\pre.cpp:1078
+		///	#, flag ...
+		///	#|	msgid previous-untranslated-string
+		///	msgid "Text to recovered"
+		/// msgstr ""
+		/// space // is a separator of blocks
+		/// ------------------End block -----------------------------
+		// second char in // cb in [':', '.', ',', '|']
 			cb = line.GetChar(1);
+			/// '.' == automatic comments (ex  (itstool) path: .
+			/// ',' == flags : fuzzy, c-format, ...
+			/// '|' ==  msgid previous-untranslated-string			...
+			if (cb == ','  || cb == '|'	|| cb == '.')
+                continue;
+
 		// references
 			if (cb == ':')
 			{
-			/// -----------------------------------------------------
-			/// #: src\pre.cpp:1025 src\pre.cpp:1034 src\pre.cpp:1043
-			///	#: src\pre.cpp:1078
-			///	#, flag...
-			///	????
-			///	msgid "Text to recovered"
-			/// msgstr ""
-			/// ------------------------------------------------------
+			// the first ':' => begin first block or end of header
+				if (!endheader)
+				{
+					endheader = true;
+					nbbeginblock = u;
+				}
+			/// #: files references
 			/// => :L1025:L1034:L1043:L1078  => "Text to recovered"
 			// retrieve the different line numbers
 				do
@@ -2234,35 +2311,31 @@ _printD("=> Begin 'Pre::xgettextOut(" + markNS(_txt) + "')");
 					line = line.BeforeLast(' ');
 				}
 				while (line != "#:") ;
-			}
-			else
-		// cb in [' ', '.', ',', '|']
-			/// ' ' == translator comments
-			/// '.' == automatic comments
-			/// ',' == flags : fuzzy, c-format, ...
-			/// '|' ==  msgid previous-untranslated-string
-			if (cb == ',' || cb == ' ' || cb == '.' || cb == '|')
-			{
-				continue ;
+				nbrefbanned = u;
 			}
 		}
 		else
-	// new line 'msgid + txt'
-		// a message
+	/// new line 'msgid + txt'
 		// 	'msgid  ".............\n"'
-		//
-		if (line.Contains("msgid"))
+		if (line.StartsWith("msgid"))
 		{
+		// used 'tmp' for log message
 			tmp.Prepend(Tab + "  "); tmp += " ==> ";
 			// after first '"' and before last '"'
 			lineplus = line.AfterFirst('"').BeforeLast('"');
-		/// lineplus == 'msgid text'
-			several = lineplus.Matches("") ;
+		// lineplus == 'msgid text'
+			several = lineplus.IsEmpty() ;
 		// only one line
 			if (!several) 	tmp += dquoteNS(lineplus);
-            else            tmp += cDquote;
-		// display one line
-		//_print(tmp);
+			else            tmp += cDquote;
+		// banned lines ?
+			if (filterBeginBanned(lineplus))
+			{
+//_printError("Code::banned =>" + quote(lineplus));
+				banned = true;
+			// add to temp for '*.list' : prevent user
+				tmp.Prepend("!! " + _("BANNED") + " !!") ;
+			}
 		}
 		else
 		/// msgid ""
@@ -2279,21 +2352,21 @@ _printD("=> Begin 'Pre::xgettextOut(" + markNS(_txt) + "')");
 		}
 		else
 	// new line 'msgstr'  => memorize 'tmp'
-		if (line.Contains("msgstr")/* && first */)
+		if (line.StartsWith("msgstr"))
 		{
-            if (several)    tmp += cDquote;
-            result +=  tmp + Lf;
+			if (several)    tmp += cDquote;
+			result +=  tmp + Lf;
 			tmp.Clear();
 			nbl++;
 			several = false ;
 		}
 		else
-// TODO : msgid_plural ...
+// TOVERIFY : msgid_plural ...
 		if (line.Find("msgid_plural") != wxNOT_FOUND)
 		{
 			line.Replace("msgid_plural   ", " =plural=>", FIRST_TXT);
 			result +=  line;
-			plural = true;  // after = true;
+			plural = true;
 			nbl++;
 		}
 		else
@@ -2305,12 +2378,39 @@ _printD("=> Begin 'Pre::xgettextOut(" + markNS(_txt) + "')");
 			if (line.Find(temp) != - wxNOT_FOUND)
 			{
 				result += "<=plural=" + Eol;
-				plural = false; //	after = false;
+				plural = false;
 			}
 		}
+		else
+		if (line.StartsWith("msgtxt"))
+		{
+			/// TODO ...
+
+		}
+	// save linepot
+		if (banned)
+		{
+		/// modify the last reference message => obsolete messages marked
+			if (linepot.StartsWith("msgid") )
+			{
+			/// modify the last reference message : '#:' => '#.'
+				m_FilesCreatingPOT.Last().Replace(T_MES, T_FLAG);
+			/// modify msgid message : => '#.'
+				linepot.Prepend(T_FLAG);
+			}
+			if (linepot.StartsWith("msgstr") )
+			{
+			/// modify msgstr message : => '#.'
+				linepot.Prepend(T_FLAG);
+			/// end banned
+				banned = false;
+			}
+		}
+		m_FilesCreatingPOT.Add(linepot);
+	// separator block
+		if (linepot.Contains("msgstr"))		m_FilesCreatingPOT.Add(Lf);
+//_printError(quote(linepot));
 	}
-// delete last Lf
-	result.EndsWith(Lf, &result);
 // total strings
     if (m_goodListing)		m_nbListStrings += nbl;
 	else					m_nbExtractStrings += nbl;
@@ -2318,6 +2418,107 @@ _printD("=> Begin 'Pre::xgettextOut(" + markNS(_txt) + "')");
 _printD("	<= End 'Pre::xgettextOut(...)");
 
 	return result;
+}
+//------------------------------------------------------------------------------
+//	TEST : search the word banned in a string
+//
+// Called by :
+//		1. Pre::xgettextOut(wxString& _txt);1,
+//
+#include <wx/arrstr.h>
+
+bool Pre::filterBeginBanned(wxString _line)
+{
+//_print("code:filterBeginBanned(...) =>" + quote(_line) );
+	bool banned = true, beginBanned;
+// separate the line with space
+	wxString line, rest, word = _line.BeforeFirst(cSpace, &rest);
+//_print("first word = " + quote(word));
+	banned = beginBanned = m_ArrayBeginBanned.Index(word) != wxNOT_FOUND ;
+	// all banned
+	while (!rest.IsEmpty() && banned)
+	{
+		line = rest;
+//_printWarn("rest:" + quote(rest) );
+		word = line.BeforeFirst(cSpace, &rest);
+//_printWarn( "word:" + quote(word) + "rest:" + quote(rest) );
+	// is number or find word
+		banned = word.IsNumber() || m_ArrayBeginBanned.Index(word) != wxNOT_FOUND ;
+//_printError("banned = " + bToStr(banned));
+	}
+	//
+	banned = beginBanned && banned ;
+
+	return banned;
+}
+
+//------------------------------------------------------------------------------
+//	TEST : search the string filtered and show it
+//		for 'code', 'xml', 'resources'
+//
+// Called by :
+//		1. Pre::listGoodfiles():3,
+//
+void Pre::listFiltered(wxString _txt)
+{
+    wxUint32 nb = m_ArrayFiltered.Count();
+    if  (nb)
+    {
+	_printError(Dline(4) + " DEBUG " + quote(_txt) + Dline(4));
+		_printError("Strings filtered : " + strInt(nb));
+		wxString mes;
+        for (wxUint32 cell = 0; cell < nb; cell++)
+        {
+            mes = m_ArrayFiltered.Item(cell);
+            _printError(Tab + quoteNS(mes));
+        }
+	_printError(Dline(23));
+    }
+}
+
+//------------------------------------------------------------------------------
+//	TEST : search the banned string and show it
+//		for 'code', 'xml', 'resources'
+//
+// Called by : none
+//
+void Pre::listBanned(wxString _txt)
+{
+    wxUint32 nb = m_ArrayBanned.Count();
+    if  (nb)
+    {
+	_printError(Dline(4) + " DEBUG " + quote(_txt) + Dline(4));
+		_printError("Strings banned : " + strInt(nb));
+		wxString mes;
+        for (wxUint32 cell = 0; cell < nb; cell++)
+        {
+            mes = m_ArrayBanned.Item(cell);
+            _printError(Tab + quoteNS(mes));
+        }
+	_printError(Dline(23));
+    }
+}
+//------------------------------------------------------------------------------
+//	TEST : search the begin banned string and show it
+//		for 'code', 'xml', 'resources'
+//
+// Called by : none
+//
+void Pre::listBeginBanned(wxString _txt)
+{
+    wxUint32 nb = m_ArrayBeginBanned.Count();
+    if  (nb)
+    {
+	_printError(Dline(4) + " DEBUG " + quote(_txt) + Dline(4));
+		_printError("Strings begin banned : " + strInt(nb));
+		wxString mes;
+        for (wxUint32 cell = 0; cell < nb; cell++)
+        {
+            mes = m_ArrayBeginBanned.Item(cell);
+            _printError(Tab + quoteNS(mes));
+        }
+	_printError(Dline(23));
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -2342,10 +2543,10 @@ wxInt32 Pre::LaunchExternalTool(const wxString& _toolexe)
     command += Space + dquoteNS(file);
 //_print("Command = " + quote(command) );
 // launch '
-    //======================================================================
+    //================================================================
     // asynchronous and no hided
     wxString result = Pre::executeAsyncAndGetOutput(command, PREPEND);
-    //======================================================================
+    //================================================================
     if (!result.IsEmpty())
     {
         // Warning : Gdk-WARNING, Gtk-CRITICAL => assertion ...
@@ -2353,6 +2554,37 @@ wxInt32 Pre::LaunchExternalTool(const wxString& _toolexe)
     }
 
     return ret;
+}
+//------------------------------------------------------------------------------
+// Execute another program (always asynchronous and no hided).
+//
+//  call by :
+//      1. wxInt32 Pre::LaunchExternalTool(const wxString& _toolexe):1,
+//
+wxString Pre::executeAsyncAndGetOutput(const wxString& _command, const bool& _prepend_error)
+{
+_printD("=> Begin 'Pre::executeAndGetOutputAndError(...)'");
+
+	wxArrayString output;
+	wxArrayString error;
+	//=================================================================
+	::wxExecute(_command, output, error, wxEXEC_ASYNC | wxEXEC_NOHIDE);
+	//=================================================================
+
+	wxString str_out;
+
+	if ( _prepend_error && !error.IsEmpty())
+		str_out += ::GetStringFromArray(error, Eol);
+
+	if (!output.IsEmpty())
+		str_out += ::GetStringFromArray(output, Eol);
+
+	if (!_prepend_error && !error.IsEmpty())
+		str_out += ::GetStringFromArray(error,  Eol);
+
+_printD("	<= End 'Pre::executeAndGetOutputAndError(...)' =>" + Eol + quote(str_out) );
+
+	return  str_out;
 }
 
 ///-----------------------------------------------------------------------------
@@ -2371,53 +2603,23 @@ _printD("=> Begin 'Pre::executeAndGetOutputAndError(...)'");
 
 	wxArrayString output;
 	wxArrayString error;
-	//====================================================
-	wxExecute(_command, output, error, wxEXEC_NODISABLE );
-	//====================================================
+	//======================================================
+	::wxExecute(_command, output, error, wxEXEC_NODISABLE );
+	//======================================================
 
 	wxString str_out;
 
 	if ( _prepend_error && !error.IsEmpty())
-		str_out += GetStringFromArray(error, Eol);
+		str_out += ::GetStringFromArray(error, Eol);
+//_printError("error => " +quote(str_out));
 
 	if (!output.IsEmpty())
-		str_out += GetStringFromArray(output, Eol);
+		str_out += ::GetStringFromArray(output, Eol);
+//_printError("str_out => " +quote(str_out));
 
 	if (!_prepend_error && !error.IsEmpty())
-		str_out += GetStringFromArray(error,  Eol);
-
-_printD("	<= End 'Pre::executeAndGetOutputAndError(...)' =>" + Eol + quote(str_out) );
-
-	return  str_out;
-}
-
-///-----------------------------------------------------------------------------
-// Execute another program (always asynchronous and no hided).
-//
-//  call by :
-//
-//      1. wxInt32 Pre::LaunchExternalTool(const wxString& _toolexe):1,
-//
-wxString Pre::executeAsyncAndGetOutput(const wxString& _command, const bool& _prepend_error)
-{
-_printD("=> Begin 'Pre::executeAndGetOutputAndError(...)'");
-
-	wxArrayString output;
-	wxArrayString error;
-	//===============================================================
-	wxExecute(_command, output, error, wxEXEC_ASYNC | wxEXEC_NOHIDE);
-	//===============================================================
-
-	wxString str_out;
-
-	if ( _prepend_error && !error.IsEmpty())
-		str_out += GetStringFromArray(error, Eol);
-
-	if (!output.IsEmpty())
-		str_out += GetStringFromArray(output, Eol);
-
-	if (!_prepend_error && !error.IsEmpty())
-		str_out += GetStringFromArray(error,  Eol);
+		str_out += ::GetStringFromArray(error,  Eol);
+//_printError("error2 => " +quote(str_out));
 
 _printD("	<= End 'Pre::executeAndGetOutputAndError(...)' =>" + Eol + quote(str_out) );
 
@@ -2485,11 +2687,12 @@ _printD("=> Begin 'Pre::releaseProject(_pProject, " + strBool(_withpot) + ")'");
 	{
 	//4- file project.pot
 		m_Dirpot = m_DirprojectLeader + m_Dirlocale;
+//_printError("Pre::releaseProject() => m_DirprojectLeader = " + quote(m_DirprojectLeader) );
 		if (! wxFileName::DirExists(m_Dirpot))
 		{
 		//  linux : 0755, user : 'rwx', others : 'r-x'
             //============================
-			bool ok = CreateDir(m_Dirpot);
+			bool ok = ::CreateDir(m_Dirpot);
 			//============================
 			if (!ok)
 			{
@@ -2501,30 +2704,32 @@ _printD("=> Begin 'Pre::releaseProject(_pProject, " + strBool(_withpot) + ")'");
 				return false;
 			}
 		}
-	// name file pot
-		m_Shortnamepot = m_Nameproject;
-		if (m_Workspace)		m_Shortnamepot += "_workspace.pot";
-		else					m_Shortnamepot += ".pot";
-		m_Namepot = m_Dirpot + m_Shortnamepot;
-    // create a native '*.pot'
+	// name file 'pot' or 'dup'
+		m_Shortnamedup =  m_Nameproject;
+		if (m_Workspace)		m_Shortnamedup += "_workspace.dup";
+		else					m_Shortnamedup += ".dup";
+		m_Namedup = m_Dirpot + m_Shortnamedup;
+
+//_printError("Pre::releaseProject() => m_Namedup :" + quote(m_Namedup) );
+/*
+    // create a native '*.dup'
 		wxString firstline = "# " + m_Nameproject;
-		//=========================================================
-		ok = cbSaveToFile(m_Dirlocale + m_Shortnamepot, firstline);
-		//=========================================================
+		ok = ::cbSaveToFile(m_Dirlocale + m_Shortnamedup, firstline);
 		if (!ok)
         {
             Mes = " ** " + _("Error call to save the first") ;
-            Mes += " 'cbSaveToFile(" + m_Dirlocale + m_Shortnamepot + ")'" ;
+            Mes += " 'cbSaveToFile(" + m_Dirlocale + m_Shortnamedup + ")'" ;
 			_printError(Mes);
             ShowError(Mes);
             _print(m_Theend);
         }
         else
         {
-            Mes = _("Create a native file '.pot' (the first line))") + " :" ;
-            Mes += quote(m_Dirlocale + m_Shortnamepot);
-           // _print(Mes);
+            Mes = Tab + _("Create a native file '.dup' (only the first line))") + " :" ;
+            Mes += quote(m_Dirlocale + m_Shortnamedup);
+            _print(Mes);
         }
+    */
 	}
 
 _printD("	<= End 'Pre::releaseProject((...)' => " + strBool(ok) );
@@ -2543,10 +2748,10 @@ cbProject* Pre::findProject(const wxString& _name, wxInt32& _index)
 {
 _printD("=> Begin 'Pre::findProject(" + _name + ", ...)'" );
 
-    if (!m_nbProjects)  return nullptr;
+    if (hasNoproject())  return nullptr;
 
 	cbProject* pPrj = nullptr;
-	_index = -1;
+	_index = wxNOT_FOUND;
 	for (wxUint32 index = 0; index < m_nbProjects; index++)
 	{
 		pPrj = m_pProjects->Item(index);
@@ -2577,11 +2782,10 @@ wxInt32 Pre::indexProject(const wxString& _name)
 {
 _printD("=> Begin 'Pre::findIndexProject(" + _name + ")'" );
 
-    if (!m_nbProjects)  return -1;
+    if (hasNoproject())  return -1;
 
-    wxInt32 pos = -1;
+    wxInt32 pos = wxNOT_FOUND;
     cbProject* pPrj = nullptr;
-//_printError("name = " + quote(_name) + ", m_nbProjects = " + strInt(m_nbProjects) );
     for (wxUint32 index = 0; index < m_nbProjects; index++)
 	{
 //_print("index = " + strInt(index) );
@@ -2642,7 +2846,7 @@ _printD("=> Begin 'Pre::findblockExe(" + _txt + ", ...)'" );
 	wxString tool = _buffer.Mid(posb, pose-posb);
 // find end 'poedit' or ??
 	pose = tool.Find(_txt);
-	if (pose ==-1)
+	if (pose == wxNOT_FOUND)
 	{
 		Mes = quote(_txt) + mes + " !!";
 		_print(Mes);
@@ -2670,6 +2874,7 @@ _printD("	<= End 'Pre::findblockExe(" + _txt + ", ...)'" );
 }
 // ----------------------------------------------------------------------------
 //	Verify file integrity '*.pot'
+//
 // Called by :
 //	1. Pre::endextract():1,
 //
@@ -2682,34 +2887,41 @@ bool Pre::integrity(const bool& _replacecar)
 {
 _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 
-//1- read source "*.pot"
-	bool ok = wxFileName::FileExists(m_Namepot);
+//1- read "*.dup" => source
+	bool ok = wxFileName::FileExists(m_Namedup);
 	if (!ok)
 	{
 		Mes =  Tab + _("Could'not locate file");
-		Mes +=  quote(m_Shortnamepot) + "!!";
+		Mes +=  quote(m_Namedup) + "!!";
 		_print(Mes);
+
 		return false;
 	}
+	// read contents of file 'm_Namedup'
 	//=================================================
-	wxString source = Pre::readFileContents(m_Namepot);
+	wxString source = Pre::readFileContents(m_Namedup);
 	//=================================================
 	if (source.IsEmpty())
 	{
-		Mes =  Tab + _("Empty file") + quote(m_Shortnamepot) + "!!" ;
+		Mes =  Tab + _("Empty file") + quote(m_Shortnamedup) + "!!" ;
 		_print(Mes);
+
 		return false;
 	}
 
 	m_sizeFilePo = source.Len();
 
 	Mes = Lf + "   --> " +  _("Verify file integrity");
-	Mes += quote(m_Shortnamepot);
-	Mes += " (" + strInt(m_sizeFilePo) + Space + _("bytes") + ")";
+	Mes += quote(m_Shortnamedup);
+	Mes += " (" + strInt(m_sizeFilePo) + Space + _("bytes") ;
+	Mes += ", " + _("of which header") + " : " + strInt(m_sizeHeaderpo) ;
+	Mes += Space + _("bytes") + ")" ;
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
 
-//2- header *.pot
+/// ====================== A- verify 'header' of '*.dup' =======================
+
+//2- header *.dup or *.pot
 	Mes = Tab + "1- " + _("Adjust and complete the header") + " ...";
 	_print(Mes);
 	m_Fileswithstrings.Add(Mes);
@@ -2726,7 +2938,8 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		_printError("not ok 1 => Pre::changeContents(...)" );
 		return false;
 	}
-	//2-2- year copyright
+/*  ATTENTION with $TDAY
+    //2-2- year copyright
 	oldtxt = "YEAR THE PACKAGE'S COPYRIGHT HOLDER";
 	newtxt = m_pMam->ReplaceMacros("$TDAY").Mid(0, 4);
 	//================================================
@@ -2737,6 +2950,7 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		_printError("not ok 2 => Pre::changeContents(...)" );
 		return false;
 	}
+*/
 	//2-3- package name
 	oldtxt = "PACKAGE "; newtxt = "$(PROJECT_NAME)";
 	//================================================
@@ -2758,12 +2972,13 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		return false;
 	}
 	//2-5- Last Translator
-	oldtxt = "FULL NAME"; newtxt = "$PLUGINS";
+	//oldtxt = "FULL NAME"; newtxt = "$PLUGINS";
 	//===================================================
 	//ok = Pre::changeContents  (source, oldtxt, newtxt);
 	//===================================================
 	//if (!ok)	return false;
-	//2-6- LANGUAGE	"LL"
+
+	//2-6- LANGUAGE	"LL"  here ==> m_locale ...
 	oldtxt = "LANGUAGE"; newtxt = "$(LANGUAGE)";
 	//================================================
 	ok = Pre::changeContents  (source, oldtxt, newtxt);
@@ -2773,8 +2988,8 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		_printError("not ok 5 => Pre::changeContents(...)" );
 		return false;
 	}
-	//2-7- Language
-	oldtxt = "Language: "; newtxt = "Language: $(LANGUAGE)";
+	//2-7- Language  here => 'm_locale.GetCanonicalName()'
+	oldtxt = "Language:"; newtxt = "Language: " + m_lang;
 	//=================================================
 	ok = Pre::changeContents  (source, oldtxt, newtxt);
 	//=================================================
@@ -2783,10 +2998,10 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		_printError("not ok 6 => Pre::changeContents(...)" );
 		return false;
 	}
-	//2-8- CHARSET : here $(ENCODING) -> "windows-1252"  !!!
-	oldtxt = "CHARSET"; newtxt = "UTF-8";
+	//2-8- charset : here $(ENCODING) -> "windows-1252"  !!!
+	oldtxt = "charset"; newtxt = "charset=UTF-8";
 	//===================================================
-	//ok = Pre::changeContents  (source, oldtxt, newtxt);
+	ok = Pre::changeContents  (source, oldtxt, newtxt);
 	//===================================================
 	if (!ok)
 	{
@@ -2794,52 +3009,25 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		return false;
 	}
 
-//3- fix '*.pot'
+//3- fix '*.dup'
 	if (_replacecar)
 	{
-	//3-1 find "\r" and delete into valid line
-		wxString wait = wxEmptyString;
-		if (m_sizeFilePo >= BIGFILE)
-			wait += Tab + _("PLEASE WAIT") + " ...";
-		else
-			wait += " ...";
-		// search "\r"
 		wxString rc = "\\r";
-		wxChar di = '#';
-		wxString line;
-		Mes = Tab + "2- " + _("Search strings to delete") + " : ";
-		Mes += Quote + rc + Quote + wait;
-		_print(Mes);
-		m_Fileswithstrings.Add(Mes);
-		// an array from 'source'
-		wxArrayString asource = GetArrayFromString(source, Lf, true);
-		source = wxEmptyString;
 		wxUint32 nr = 0;
-		wxUint32 nl = asource.GetCount();
-		for (wxUint32 u = 0 ; u < nl; u++)
-		{
-        // control to pending messages in the event loop
-          //  m_pM->Yield();
-			line = asource.Item(u);
-			if (line.IsEmpty())		continue;
-			ok = (line.GetChar(0) != di) && (line.Find(rc) !=  wxNOT_FOUND);
-			if (ok)
-			{
-        // replace all 'rc' inside 'line'
-				nr += line.Replace(rc, wxEmptyString, ALL_TXT);
-			}
-        // build new 'source'
-			source += line + Eol;
-		}
+//3-1 find "\r" and delete into valid line
+	// No longer seems useful
+	//  nr = deleteCr(source);
+		Mes = Tab + "2- " + _("Search strings to delete") + " : ";
+		Mes += Quote + rc + Quote + Space  + "(" + _("no longer used") + ")" + Lf;
 		// result
 		if (nr)
 		{
-			Mes = Tab + "   ... " + _("deleting") + Space + strInt(nr) + Space ;
+			Mes += Tab + "   ... " + _("deleting") + Space + strInt(nr) + Space ;
 			Mes += _("character(s)");
 		}
 		else
 		{
-			Mes = Tab + "   ... " + _("nothing");
+			Mes += Tab + "   ... " + _("nothing");
 		}
 		_print(Mes);
 		m_Fileswithstrings.Add(Mes);
@@ -2881,8 +3069,6 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		}
 		_print(Mes);
 		m_Fileswithstrings.Add(Mes);
-		// control to pending messages in the event loop
-		// m_pM->Yield();
 	}
 	else
 	{
@@ -2891,96 +3077,196 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		m_Fileswithstrings.Add(Mes);
 	}
 
-//4- write new 'project.pot'
-	if (_replacecar) 	Mes = "4- ";
-	else				Mes = "3- ";
-	Mes = Tab + Mes + _("Write") + " '*.pot'";
+/// ======================= B- files '*.pot' and '*.po =========================
+
+// name 'dup'
+	m_Shortnamedup = m_Namedup.AfterLast(cSlash);
+// name 'uni'
+	m_Nameuni = m_Namedup.BeforeLast(cDot) + ".uni";
+	m_Shortnameuni = m_Shortnamedup.BeforeLast(cDot) + ".uni";
+// name 'pot'
+	m_Namepot = m_Namedup.BeforeLast(cDot) + ".pot";
+	m_Shortnamepot = m_Shortnamedup.BeforeLast(cDot) + ".pot";
+
+//_printError("m_Namedup :" + quote(m_Namedup) );
+
+//4- write new '*.dup' for replace old '*.dup'
+	Mes = Tab;
+	if (_replacecar) 	Mes += "4- ";
+	else				Mes += "3- ";
+	Mes += _("Write") + " '*.dup' => " + _("disk") + " :";
 	_print(Mes);
 	m_Fileswithstrings.Add(Mes);
-	// control to pending messages in the event loop
-  //  m_pM->Yield();
-	// write file *.pot
-	//===================================
-	ok = cbSaveToFile(m_Namepot, source);
-	//===================================
+
+	// write to file '*.dup'
+	ok = ::cbSaveToFile(m_Namedup, source);
 	if (!ok)
 	{
 		Mes =  Tab + _("Could'not write file");
-		Mes + quote(m_Shortnamepot) + " !!";
+		Mes + quote(m_Shortnamedup) + " !!";
 		_printError(Mes);
 
 		return false;
 	}
-	Mes = Tab + space(3) + _("Write to") + quote(m_Shortnamepot);
+	Mes = Tab + space(3) + _("Write modifications to") + quote(m_Shortnamedup);
 	_print (Mes);
 	m_Fileswithstrings.Add(Mes);
-	// m_Namepo = *.po
-		m_Namepo = m_Namepot.BeforeLast(cDot) + ".po";
-	// 'm_Namepo' exists already ?
+
+//5- unifie duplicate messages in '*.dup' to '*.pot' with 'msguniq'
+
+	// for 'msguniq' or 'msgmerge'
+	wxString result;
+	wxInt32 nbdots = 0;
+	// for test '*.pot'
+	bool potishere = false ;
+	if (m_Uexeishere && m_Mexeishere)
+	{
+		Mes = Tab;
+		if (_replacecar) 	Mes += "5- ";
+		else				Mes += "4- ";
+		Mes += _("Unifie duplicate messages") + " '*.dup' => '*.uni' :" ;
+		_print(Mes);
+		m_Fileswithstrings.Add(Mes);
+
+	// create '*.uni' withless duplicate
+/// m_Workspace : take into account  'm_DirlocaleLeader'
+		// ===========================================================
+		result = Pre::noDuplicateMsgid(m_Namedup, m_Nameuni);
+		// ===========================================================
+		if (result.IsEmpty())	Mes = _("There were duplicate strings") + ", ";
+		else					Mes = _("None") + Space;
+		Mes += _("unified translatable strings to") + quote(m_Shortnameuni);
+		Mes.Prepend(Tab + space(3));
+		_print(Mes);
+		m_Fileswithstrings.Add(Mes);
+
+//5- create '*.pot'
+		Mes = Tab ;
+		if (_replacecar) 	Mes += "6- ";
+		else				Mes += "7- ";
+	// 'm_Namepot' exists already ?
+		potishere = wxFileName::FileExists(m_Namepot);
+		if (!potishere)
+		{
+			Mes += _("Copy") + " '*.uni' => '*.pot' :"  ;
+			_print(Mes);
+			m_Fileswithstrings.Add(Mes);
+
+		// copy uni => pot
+			ok = wxCopyFile(m_Nameuni, m_Namepot, true);
+			if (!ok)
+			{
+				Mes =  Tab + _("Not copy file") + quote(m_Shortnamepot);
+				_print(Mes);
+
+				return false;
+			}
+			Mes = Tab + space(3) + _("Copy") +  quote(m_Shortnameuni);
+			Mes += _("to the file") + quote(m_Shortnamepot);
+			_print (Mes);
+			m_Fileswithstrings.Add(Mes);
+		}
+		else
+		{
+			Mes += _("Merge") + " '*.uni' => '*.pot' :"  ;
+			_print(Mes);
+			m_Fileswithstrings.Add(Mes);
+
+		// merge '*.uni' and '*.pot'
+			//===============================================================
+			result = Pre::mergeFiles(m_Shortnamepot, m_Shortnameuni, nbdots);
+			//===============================================================
+//_printWarn(Tab + quote(result));
+			ok  = nbdots >= 0;
+			if (!ok)
+			{
+				Mes =  Tab + _("Not merge files") + quote(m_Shortnameuni);
+				Mes += _("inside") + quote(m_Shortnamepot);
+				_print(Mes);
+			}
+		// good
+			//if (result.StartsWith(_("done")) )
+			{
+			// good no verbose
+				Mes =  Tab + space(3) +  _("Merge") + quote(m_Shortnameuni);
+				Mes += _("inside")  + quote(m_Shortnamepot) ;
+				_print (Mes);
+				m_Fileswithstrings.Add(Mes);
+			// good no verbose : treated strings
+				if (result.StartsWith('P') )
+				{
+					Mes = Tab + Tab + result;
+					_printWarn(Mes);
+					m_Fileswithstrings.Add(Mes);
+				}
+			}
+		}
+	}
+	else
+	{
+		Mes = _("The file") + quote(m_Uexe) + _("or perhaps") + quote(m_Mexe) + _("no exists");
+		_printWarn(Mes);
+		m_Fileswithstrings.Add(Mes);
+
+		return false;
+	}
+
+//6- make a copy '*.pot' => '*.po'
+	Mes = Tab ;
+	if (_replacecar) 	Mes += "7- ";
+	else				Mes += "8- ";
+	// name po
+	m_Namepo = m_Namepot.BeforeLast(cDot) + ".po";
+	m_Shortnamepo = m_Shortnamepot.BeforeLast(cDot) + ".po";
 	ok = wxFileName::FileExists(m_Namepo);
-	// control to pending messages in the event loop
-   // m_pM->Yield();
 	if (!ok)
 	{
-//5- duplicate 'm_Namepot' to 'm_Namepo' no overwrite
-		ok = wxCopyFile(m_Namepot, m_Namepo, false);
+		Mes += _("Copy") + " '*.pot' => '*.po' :"  ;
+		_print(Mes);
+		m_Fileswithstrings.Add(Mes);
+	// copy
+		ok = wxCopyFile(m_Namepot, m_Namepo, true);
 		if (!ok)
 		{
 			Mes =  Tab + _("Not created file") + quote(m_Namepo);
 			_print(Mes);
+
 			return false;
 		}
-		Mes = Tab + space(3) + _("Copy to") + quote(m_Namepo.AfterLast(strSlash.GetChar(0)));
-		Mes += "(" + _("for") +  " 'Poedit')";
+		Mes = Tab + space(3) + _("Copy") +  quote(m_Shortnamepot)+ _("to the file");
+		Mes += quote(m_Shortnamepo);
 		_print (Mes);
 		m_Fileswithstrings.Add(Mes);
 	}
 	else
 	{
-//6- make a backup 'Namepo.cop'
-		wxString backup = m_Namepo.BeforeLast(cDot) + ".cop";
-		ok = wxCopyFile(m_Namepo, backup, true);
+//7- merge '*.po' and '*.pot'
+		//==============================================================
+		nbdots = 0 ;
+		result = Pre::mergeFiles(m_Shortnamepo, m_Shortnamepot, nbdots);
+		//==============================================================
+		ok  = nbdots >= 0;
 		if (!ok)
 		{
-			Mes =  Tab + _("Not created file") + quote(backup);
+			Mes += _("Not merge files") + quote(m_Shortnamepot);
+			Mes += _("inside") + quote(m_Shortnamepo);
 			_print(Mes);
-			return false;
 		}
-		Mes = Tab + space(3) + _("Backup") +  " (*.po) " + _("to");
-		Mes += quote(backup.AfterLast(strSlash.GetChar(0)));
-		_print (Mes);
+	// good
+		Mes += _("Merge") + " '*.pot' => '*.po' :"  ;
+		_print(Mes);
 		m_Fileswithstrings.Add(Mes);
 
-//7- merge 'Namepot' inside 'Namepo'
-		if (m_Mexeishere)
+		Mes =  Tab + space(3) +  _("Merge") + quote(m_Shortnamepot);
+		Mes += _("inside")  + quote(m_Shortnamepo) ;
+		_print (Mes);
+		m_Fileswithstrings.Add(Mes);
+	// good no verbose : treated strings
+		if (result.StartsWith('P') )
 		{
-		// control to pending messages in the event loop
-          //  m_pM->Yield();
-		// short name
-			wxString shortpo = m_Namepo.AfterLast(slash)
-					 ,shortpot = m_Namepot.AfterLast(slash) ;
-		// merge 'shortpot' with  'shortpo"
-            //==================================================
-			wxInt32 nbdots = Pre::mergeFiles(shortpo, shortpot);
-			//==================================================
-			ok  = nbdots >= 0;
-			if (!ok)
-			{
-				Mes =  Tab + _("Not merge files") + quote(m_Namepot);
-				Mes += _("inside") + quote(shortpo);
-				_print(Mes);
-				return false;
-			}
-        // good
-			Mes = Tab ;
-			if (_replacecar) 	Mes += "5- ";
-			else				Mes += "4- ";
-			Mes +=  _("Merge") + quote(shortpot);
-			Mes += "(+ " + strInt(m_nbNewstrings) + Space + _("new strings")  + ") " ;
-			Mes += _("inside")  + quote(shortpo) ;
-			_print (Mes);
+			Mes = Tab + Tab + result;
+			_printWarn(Mes);
 			m_Fileswithstrings.Add(Mes);
-			m_nbNewstrings = nbdots;
 		}
 	}
 
@@ -2994,25 +3280,72 @@ _printD("	<= End 'Pre::integrity()'");
 
 	return ok;
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+//
+// Called by :
+//     1. Pre::integrity(bool _replacecar):1,
+//
+wxUint32 Pre::deleteCr(wxString & _source)
+{
+//3-1 find "\r" and delete into valid line
+	wxString wait = wxEmptyString;
+	if (m_sizeFilePo >= BIGFILE)
+		wait += Tab + _("PLEASE WAIT") + " ...";
+	else
+		wait += " ...";
+	// search "\r"
+	wxString rc = "\\r";
+	wxChar di = '#';
+	wxString line;
+// an array from 'source'
+	wxArrayString asource = ::GetArrayFromString(_source, Lf, TRIM_SPACE);
+	wxUint32 nlmax = asource.GetCount();
+	_source = wxEmptyString;
+	bool ok;
+	wxUint32 nr = 0;
+	for (wxUint32 u = 0 ; u < nlmax; u++)
+	{
+	// control to pending messages in the event loop
+	  //  m_pM->Yield();
+		line = asource.Item(u);
+		if (line.IsEmpty())		continue;
+		ok = (line.GetChar(0) != di) && (line.Find(rc) !=  wxNOT_FOUND);
+		if (ok)
+		{
+		// ATTENTION : "\\return" => "\eturn" !!!
+			if (!line.Contains("\\return") )
+			{
+		_printError("Pre::deleteCr() => line = " + quoteNS(line) );
+			// replace all 'rc' inside 'line'
+				nr += line.Replace(rc, wxEmptyString, ALL_TXT);
+			}
+		}
+	// build new 'source'
+		_source += line + Eol;
+	}
+
+	return nr ;
+}
+
+// -----------------------------------------------------------------------------
 //
 // Called by :
 //     1. Pre::integrity(bool _replacecar):5,
 //
 // Call to : none
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool Pre::changeContents(wxString& _source, const wxString& _old, wxString& _new)
 {
-// TO REVIEW ...just header
+_printD("=> Begin 'Pre::changeContents(...)'");
+
     if (_source.IsEmpty())
     {
         Mes = "Pre::changeContents : " + _("source is empty") + " !! ";
         _printError(Mes) ;
         return false;
     }
-	wxString source = _source.Mid(0, 582);
-//_printD("=> Begin 'Pre::changeContents(...) => source :"  + markNS(_source));
-
+// just header
+	wxString source = _source.Mid(0, m_sizeHeaderpo);
 	bool ok = false;
 	wxInt32 pos = source.Find(_old);
 	if (pos !=  wxNOT_FOUND)
@@ -3025,65 +3358,145 @@ bool Pre::changeContents(wxString& _source, const wxString& _old, wxString& _new
 		{
 		// replace number
 			Mes =  _("can't replace") + quote(_old);
-			Mes +=  _("inside") + quote(m_Shortnamepot) + " !!";
+			Mes +=  _("inside") + quote(m_Shortnamedup) + " !!";
 			_print(Mes);
 		}
 	}
+	else
+    {
+        _printWarn(source);
+    }
 
 _printD("	<= End 'Pre::changeContents(...)' => " + strBool(ok) );
 
 	return ok;
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 //
 // Called by :
 //     1. Pre::integrity(bool _replacecar):1,
 // Call to :
 //     1. Pre::executeAndGetOutputAndError(const wxString& _command, bool _prepend_error):1,
-// ----------------------------------------------------------------------------
-wxInt32 Pre::mergeFiles(wxString& _oldpo, wxString& _newpot)
+// -----------------------------------------------------------------------------
+wxString Pre::mergeFiles(wxString _old, wxString _new, wxInt32 &  _nbdots)
 {
-_printD("=> Begin 'Pre::mergeFiles(" +  _oldpo + ", " + _newpot + ")");
-
-// relative paths
-	_oldpo.Prepend(m_Dirlocale); _newpot.Prepend(m_Dirlocale);
-	// number new strings to translate : FALSE !!!
+_printWarnD("=> Begin 'Pre::mergeFiles(" +  _old + ", " + _new + ")");
+	m_DirlocaleLeader = m_DirprojectLeader + m_Dirlocale;
+// absolute paths
+	_old.Prepend(m_DirlocaleLeader); _new.Prepend(m_DirlocaleLeader);
 	wxUint32 nbdots = 0;
-	// 'm_Pathmexe' contains already double quote
-	wxString command = m_Pathmexe;
-	// update
+	// 'm_PathMexe' contains already double quote
+	wxString command = m_PathMexe, verbose = " -v" , result;
+	// verbose
+	command += verbose;
+	// directory
+//	command += " -D" + dquote(m_DirprojectLeader) ;
+	// enclose filenames in quotation marks
+	command += dquote(_old) +  dquote(_new) ;
+	// update _oldpo
 	command += " -U";
-	// suffix
+	// make a backup with new suffix
 	command += " --suffix=.dou";
 	// delete progress dot =>  nbdots == 0
 	//command += " -q";
 	// no fuzzy match
 	command += " -N";
-	//  keep the previous "msgid" strings of translated messages
+	// preserve location #: xxxxx
+	command += " --add-location"; // or " -n"
+	//  keep the previous "msgid" strings of translated messages marked with ‘#|’
 	command += " --previous";
 	// with color if exists
 	//command += " --color ";
-	// enclose filenames in quotation marks
-	command += dquote(_oldpo) +  dquote(_newpot);
-//_printError(quoteNS(command));
+	// large = 80 car
+	command += " -w80";
+	//===========================================================
+	result = executeAndGetOutputAndError(command, PREPEND_ERROR);
+	//===========================================================
+//_printError("result not treated :" + Lf + markNS(result));
+	if (!result.IsEmpty())
+	{
+	// delete all progress  indicator :  cDot == '.'
+		nbdots = result.Replace(Dot, wxEmptyString, ALL_TXT);
+		/// not verbose => nbdots > 0
+		/// verbose if nbdots == 0 => error
+	// ATTENTION 'msgmerge' messages uses the local language !!
+	// no verbose : " -v" => find 'done'
+    // not correct !!
+	//	if (result.Find(_("done")) !=  wxNOT_FOUND )
+		if (! command.Contains(verbose) )
+		{
+		// begin '.'
+			if (result.StartsWith(cDot))
+			{
+				result.Replace(_("done"), wxEmptyString);
+				result = result.AfterFirst(cSpace);
+			}
+		// begin : 'Win' "msgmerge.exe : xxxxxx", 'Lin' "msgmerge : xxxxxx"
+			else
+			{
+				_printWarn(_("The command") + " = " + Lf + markNS(command));
+				_printError(_("Generate error") + " : " + Lf + markNS(result));
+				nbdots = 0;
+			}
+		}
+	// verbose
+		/// first line 	"........\n"
+		/// second line " Read %ld old + %ld reference, merged %ld, fuzzied %ld
+		///				  missing %ld, obosolete %ld\n"
+		else
+		{
+			result.Trim(FROM_LEFT);
+			result.Prepend(_("Processed chains") + " : " );
+		}
+	}
+	_nbdots = nbdots
+
+_printWarnD("	<= End 'Pre::mergeFiles(...)'");
+
+	return result.Trim(FROM_RIGHT);
+}
+
+// ----------------------------------------------------------------------------
+// Unifies duplicates in the strings to be translated :
+//	=> a single string for the several same strings
+////
+// Called by :
+//     1. Pre::integrity(const bool& _replacecar):1,
+// Call to :
+//		1. Pre::executeAndGetOutputAndError(const wxString& _command,
+//											const bool& _prepend_error):1,
+//
+wxString Pre::noDuplicateMsgid(wxString& _inputdup, wxString& _outputpo)
+{
+_printErrorD("	===> Begin Pre::noDuplicateMsgid(...)" );
+// absolute paths with Dquote
+	wxString command = m_PathUexe + Space;
+	// directory
+	//command += " -D xxxxx "
+	// input file
+	command += dquoteNS(_inputdup);
+	// output file
+	command += " -o" + dquoteNS(_outputpo);
+_printWarnD("Pre::noDuplicateMsgid => command = " + Lf + markNS(command) );
+
+	// execute 'm_PathUexe'
 	//====================================================================
 	wxString result = executeAndGetOutputAndError(command, PREPEND_ERROR);
 	//====================================================================
-//_printWarn(quote(result));
 	if (!result.IsEmpty())
 	{
-	// error : ATTENTION 'msmerge' messages uses the local language !!
-		if (result.Find(_("done")) ==  wxNOT_FOUND )		return 0;
-		// delete all progress  indicator :  cDot == '.'
-		nbdots = result.Replace(cDot, wxEmptyString);
-		result.Replace("done", wxEmptyString);
+    //_printWarn(_("ATTENTION 'msguniq' messages uses the local language") + " !!" );
+		if (result.Contains("msguniq") )
+		{
+			Mes = _("Generate error") + " :" + Lf;
+			result.Prepend(Mes);
+			_printError(quote(result));
+		}
 	}
+_printErrorD("		<== End Pre::noDuplicateMsgid(...)" );
 
-_printD("	<= End 'Pre::mergeFiles(...)'");
-
-	return nbdots;
+	return result;
 }
-
 ///-----------------------------------------------------------------------------
 // Set stop current action
 //
@@ -3139,22 +3552,7 @@ bool Pre::isCommandTarget(const wxString& _nametarget)
 
 	return isCommandTarget(m_pProject->GetBuildTarget(_nametarget) );
 }
-/*
-///-----------------------------------------------------------------------------
-// Gives if a target is a virtual target
-//
-//	Called by :
-//
-bool Pre::isVirtualTarget(const ProjectBuildTarget * _pTarget)
-{
-    if(! _pTarget) return false;
 
-    const cbProject * pProject = _pTarget->GetParentProject();
-    if(! pProject) return false;
-
-    return pProject->HasVirtualBuildTarget(_pTarget->GetTitle())  ;
-}
-*/
 ///-----------------------------------------------------------------------------
 // Gives if a target is a virtual target
 //
@@ -3240,16 +3638,16 @@ bool Pre::createDir (const wxString& _dir)
 _printD("=> Begin 'Pre::createDir(" + quote(_dir) + ")" );
 
 	bool ok = true  ;
-	if (! wxDirExists(_dir))
+	if (! ::wxDirExists(_dir))
 	{
 	// Linux -> access = 0x0777
-		ok = wxMkdir(_dir) ;
+		ok = ::wxMkdir(_dir) ;
 		if (!ok)
 		{
 			Mes = _("Can't create directory")  ;
 			Mes += quote( _dir) + "!!";
 			_printError(Mes);
-			cbMessageBox(Mes, "Pre::createDir()", wxICON_ERROR) ;
+			::cbMessageBox(Mes, "Pre::createDir()", wxICON_ERROR) ;
 		}
 	}
 
@@ -3261,7 +3659,7 @@ _printD(" <= End 'Pre::createDir(...) => " + strBool(ok) );
 }
 
 ///-----------------------------------------------------------------------------
-// Recursively deletes all directories and files
+// Recursively deletes all files and directories
 //
 // Called by :
 //		1. wxUint32 CreateForWx::Cleantemp():1
@@ -3275,7 +3673,7 @@ _printD("=> Begin 'Pre::recursRmDir(" + _rmDir + ")");
 		return false;
 
 // We make sure that the directory to be deleted exists
-    if(!wxDir::Exists(_rmDir))
+    if(!::wxDir::Exists(_rmDir))
 		return false;
 
 // We make sure that the name of the folder to be deleted ends with a separator
@@ -3285,9 +3683,10 @@ _printD("=> Begin 'Pre::recursRmDir(" + _rmDir + ")");
 		_rmDir += wxFILE_SEP_PATH;
 
 // Creating the 'wxDir*' object
-    wxDir* pDir = new wxDir(_rmDir);
+    wxDir* pDir = new ::wxDir(_rmDir);
     if (!pDir)
 		return false;
+
 
 // Retrieving the first item in the folder to be deleted
     wxString item;
@@ -3297,21 +3696,29 @@ _printD("=> Begin 'Pre::recursRmDir(" + _rmDir + ")");
         do
         {
         // If the item found is a directory
-            if (wxDirExists(_rmDir + item))
+            if (::wxDirExists(_rmDir + item))
+            {
             /// recursive call ...
                 //=========================
                 recursRmDir(_rmDir + item);
                 //=========================
+            }
             else
         // Otherwise, we delete the file
-			if(!wxRemoveFile(_rmDir + item))
+			if(!::wxRemoveFile(_rmDir + item))
 			{
             //Error during deletion (access rights ?)
 				Mes =_( "Could not remove item") + quote(_rmDir + item);
 				_printError(Mes);
 			}
 			else
+			{
 				m_nbFilesdeleted++;
+				Mes = Tab + "DF" + strIntZ(m_nbFilesdeleted, 5) + " :";
+				Mes += quote(item) ;
+                _print(Mes);
+                 m_pM->Yield();
+            }
         }
         while (pDir->GetNext(&item));
     }
@@ -3319,12 +3726,18 @@ _printD("=> Begin 'Pre::recursRmDir(" + _rmDir + ")");
     // But first you have to destroy the wxDir variable that always points to it
     delete pDir;
 // You can now delete the folder passed as a parameter
-    ok = wxFileName::Rmdir(_rmDir);
+    ok = ::wxFileName::Rmdir(_rmDir);
     if (!ok)
     {
 	// Error during deletion (access rights ?)
 		Mes = _("Could not remove directory") + quote(_rmDir);
 		_printError(Mes);
+    }
+    else
+    {
+        Mes = Tab + "DD" + + " :" + quote(_rmDir) ;
+        _print(Mes);
+        m_pM->Yield();
     }
     Mes.Clear();
 
@@ -3349,19 +3762,19 @@ wxString Pre::readFileContents(const wxString& _filename)
 	NormalizePath(filename, wxEmptyString);
 	wxFile file(filename.GetFullPath());
 
-	return cbReadFileContents(file);
+	return ::cbReadFileContents(file);
 }
 
 ///-----------------------------------------------------------------------------
 // Save a 'wxArrayString' to disk and read the file in 'Editor'
 //
 // Called by  :
-//		1. Pre::endextract():1,
+//		1. CreateForWx::creatingPot(bool _prjfirst):1,
 //		2. Pre::endaction(wxChar _mode):1,
 //
-bool Pre::saveArray (const wxArrayString& _strarray, const wxChar _mode)
+bool Pre::saveArrayToDisk (const wxArrayString& _strarray, const wxChar _mode)
 {
-_printD("=> Begin saveArray(..., " + wxString(_mode) +  +")'" );
+_printErrorD("=> Begin saveArrayToDisk(..., " + wxString(_mode) +  +")'" );
 
 // print array
 	wxUint32 n = _strarray.GetCount();
@@ -3373,20 +3786,51 @@ _printD("=> Begin saveArray(..., " + wxString(_mode) +  +")'" );
 		if (_mode == 'L') 		ext = "list";
 		else
 		if (_mode == 'E')		ext = "extr";
-		else					return false;
+		else
+		if (_mode == 'P')       ext = "dup";
+        else return false;
 	// file to disk
 		wxString namefile = m_Dirpot + m_NameprojectLeader;
 		if (m_Workspace)	namefile += "_workspace";
 		namefile += Dot + ext;
-		wxString shortname = namefile.AfterLast(slash).Prepend(m_Dirlocale);
+		wxString shortname = namefile.AfterLast(cSlash).Prepend(m_Dirlocale);
     // exists already ?
 		ok = wxFileName::FileExists(namefile);
 		if (ok)		wxRemoveFile(namefile);
 	// data to file
-		wxString mes, temp = GetStringFromArray(_strarray, Eol, false );
-		//================================
-		ok = cbSaveToFile(namefile, temp);
-		//================================
+		wxString mes, out, line ;
+		size_t nbmax = _strarray.GetCount() - 1;
+        if (_mode == 'L' ||  _mode == 'E' )
+        {
+            out = ::GetStringFromArray(_strarray, Lf);
+        }
+        else
+        if (_mode == 'P')
+        {
+/// debug
+	//showArray(m_FilesCreatingPOT, "m_FilesCreatingPOT");
+			wxString  sep = Space;
+            for (wxUint32 i = 0; i <= nbmax; ++i)
+            {
+                line =  _strarray[i];
+                if (line.StartsWith("msgstr"))
+                {
+      //  _printWarn(iToStr(i) + "- " + quoteNS(line));
+                    line << (Lf + sep);
+                }
+
+                if (!line.Contains(Lf) )
+                {
+                    line << Lf;
+        //_printError(iToStr(i) + "- " + quoteNS(line));
+                }
+
+                out << line ; //<< sep;
+            }
+          //  _printError(out);
+        }
+        // save file
+		ok = ::cbSaveToFile(namefile, out);
 		if (!ok)
 		{
 			mes =  Tab + _("Could not write file");
@@ -3415,41 +3859,41 @@ _printD("=> Begin saveArray(..., " + wxString(_mode) +  +")'" );
 		}
 	}
 
-_printD("	<= End 'saveArray(...)' => " + strBool(ok) )	;
+_printErrorD("	<= End 'saveArrayToDisk(...)' => " + strBool(ok) )	;
 
 	return ok;
 }
 
 ///-----------------------------------------------------------------------------
-// Add a '_array'  to  '_receivearray' and free '_array
+// Add a '_array' to '_receive'
 //
 // Called by  :
-//  1. CreateForWx::pathWx(ProjectBuildTarget * _pTarget):1,
+//  1. CreateForWx::pathWx(ProjectBuildTarget * _pTarget):2,
 //
-void Pre::addArrays(wxArrayString& _receive, wxArrayString& _array)
+wxUint32 Pre::addArrays(wxArrayString& _receive, wxArrayString& _array)
 {
     for (wxUint32 cell = 0 ;cell < _array.GetCount() ; cell++)
     {
        _receive.Add(_array.Item(cell)) ;
     }
-    // free _array
-    _array.Clear();
+
+    return _receive.GetCount();
 }
 ///-----------------------------------------------------------------------------
 // Display a file in  'Editor'
 //
 // Called by  :
 //		1. Pre::endextract():2,
-//		2. Pre::saveArray (const wxArrayString& _strarray,  wxChar _mode):1,
+//		2. Pre::saveArrayToDisk (const wxArrayString& _strarray,  wxChar _mode):1,
 //
 bool Pre::openedit(const wxString _file)
 {
 _printD("=> Begin 'openedit(" + _file + ")'" );
 
-	bool ok = wxFileName::FileExists(_file);
+	bool ok = ::wxFileName::FileExists(_file);
 	if (ok)
 	{
-		cbEditor*  ed_open = m_pMed->IsBuiltinOpen(_file);
+		::cbEditor*  ed_open = m_pMed->IsBuiltinOpen(_file);
 	// editor use '_file'
 		if (ed_open)
 		{
@@ -3486,7 +3930,7 @@ bool Pre::closedit(const wxString _file)
 _printD("=> Begin 'closedit(" + _file + ")'" );
 
     bool ok = false ;
-    cbEditor*  ed_open = m_pMed->IsBuiltinOpen(_file);
+    ::cbEditor*  ed_open = m_pMed->IsBuiltinOpen(_file);
 // editor use '_file'
     if (ed_open)
     {
@@ -3517,12 +3961,17 @@ _printD("=> Begin 'Pre::closeAllExtraFiles()'");
 
     bool okextr = closedit(fullpath + ".extr");
 
-    bool okpo   = closedit(fullpath+ ".po");
+ //   bool okpot  = closedit(fullpath + ".pot");
+    bool okdup   = closedit(fullpath + ".dup");
+
+    bool okuni   = closedit(fullpath + ".uni");
+
+    bool okpo   = closedit(fullpath + ".po");
     //======================================
 
 _printD("    <= End 'Pre::closeAllExtraFiles()'");
 
-    return oklist || okextr || okpo;
+    return oklist || okextr || okdup || okpo || okuni;
 }
 
 ///-----------------------------------------------------------------------------
@@ -3541,7 +3990,7 @@ bool Pre::saveAs(wxString & _namefile)
 						"*.mo",
 						wxFD_SAVE | wxFD_OVERWRITE_PROMPT | wxFD_CHANGE_DIR
 						);
-    PlaceWindow(&saveFile);
+    ::PlaceWindow(&saveFile);
 	wxInt32 ret =  saveFile.ShowModal();
     if (ret == wxID_OK)   // wxID_OK = 5100
 	{
@@ -3555,7 +4004,7 @@ bool Pre::saveAs(wxString & _namefile)
         }
         else
         {
-
+            /// TODO ...
         }
 	}
     else
@@ -3571,14 +4020,14 @@ bool Pre::saveAs(wxString & _namefile)
 //
 void Pre::ShowInfo(const wxString& _mes)
 {
-	cbMessageBox(_mes, wxEmptyString, wxICON_INFORMATION);
+	::cbMessageBox(_mes, wxEmptyString, wxICON_INFORMATION);
 }
 // ----------------------------------------------------------------------------
 //  Called by : many ...
 //
 void Pre::ShowError(const wxString& _mes)
 {
-	cbMessageBox(_mes, wxEmptyString, wxICON_ERROR);
+	::cbMessageBox(_mes, wxEmptyString, wxICON_ERROR);
 }
 
 ///-----------------------------------------------------------------------------
@@ -3594,24 +4043,9 @@ wxString Pre::date()
 {
 	wxDateTime now = wxDateTime::Now();
 	wxString str = now.FormatDate() + "-" + now.FormatTime();
-// for duration in 'S'
-    //====================
-	m_begin = beginTime();
-	//====================
-
     return str ;
 }
-///-----------------------------------------------------------------------------
-// Execution time
-//
-//
-wxString Pre::duration()
-{
-    clock_t dure = clock() - m_start;
-    if (m_Linux)     dure /= 1000;
 
-    return wxString::Format("%ld ms", dure);
-}
 ///-----------------------------------------------------------------------------
 //  Begin duration for Debug
 //
@@ -3619,9 +4053,11 @@ void Pre::beginDuration(const wxString & _namefunction)
 {
 // date
 	Mes = Lf + "==> ";
-	Mes += _("Start of") + quote(_namefunction) + ": " + date();
+	//===============================================================
+	Mes += _("Start of") + quote(_namefunction) + ": " + Pre::date();
+	//===============================================================
 	_printWarn(Mes);
-	m_start = clock();
+	m_tI = elapsed(0);
 	Mes.Clear();
 }
 ///-----------------------------------------------------------------------------
@@ -3630,71 +4066,50 @@ void Pre::beginDuration(const wxString & _namefunction)
 void Pre::endDuration(const wxString & _namefunction)
 {
 	Mes = "<== " ;
-	Mes += _("End of") + quote( _namefunction  ) + ": " + date();
-	Mes += " -> " + duration();
+	//================================================================
+	Mes += _("End of") + quote( _namefunction  ) + ": " + Pre::date();
+	//================================================================
+	Mes += " -> " + dtimeStr(elapsed(0) - m_tI);
 	_printWarn(Mes);
 	Mes.Clear();
 }
-///-----------------------------------------------------------------------------
-//  Begin time 'S'
-//
-// Called by :
-//  1.  Pre::Init(const wxString _type):1,
-//
-wxUint64 Pre::beginTime()
-{
-	m_begin = clock()/1000;
-	if (m_Linux)     m_begin /= 1000;
 
-	return m_begin;
-}
 ///-----------------------------------------------------------------------------
-//  End time 'S'
-//
-wxUint64 Pre::endTime()
-{
-	m_end = clock()/1000;
-	if (m_Linux)     m_end /= 1000;
-
-	return m_end;
-}
-///-----------------------------------------------------------------------------
-//  Elapsed time 'S'
+//  Elapsed time in milliseconds
 //
 // Call by :
-//      1. wxString Pre::elapsedTimeStr(const wxUint64 _begin):1,
+//      1.  wxString Pre::elapsedStr(const wxUint64 _begin):1,
 //
-wxUint64 Pre::elapsedTime(const wxUint64 _begin)
+wxUint64 Pre::elapsed(const wxUint64 _last)
 {
-	if (_begin)
-	{
-		m_begin = _begin;
-	}
-	m_end = clock()/ 1000;
-	if (m_Linux)     m_end /= 1000;
+// actual in 'mS'
+    wxUint64 actual = clock(), ret = 0 ;
+    if (m_Linux)    actual /= 1000;
+//_printWarn("actual : " + strInt(actual) + ", _last : " + strInt(_last));
+    if (_last <= actual)
+        ret = actual - _last;
 
-	wxUint64 elapsed = m_end - m_begin;
-
-	return elapsed ;
+    return ret;
 }
-///-----------------------------------------------------------------------------
-//  Elapsed time 'S' in string
-//
-//  Called by :
-//      1. bool Pre::listing(const wxUint32& _posWS):1,
-//      2. bool Pre::endaction(const wxChar& _mode):1,
-//
-//  Call to :
-//      1. wxUint64 Pre::elapsedTime(const wxUint64 _begin):1,
-//
-wxString Pre::elapsedTimeStr(const wxUint64 _begin)
-{
-    //======================================================================
-	wxUint64 dure = elapsedTime(_begin), minu = dure / 60, sec = dure % 60 ;
-	//======================================================================
 
+///-----------------------------------------------------------------------------
+//  Elapsed time en mS to strings
+//
+// Call by :
+//      1. Pre::listing(const wxUint32& _posWS):1,
+//      2. Pre::endaction(const wxChar& _mode):4,
+//      3. Pre::endDuration(const wxString & _namefunction):1,
+//
+// Call to : none
+//
+wxString Pre::dtimeStr(const wxUint64 _time)
+{
+// in 'mS'
+    wxUint64 S = _time/1000, ms = _time%1000, minu = S/60, sec = S%60
+            ;
 	wxString str = strInt(minu) + Space + _("minute(s)") + ", " ;
-	str += strInt(sec) + Space +_("second(s)");
+	str += strInt(sec) + Space +_("second(s)") + ", ";
+	str += strInt(ms) + Space +_("mS")  ;
 
 	return str;
 }
@@ -3711,9 +4126,9 @@ _printD("=> Begin 'Pre::allStrTable(...)");
 	wxString mes = "--------- debug --------------";
 	mes += Lf + quoteNS( m_Dirproject) ;
 	mes += Lf + "=>" + quote( _title ) ;
-	wxUint16 nl = _strarray.GetCount();
+	size_t nl = _strarray.GetCount();
 	mes += " : " + strInt(nl) + Space + _("lines") ;
-	for (wxUint16 u = 0; u < nl; u++)
+	for (size_t u = 0; u < nl; u++)
 	{
 	// read strarray line from  '1' ... 'nl'
 		mes += Lf + strInt(u+1) + "- " + _strarray.Item(u) ;
@@ -3724,4 +4139,36 @@ _printD("	<= End 'Pre::allStrTable(...)");
 
 	return mes;
 }
-// ----------------------------------------------------------------------------
+
+///-----------------------------------------------------------------------------
+// Show a 'wxArrayString' for debug to log
+//
+// Called by  :  for debug a table
+//
+bool Pre::showArray(const wxArrayString& _strarray, const wxString& _title)
+{
+_printD("=> Begin 'Pre::showArray(...)");
+	wxString mes = "Array string : " + quote(_title) ;
+	bool good = true;
+	size_t nl = _strarray.GetCount();
+    _printWarn(mes);
+	for (size_t u = 0; u < nl; u++)
+	{
+	// control to pending messages in the event loop
+		m_pM->Yield();
+    // analysis stopped manually
+		if (m_Stop)
+		{
+			good = false ;
+			break;
+		}
+	// read strarray line from  '0' ... 'nl-1'
+		mes = Tab + strInt(u) + "- " + quoteNS(_strarray.Item(u)) ;
+		_printError(mes);
+	}
+
+_printD("	<= End 'Pre::showArray(...)");
+    return good;
+}
+
+///-----------------------------------------------------------------------------

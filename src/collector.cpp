@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-31
+ * Modified:  2022-12-10
  * Copyright: LETARTARE
  * License:   GPL
  *************************************************************
@@ -218,7 +218,7 @@ void Collector::OnAttach()
 	}
 	else
 	{
-        Mes = _("Create") + Space + "m_pCreateWx";
+        Mes = _("Create") + quote("m_pCreateWx");
 		Mes += Lf + _("The plugin part 'Wx' is operational") ;
 		//_print(Mes);
     }
@@ -228,7 +228,7 @@ void Collector::OnAttach()
 	m_pCreateQt = new CreateForQt(NamePlugin, m_LogPageIndex);
 	if (!m_pCreateQt)
 		{
-		Mes = _("Error to create") + Space + "m_pCreateQt" ;
+		Mes = _("Error to create") + quote("m_pCreateQt") ;
 		Mes += Lf + _("The plugin part 'Qt' is not operational") + " !!"; _printError(Mes);
 		_PrintError(Mes);
 	//  release plugin
@@ -236,7 +236,7 @@ void Collector::OnAttach()
 	}
 	else
 	{
-        Mes = _("Create") + Space + "m_pCreateQt";
+        Mes = _("Create") + quote("m_pCreateQt");
 		Mes += Lf + _("The plugin part 'Qt' is operational") ;
 		//_print(Mes);
     }
@@ -869,6 +869,10 @@ _printD("=> Begin 'Collector::OnMenuListPrj(...)' with 'checked':" + strBool(_pE
 				key = m_pTbarCboKeys->GetStringSelection();
 		// initialisation progress bar
 			BuildLogger::g_CurrentProgress = 0;
+        // init po header => line number header
+            //==================================
+			nbstr =  m_pCreateWx->iniHeaderPo();
+            //==================================
 			//========================================
 			ok = m_pCreateWx->ListProject(key, nbstr);
 			//========================================
@@ -891,6 +895,11 @@ _printD("=> Begin 'Collector::OnMenuListPrj(...)' with 'checked':" + strBool(_pE
 					Mes +=  _("You have") + quote(_("STOPPED")) ;
 				}
 				else
+                if (m_pCreateWx->hasNoproject())
+				{
+                    Mes += _("No project loaded") + " !!" + quote(_("STOPPED"));
+				}
+				else
 				{
 					Mes += "Collector::OnMenuListPrj(...) => " ;
 					Mes +=  _("An error unknown has") + quote(_("ABORTED")) ;
@@ -909,7 +918,8 @@ _printD("=> Begin 'Collector::OnMenuListPrj(...)' with 'checked':" + strBool(_pE
                     if (m_State == fbListPrj)
                     {
                         Mes = ">>> " ;
-                        Mes += _("You can now use the menu 'Extract from project'") ;
+                        Mes += _("YOU CAN NOW USE the menu");
+                        Mes +=  quote(_("Extract from project")) ;
                         Mes +=  " <<<";
                         _printWarn(Mes);
                     }
@@ -1026,6 +1036,11 @@ _printD("=> Begin 'Collector::OnMenuExractPrj(...)' with 'checked':" + strBool(_
 					Mes += _("You have") + quote(_("STOPPED")) ;
 				}
 				else
+                if (m_pCreateWx->hasNoproject())
+				{
+                    Mes += _("No project loaded") + " !!" + quote(_("STOPPED"));
+				}
+				else
 				{
 					Mes += "Collector::OnMenuExtractPrj(...) => " ;
 					Mes +=  _("An error unknown has") + quote(_("ABORTED")) ;
@@ -1105,12 +1120,18 @@ _printD("=> Begin 'Collector::OnMenuListExtractPrj(...) : 'checked':" + strBool(
         // the base project 'Wx'
 		if (m_isWxProject)
 		{
-            if (m_pCreateWx->isAllRight())
+		    bool ok =  m_pCreateWx->isAllRight();
+            if (ok)
             {
                 _pEvent.SetId(idTbarExtractPrj);
                 //========================
                 OnMenuExtractPrj(_pEvent);
                 //========================
+            }
+            else
+            {
+               Mes = "m_pCreateWx->isAllRight() => " + strBool(ok)  + " !!";
+               _printError(Mes);
             }
         }
 
@@ -1159,6 +1180,10 @@ _printD("=> Begin 'Collector::OnMenuListWS(...)' with 'checked':" + strBool(_pEv
 	// the base project 'Wx'
 		if (m_isWxProject)
 		{
+        // init po header => line number header
+            //==================================
+			nbstr =  m_pCreateWx->iniHeaderPo();
+            //==================================
 		// initialisation progress bar
 			BuildLogger::g_CurrentProgress = 0;
 			//==============================
@@ -1183,6 +1208,11 @@ _printD("=> Begin 'Collector::OnMenuListWS(...)' with 'checked':" + strBool(_pEv
 					Mes += _("You have") + quote(_("STOPPED")) ;
 				}
 				else
+                if (m_pCreateWx->hasNoproject())
+				{
+                    Mes += _("No project loaded") + " !!" + quote(_("STOPPED"));
+				}
+				else
 				{
 					Mes += "Collector::OnMenuListWS(...) => " ;
 					Mes += _("An error unknown has") + quote(_("ABORTED")) ;
@@ -1202,7 +1232,8 @@ _printD("=> Begin 'Collector::OnMenuListWS(...)' with 'checked':" + strBool(_pEv
                     if (m_State == fbListWS)
                     {
                         Mes = Eol +  ">>> " ;
-                        Mes += _("You can now use the menu 'Extract from workspace'") ;
+						Mes += _("YOU CAN NOW USE the menu");
+                        Mes +=  quote(_("Extract from workspace")) ;
                         Mes +=  " <<<";
                         _printWarn(Mes);
                     }
@@ -1315,6 +1346,11 @@ _printD("=> Begin 'Collector::OnMenuExractWS(...)' with 'checked':" + strBool(_p
 					Mes += _("You have") + quote(_("STOPPED")) ;
 				}
 				else
+                if (m_pCreateWx->hasNoproject())
+				{
+                    Mes += _("No project loaded") + " !!" + quote(_("STOPPED"));
+				}
+				else
 				{
 					Mes += "Collector::OnMenuExtractWS(...) => " ;
 					Mes += _("An error unknown has") + quote(_("ABORTED")) ;
@@ -1343,7 +1379,7 @@ _printD("=> Begin 'Collector::OnMenuExractWS(...)' with 'checked':" + strBool(_p
 			ok = m_pCreateQt->ExtractWS();
 			if (!ok)
 			{
-				Mes = _("Could not extract the worspace project.");
+				Mes = _("Could not extract the worspace project") + Dot;
 				Mes += Lf + _("Cannot continue");
 				m_pCreateQt->ShowError(Mes);
 				_printError(Mes);
@@ -1458,7 +1494,7 @@ _printD("=> Begin 'Collector::OnMenuCleanTemp(...)'" );
 			ok = m_pCreateQt->Cleantemp();
 			if (!ok)
 			{
-				Mes = _("Could not clean the temporary strings.");
+				Mes = _("Could not clean the temporary strings") + Dot;
 				Mes += Lf + _("Cannot continue");
 				m_pCreateQt->ShowError(Mes);
 				_printError(Mes);
@@ -1888,7 +1924,7 @@ _printD("=> Begin Collector::LoadPNG(" + quoteNS(_name) + ")" );
 
     wxFileSystem filesystem;
     wxString filename = ConfigManager::ReadDataPath();
-    filename += slash + NamePlugin + ".zip#zip:" + _name;
+    filename += cSlash + NamePlugin + ".zip#zip:" + _name;
     wxFSFile *file = filesystem.OpenFile(filename, wxFS_READ | wxFS_SEEKABLE);
     wxString Mes ;
     if (file == nullptr)

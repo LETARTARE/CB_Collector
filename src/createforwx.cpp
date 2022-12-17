@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-05-31
+ * Modified:  2022-12-11
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -17,7 +17,7 @@
 #include <cbproject.h>
 //
 
-#include "infowindow.h"     // InfoWindow::Display(
+#include "infowindow.h"     // InfoWindow::Display(...)
 // not change  !
 #include "defines.h"
 
@@ -30,6 +30,7 @@
 CreateForWx::CreateForWx(const wxString _namePlugin, const int _logIndex)
 	: Pre(_namePlugin, _logIndex)
 {
+
 }
 ///-----------------------------------------------------------------------------
 // Destructor
@@ -39,7 +40,6 @@ CreateForWx::CreateForWx(const wxString _namePlugin, const int _logIndex)
 //
 CreateForWx::~CreateForWx()
 {
-	//m_pProject = nullptr;  m_pMam = nullptr; m_pMprj = nullptr;
 }
 
 // -----------------------------------------------------------------------------
@@ -148,11 +148,10 @@ _printD("=> Begin 'CreateForWx::pathWx(...)'" );
 		wxString incdir = wxEmptyString;
         wxArrayString tabincdirs = pProject->GetIncludeDirs()
                      ,tablibsdirs = _pTarget->GetLibDirs();
-        // add tabs anfd free the second
-        //======================================
-        Pre::addArrays(tabincdirs, tablibsdirs);
-        //======================================
-		wxUint32 nincdir = tabincdirs.GetCount();
+        // add tabs to the first
+        //=========================================================
+        wxUint32 nincdir = Pre::addArrays(tabincdirs, tablibsdirs);
+        //=========================================================
 //_printError("nincdir = " + strInt(nincdir));
 		if (nincdir)
 		{
@@ -167,7 +166,7 @@ _printD("=> Begin 'CreateForWx::pathWx(...)'" );
 					|| incdir.StartsWith(t)
 					;
 			}
-			if (ok)  	namevar = incdir.BeforeFirst(slash);
+			if (ok)  	namevar = incdir.BeforeFirst(cSlash);
 		}
     // libraries target + libraries project
 		if (!ok)
@@ -175,10 +174,9 @@ _printD("=> Begin 'CreateForWx::pathWx(...)'" );
 			wxArrayString tablinksdirs = _pTarget->GetLinkLibs()
                           , tablibs = pProject->GetLinkLibs();
             // add tabs free the second
-            //====================================
-            Pre::addArrays(tablinksdirs, tablibs);
-            //====================================
-			wxUint32 nlinksdirs = tablinksdirs.GetCount() ;
+            //==========================================================
+            wxUint32 nlinksdirs = Pre::addArrays(tablinksdirs, tablibs);
+            //==========================================================
 			if (nlinksdirs)
 			{
 				wxString linksdir, t1 = "libwx", t2 = "wx";
@@ -189,7 +187,7 @@ _printD("=> Begin 'CreateForWx::pathWx(...)'" );
 					ok = linksdir.StartsWith(t1)
                         || linksdir.StartsWith(t2);
 				}
-				if (ok)  	namevar = linksdir.BeforeFirst(slash);
+				if (ok)  	namevar = linksdir.BeforeFirst(cSlash);
 			}
 		}
 // inc or lib finded
@@ -266,6 +264,7 @@ _printD("=> Begin 'CreateForWx::pathWx(...)'" );
             //==================================================================
             // warning ...
             ok = ! response.Contains("Warning:");
+            //ok = ! response.Contains(_("Warning:") );
             if (!ok)
             {
                 Mes = Lf + _("ATTENTION") ;
@@ -317,25 +316,51 @@ _printD("Begin 'CreateForWx::initWx()'" );
 		EXT_WXS = "wxs" ; m_Exttmp = "str" ;//  ???
 	}
 //
-	initTabResXml();
+	initArrayBanned();
 
 _printD("	<= End 'CreateForWx::initWx()'" );
 }
 
 ///-----------------------------------------------------------------------------
-//   Feed table for resource files and xml files
+//   Feed table for resource files and xml files and code
 //
 // Called by :
 //     1. CreateForWx::initTailored(const wxString _type):1,
 //
-//
-void  CreateForWx::initTabResXml()
+void  CreateForWx::initArrayBanned()
 {
-//
-	m_TabMarkersRes = GetArrayFromString(m_marksRes, ' ');
-// add :
-	//m_marksXml += "<p> <i> " ;
-	m_TabMarkersXml = GetArrayFromString(m_marksXml, ' ');
+//1- tags xrc
+	m_ArrayTagsRes = ::GetArrayFromString(m_tagsRes, cSpace, TRIM_SPACE);
+	// sort
+	m_ArrayTagsRes.Sort();
+//	showArray(m_ArrayTagsRes, "m_ArrayTagsRes");
+
+//2- tags xXml
+	m_ArrayTagsXml = ::GetArrayFromString(m_tagsXml, cSpace, TRIM_SPACE);
+	// sort
+	m_ArrayTagsXml.Sort();
+//	showArray(m_ArrayTagsXml, "m_ArrayTagsXml");
+
+//3- banned strings
+    m_ArrayBanned  = ::GetArrayFromString(m_bannedMarks, cSpace, TRIM_SPACE);
+	m_ArrayBanned.Add("\\"); m_ArrayBanned.Add("\"\"");
+	// sort
+	m_ArrayBanned.Sort();
+	m_sizeArrayBanned = m_ArrayBanned.GetCount();
+//	showArray(m_ArrayBanned, "m_ArrayBanned");
+
+//4- begin banned strings
+	m_ArrayBeginBanned = ::GetArrayFromString(m_beginBannedMarks, cSpace, TRIM_SPACE);
+	// sort
+	m_ArrayBeginBanned.Sort();
+	m_sizeArrayBeginBanned = m_ArrayBeginBanned.GetCount();
+//	showArray(m_ArrayBeginBanned, "m_ArrayBeginBanned");
+
+
+// add array
+//	addArrays(m_ArrayBanned, m_ArrayBeginBanned);
+//	m_sizeArrayBanned = m_ArrayBanned.GetCount();
+//_printWarn("m_ArrayBanned => "+ iToStr(m_sizeArrayBanned));
 }
 
 ///-----------------------------------------------------------------------------
@@ -354,22 +379,22 @@ _printD("=> Begin 'CreateForWx::initTailored()'");
 //8-  is project wxWidgets ?
     if (ok)
     {
-    //9- init 'm_Rexe'
+//9- init 'm_Rexe'
         //=======
         initWx();
         //=======
 
-    //10- find executable paths  ('poedit', 'wxrc', 'xgettext', 'msmerge')
+//10- find executable paths  ('poedit', 'wxrc', 'xgettext', 'msgmerge')
         //====================
         bool ok = searchExe();
         //====================
         if (ok)
         {
-        //11- array clean
+//11- array clean
             m_NameprjWS.Clear();
             m_PrjwithI18nWS.Clear();
             m_Fileswithstrings.Clear();
-        //12- display Wx
+//12- display Wx
             // changed directory
             wxFileName::SetCwd(m_Dirproject);
             // messages
@@ -410,7 +435,7 @@ _printD("	<= End 'CreateForWx::initTailored()' => " + strBool(ok) );
 }
 
 ///-----------------------------------------------------------------------------
-// Searc all executable path
+// Search all executable path
 //
 // Called by :
 //		1. CreateForWx::initTailored():1,
@@ -430,29 +455,29 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 		     ,exe
 		     ,newpath
 		     ;
-	m_Pexeishere = m_Gexeishere = m_Mexeishere = false;
-	m_Pathpexe = m_Pathgexe  = m_Pathmexe = m_PathIts = wxEmptyString;
+	m_Pexeishere = m_Gexeishere = m_Mexeishere = m_Uexeishere = false;
+	m_PathPexe = m_PathGexe  = m_PathMexe = m_PathUexe = m_PathIts = wxEmptyString;
 //7-1 search path 'poedit'
-	// Win-7 (who contains 'xgettext' and 'msmerge')
+	// Win-7 (who contains 'xgettext' and 'msgmerge')
 	// Linux /usr/bin/xgettext
 	//==================================================
 	wxString pathpoedit = Pre::findPathfromconf(m_Pexe);
 	//==================================================
 	if (pathpoedit.IsEmpty())
 	{
-		Mes = "!! " + _("Could not query the executable") + " 'Poedit' !!" + Lf;
+		Mes = "!! " + _("Could not query the executable") + " 'EXTERN_TRANSLATOR' !!" + Lf;
 		Mes += "!! " + _("You can't translate extracted string") + " !!" + Lf;
 		Mes = tbegin + Mes + tfin;
 		ShowError(Mes);
 		_printError(Mes);
 
-	// search another place for 'xgettext' and 'msmerge'
+	// search another place for 'xgettext' and 'msgmerge'
 		// 'LocateDataFile' give complete 'path + nameExe'
 		// 1- search 'xgettext'
-		m_Pathgexe = m_pMconf->LocateDataFile(m_Gexe, sdAllKnown);
-		if (! m_Pathgexe.IsEmpty() )
+		m_PathGexe = m_pMconf->LocateDataFile(m_Gexe, sdAllKnown);
+		if (! m_PathGexe.IsEmpty() )
 		{
-			exe = UnixFilename(m_Pathgexe, wxPATH_NATIVE);
+			exe = UnixFilename(m_PathGexe, wxPATH_NATIVE);
 			m_Gexeishere = wxFileName::FileExists(exe);
 		}
 		// 2- search 'its'
@@ -472,39 +497,52 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 		{
 			// no path 'its' ??
 		}
-		// 3- search 'msmerge'
-		m_Pathmexe = m_pMconf->LocateDataFile(m_Mexe, sdAllKnown);
-		if (! m_Pathmexe.IsEmpty() )
+		// 3- search 'msgmerge'
+		m_PathMexe = m_pMconf->LocateDataFile(m_Mexe, sdAllKnown);
+		if (! m_PathMexe.IsEmpty() )
 		{
-			exe = UnixFilename(m_Pathmexe, wxPATH_NATIVE);
+			exe = UnixFilename(m_PathMexe, wxPATH_NATIVE);
 			m_Mexeishere = wxFileName::FileExists(exe);
 		}
+		// 4- search 'msguniq'		m_Patuexe = m_pMconf->LocateDataFile(m_Uexe, sdAllKnown);
+		if (! m_PathUexe.IsEmpty() )
+		{
+			exe = UnixFilename(m_PathUexe, wxPATH_NATIVE);
+			m_Uexeishere = wxFileName::FileExists(exe);
+		}
+
 	}
 // 'Poedit' was found  !
 	else
 	{
-		m_Pathpexe = UnixFilename(pathpoedit, wxPATH_NATIVE);
+		//1- 'poedit'
+		m_PathPexe = UnixFilename(pathpoedit, wxPATH_NATIVE);
 		m_Pexeishere = true;
 // search 'xgettext' and 'merge' and path 'its'
 	// old path : "path-poedit\Poeditxxx\Gexe"
-		// 'xgettext'
-		m_Pathgexe = m_Pathpexe.Mid(0, m_Pathpexe.Len());
-		m_Pathgexe.Replace(m_Pexe, m_Gexe, FIRST_TXT);
-		//exe = UnixFilename(m_Pathgexe, wxPATH_NATIVE);
-		m_Gexeishere = wxFileName::FileExists(m_Pathgexe);
-		// 'msmerge'
-		m_Pathmexe = m_Pathpexe.Mid(0, m_Pathpexe.Len());
-		m_Pathmexe.Replace(m_Pexe, m_Mexe, FIRST_TXT);
-		//exe = UnixFilename(m_Pathmexe, ::wxPATH_NATIVE);
-		m_Mexeishere = wxFileName::FileExists(m_Pathmexe);
+		//2- 'xgettext'
+		m_PathGexe = m_PathPexe.Mid(0, m_PathPexe.Len());
+		m_PathGexe.Replace(m_Pexe, m_Gexe, FIRST_TXT);
+			//exe = UnixFilename(m_PathGexe, wxPATH_NATIVE);
+		m_Gexeishere = wxFileName::FileExists(m_PathGexe);
+		//3- 'msgmerge'
+		m_PathMexe = m_PathPexe.Mid(0, m_PathPexe.Len());
+		m_PathMexe.Replace(m_Pexe, m_Mexe, FIRST_TXT);
+			//exe = UnixFilename(m_PathMexe, ::wxPATH_NATIVE);
+		m_Mexeishere = wxFileName::FileExists(m_PathMexe);
+		//4- 'msguniq'
+		m_PathUexe = m_PathPexe.Mid(0, m_PathPexe.Len());
+		m_PathUexe.Replace(m_Pexe, m_Uexe, FIRST_TXT);
+			//exe = UnixFilename(m_PathUexe, ::wxPATH_NATIVE);
+		m_Uexeishere = wxFileName::FileExists(m_PathUexe);
 	// new path : "path-poedit\Poeditxxx\GettextTools\bin\Gexe"
 		if (! m_Gexeishere )
 		{
 		// 'xgettext'
 			newpath = "GettextTools\\bin\\" + m_Gexe;
-			m_Pathgexe.Replace(m_Gexe, newpath, FIRST_TXT);
-			//exe = UnixFilename(m_Pathgexe, wxPATH_NATIVE);
-			m_Gexeishere = wxFileName::FileExists(m_Pathgexe);
+			m_PathGexe.Replace(m_Gexe, newpath, FIRST_TXT);
+			//exe = UnixFilename(m_PathGexe, wxPATH_NATIVE);
+			m_Gexeishere = wxFileName::FileExists(m_PathGexe);
 			if (m_Gexeishere)
 			{
 			// 'its' rules "path-poedit\Poeditxxx\GettextTools\share\gettext\its\glade1.its"
@@ -520,20 +558,30 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 				// no path 'its' ??
 			}
 		}
+	// msgmerge
 		if (! m_Mexeishere)
 		{
-		// 'msmerge'
-			m_Pathmexe = m_Pathgexe.Mid(0, m_Pathgexe.Len());
-			m_Pathmexe.Replace(m_Gexe, m_Mexe, FIRST_TXT);
-		//exe = UnixFilename(m_Pathmexe, wxPATH_NATIVE);
-			m_Mexeishere = wxFileName::FileExists(m_Pathmexe);
+		// 'msgmerge'
+			m_PathMexe = m_PathGexe.Mid(0, m_PathGexe.Len());
+			m_PathMexe.Replace(m_Gexe, m_Mexe, FIRST_TXT);
+		//exe = UnixFilename(m_PathMexe, wxPATH_NATIVE);
+			m_Mexeishere = wxFileName::FileExists(m_PathMexe);
+		}
+	// msguniq
+		if (! m_Uexeishere)
+		{
+		// 'msguniq'
+			m_PathUexe = m_PathGexe.Mid(0, m_PathGexe.Len());
+			m_PathUexe.Replace(m_Gexe, m_Uexe, FIRST_TXT);
+		//exe = UnixFilename(m_PathMexe, wxPATH_NATIVE);
+			m_Uexeishere = wxFileName::FileExists(m_PathUexe);
 		}
 	}
 	// 'xgettext'
 	if (m_Gexeishere)
 	{
 	// uses "X:\path_gexe"
-		m_Pathgexe = dquoteNS(m_Pathgexe);
+		m_PathGexe = dquoteNS(m_PathGexe);
 	// 'its' rules "path-poedit\Poeditxxx\GettextTools\share\gettext\its\glade1.its"
 		if (m_Win)
 		{
@@ -557,7 +605,7 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 	else
 	{
 		Mes = "!! " + _("Could not query the executable 'xgettext'") + " !!" + Lf;
-		Mes += "!! m_Pathgexe = " + dquote(m_Pathgexe) + Lf;
+		Mes += "!! m_PathGexe = " + dquote(m_PathGexe) + Lf;
 		Mes += "!! " + _("Strings to be translated will not be extracted.") + Lf;
 		ShowError(Mes);
 		Mes = tbegin + Mes + tfin;
@@ -565,16 +613,16 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 
 		return false;
 	}
-// 'msmerge'
+// 'msgmerge'
 	if (m_Mexeishere)
 	{
 	// add  double quote
-		m_Pathmexe = dquoteNS(m_Pathmexe);
+		m_PathMexe = dquoteNS(m_PathMexe);
 	}
 	else
 	{
-		Mes = "!! " + _("Could not query the executable 'msmerge'") + " !!" + Lf;
-		Mes += "!! m_Pathmexe = " + dquote(m_Pathmexe) + Lf;
+		Mes = "!! " + _("Could not query the executable 'msgmerge'") + " !!" + Lf;
+		Mes += "!! m_PathMexe = " + dquote(m_PathMexe) + Lf;
 		Mes += "!! " + _("We can not merge to old '*.po'") + " !!" + Lf;
 		ShowError(Mes);
 		Mes = tbegin + Mes + tfin;
@@ -582,30 +630,48 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 
 		return false;
 	}
+// 'msguniq'
+	if (m_Uexeishere)
+	{
+	// add  double quote
+		m_PathUexe = dquoteNS(m_PathUexe);
+	}
+	else
+	{
+		Mes = "!! " + _("Could not query the executable 'msguniq'") + " !!" + Lf;
+		Mes += "!! m_PathUexe = " + dquote(m_PathUexe) + Lf;
+		Mes += "!! " + _("We can not unifie to old '*.po'") + " !!" + Lf;
+		ShowError(Mes);
+		Mes = tbegin + Mes + tfin;
+		_printError(Mes);
+
+		return false;
+	}
+
 
 //7-2 find 'wxrc'
 	m_Rexeishere = false;
 	//1- into '$(#cb_exe)\wxrc' or into PATH system
-	m_Pathrexe = m_pMconf->LocateDataFile(m_Rexe , sdAllKnown);
-	if (! m_Pathrexe.IsEmpty())
+	m_PathRexe = m_pMconf->LocateDataFile(m_Rexe , sdAllKnown);
+	if (! m_PathRexe.IsEmpty())
 	{
-		exe = UnixFilename(m_Pathrexe, wxPATH_NATIVE);
+		exe = UnixFilename(m_PathRexe, wxPATH_NATIVE);
 		m_Rexeishere = wxFileName::FileExists(exe);
 	}
 	if (! m_Rexeishere)
 	{
 	//2- into 'Poedit' ?
-		m_Pathrexe = m_Pathpexe.Mid(0, m_Pathpexe.Len());
+		m_PathRexe = m_PathPexe.Mid(0, m_PathPexe.Len());
 		// 1-1 old path : "path-poedit\Poeditxxx\Rexe"
-		m_Pathrexe.Replace(m_Pexe, m_Rexe, FIRST_TXT);
-		//exe = UnixFilename(m_Pathrexe, wxPATH_NATIVE);
-		m_Rexeishere = wxFileName::FileExists(m_Pathrexe);
+		m_PathRexe.Replace(m_Pexe, m_Rexe, FIRST_TXT);
+		//exe = UnixFilename(m_PathRexe, wxPATH_NATIVE);
+		m_Rexeishere = wxFileName::FileExists(m_PathRexe);
 		if (!m_Rexeishere)
 		{
 		// 2-2- new path : "path-poedit\Poeditxxx\GettextTools\bin\Rexe"
 			newpath = "GettextTools\\bin\\" + m_Rexe;
-			m_Pathrexe.Replace(m_Rexe, newpath, false);
-			exe = UnixFilename(m_Pathrexe, wxPATH_NATIVE);
+			m_PathRexe.Replace(m_Rexe, newpath, false);
+			exe = UnixFilename(m_PathRexe, wxPATH_NATIVE);
 			m_Rexeishere = wxFileName::FileExists(exe);
 		}
 	//3- into '$(#wx)\utils\wxrc\mswu\wxrc
@@ -632,9 +698,9 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 						if (ok)
 						{
 			// '$(#wx)\utils\wxrc\mswu\wxrc
-							m_Pathrexe = m_Wxpath + "utils" + strSlash + "wxrc";
-							m_Pathrexe += strSlash + "mswu" + strSlash + m_Rexe;
-							exe = UnixFilename(m_Pathrexe, wxPATH_NATIVE);
+							m_PathRexe = m_Wxpath + "utils" + strSlash + "wxrc";
+							m_PathRexe += strSlash + "mswu" + strSlash + m_Rexe;
+							exe = UnixFilename(m_PathRexe, wxPATH_NATIVE);
 							m_Rexeishere = wxFileName::FileExists(exe);
 						}
 					}
@@ -645,7 +711,7 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 // not found. ouf !!
 	if (m_Rexeishere)
 	{
-		m_Pathrexe = dquoteNS(m_Pathrexe);
+		m_PathRexe = dquoteNS(m_PathRexe);
 	}
 	else
 	{
@@ -657,8 +723,9 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
         }
         else
         {
-            Mes += "!! m_Pathrexe = " + dquote(m_Pathrexe) + Lf;
-            Mes += "!!" + _("Files '*.xrc, *.wxs' will not be taken into account.") + " !!" + Lf;
+            Mes += "!! m_PathRexe = " + dquote(m_PathRexe) + Lf;
+            Mes += "!!" + _("Files '*.xrc, *.wxs' will not be taken into account") ;
+            Mes += Dot + " !!" + Lf;
         }
 
 		ShowError(Mes);
@@ -716,7 +783,7 @@ _printD("=> Begin 'CreateForWx::isReadableFile(" + _file + ", " + strBool(_absol
 		Mes = Lf + "*** " + _("in function 'CreateForWx::isReadableFile'") + " : ";
 		Mes += Lf + _("file") + quote(_file) + _("NOT FOUND") + " !!!";
 		_printError(Mes);
-		mes = Lf + _("Check for the presence of this file, or remove it from the project");
+		mes = Lf + _("Check for the presence of this file, or remove it from the project") + Lf;
 		_printWarn(mes);
 		m_Fileswithstrings.Add(Mes + mes);
 		// dialogue
@@ -749,50 +816,50 @@ _printD("=> Begin 'CreateForWx::isReadableFile(" + _file + ", " + strBool(_absol
         else
 		{
 //_printWarn(quote(_file));
-		// search once mark
-			wxString ext, mark ;
+		// search once tag
+			wxString ext, tag ;
 			ext = _file.AfterLast('.') ;
 			wxUint16 nb;
 //_printWarn("search marks :" + quote(ext)) ;
 		// 'xml'
-			if ( ext == "xml")
+			if ( ext == EXT_XML)
 			{
 			// table contains all possible marks
 				nb = 0;
-				wxUint32 nbCells = m_TabMarkersXml.Count();
-				for (wxUint16 pos =0; pos < nbCells; pos++)
+				wxUint32 nbCells = m_ArrayTagsXml.GetCount();
+				for (wxUint16 pos = 0; pos < nbCells; pos++)
 				{
-					mark = m_TabMarkersXml.Item(pos);
+					tag = m_ArrayTagsXml.Item(pos);
 					//==============================
-					nb = Pre::freqStr(source, mark);
+					nb = Pre::freqStr(source, tag);
 					//==============================
 					nbStr += nb;
-        //_printError(Tab + quote(mark) + "=> " + strInt(nb));
+        //_printError(Tab + quote(tag) + "=> " + strInt(nb));
 				}
 			}
 			else
 		// 'res'
-			if ( ext == "wks" || ext == "xrc")
+			if ( ext == EXT_XRC || ext == EXT_WXS)
 			{
 			// table contains all possible marks
-				wxUint32 nbCells = m_TabMarkersRes.Count();
+				wxUint32 nbCells = m_ArrayTagsRes.GetCount();
 				for (wxUint16 pos =0; pos < nbCells; pos++)
 				{
-					mark = m_TabMarkersRes.Item(pos);
+					tag = m_ArrayTagsRes.Item(pos);
 					//==============================
-					nb = Pre::freqStr(source, mark);
+					nb = Pre::freqStr(source, tag);
 					//==============================
 					nbStr += nb;
-        //_printError(Tab + quote(mark) + "=> " + strInt(nb));
+        //_printError(Tab + quote(tag) + "=> " + strInt(nb));
 				}
 			}
 		// 'code'
 			else
 			{
-				mark = "_(";
-			// search 'mark'
+				tag = "_(";
+			// search 'tag'
                 //==================================
-				nbStr += Pre::freqStr(source, mark);
+				nbStr += Pre::freqStr(source, tag);
 				//==================================
 			}
 		//_printError("nbStr = " + strInt(nbStr));
@@ -819,7 +886,7 @@ _printD("=> Begin 'CreateForWx::listStringsCode(" + _shortfile + ")'");
 	if (m_Workspace) 	longfile.Prepend(m_Dirproject);
 //2- build command : 'xgettext -C -k_ infile -o- ....'  => console
 	wxString key = "-k" + m_Keyword;
-	wxString command = m_Pathgexe + " --c++ --from-code=UTF-8 " + key;
+	wxString command = m_PathGexe + " --c++ --from-code=UTF-8 " + key;
 	// inputfile
 	command += dquote(longfile) ;
 	// output  to 'stdout'
@@ -830,12 +897,15 @@ _printD("=> Begin 'CreateForWx::listStringsCode(" + _shortfile + ")'");
 	//command += " -i";
 	// files sorted
 	//command += " -F";
-	// exclusif !
+	// data sorted
 	//command += " -s" ;
 	// text width before new line
-	command += " -w 180";
+	//command += " -w 180";
+	command += " -w 80";
+	//command += " --no-wrap " ;
 
-//3- command execute with errors
+
+//3- command execute with error
 	// list string into
 	//=====================================================================
 	wxInt32 nbstr = Pre::GexewithError(_shortfile, command, PREPEND_ERROR);
@@ -847,6 +917,39 @@ _printD("	<= End 'CreateForWx::listStringsCode(...) => " + strInt(nbstr) + ")'")
 }
 
 // -----------------------------------------------------------------------------
+// List all strings in files '*.wrc' and '*.wks'
+//
+//  Command of 'wxrc'
+//
+//** Win **
+//	wxrc [/h] [/v] [/e] [/c] [/p] [/g] [/n <str>] [/o <str>] [--validate]
+//			[--validate-only] [--xrc-schema <str>] input file(s)..
+//	/h, --help            show help message
+//	/v, --verbose         be verbose
+//	/e, --extra-cpp-code  output C++ header file with XRC derived classes
+//	/c, --cpp-code        output C++ source rather than .rsc file
+//	/p, --python-code     output wxPython source rather than .rsc file
+//	/g, --gettext         output list of translatable strings (to stdout or file if -o used)
+//	/n, --function=<str>  C++/Python function name (with -c or -p) [InitXmlResource]
+//	/o, --output=<str>    output file [resource.xrs/cpp]
+//	--validate            check XRC correctness (in addition to other processing)
+//	--validate-only       check XRC correctness and do nothing else
+//	--xrc-schema=<str>    RELAX NG schema file to validate against (optional)
+//
+//** Linux **
+// Usage: wxrc [-h] [-v] [-e] [-c] [-p] [-g] [-n <str>] [-o <str>] [--validate]
+//			[--validate-only] [--xrc-schema <str>] input file(s)...
+//  -h, --help            show help message
+//  -v, --verbose         be verbose
+//  -e, --extra-cpp-code  output C++ header file with XRC derived classes
+//  -c, --cpp-code        output C++ source rather than .rsc file
+//  -p, --python-code     output wxPython source rather than .rsc file
+//  -g, --gettext         output list of translatable strings (to stdout or file if -o used)
+//  -n, --function=<str>  C++/Python function name (with -c or -p) [InitXmlResource]
+//  -o, --output=<str>    output file [resource.xrs/cpp]
+//  --validate            check XRC correctness (in addition to other processing)
+//  --validate-only       check XRC correctness and do nothing else
+//  --xrc-schema=<str>    RELAX NG schema file to validate against (optional)
 //
 // Called by :
 //		1. Pre::listGoodfiles(bool _verify):1,
@@ -859,7 +962,7 @@ wxInt32 CreateForWx::listStringsRes(wxString& _file)
 {
 _printD("=> Begin 'CreateForWx::listStringsRes(" + quoteNS(_file) + ")'");
 
-	if (m_Pathrexe.IsEmpty() )	return wxNOT_FOUND;
+	if (m_PathRexe.IsEmpty() )	return wxNOT_FOUND;
 //1- path name output file
 	// => 'xxxx_wxs.str???' or 'xxxx_wrc.str???' or ...
 	// index free
@@ -868,45 +971,16 @@ _printD("=> Begin 'CreateForWx::listStringsRes(" + quoteNS(_file) + ")'");
 	//==============================================
 	wxString filemod = expandName(_file, indexfree);
 	//==============================================
-	m_nameFileTemp = m_Temp + filemod.AfterLast(slash);
+	m_nameFileTemp = m_Temp + filemod.AfterLast(cSlash);
 	if (m_Workspace)
 	{
 	// change 'm_DirProject' ->  'm_DirprojectLeader'
 		m_nameFileTemp.Prepend(m_DirprojectLeader);
 	}
+//_printError("listStringsRes => m_DirprojectLeader = " + quote(m_DirprojectLeader) );
 
 //2- build command for 'wxrc'
-/*
-** Win
-	wxrc [/h] [/v] [/e] [/c] [/p] [/g] [/n <str>] [/o <str>] [--validate]
-			[--validate-only] [--xrc-schema <str>] input file(s)..
-	/h, --help            show help message
-	/v, --verbose         be verbose
-	/e, --extra-cpp-code  output C++ header file with XRC derived classes
-	/c, --cpp-code        output C++ source rather than .rsc file
-	/p, --python-code     output wxPython source rather than .rsc file
-	/g, --gettext         output list of translatable strings (to stdout or file if -o used)
-	/n, --function=<str>  C++/Python function name (with -c or -p) [InitXmlResource]
-	/o, --output=<str>    output file [resource.xrs/cpp]
-	--validate            check XRC correctness (in addition to other processing)
-	--validate-only       check XRC correctness and do nothing else
-	--xrc-schema=<str>    RELAX NG schema file to validate against (optional)
-** Linux
-Usage: wxrc [-h] [-v] [-e] [-c] [-p] [-g] [-n <str>] [-o <str>] [--validate]
-			[--validate-only] [--xrc-schema <str>] input file(s)...
-  -h, --help            show help message
-  -v, --verbose         be verbose
-  -e, --extra-cpp-code  output C++ header file with XRC derived classes
-  -c, --cpp-code        output C++ source rather than .rsc file
-  -p, --python-code     output wxPython source rather than .rsc file
-  -g, --gettext         output list of translatable strings (to stdout or file if -o used)
-  -n, --function=<str>  C++/Python function name (with -c or -p) [InitXmlResource]
-  -o, --output=<str>    output file [resource.xrs/cpp]
-  --validate            check XRC correctness (in addition to other processing)
-  --validate-only       check XRC correctness and do nothing else
-  --xrc-schema=<str>    RELAX NG schema file to validate against (optional)
-*/
-	wxString command = m_Pathrexe;
+	wxString command = m_PathRexe;
 	command += " -v" ;
 	command += " -g" ;
 	//command += "--validate";
@@ -938,6 +1012,7 @@ _printD("	<= End 'CreateForWx::listStringsRes(...) => " + strInt(nbstr) + ")'");
 
 // -----------------------------------------------------------------------------
 // Display formatting for resources
+//  modify
 // Called by :
 //		1. CreateForWx::listStringsRes(wxString _file):2,
 //
@@ -953,32 +1028,27 @@ wxInt32 CreateForWx::RexewithError(const wxString& _shortfile, const wxString& _
 _printD("=> Begin 'CreateForWx::RexeWithError(...)'");
 
 //1- execute command line who creates 'xxx_xrc.strnnn' file on disk
-	wxString result;
-	/*
-	bool prepend;
-	if(_prepend)    prepend = PREPEND_ERROR;
-	else	        prepend = NO_PREPEND_ERROR;
-	*/
-	//===========================================================
-    result = Pre::executeAndGetOutputAndError(_command, _prepend);
-    //===========================================================
+	//=====================================================================
+    wxString result = Pre::executeAndGetOutputAndError(_command, _prepend);
+    //=====================================================================
 	if (result.IsEmpty()) 	return -2;	// ??
 
 //2- if '-v' result error starts with  = "10:16:18: Error: ..\n"
-	if (result.Find(_("Error:")) != wxNOT_FOUND)
+	if (result.Find("Error:") != wxNOT_FOUND)
 	{
 		_printError("result: " + quoteNS(result)  );
 
 		return wxNOT_FOUND;
 	}
+
 //3- if '-v' result starts with  = "processing name.xrc...\n"
-	wxString mark =  "...\n";
+	wxString tag =  "...\n";
 	// no result withless "-v"
-	if (result.EndsWith(mark))
+	if (result.EndsWith(tag))
 	{
-	// result withless 'mark' and withless  "processing "
+	// result withless 'tag' and withless  "processing "
 		result.Replace("processing ", wxEmptyString);
-		result.Replace(mark, wxEmptyString);
+		result.Replace(tag, wxEmptyString);
 	}
 
 //4- print 'm_nameFileTemp' into 'Fileswithstrings'
@@ -989,7 +1059,7 @@ _printD("=> Begin 'CreateForWx::RexeWithError(...)'");
     //======================================================
 	if (!source.IsEmpty())
 	{
-		wxArrayString tabmes = GetArrayFromString(source, Lf, true);
+		wxArrayString tabmes = ::GetArrayFromString(source, Lf, TRIM_SPACE);
 		wxInt32 nbstrfile = tabmes.GetCount();
 		if (nbstrfile <= 1)
 		{
@@ -1017,32 +1087,56 @@ _printD("=> Begin 'CreateForWx::RexeWithError(...)'");
 		wxUint32 nbstrBefore;
 		if (m_goodListing)      nbstrBefore = m_nbListStrings;
 		else                	nbstrBefore = m_nbExtractStrings;
-	// contains all strings
-        //==========================================
-		wxString mes = CreateForWx::wxrcOut(source);
-		//==========================================
-
+	// return source contains all strings filtered or not
+        //=================================================
+		bool ok = CreateForWx::wxrcOut(source, _shortfile);
+		//=================================================
+	//	wxString mes = source;
+    // mes contains strings filtered
 	// numbers strings
 		if (m_goodListing)      nbstr = m_nbListStrings - nbstrBefore;
 		else                	nbstr = m_nbExtractStrings - nbstrBefore;
 	// header
 		++m_nbFileEligible;
-		_printLn;
-		wxString header = Tab + "E"+ strIntZ(m_nbFileEligible, 4) + "-";
+		wxString header = Lf + Tab + "E"+ strIntZ(m_nbFileEligible, 4) + "-";
 		header += quote(_shortfile) + " ==> " + strInt(nbstr) + Space + _("string(s)");
 		_printWarn(header);
 		m_Fileswithstrings.Add(header);
 	// list numbers line
-		m_Fileswithstrings.Add(mes);
-	// display 'mes' line by line
-		tabmes = GetArrayFromString(mes, Lf, true);
+		m_Fileswithstrings.Add(source);
+	// display 'tabmes' line by line
+		wxString line;
+		tabmes = ::GetArrayFromString(source, Lf, TRIM_SPACE);
 		nbstrfile = tabmes.GetCount();
 		for (wxInt32 n = 0 ; n < nbstrfile; n++)
 		{
-        // uses 'Collector::MesToLog(...)'
-			print(Tab + space(3) + tabmes.Item(n));
+			line = tabmes.Item(n);
+			line.Prepend(Tab + space(3)) ;
+		// uses 'Collector::MesToLog(...)'
+			if (tabmes.Item(n).Left(1) == '!')
+				printWarn(line);
+			else
+				print(line);
 		}
-		Mes = Tab + "  -> " + _("creates temporary") + quote(m_nameFileTemp);
+
+// 6- replace 'source' by 'mes'
+        bool good = true;
+        if (!ok)
+        {
+            good = ::cbSaveToFile(m_nameFileTemp, source);
+            if (!good)
+            {
+                Mes = _("Error in saved")  + quote(m_nameFileTemp)  ;
+               _printError(Mes);
+            }
+        }
+// 7- last message
+        Mes = Tab + "  -> " + _("creates temporary") + quote(m_nameFileTemp);
+        if (!ok && good)
+        {
+            Mes += _("which has been filtered") + " (" + strInt(m_nbFilteredRes) ;
+            Mes += Space + _("strings deleted") + ") ";
+        }
 		_printWarn(Mes);
 		m_Fileswithstrings.Add(Mes);
 	// memorize temporary file -> path
@@ -1059,17 +1153,19 @@ _printD("	<= End 'CreateForWx::RexeWithError(...)'");
 }
 
 // -----------------------------------------------------------------------------
+//  Lists the strings found in the '*.xml' using the 'its' rules
 //
 // Called by :
 //		1. Pre::listGoodfiles(bool _verify):1,
 // Call to :
-//		1. CreateForWx::listStringsXml(const wxString& _shortfile, wxString _rulesIts):1,
+//		1. Pre::GexewithError(const wxString& _shortfile, const wxString& _command,
+//							const bool& _prepend):1,
 // ----------------------------------------------------------------------------
 wxInt32 CreateForWx::listStringsXml(const wxString& _shortfile)
 {
 _printD("=> Begin 'CreateForWx::listStringsXml(" + _shortfile + ")'");
 
-	wxString longfile = _shortfile;
+    wxString longfile = _shortfile;
 //1- absolute name inputfile
 	if (m_Workspace) 	longfile.Prepend(m_Dirproject);
 //2- rules file 'its'
@@ -1086,51 +1182,15 @@ _printD("=> Begin 'CreateForWx::listStringsXml(" + _shortfile + ")'");
 	//rules = "mallard.its";
 	//rules = "metainfo.its";
 	//rules = "cbmanifest.its";
-   /*
-    // choice of '*.its'
-    if (_shortfile.Contains("metainfo") )   rules = "metainfo.its";
-    else
-    if (_shortfile.Contains("appdata") )    rules = "appdata.its";
-    else
-    if (_shortfile.Contains("manifest") )   rules = "manifest.its";
-    else
-    if (_shortfile.Contains("glade") )      rules = "glade1.its";
-    else
-    if (_shortfile.Contains("lexer") )      rules = "cblexer.its";
-    else                                    rules = "mallard.its";
-  */
+    // includes all the rules currently encountered ...
     rules = "codeblocks.its";
-
-// you have to check if the 'rulesIts' file is readable
+    // you have to check if the 'rulesIts' file is readable
 	m_PathRulesIts = m_PathIts + rules;
-	// local path
-	//wxString pathits = m_PathLocalIts + rules;
 
-//3- call 'lisStringXmlIts(...)' with rules
-    //==========================================================
-	wxInt32 nbstr = listStringsXmlIts(longfile, m_PathRulesIts);
-	//==========================================================
-
-_printD("	<= End 'CreateForWx::listStringsXml(...) => " + strInt(nbstr) + ")'");
-
-	return nbstr;
-}
-// -----------------------------------------------------------------------------
-//
-// Called by :
-//		1. CreateForWx::listStringsXml(const wxString& _shortfile):1,
-// Call to :
-//		1. Pre::GexewithError(wxString, wxString, bool):1,
-//
-wxInt32 CreateForWx::listStringsXmlIts(const wxString& _shortfile, wxString _pathrulesIts)
-{
-_printD("=> Begin 'CreateForWx::listStringsXmlIts(" + _shortfile + ", " + _pathrulesIts + ")'");
-
-	wxString longfile = _shortfile;
-//1- build command : 'xgettext ...'
+//3- build command : 'xgettext ...'
 	// for 'xgettext' and 'its' for *.xml
-	wxString its = " --its=" + dquoteNS(_pathrulesIts);
-	wxString command = m_Pathgexe;
+	wxString its = " --its=" + dquoteNS(m_PathRulesIts);
+	wxString command = m_PathGexe;
 	// codage UTF-8
 	command += " --from-code=UTF-8 ";
 	// inputfile
@@ -1142,11 +1202,13 @@ _printD("=> Begin 'CreateForWx::listStringsXmlIts(" + _shortfile + ", " + _pathr
 	// text indent
 	command += " -i";
 	// files sorted
-	command += " -F";
-	// sorted
+	//command += " -F";
+	// sorted data
 	//command += " -s" ;
 	// text width before new line
-	command += " -w 320 ";
+	//command += " -w 320 ";
+	command += " -w 80 ";
+	//command += " --no-wrap " ;
 	// + 'itstool' comment
 	command += "--itstool ";
 	// path absolute 'its' file
@@ -1164,17 +1226,59 @@ _printD("=> Begin 'CreateForWx::listStringsXmlIts(" + _shortfile + ", " + _pathr
         _printWarn(Mes);
         _print(Tab + space(2) +  "** " + _("This file has no translatable strings") + cDot);
         _printError(Tab + Line(Mes.Len()) );
-    // a 'xml' fil withless strings
+    // a '*.xml' fil withless strings
         m_nbXmlWithlessString++;
     }
 // all
     Mes = Tab + space(2) + "**" +  Space + _("Rules template used") + Space ;
-    Mes += ":" + quote(_pathrulesIts);
+    Mes += ":" + quote(m_PathRulesIts);
     _printWarn(Mes);
 
-_printD("	<= End 'CreateForWx::listStringsXmlIts(...) => " + strInt(nbstr) + ")'");
+_printD("	<= End 'CreateForWx::listStringsXml(...) => " + strInt(nbstr) + ")'");
 
 	return nbstr;
+}
+
+//------------------------------------------------------------------------------
+// Initialyze 'm_FilesCreatingPOT' with a header.po
+//
+//  Call by :
+//  1. Collector::OnMenuListPrj(wxCommandEvent& _pEvent):1,
+//  2. Collector::OnMenuListWS(wxCommandEvent& _pEvent):1,
+//
+wxUint16 CreateForWx::iniHeaderPo()
+{
+// the header : Scol2 = ";;"
+    wxString header;
+    header << wxString("# SOME DESCRIPTIVE TITLE.") << Scol2 ;
+    header << wxString("# Copyright (C) 2020-2022") << Scol2 ;
+    header << wxString("# This file is distributed under the same license as the PACKAGE package.") << Scol2 ;
+    header << wxString("# LETARTARE <https://forums.codeblocks.org>, 2022") << Scol2 ;
+    header << wxString("# from plugin CodeBlocks::Collector-") << VERSION_COLLECT << (", 2022") << Scol2 ;
+    header << Scol2 ;
+  //  header << wxString("#, fuzzy") << Scol2 ;
+    header << wxString("msgid \"\" ") << Scol2 ;
+    header << wxString("msgstr \"\" ") << Scol2 ;
+    header << Space << Scol2 ;
+    header << dquoteNS("Project-Id-Version: PACKAGE VERSION \\n") << Scol2 ;
+    header << dquoteNS("Report-Msgid-Bugs-To: \\n") << Scol2 ;
+    header << dquoteNS("POT-Creation-Date: 2022-11-18 14:24+0200 \\n") << Scol2 ;
+    header << dquoteNS("PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE \\n") << Scol2 ;
+    header << dquoteNS("Last-Translator: LETARTARE <https://forums.codeblocks.org> \\n") << Scol2 ;
+    header << dquoteNS("Language-Team: LANGUAGE <LL@li.org> \\n") << Scol2 ;
+    header << dquoteNS("Language:  \\n") << Scol2 ;
+    header << dquoteNS("MIME-Version: 1.0 \\n") << Scol2 ;
+    header << dquoteNS("Content-Type: text/plain - charset \\n") << Scol2 ;
+    header << dquoteNS("Content-Transfer-Encoding: 8bit \\n")  << Scol2 ;
+    header << dquoteNS("Plural-Forms: nplurals=2; plural=n != 1; \\n") << Scol2;
+
+    m_sizeHeaderpo = header.Len() + 80;
+    m_FilesCreatingPOT = ::GetArrayFromString(header, Scol2, TRIM_SPACE);
+   // m_FilesCreatingPOT.Add(Lf);
+    m_FilesCreatingPOT.Add(Space + Lf);
+    wxUint16 nb = m_FilesCreatingPOT.Count();
+
+    return nb;
 }
 
 // -----------------------------------------------------------------------------
@@ -1182,61 +1286,60 @@ _printD("	<= End 'CreateForWx::listStringsXmlIts(...) => " + strInt(nbstr) + ")'
 //
 // Called by :
 //		1. Pre::extraction(bool _prjfirst, cbProject * _prj):1,
-//Call to :
-//		1. Pre::GexewithError(wxString _shortfile, wxString _command, bool _prepend):1,
+// Call to :
+//      1. Pre::saveArrayToDisk (const wxArrayString& _strarray, const wxChar _mode):1,
+//		2. CreateForWx::Cleantemp():1,
 //
-bool CreateForWx::createPot(bool _prjfirst)
+bool CreateForWx::creatingPot(bool _prjfirst)
 {
-_printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
+_printD("=> Begin 'CreateForWx::creatingPot(" + strBool(_prjfirst) + ")'" );
 
-    if (m_Pathgexe.empty())
+    if (m_PathGexe.empty())
     {
         Mes = " !!! 'xgettext' " + _("not defined") + " !!!" ;
         _printError(Mes);
         return false;
     }
+    if (m_PathUexe.empty())
+    {
+        Mes = " !!! 'msguniq' " + _("not defined") + " !!!" ;
+        _printError(Mes);
+        return false;
+    }
 
 // local variables
-	bool ok = false, good = false;
+	bool ok = true, good = false;
 	wxString name, nameprj, shortfile, longfile, filein, pActualprj ;
-	wxUint32 nbCells, index = 0;
-    nbCells = m_FileswithI18n.GetCount()  ;
+	wxUint32 nbCells, index = 0, nfiles;
+    nbCells = m_FileswithI18n.GetCount()   ;
 
 	Mes = Tab + "--> " + _("Extract of") + Space + strInt(nbCells) + Space;
 	Mes += _("file(s) by 'xgettext' and 'wxrc'");
 	if(!m_Workspace)
-        Mes +=  quote(" --> ") + dquoteNS(m_Dirlocale + m_Shortnamepot) ;
+        Mes +=  " --> " + dquoteNS(m_Dirlocale + m_Shortnamedup) ;
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
 
 // globales variables
 	m_DirlocaleLeader = m_DirprojectLeader + m_Dirlocale;
+//_printError("creatingPot => m_DirprojectLeader = " + quote(m_DirprojectLeader) );
 	Mes = Tab;
 	if (m_Workspace)	Mes += _("Leader locale");
 	else				Mes += _("Locale");
-	Mes += Space + _("directory used") + " :" + quote(m_DirprojectLeader);
+	Mes += Space + _("directory used") + " :" + quote(m_DirprojectLeader) +Lf;
 	_printWarn(Mes);
-	// for 'xml'
-    m_PathRulesIts = m_PathIts + "codeblocks.its";
-
-//1- command common for 'xgettext'
-	// keyword
-	wxString key = "-k" + m_Keyword;
-	// command  'xgettext'
-	wxString command , begincommand;
+	m_Fileswithstrings.Add(Mes);
 
 //2- extract all elegible files from 'm_FileswithI18n'
-	bool code, res, xml ;
 	wxString dirproject, tempres, ext ;
-	wxUint32 nbprjWS = 0;  wxInt32 nbstring = 0;
+	wxUint32 nbprjWS = 0;
 	// range 'g_MaxProgress'
-	BuildLogger::g_MaxProgress = nbCells ;
+	BuildLogger::g_MaxProgress = nbCells + wxUint32(nbCells/5) ;
 	BuildLogger::g_CurrentProgress = 0 ;
-
+	if (nbCells > 0) nfiles = nbCells -1;
 /// for debug
-//_printError("CreatePot : g_MaxProgress = " + strInt(BuildLogger::g_MaxProgress) + " files");
-
-    // read all files in  'm_FileswithI18n'
+// _printError("CreatingPot : g_MaxProgress = " + strInt(BuildLogger::g_MaxProgress) + " files");
+    // read all registered files in  'm_FileswithI18n'
 	for (wxUint32 i=0; i < nbCells ; i++ )
 	{
     // control to pending messages in the event loop
@@ -1247,8 +1350,6 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 			good = false ;
 			break;
 		}
-    // control to pending messages in the event loop
-		// c
 	// actualize
 		if (_prjfirst == FIRST_PRJ)  _prjfirst = (i==0);
 
@@ -1257,14 +1358,14 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 		{
 			name =  m_FileswithI18n.Item(i);
 		// it's a path : always absolute path
-			if (name.Last() == slash)
+			if (name.Last() == cSlash)
 			{
 			// project path
 				dirproject = name;
 				continue;
 			}
 		// its a file  : always relative path
-			if (name.Last() != slash)
+			if (name.Last() != cSlash)
 			{
 			// file name : relative path
 				shortfile = name;
@@ -1276,7 +1377,7 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 		{
 			name =  m_FileswithI18n.Item(i);
 		// it's a path : always absolute path
-			if (name.Last() == slash)
+			if (name.Last() == cSlash)
 			{
 			// read name project
 				nameprj = m_PrjwithI18nWS.Item(i);
@@ -1287,107 +1388,45 @@ _printD("=> Begin createPot(" + strBool(_prjfirst) + ")" );
 				Mes += "/" + strIntZ(m_nbPrjextractWS, 4) + " :" + quote(nameprj) ;
 				if (_prjfirst)	Mes += "-->";
                 else			Mes += "-->>";
-                Mes += quote(m_Shortnamepot);
+                Mes += quote(m_Shortnamedup);
 				Mes += Lf + Tab + _("path") + " :" + quote(dirproject);
 				_printWarn(Mes);
 				continue;
 			}
 		// it's a file : always relative path
-			if (name.Last() != slash)
+			if (name.Last() != cSlash)
 			{
-				nameprj = m_PrjwithI18nWS.Item(i);
 			// file name : relative path
 				shortfile = name;
-			// file name : absolute path
-				longfile = dirproject + shortfile;
-			// ressource *_xrc.strxxx' or '_wks.strxxx'
-				if (shortfile.Contains(".str"))
-					filein = shortfile;
-				else
-					filein = longfile;
 			}
 		}
-	// file extension
-		wxString ext = filein.AfterLast(cDot);
-		code = ext.Matches(EXT_H) || ext.Matches(EXT_HPP) || ext.Matches(EXT_CPP)
-			   || ext.Matches(EXT_CXX) || ext.Matches(EXT_SCR) ;
-		res = ext.Matches(EXT_XRC) || ext.Matches(EXT_WXS);
-		xml = ext.Matches(EXT_XML);
+
 	// log message
 		++index;
-		Mes =  Tab + "F" + strIntZ(index, 4) + "/" + strIntZ(nbCells, 4) ;
+		Mes =  Tab + "F" + strIntZ(index, 4) + "/" + strIntZ(nfiles, 4) ;
 		Mes +=  " :"  + quote(shortfile);
     // uses 'Collector::MesToLog(...)'
 		print (Mes);
 		m_Fileswithstrings.Add(Mes);
-	// replace '*.xrc' by 'm_Temp/*.xrc'  ...
-		if (res)
-		{
-		  tempres = filein;
-		  filein = tempres.AfterLast(slash).Prepend(m_Temp) ;
-		}
-
-//2-3- build command : xgettext  -n -k_ -o Namepot infile
-        command = m_Pathgexe ;
-		if (code || res )
-		{
-        // extract comments before the key == '--add-comments=//'
-            begincommand = " -cTranslators: ";
-		// language = C++, input file encoding = utf-8
-			begincommand +=  " -C --from-code=UTF-8 " + key;
-		}
-		else
-		if (xml)
-		{
-		// language = xml
-			begincommand = " --its=" + dquoteNS(m_PathRulesIts);
-		// add comment '#. xxxxxx" from position in tree xml
-			begincommand += " --itstool ";
-		}
-	// inputfile
-		command += begincommand + dquote(filein) ;
-		// it's necessary that file 'm_Namepot' exists already
-		if (!_prjfirst)
-		{
-		// --join-existing :  attach messages to join existing file
-			command += " -j ";
-		}
-	// output file to '*.pot' locally
-		command += " -o" + dquote(m_Dirlocale + m_Shortnamepot);
-
-//2-4- command execute : nbstring == 0 it's good
-        //===============================================================
-		nbstring = Pre::GexewithError(filein, command, NO_PREPEND_ERROR);
-		//===============================================================
-		good = ok = nbstring == 0 ;
-		if (!good)
-		{
-			Mes = "'CreateForWx::createPot() :" + _("Error from return of") ;
-			Mes += " 'Pre::GexewithError(...)'" ;
-			_printError(Mes);
-			return  false;
-		}
-
-//2-5- filters ".", ":", "!", "..." ...
-		// TODO
-
 	} // end for
+/// test
+//showArray(m_FilesCreatingPOT, "m_FilesCreatingPOT");
+// save to '*.dup' who is complete with perhaps some duplicates
+    //=================================================
+    ok = Pre::saveArrayToDisk(m_FilesCreatingPOT, 'P');
+    //=================================================
 
 //3- delete all temporary files
     //=========================================
 	wxInt32 nbfiles = CreateForWx::Cleantemp();
 	//=========================================
 	good = nbfiles >= 0 ;
-	// no files to delete
-	m_FileStrcreated.Clear();
 
 //4- 'Stop'
 	if (!good)
-	{
 		return false;
-	}
 
-_printD("	<= End 'CreateForWx::createPot(...)' => " + strBool(ok && good) );
+_printD("	<= End 'CreateForWx::creatingPot(...)' => " + strBool(ok && good) );
 
 	return ok && good ;
 }
@@ -1408,7 +1447,7 @@ _printD("=> Begin 'CreateForWx::expandName(" + quote(_file) + ", " + strInt(_ind
 // _indexfree == 0  => name = 'm_NameProjectLeader'
 	if (_indexfree == 0)
 	{
-	// already regitered ?
+	// already registered ?
 		_indexfree = m_FileStrcreated.Index(_file);
 		if (_indexfree == wxNOT_FOUND)
 			return wxEmptyString;
@@ -1417,7 +1456,7 @@ _printD("=> Begin 'CreateForWx::expandName(" + quote(_file) + ", " + strInt(_ind
 	wxString ext(".str");
 	ext += strInt(_indexfree);
 // only name file witless directory
-	_file = _file.AfterLast(slash);
+	_file = _file.AfterLast(cSlash);
 // old extension
 	wxString oldext = _file.AfterLast(cDot);
 	if (oldext.Matches(EXT_XRC) )
@@ -1446,7 +1485,8 @@ _printD("	<= End 'CreateForWx::expandName(" + _file + ")'");
 // Called by :
 //		1.  CreateForWx::listStringsRes(wxString& _file):1,
 //
-// Call to : none
+// Call to :
+//      1. Pre::readFileContents(const wxString& _filename):1,
 //
 bool CreateForWx::copyRes(wxString _file)
 {
@@ -1461,15 +1501,19 @@ bool CreateForWx::copyRes(wxString _file)
 	if (ok)
 	{
 //2- delete all '\r' for 'xgettext'
-        //==============================================
-		wxString stringsRes = readFileContents(nameres);
-		//==============================================
-		//wxInt32 nb =
-		stringsRes.Replace("\r", "", ALL_TXT) ;
-	//printWarn("Number '\r' : " + strInt(nb));
-        //=====================================
-		ok = cbSaveToFile(nameres, stringsRes);
-		//=====================================
+        //===================================================
+		wxString stringsRes = Pre::readFileContents(nameres);
+		//===================================================
+		wxInt32 nb = stringsRes.Replace("\r", "", ALL_TXT) ;
+		if (nb)
+		{
+
+			Mes = Tab + Space + iToStr(nb) + Space + _("deleted") + " '\\r' " ;
+			Mes += _("in file") + quote(nameres);
+			_printWarn(Mes);
+		}
+//3- save file
+		ok = ::cbSaveToFile(nameres, stringsRes);
 	}
 
 	return ok;
@@ -1477,6 +1521,7 @@ bool CreateForWx::copyRes(wxString _file)
 
 // -----------------------------------------------------------------------------
 // Display formatting for resources  ( 'wxrc' executable )
+//  - '_txt' is filtered and returned
 //
 // Called by :
 //		1. CreateForWx::RexewithError(const wxString& _shortfile,
@@ -1484,36 +1529,38 @@ bool CreateForWx::copyRes(wxString _file)
 //									  const bool& _prepend)
 // Call to : none
 //
-/// only displays in the log, not in the '*.list' file
+/// only displays in the Collector log, not in the '*.list' file
 //
-wxString CreateForWx::wxrcOut(const wxString _txt)
+bool  CreateForWx::wxrcOut(wxString& _txt, wxString _shortfile)
 {
 _printD("=> Begin 'CreateForWx::wxrcOut(" + quoteNS(_txt) + ", ...)'");
 
 // Global variable to prevent errors in resources
 	m_Strwitherror = false;
-	wxString tn = "\r\n",  result = wxEmptyString, mes = wxEmptyString;
+	wxString tn = CrLf,  result = wxEmptyString, mes = wxEmptyString, filter =  wxEmptyString;
 	wxArrayString tabout = wxArrayString()
 				 ,tabline = wxArrayString();
 // error ?
-	wxString line, tmp = wxEmptyString;
+	wxString line, tmp = wxEmptyString, bannedline;
 	wxInt32 pos = _txt.Find("Error:" );
 	if (pos != wxNOT_FOUND )
 	{
 	// error parsing
 		m_Strwitherror = true;
-		tabout = GetArrayFromString(_txt, Lf, false);
+		tabout = ::GetArrayFromString(_txt, Lf, NO_TRIM_SPACE);
     // first line if not verbose
 		line = tabout.Item(0);
 		line.Remove(0, pos);
-		tmp = line.AfterFirst(' ');
+		tmp = line.AfterFirst(cSpace);
 
 		return "";
 	}
 // it's good
 	// array from string
-	tabout = GetArrayFromString(_txt, Lf, false);
+	tabout = ::GetArrayFromString(_txt, Lf, NO_TRIM_SPACE);
 	wxUint32 nbl = 0 ; pos = 0;
+	m_nbFilteredRes = 0;
+	bool banned = false;
 	Mes = wxEmptyString;
 	// all array lines
 	for (wxUint32 u=0; u < tabout.GetCount(); u++)
@@ -1526,46 +1573,31 @@ _printD("=> Begin 'CreateForWx::wxrcOut(" + quoteNS(_txt) + ", ...)'");
 		{
 		// extract line number between two spaces
 			tmp = line.AfterFirst(cSpace).BeforeFirst(cSpace);
-		// "1" => "00001" and "895" => "00985"
+		// "1" => "00001" and "985" => "00985"
 			strZ(tmp, 5);
-			mes	=  Tab  + "  :L" + tmp;
+			mes	=  Tab  + "  :L" + tmp + Space + "==>";
 		}
 		else
 	// line with 'Keyword' => translatable string
 		if (line.Find(m_Keyword) != wxNOT_FOUND )
 		{
-		// find string between two quotation mark : ATTENTION _("\"no target\"") !
-			tmp = line.AfterFirst('"').BeforeLast('"');
-
-		// filter not tranlatables
-			if ( tmp == "-" || tmp == "+" || tmp == "..."
-				 || tmp == "*" || tmp == "\\" // || tmp = "\"\""
-				 || tmp == "m_" || tmp == "ID:"
-				 || tmp == "xxx" || tmp == "www" || tmp == "aaa" || tmp == "eee"
-				 || tmp == "vvv"
-				 || tmp.IsNumber() //|| tmp.Matches("?") // one numeric
-				/// TO REVIEW
-				 || tmp.StartsWith("http:")
-
-			/// for C::B
-			/// "GNU", "Linux", "Allman (ANSI)", "Java","K&&R", "Stroustrup", "VTK",
-			///	"Horstmann", 'Ratliff", "Whitesmith", "1TBS", "Google", "Mozilla"
-			///	"Pico", "Lisp", "GDB", "CDB", "AT&T", "Intel", "TCP", "UDP",
-			/// "115200", ..., "192.168.0.1", all number
-			/// 'wizard.xrc' : "atxxxxx", "mxxxx", "avrxxxx", ... "wxXXXX"
-			/// "include", "lib", "obj", "cflags', "ldflags"
-			/// "func", "addr',
-			/// "vvv', "nnn", "aaa", "www",
-			/// "CR", "LF", "CR LF" "AUTO"
-			/// "Windows (CR && LF)", ">Mac (CR)", "ASCII (ISO-8859-1)",
-			/// "ID:"
+		// find string between two quotation tag : ATTENTION to  '_("\"no target\"")' !
+			tmp = line.AfterFirst(cDquote).BeforeLast(cDquote);
+			bannedline = tmp;
+			banned = false;
+		// filters not tranlatables
+			// see 'wxString Pre::m_bannedMarks' and 'wxArrayString Pre::m_ArrayBanned'
+			if (m_ArrayBanned.Index(bannedline) != wxNOT_FOUND
+				||  bannedline.IsNumber() || bannedline.StartsWith("http:")
 				)
 			{
-				mes += quote(tmp);
-				mes += Tab + _("string not retained because not translatable") + " !!";
-				mes += Lf;
+				filter += quoteNS(bannedline);
+				m_nbFilteredRes++;
+				m_ArrayFiltered.Add(bannedline);
+//_printError("Res::filtered =>" + quote(bannedline) + "from " + quote(_shortfile) + mes );
+				banned = true;
 			}
-			else
+		//	else
 			{
 			// find text "\r\n" not Eol
 				pos = tmp.Find(tn);
@@ -1573,7 +1605,7 @@ _printD("=> Begin 'CreateForWx::wxrcOut(" + quoteNS(_txt) + ", ...)'");
 				{
 					tmp.Replace("\\r\\n", Eol + Tab + Tab, ALL_TXT);
 					tmp.Replace(tn, Eol + Tab + Tab, ALL_TXT);
-					tabline = GetArrayFromString(tmp, Lf, false);
+					tabline = ::GetArrayFromString(tmp, Lf, NO_TRIM_SPACE);
 					for (wxUint32 k=0; k < tabline.GetCount(); k++)
 					{
 						mes += tabline.Item(k);
@@ -1581,6 +1613,7 @@ _printD("=> Begin 'CreateForWx::wxrcOut(" + quoteNS(_txt) + ", ...)'");
 				}
 				else
 				{
+					if (banned) 	mes.Prepend("!! " + _("BANNED") + " !!") ;
 					mes += quote(tmp);
 				}
 			// memorize for late treating
@@ -1592,13 +1625,16 @@ _printD("=> Begin 'CreateForWx::wxrcOut(" + quoteNS(_txt) + ", ...)'");
 	}
 // delete last Lf
 	result.EndsWith(Lf, &result);
+//_printWarn(markNS(filter));
 // total
 	if (m_goodListing)		m_nbListStrings += nbl;
 	else					m_nbExtractStrings += nbl;
 
+	_txt = result;
+
 _printD("	<= End 'CreateForWx::wxrcOut(...)'");
 
-	return result;
+	return filter.IsEmpty();
 }
 
 // -----------------------------------------------------------------------------
@@ -1606,7 +1642,7 @@ _printD("	<= End 'CreateForWx::wxrcOut(...)'");
 //
 // Called by :
 //		1. Collector::OnMenuCleanTemp(wxCommandEvent& _pEvent):1,
-//		2. CreateForWx::createPot(bool _prjfirst):1,
+//		2. CreateForWx::creatingPot(bool _prjfirst):1,
 //
 // Call to :
 //		1.bool Pre::recursRmDir(wxString _rmDir):1
@@ -1623,6 +1659,7 @@ _printD("=> Begin 'CreateForWx::Cleantemp()'");
 //1- delete all temporary files of last project
 	wxUint32 nfc =0;
 	m_DirlocaleLeader = m_DirprojectLeader + m_Temp ;
+//_printError("CreateForWx::Cleantemp() => m_DirprojectLeader = " + quote(m_DirprojectLeader) );
 	// get the directory of the leader project 'm_DirprojectLeader
 	ok = ! m_DirlocaleLeader.IsEmpty();
 	if (ok)
@@ -1650,7 +1687,7 @@ _printD("=> Begin 'CreateForWx::Cleantemp()'");
 
 	if (!ok)
     {
-        Mes = Tab + _("No temporary files to delete.");
+        Mes = Tab + _("No temporary files to delete") + Dot;
         _print(Mes);
     }
 
