@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CodeBlocks_plugin_manifest_file>
-    <SdkVersion major="2" minor="18" release="0" />
+    <SdkVersion major="2" minor="23" release="0" />
     <Plugin name="Collector">
         <Value title="Collector" translatable="yes"/>
-        <Value version="1.7.1-2022/05/30" />
-        <Value  description="Help translating for 'C::B' (sdk-2.18.0) projects
-Welcome to 'Collector' : plugin for help translate projects in 'CODE::BLOCKS'
-	You can, by menu 'Collect' on menu bar
-		1- 'List from project' : list strings with selection keyword ('_').
-		2- 'Extract from project' : extract strings to 'name_project.po'
-			with previous keyword.
-		3- 'Stop current action' : abort current action." translatable="yes"/>
+        <Value version="1.7.8-2022/12/17" />
+        <Value  description="Help translating for 'C::B' (sdk-2.23.0) projects
+		Welcome to 'Collector' : plugin for help translate projects in 'CODE::BLOCKS'
+		You can, by menu 'Collect' on menu bar
+		1- 'List from project' : list strings with selection keyword ('_')
+		2- 'Extract from project' : extract strings to 'name_project.po' with previous keyword
+		3- 'Stop current action' : abort current action" translatable="yes"/>
         <Value author="LETARTARE" />
         <Value authorEmail="" />
         <Value authorWebsite="https://github.com/LETARTARE/Collector" />
