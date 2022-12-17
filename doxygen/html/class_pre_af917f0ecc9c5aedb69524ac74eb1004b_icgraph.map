@@ -1,5 +1,5 @@
 <map id="Pre::createDir" name="Pre::createDir">
-<area shape="rect" id="node2" href="$class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75" title=" " alt="" coords="156,52,255,79"/>
+<area shape="rect" id="node2" href="$class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75" title="Basic initialization. " alt="" coords="156,52,255,79"/>
 <area shape="rect" id="node3" href="$class_pre.html#ae5dcb49f219ed8e69e128492e8fc59a1" title="Global initialization. " alt="" coords="303,52,369,79"/>
 <area shape="rect" id="node4" href="$class_pre.html#a6537186bec965c977da90bb2a1feac67" title=" " alt="" coords="417,27,529,54"/>
 <area shape="rect" id="node9" href="$class_pre.html#aa9b0b0f3b571d8c8b511ed3134d26bb4" title="List strings to be translated in workspace. " alt="" coords="427,78,520,104"/>

@@ -1,5 +1,5 @@
 <map id="Pre::endDuration" name="Pre::endDuration">
-<area shape="rect" id="node2" href="$class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="183,5,257,32"/>
-<area shape="rect" id="node4" href="$class_pre.html#a4a35361069bc37bad4ad0c7d363afbe7" title="Give a duration. " alt="" coords="172,56,268,83"/>
-<area shape="rect" id="node3" href="$class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="316,5,425,32"/>
+<area shape="rect" id="node2" href="$class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="185,5,260,32"/>
+<area shape="rect" id="node3" href="$class_pre.html#ac500f37059d268467079d4c7ecdade5e" title="Give a string duration. " alt="" coords="173,56,272,83"/>
+<area shape="rect" id="node4" href="$class_pre.html#ae3c3702e9427cdb08d10f4b2b019d8b3" title="Give a duration (milliseconds) " alt="" coords="175,107,270,133"/>
 </map>

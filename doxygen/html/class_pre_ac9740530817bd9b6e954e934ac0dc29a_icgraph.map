@@ -1,0 +1,12 @@
+<map id="Pre::isVirtualTarget" name="Pre::isVirtualTarget">
+<area shape="rect" id="node2" href="$class_pre.html#a9bdcb3ab0fc5675a7c9422610a0cb284" title="Indicates if target is command only or a virtual target. " alt="" coords="188,49,396,76"/>
+<area shape="rect" id="node3" href="$class_create_for_wx.html#a554fd7950577ce2a0ce22f921f8ef7b9" title="Detects if the current target uses &#39;Wx&#39; libraries,. " alt="" coords="700,12,903,38"/>
+<area shape="rect" id="node9" href="$class_pre.html#a0c13f6286ebbb7a82bd99682dde99344" title="Indicates if target is command only or a virtual target. " alt="" coords="444,49,652,76"/>
+<area shape="rect" id="node10" href="$class_pre.html#ad69b57decb44dabf2ed92df9d84a0147" title="Give compileable targets list for project or virtual target. " alt="" coords="447,100,649,126"/>
+<area shape="rect" id="node4" href="$class_collector.html#a08f5926a5fb84fc870784f6cec385a40" title="Detects project type : &#39;Wx&#39; or &#39;Qt&#39;. " alt="" coords="951,49,1137,76"/>
+<area shape="rect" id="node5" href="$class_collector.html#abfc8e261c95da61d0a710879b2f98d87" title="This method called by project activate allows detect project using the &#39;Wx&#39; or &#39;Qt&#39; libraries..." alt="" coords="1185,24,1372,50"/>
+<area shape="rect" id="node8" href="$class_collector.html#ab8069e3f15134c29f53848b563f53eda" title="This method called by target activate allows detect target using the &#39;Wx&#39; or &#39;Qt&#39; libraries..." alt="" coords="1420,74,1603,101"/>
+<area shape="rect" id="node6" href="$class_collector.html#a083060f2bf00f965496c44de767cd7a1" title="Any descendent plugin should override this virtual method and perform any necessary initialization..." alt="" coords="1651,24,1788,50"/>
+<area shape="rect" id="node7" href="$class_collector.html#a015f772ce4cd2db84eef9ed7fbc391d4" title="This method called by plugin is manually loaded. " alt="" coords="1423,24,1600,50"/>
+<area shape="rect" id="node11" href="$class_create_for_qt.html#ae109f6c3caf1a9a25f9b4a5a49b0c4fc" title="Detects if the current target uses &#39;Qt&#39; libraries,. " alt="" coords="704,74,899,101"/>
+</map>

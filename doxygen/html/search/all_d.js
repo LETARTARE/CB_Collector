@@ -3,6 +3,7 @@ var searchData=
   ['onactivateproject',['OnActivateProject',['../class_collector.html#abfc8e261c95da61d0a710879b2f98d87',1,'Collector']]],
   ['onactivatetarget',['OnActivateTarget',['../class_collector.html#ab8069e3f15134c29f53848b563f53eda',1,'Collector']]],
   ['onattach',['OnAttach',['../class_collector.html#a083060f2bf00f965496c44de767cd7a1',1,'Collector']]],
+  ['oninit',['OnInit',['../class_xml_res_app.html#a55dd8318d21914335b537cc619e43197',1,'XmlResApp']]],
   ['onmenuchoicelib',['OnMenuChoiceLib',['../class_collector.html#a1f641a4e492e68db65733ed38c8b3e39',1,'Collector']]],
   ['onmenucleantemp',['OnMenuCleanTemp',['../class_collector.html#a9610e93061089e82eab969be649adeeb',1,'Collector']]],
   ['onmenuextractprj',['OnMenuExtractPrj',['../class_collector.html#af7b748977fb136842774e550b6c915b8',1,'Collector']]],
@@ -16,6 +17,8 @@ var searchData=
   ['onmenuwaitingforstart',['OnMenuWaitingForStart',['../class_collector.html#ad9c3e1c71bd059224523e86f2e3680e4',1,'Collector']]],
   ['onpluginloaded',['OnPluginLoaded',['../class_collector.html#a015f772ce4cd2db84eef9ed7fbc391d4',1,'Collector']]],
   ['onrelease',['OnRelease',['../class_collector.html#a5484784f99a20ef577a0456dc17b652c',1,'Collector']]],
+  ['onrun',['OnRun',['../class_xml_res_app.html#a8fd467e1c432752cdae362c57857f69d',1,'XmlResApp']]],
   ['onupdateui',['OnUpdateUI',['../class_collector.html#a73fcd3c162271d2fda9a199f1c5e6781',1,'Collector']]],
-  ['openedit',['openedit',['../class_pre.html#a0c41270b1d60e164c94c286213bdfd18',1,'Pre']]]
+  ['openedit',['openedit',['../class_pre.html#a0c41270b1d60e164c94c286213bdfd18',1,'Pre']]],
+  ['outputgettext',['OutputGettext',['../class_xml_res_app.html#a6922955009de3ac622cdac52bf1ee94d',1,'XmlResApp']]]
 ];

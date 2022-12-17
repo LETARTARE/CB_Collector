@@ -1,6 +1,6 @@
 <map id="CreateForWx::searchExe" name="CreateForWx::searchExe">
-<area shape="rect" id="node2" href="$class_pre.html#a688dbaca03851352e7dc4bc7bca53193" title="Look for the &#39;_txt&#39; in the configuration file of &#39;CB&#39;. " alt="" coords="223,56,369,83"/>
-<area shape="rect" id="node3" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="436,5,547,32"/>
-<area shape="rect" id="node4" href="$class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="417,107,565,133"/>
-<area shape="rect" id="node5" href="$class_pre.html#a21a32c104d61e8a76ad18eabfd2fb8a4" title="Find the path of an &#39;exe&#39; into &#39;default.conf&#39;. " alt="" coords="429,56,553,83"/>
+<area shape="rect" id="node2" href="$class_pre.html#a688dbaca03851352e7dc4bc7bca53193" title="Look for the &#39;_txt&#39; in the configuration file of &#39;CB&#39;. " alt="" coords="223,56,372,83"/>
+<area shape="rect" id="node3" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="439,5,550,32"/>
+<area shape="rect" id="node4" href="$class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="420,107,569,133"/>
+<area shape="rect" id="node5" href="$class_pre.html#a21a32c104d61e8a76ad18eabfd2fb8a4" title="Find the path of an &#39;exe&#39; into &#39;default.conf&#39;. " alt="" coords="433,56,557,83"/>
 </map>

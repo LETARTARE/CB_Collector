@@ -1,5 +1,7 @@
 var files =
 [
+    [ "buildlogger.cpp", "buildlogger_8cpp.html", null ],
+    [ "buildlogger.h", "buildlogger_8h.html", "buildlogger_8h" ],
     [ "collector.cpp", "collector_8cpp.html", null ],
     [ "collector.h", "collector_8h.html", [
       [ "Collector", "class_collector.html", "class_collector" ]
@@ -20,5 +22,7 @@ var files =
     [ "pre.cpp", "pre_8cpp.html", "pre_8cpp" ],
     [ "pre.h", "pre_8h.html", [
       [ "Pre", "class_pre.html", "class_pre" ]
-    ] ]
+    ] ],
+    [ "pretot.h", "pretot_8h.html", null ],
+    [ "wxrc320.cpp", "wxrc320_8cpp.html", "wxrc320_8cpp" ]
 ];

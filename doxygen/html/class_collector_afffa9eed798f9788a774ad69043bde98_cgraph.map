@@ -1,4 +1,4 @@
 <map id="Collector::actualizeGraphState" name="Collector::actualizeGraphState">
-<area shape="rect" id="node2" href="$class_col_state.html#ab0e0c201acbe2047e08c8a84e7a1da6b" title="Returns a string corresponding to the state of the &#39;Collector&#39; state graph. " alt="" coords="221,5,348,32"/>
-<area shape="rect" id="node3" href="$class_pre.html#ad6e796a5a90943a4e4aa89ca4632717f" title="Set stop complement file creating. " alt="" coords="237,56,332,83"/>
+<area shape="rect" id="node2" href="$class_col_state.html#ab0e0c201acbe2047e08c8a84e7a1da6b" title="Returns a string corresponding to the state of the &#39;Collector&#39; state graph. " alt="" coords="223,5,349,32"/>
+<area shape="rect" id="node3" href="$class_pre.html#ad6e796a5a90943a4e4aa89ca4632717f" title="Set stop complement file creating. " alt="" coords="239,56,333,83"/>
 </map>

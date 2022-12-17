@@ -1,4 +1,4 @@
 <map id="CreateForWx::pathWx" name="CreateForWx::pathWx">
-<area shape="rect" id="node2" href="$class_pre.html#aed6fd1646a9f1a951260f7c02c2c9583" title="Add an array to an other. " alt="" coords="240,5,349,32"/>
-<area shape="rect" id="node3" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="205,57,384,98"/>
+<area shape="rect" id="node2" href="$class_pre.html#a3cb201957cf9044cb8e502121f36a92c" title="Add an array to an other. " alt="" coords="241,5,351,32"/>
+<area shape="rect" id="node3" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line mode synchronous. " alt="" coords="207,57,385,98"/>
 </map>

@@ -1,17 +1,16 @@
 <map id="Pre::listing" name="Pre::listing">
 <area shape="rect" id="node2" href="$class_pre.html#aa2b44ed6f152aecda674ade4ca12666f" title="Initialization of a table for temporary file. " alt="" coords="137,5,285,32"/>
 <area shape="rect" id="node3" href="$class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="174,56,249,83"/>
-<area shape="rect" id="node5" href="$class_pre.html#a9077ad6294b11841149aab0d117bbed1" title="Search the elegible files for extracting. " alt="" coords="149,107,273,133"/>
-<area shape="rect" id="node7" href="$class_pre.html#af92a5e9fae6a6f83f66d4fdeade659b0" title="Give a string duration. " alt="" coords="333,259,473,285"/>
-<area shape="rect" id="node9" href="$class_pre.html#a17cd9de411485392eb54054e59cb98a6" title="List translatables strings from elegible files. " alt="" coords="151,157,272,184"/>
-<area shape="rect" id="node13" href="$class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="158,259,265,285"/>
-<area shape="rect" id="node4" href="$class_pre.html#a2d948e57ad61a7fe18e25d70d5c3929e" title="Startup time. " alt="" coords="349,5,458,32"/>
-<area shape="rect" id="node6" href="$class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f" title="Tests readability for chain collection. " alt="" coords="336,56,471,83"/>
-<area shape="rect" id="node8" href="$class_pre.html#a791e3c73b0010092c43d718bfcf7e18d" title="Give a duration. " alt="" coords="521,259,644,285"/>
-<area shape="rect" id="node10" href="$class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="334,107,473,133"/>
-<area shape="rect" id="node11" href="$class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="338,157,469,184"/>
-<area shape="rect" id="node12" href="$class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="339,208,468,235"/>
-<area shape="rect" id="node14" href="$class_pre.html#aa49a3d0de7b6c7ac7951ce8dd505ecb6" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="350,309,457,336"/>
-<area shape="rect" id="node15" href="$class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="533,309,632,336"/>
-<area shape="rect" id="node16" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="692,309,803,336"/>
+<area shape="rect" id="node4" href="$class_pre.html#a9077ad6294b11841149aab0d117bbed1" title="Search the elegible files for extracting. " alt="" coords="148,107,275,133"/>
+<area shape="rect" id="node6" href="$class_pre.html#ae3c3702e9427cdb08d10f4b2b019d8b3" title="Give a duration (milliseconds) " alt="" coords="361,157,455,184"/>
+<area shape="rect" id="node7" href="$class_pre.html#ac500f37059d268467079d4c7ecdade5e" title="Give a string duration. " alt="" coords="359,259,457,285"/>
+<area shape="rect" id="node8" href="$class_pre.html#a17cd9de411485392eb54054e59cb98a6" title="List translatables strings from elegible files. " alt="" coords="150,335,273,361"/>
+<area shape="rect" id="node12" href="$class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="158,208,265,235"/>
+<area shape="rect" id="node5" href="$class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f" title="Tests readability for chain collection. " alt="" coords="341,107,475,133"/>
+<area shape="rect" id="node9" href="$class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="339,360,477,387"/>
+<area shape="rect" id="node10" href="$class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="343,411,473,437"/>
+<area shape="rect" id="node11" href="$class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="343,309,473,336"/>
+<area shape="rect" id="node13" href="$class_pre.html#aa8c9ebb604b9344afba3dd5f9e14073a" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="333,208,483,235"/>
+<area shape="rect" id="node14" href="$class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="531,208,629,235"/>
+<area shape="rect" id="node15" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="677,208,788,235"/>
 </map>

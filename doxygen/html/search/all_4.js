@@ -1,10 +1,10 @@
 var searchData=
 [
   ['date',['date',['../class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb',1,'Pre']]],
-  ['debug',['Debug',['../class_collector.html#a1c3a99b249c0b0d62c961fd3d5a80d0f',1,'Collector']]],
-  ['declare_5fevent_5ftable',['DECLARE_EVENT_TABLE',['../class_collector.html#aa313a85f7a5352ed99ee02650830b53f',1,'Collector']]],
   ['defines_2eh',['defines.h',['../defines_8h.html',1,'']]],
-  ['detectlibproject',['detectLibProject',['../class_pre.html#aaf295c590dcdc8b93ef190c23150a134',1,'Pre::detectLibProject()'],['../class_create_for_qt.html#ae109f6c3caf1a9a25f9b4a5a49b0c4fc',1,'CreateForQt::detectLibProject()'],['../class_create_for_wx.html#a554fd7950577ce2a0ce22f921f8ef7b9',1,'CreateForWx::detectLibProject()']]],
+  ['deletecr',['deleteCr',['../class_pre.html#a15b876256cb71c6179af842f2e320634',1,'Pre']]],
+  ['deletetempfiles',['DeleteTempFiles',['../class_xml_res_app.html#a9d9ed4175772a6267df7fa0ce32bc9fa',1,'XmlResApp']]],
+  ['detectlibproject',['detectLibProject',['../class_create_for_qt.html#ae109f6c3caf1a9a25f9b4a5a49b0c4fc',1,'CreateForQt::detectLibProject()'],['../class_create_for_wx.html#a554fd7950577ce2a0ce22f921f8ef7b9',1,'CreateForWx::detectLibProject()'],['../class_pre.html#aaf295c590dcdc8b93ef190c23150a134',1,'Pre::detectLibProject()']]],
   ['detecttypeproject',['detectTypeProject',['../class_collector.html#a08f5926a5fb84fc870784f6cec385a40',1,'Collector']]],
   ['dline',['Dline',['../defines_8h.html#a0608ce3d3666198e29bb0bdcdd8c6d9b',1,'defines.h']]],
   ['dot',['Dot',['../defines_8h.html#ae8a4b0c3578b007c05bb651c80b7b19e',1,'defines.h']]],
@@ -26,7 +26,7 @@ var searchData=
   ['dot_5fext_5fxrc',['DOT_EXT_XRC',['../defines_8h.html#a54c032b0dd996644db9d5d957f9e3b9d',1,'defines.h']]],
   ['dprint',['DPrint',['../defines_8h.html#a2e2d822c8231efd08f4b3cf870810157',1,'defines.h']]],
   ['dprinterr',['DPrintErr',['../defines_8h.html#a0d03d0c7994d57499f35c8075c44fe3d',1,'defines.h']]],
-  ['dquote',['Dquote',['../defines_8h.html#a6a16eef36fb6e84aadea6b9fa501053e',1,'Dquote():&#160;defines.h'],['../defines_8h.html#ab385f1fabaa9fd4574b1a1e6f5d2350e',1,'dquote():&#160;defines.h']]],
+  ['dquote',['dquote',['../defines_8h.html#ab385f1fabaa9fd4574b1a1e6f5d2350e',1,'dquote():&#160;defines.h'],['../defines_8h.html#a6a16eef36fb6e84aadea6b9fa501053e',1,'Dquote():&#160;defines.h']]],
   ['dquotens',['dquoteNS',['../defines_8h.html#a678fc3a686a82e16adc482ae2eee68b7',1,'defines.h']]],
-  ['duration',['duration',['../class_pre.html#a4a35361069bc37bad4ad0c7d363afbe7',1,'Pre']]]
+  ['dtimestr',['dtimeStr',['../class_pre.html#ac500f37059d268467079d4c7ecdade5e',1,'Pre']]]
 ];

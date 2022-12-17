@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['idbuildlog',['idBuildLog',['../buildlogger_8h.html#a2cd780e898ffaa7611b0e614ce61c455',1,'buildlogger.h']]],
   ['idmbarcleantemp',['idMbarCleanTemp',['../class_collector.html#a839d314842743466cb80c3817e78f80e',1,'Collector']]],
   ['idmbarcollect',['idMbarCollect',['../class_collector.html#a73cf350a990c3e9e910406f07f7665b9',1,'Collector']]],
   ['idmbarcollectqt',['idMbarCollectQt',['../class_collector.html#a1e120f3bd326fab77578b8365cb9e8cf',1,'Collector']]],
@@ -26,11 +27,12 @@ var searchData=
   ['idtbarstop',['idTbarStop',['../class_collector.html#a623866a7ecbee7d3dfcf2ddb280c3782',1,'Collector']]],
   ['idtbarwaitingforstart',['idTbarWaitingForStart',['../class_collector.html#a6a0bbb975804d70fedcc4b1cbc69862e',1,'Collector']]],
   ['indexproject',['indexProject',['../class_pre.html#a75af572e2d1e33e7d85535e839b28e3b',1,'Pre']]],
+  ['iniheaderpo',['iniHeaderPo',['../class_create_for_wx.html#aca28a590c23090b0de63dd25774df49b',1,'CreateForWx']]],
   ['init',['Init',['../class_pre.html#ae5dcb49f219ed8e69e128492e8fc59a1',1,'Pre']]],
+  ['initarraybanned',['initArrayBanned',['../class_create_for_wx.html#ab29a6194e9ab99093ebe9815e1f66501',1,'CreateForWx']]],
   ['initbasic',['Initbasic',['../class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75',1,'Pre']]],
   ['initfilestrcreated',['initFileStrcreated',['../class_pre.html#aa2b44ed6f152aecda674ade4ca12666f',1,'Pre']]],
-  ['inittabresxml',['initTabResXml',['../class_create_for_wx.html#a224e92951a1c4d42847f68108434d83d',1,'CreateForWx']]],
-  ['inittailored',['initTailored',['../class_pre.html#abf68866bcaffe0e09fcb298bb186c325',1,'Pre::initTailored()'],['../class_create_for_qt.html#adefa13412a1a84ad9b02100c948d35db',1,'CreateForQt::initTailored()'],['../class_create_for_wx.html#a9a7122b5d8f572300659c6b74616dae6',1,'CreateForWx::initTailored()']]],
+  ['inittailored',['initTailored',['../class_create_for_qt.html#adefa13412a1a84ad9b02100c948d35db',1,'CreateForQt::initTailored()'],['../class_create_for_wx.html#a9a7122b5d8f572300659c6b74616dae6',1,'CreateForWx::initTailored()'],['../class_pre.html#abf68866bcaffe0e09fcb298bb186c325',1,'Pre::initTailored()']]],
   ['initwx',['initWx',['../class_create_for_wx.html#a15e60bb634481a3ce3d125b379bc4139',1,'CreateForWx']]],
   ['integrity',['integrity',['../class_pre.html#af6109b9f6b0995eff93782d37b479132',1,'Pre']]],
   ['is_5fabsolute',['IS_ABSOLUTE',['../defines_8h.html#a6edcca5ecb8868fb1c10a340fea1fadb',1,'defines.h']]],
@@ -41,7 +43,8 @@ var searchData=
   ['iscommandorvirtualtarget',['isCommandOrVirtualTarget',['../class_pre.html#a9bdcb3ab0fc5675a7c9422610a0cb284',1,'Pre::isCommandOrVirtualTarget(const wxString &amp;_nametarget)'],['../class_pre.html#a0c13f6286ebbb7a82bd99682dde99344',1,'Pre::isCommandOrVirtualTarget(const ProjectBuildTarget *_pTarget)']]],
   ['iscommandtarget',['isCommandTarget',['../class_pre.html#a70d06eec2a18717fa4bfc0d9a6c9a2b1',1,'Pre::isCommandTarget(const wxString &amp;_nametarget)'],['../class_pre.html#afb35fc16fe45e87077a49f0e2eb32bba',1,'Pre::isCommandTarget(const ProjectBuildTarget *_pTarget)']]],
   ['isinitialized',['isInitialized',['../class_pre.html#a5e59005efa7714a6a1eabfd44cd07222',1,'Pre']]],
-  ['isreadablefile',['isReadableFile',['../class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f',1,'Pre::isReadableFile()'],['../class_create_for_qt.html#adfad0f06f491c2b5a4a8ffa3338f0fcb',1,'CreateForQt::isReadableFile()'],['../class_create_for_wx.html#a85a2f56c9beb81680b0199b2e0fe39f3',1,'CreateForWx::isReadableFile()']]],
+  ['isreadablefile',['isReadableFile',['../class_create_for_qt.html#adfad0f06f491c2b5a4a8ffa3338f0fcb',1,'CreateForQt::isReadableFile()'],['../class_create_for_wx.html#a85a2f56c9beb81680b0199b2e0fe39f3',1,'CreateForWx::isReadableFile()'],['../class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f',1,'Pre::isReadableFile()']]],
   ['isstopped',['isStopped',['../class_pre.html#ae10818f194c0edbd93c84487241076fb',1,'Pre']]],
-  ['isvirtualtarget',['isVirtualTarget',['../class_pre.html#ab3a0f75f5c2aac52ce3fe6fd0048ed84',1,'Pre::isVirtualTarget(const ProjectBuildTarget *_pTarget)'],['../class_pre.html#ac9740530817bd9b6e954e934ac0dc29a',1,'Pre::isVirtualTarget(const wxString &amp;_nametarget)']]]
+  ['isvirtualtarget',['isVirtualTarget',['../class_pre.html#ac9740530817bd9b6e954e934ac0dc29a',1,'Pre']]],
+  ['itostr',['iToStr',['../defines_8h.html#aeb31873ae4d30c8f02d576de22196904',1,'defines.h']]]
 ];

@@ -1,5 +1,5 @@
 <map id="Pre::findblockExe" name="Pre::findblockExe">
-<area shape="rect" id="node2" href="$class_pre.html#a688dbaca03851352e7dc4bc7bca53193" title="Look for the &#39;_txt&#39; in the configuration file of &#39;CB&#39;. " alt="" coords="177,5,324,32"/>
-<area shape="rect" id="node3" href="$class_create_for_wx.html#a41fa0155a1458ac8f1a7a3b77f369fe4" title="Search all &#39;exe&#39; paths. " alt="" coords="372,5,541,32"/>
-<area shape="rect" id="node4" href="$class_create_for_wx.html#a9a7122b5d8f572300659c6b74616dae6" title="Specific initialisation by inherited type. " alt="" coords="589,5,759,32"/>
+<area shape="rect" id="node2" href="$class_pre.html#a688dbaca03851352e7dc4bc7bca53193" title="Look for the &#39;_txt&#39; in the configuration file of &#39;CB&#39;. " alt="" coords="177,5,327,32"/>
+<area shape="rect" id="node3" href="$class_create_for_wx.html#a41fa0155a1458ac8f1a7a3b77f369fe4" title="Search all &#39;exe&#39; paths. " alt="" coords="375,5,544,32"/>
+<area shape="rect" id="node4" href="$class_create_for_wx.html#a9a7122b5d8f572300659c6b74616dae6" title="Specific initialisation by inherited type. " alt="" coords="592,5,763,32"/>
 </map>

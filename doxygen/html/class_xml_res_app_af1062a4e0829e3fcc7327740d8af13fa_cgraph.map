@@ -1,5 +1,5 @@
 <map id="XmlResApp::PrepareTempFiles" name="XmlResApp::PrepareTempFiles">
-<area shape="rect" id="node2" href="$class_xml_res_app.html#aeee3dcbb628d572e2d9aba92b3092571" title="XmlResApp::FindFilesInXML" alt="" coords="256,5,441,32"/>
-<area shape="rect" id="node4" href="$class_xml_res_app.html#a29b639fa1f1187ddb9b1b722c10cc33d" title="XmlResApp::GetInternalFileName" alt="" coords="489,56,704,83"/>
-<area shape="rect" id="node3" href="$wxrc315_8cpp.html#a21d6c21c2a680a457fb23333b2d0f915" title="NodeContainsFilename" alt="" coords="519,5,675,32"/>
+<area shape="rect" id="node2" href="$class_xml_res_app.html#aeee3dcbb628d572e2d9aba92b3092571" title="XmlResApp::FindFilesInXML" alt="" coords="257,5,448,32"/>
+<area shape="rect" id="node4" href="$class_xml_res_app.html#a29b639fa1f1187ddb9b1b722c10cc33d" title="XmlResApp::GetInternalFileName" alt="" coords="496,56,715,83"/>
+<area shape="rect" id="node3" href="$wxrc321_8cpp.html#a21d6c21c2a680a457fb23333b2d0f915" title="NodeContainsFilename" alt="" coords="526,5,685,32"/>
 </map>

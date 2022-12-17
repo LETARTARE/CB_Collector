@@ -15,8 +15,11 @@ var searchData=
   ['no_5freport',['NO_REPORT',['../defines_8h.html#ac14abc88036b9a925066ea53e1d7f046',1,'defines.h']]],
   ['no_5fres',['NO_RES',['../defines_8h.html#addebb836cee34f37b8c70234398bd7d7',1,'defines.h']]],
   ['no_5fseparator_5fat_5fend',['NO_SEPARATOR_AT_END',['../defines_8h.html#a9781f2625faa104e8ad34f4db28d59db',1,'defines.h']]],
+  ['no_5ftrim_5fspace',['NO_TRIM_SPACE',['../defines_8h.html#ab8277b5f48a284786cf2605cb0104db2',1,'defines.h']]],
   ['no_5funix_5ffilename',['NO_UNIX_FILENAME',['../defines_8h.html#aa541124b4a5d0e9f9278ed90579cc272',1,'defines.h']]],
   ['no_5fverify',['NO_VERIFY',['../defines_8h.html#a86fe2d416768ea1dbfdac45991b7f7aa',1,'defines.h']]],
   ['no_5fwarning',['NO_WARNING',['../defines_8h.html#ad368591e5aed07de720f5a8f0b75aeee',1,'defines.h']]],
-  ['no_5fxml',['NO_XML',['../defines_8h.html#a70ed5159aaca8879caed970c913bc07f',1,'defines.h']]]
+  ['no_5fxml',['NO_XML',['../defines_8h.html#a70ed5159aaca8879caed970c913bc07f',1,'defines.h']]],
+  ['nodecontainsfilename',['NodeContainsFilename',['../wxrc321_8cpp.html#a21d6c21c2a680a457fb23333b2d0f915',1,'wxrc321.cpp']]],
+  ['noduplicatemsgid',['noDuplicateMsgid',['../class_pre.html#a41d802e11d74526800084a4ccc6f53da',1,'Pre']]]
 ];

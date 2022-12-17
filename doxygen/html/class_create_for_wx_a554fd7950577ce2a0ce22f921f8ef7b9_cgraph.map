@@ -1,8 +1,8 @@
 <map id="CreateForWx::detectLibProject" name="CreateForWx::detectLibProject">
-<area shape="rect" id="node2" href="$class_pre.html#a9bdcb3ab0fc5675a7c9422610a0cb284" title="Indicates if target is command only or a virtual target. " alt="" coords="255,56,461,83"/>
-<area shape="rect" id="node5" href="$class_create_for_wx.html#a7ed361b57009bad03a2a24c7bef74415" title="Search the &#39;Wx&#39; path and feed &#39;m_Wxpath&#39;. " alt="" coords="282,107,434,133"/>
-<area shape="rect" id="node3" href="$class_pre.html#a70d06eec2a18717fa4bfc0d9a6c9a2b1" title="Indicates if target is command only. " alt="" coords="521,5,676,32"/>
-<area shape="rect" id="node4" href="$class_pre.html#ab3a0f75f5c2aac52ce3fe6fd0048ed84" title="Indicates if target is virtual. " alt="" coords="532,56,665,83"/>
-<area shape="rect" id="node6" href="$class_pre.html#aed6fd1646a9f1a951260f7c02c2c9583" title="Add an array to an other. " alt="" coords="544,107,653,133"/>
-<area shape="rect" id="node7" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line. " alt="" coords="509,158,688,199"/>
+<area shape="rect" id="node2" href="$class_pre.html#a9bdcb3ab0fc5675a7c9422610a0cb284" title="Indicates if target is command only or a virtual target. " alt="" coords="256,56,464,83"/>
+<area shape="rect" id="node5" href="$class_create_for_wx.html#a7ed361b57009bad03a2a24c7bef74415" title="Search the &#39;Wx&#39; path and feed &#39;m_Wxpath&#39;. " alt="" coords="283,107,437,133"/>
+<area shape="rect" id="node3" href="$class_pre.html#a70d06eec2a18717fa4bfc0d9a6c9a2b1" title="Indicates if target is command only. " alt="" coords="523,5,679,32"/>
+<area shape="rect" id="node4" href="$class_pre.html#ac9740530817bd9b6e954e934ac0dc29a" title="Indicates if target is virtual. " alt="" coords="534,56,669,83"/>
+<area shape="rect" id="node6" href="$class_pre.html#a3cb201957cf9044cb8e502121f36a92c" title="Add an array to an other. " alt="" coords="547,107,656,133"/>
+<area shape="rect" id="node7" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line mode synchronous. " alt="" coords="512,158,691,199"/>
 </map>

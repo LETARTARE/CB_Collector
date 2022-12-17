@@ -14,6 +14,6 @@
 <area shape="rect" id="node8" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="901,299,1047,326"/>
 <area shape="rect" id="node9" href="$class_collector.html#a24cfe1b83b040784e834277da16e0a68" title="Places the status grap in the listing and extract report. " alt="" coords="641,223,851,250"/>
 <area shape="rect" id="node12" href="$class_collector.html#a6f578e146a373e98a2638c6a509ee193" title="Places the status grap in the listing and extract workspace report. " alt="" coords="639,375,853,402"/>
-<area shape="rect" id="node16" href="$class_collector.html#a083060f2bf00f965496c44de767cd7a1" title="Execute the plugin. " alt="" coords="906,578,1042,605"/>
+<area shape="rect" id="node16" href="$class_collector.html#a083060f2bf00f965496c44de767cd7a1" title="Any descendent plugin should override this virtual method and perform any necessary initialization..." alt="" coords="906,578,1042,605"/>
 <area shape="rect" id="node17" href="$class_collector.html#a015f772ce4cd2db84eef9ed7fbc391d4" title="This method called by plugin is manually loaded. " alt="" coords="658,578,834,605"/>
 </map>

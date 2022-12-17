@@ -1,7 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$class_collector.html" title="Collector plugin main class. " alt="" coords="125,5,199,32"/>
-<area shape="rect" id="node3" href="$class_col_state.html" title="This classe share data between classe &#39;Pre&#39; and &#39;Collector&#39;. " alt="" coords="5,56,77,83"/>
-<area shape="rect" id="node4" href="$class_pre.html" title="This class supports inherited classes to collect strings to be translated. " alt="" coords="141,56,183,83"/>
-<area shape="rect" id="node5" href="$class_create_for_qt.html" title="The class is used to build &#39;Qt&#39; I18n files. " alt="" coords="249,31,343,57"/>
-<area shape="rect" id="node6" href="$class_create_for_wx.html" title="The class is used to build &#39;Wx I18n&#39; files. " alt="" coords="247,81,345,108"/>
+<area shape="rect" id="node2" href="$class_build_logger.html" title="Create a &#39;Collector&#39; log descendant of &#39;TextCtrlLogger&#39;. " alt="" coords="160,5,251,32"/>
 </map>

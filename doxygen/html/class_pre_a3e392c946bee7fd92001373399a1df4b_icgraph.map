@@ -1,7 +1,7 @@
 <map id="Pre::recursRmDir" name="Pre::recursRmDir">
-<area shape="rect" id="node2" href="$class_create_for_wx.html#a0ed056f22a319136cb6744977294b7c9" title="Delete all temporary file. " alt="" coords="176,31,345,57"/>
-<area shape="rect" id="node3" href="$class_collector.html#a9610e93061089e82eab969be649adeeb" title="Places the status graph in the cleaning report and Delete the temporary directory. " alt="" coords="393,5,588,32"/>
-<area shape="rect" id="node6" href="$class_create_for_wx.html#a31e8c6e85d2cfd96a224377ac2b0631a" title="Create the file &#39;*.pot&#39; containing all translatable string(s) " alt="" coords="409,56,572,83"/>
-<area shape="rect" id="node4" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="636,5,781,32"/>
-<area shape="rect" id="node5" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="829,5,1004,32"/>
+<area shape="rect" id="node2" href="$class_create_for_wx.html#a0ed056f22a319136cb6744977294b7c9" title="Delete all temporary file. " alt="" coords="177,31,348,57"/>
+<area shape="rect" id="node3" href="$class_collector.html#a9610e93061089e82eab969be649adeeb" title="Places the status graph in the cleaning report and Delete the temporary directory. " alt="" coords="396,5,592,32"/>
+<area shape="rect" id="node6" href="$class_create_for_wx.html#ab780b514578e494c6f9109613a2ec353" title="Create the file &#39;*.pot&#39; containing all translatable string(s) " alt="" coords="407,56,581,83"/>
+<area shape="rect" id="node4" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="640,5,787,32"/>
+<area shape="rect" id="node5" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="835,5,1011,32"/>
 </map>

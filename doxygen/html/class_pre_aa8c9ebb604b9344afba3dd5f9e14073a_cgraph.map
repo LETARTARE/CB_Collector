@@ -1,0 +1,4 @@
+<map id="Pre::saveArrayToDisk" name="Pre::saveArrayToDisk">
+<area shape="rect" id="node2" href="$class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="203,5,301,32"/>
+<area shape="rect" id="node3" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="349,5,460,32"/>
+</map>

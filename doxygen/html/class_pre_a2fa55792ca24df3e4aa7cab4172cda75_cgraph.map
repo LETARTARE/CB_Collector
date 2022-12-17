@@ -1,7 +1,8 @@
 <map id="Pre::Initbasic" name="Pre::Initbasic">
-<area shape="rect" id="node2" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="350,5,461,32"/>
-<area shape="rect" id="node3" href="$class_pre.html#a75af572e2d1e33e7d85535e839b28e3b" title="Give a project index. " alt="" coords="157,31,280,57"/>
-<area shape="rect" id="node4" href="$class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="152,81,285,108"/>
-<area shape="rect" id="node6" href="$class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b" title="Create a directory. " alt="" coords="167,132,270,159"/>
-<area shape="rect" id="node5" href="$class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="333,81,477,108"/>
+<area shape="rect" id="node2" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="350,85,461,112"/>
+<area shape="rect" id="node3" href="$class_pre.html#ade90ee7736b6604f719efe44e24c6bb5" title="Pre::hasNoproject" alt="" coords="342,9,469,36"/>
+<area shape="rect" id="node4" href="$class_pre.html#a75af572e2d1e33e7d85535e839b28e3b" title="Give a project index. " alt="" coords="157,35,280,61"/>
+<area shape="rect" id="node5" href="$class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="152,136,285,163"/>
+<area shape="rect" id="node7" href="$class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b" title="Create a directory. " alt="" coords="167,187,270,213"/>
+<area shape="rect" id="node6" href="$class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="333,136,477,163"/>
 </map>

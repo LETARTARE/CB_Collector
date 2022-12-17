@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['_7ecollector',['~Collector',['../class_collector.html#a806ce5d82743baae09e07a578b262022',1,'Collector']]],
-  ['_7ecolstate',['~ColState',['../class_col_state.html#a0e93a347169397730897dc73d751154c',1,'ColState']]],
-  ['_7ecreateforqt',['~CreateForQt',['../class_create_for_qt.html#a7c2d110f99347efc63ce586220fa9e3e',1,'CreateForQt']]],
-  ['_7ecreateforwx',['~CreateForWx',['../class_create_for_wx.html#a36c670f99801ed3da6c7429a3fcea970',1,'CreateForWx']]],
-  ['_7epre',['~Pre',['../class_pre.html#ad2b0e2a37f13ecacef6f819be57dfee2',1,'Pre']]]
+  ['wx_5fdeclare_5fhash_5fset',['WX_DECLARE_HASH_SET',['../wxrc321_8cpp.html#a2e7b4eec0c7e2029e959010459b0385e',1,'wxrc321.cpp']]],
+  ['wx_5fdeclare_5fobjarray',['WX_DECLARE_OBJARRAY',['../wxrc321_8cpp.html#a25ec29daf7099e6cd4e155cd7b978bb6',1,'WX_DECLARE_OBJARRAY(XRCWidgetData, ArrayOfXRCWidgetData):&#160;wxrc321.cpp'],['../wxrc321_8cpp.html#a04ee85c24e5cd295e9150a32e74a496f',1,'WX_DECLARE_OBJARRAY(XRCWndClassData, ArrayOfXRCWndClassData):&#160;wxrc321.cpp']]],
+  ['wximplement_5fapp_5fconsole',['wxIMPLEMENT_APP_CONSOLE',['../wxrc321_8cpp.html#a0d9241adfaa9a7e7151ad0d1d6891455',1,'wxrc321.cpp']]],
+  ['wxrcout',['wxrcOut',['../class_create_for_wx.html#a10b4acf8ba5ca955eedc2f880bc0008b',1,'CreateForWx']]]
 ];

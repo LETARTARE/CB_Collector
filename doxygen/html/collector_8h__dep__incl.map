@@ -1,8 +1,8 @@
-<map id="collector.h" name="collector.h">
-<area shape="rect" id="node2" href="$defines_8h.html" title="defines.h" alt="" coords="322,80,397,107"/>
-<area shape="rect" id="node6" href="$collector_8cpp.html" title="collector.cpp" alt="" coords="482,155,578,181"/>
-<area shape="rect" id="node3" href="$createforqt_8cpp.html" title="createforqt.cpp" alt="" coords="5,155,113,181"/>
-<area shape="rect" id="node4" href="$createforwx_8cpp.html" title="createforwx.cpp" alt="" coords="137,155,251,181"/>
-<area shape="rect" id="node5" href="$pre_8cpp.html" title="pre.cpp" alt="" coords="275,155,340,181"/>
-<area shape="rect" id="node7" href="$colstate_8cpp.html" title="colstate.cpp" alt="" coords="365,155,458,181"/>
+<map id="/home/louis/Travail/SVN_COMPILE/Cb/Gcc821/wx321/Extensions/sdk2230/Collector/Wx/1.7.8/src/collector.h" name="/home/louis/Travail/SVN_COMPILE/Cb/Gcc821/wx321/Extensions/sdk2230/Collector/Wx/1.7.8/src/collector.h">
+<area shape="rect" id="node2" href="$collector_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/collector.cpp" alt="" coords="5,243,240,313"/>
+<area shape="rect" id="node3" href="$defines_8h.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/defines.h" alt="" coords="405,124,619,195"/>
+<area shape="rect" id="node4" href="$colstate_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/colstate.cpp" alt="" coords="264,243,496,313"/>
+<area shape="rect" id="node5" href="$createforqt_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/createforqt.cpp" alt="" coords="520,243,768,313"/>
+<area shape="rect" id="node6" href="$createforwx_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/createforwx.cpp" alt="" coords="793,243,1047,313"/>
+<area shape="rect" id="node7" href="$pre_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/pre.cpp" alt="" coords="1071,243,1275,313"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['debug',['Debug',['../class_collector.html#a1c3a99b249c0b0d62c961fd3d5a80d0f',1,'Collector']]]
+  ['axrcwndclassdata',['aXRCWndClassData',['../class_xml_res_app.html#a0b74d129b70e95e3e286d3fa5e5f5f96',1,'XmlResApp']]]
 ];

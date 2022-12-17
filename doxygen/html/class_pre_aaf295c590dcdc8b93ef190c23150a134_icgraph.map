@@ -2,7 +2,7 @@
 <area shape="rect" id="node2" href="$class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="197,56,331,83"/>
 <area shape="rect" id="node3" href="$class_pre.html#a0236657277d3ebf2dc392a6f05e215c5" title="Search and memorize strings to be extracted from workspace. " alt="" coords="547,5,653,32"/>
 <area shape="rect" id="node9" href="$class_pre.html#aa8a36aa79595248482a3865095fe0a65" title="Extract the strings translatable from a project. " alt="" coords="379,107,485,133"/>
-<area shape="rect" id="node16" href="$class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75" title=" " alt="" coords="383,56,481,83"/>
+<area shape="rect" id="node16" href="$class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75" title="Basic initialization. " alt="" coords="383,56,481,83"/>
 <area shape="rect" id="node4" href="$class_pre.html#aa9b0b0f3b571d8c8b511ed3134d26bb4" title="List strings to be translated in workspace. " alt="" coords="725,31,819,57"/>
 <area shape="rect" id="node5" href="$class_collector.html#ad05ff772ab635dd2b018af610c45f666" title="Places the status graph in the listing workspace report. " alt="" coords="888,31,1061,57"/>
 <area shape="rect" id="node6" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="1383,132,1528,159"/>

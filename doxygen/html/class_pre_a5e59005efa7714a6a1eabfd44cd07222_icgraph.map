@@ -1,10 +1,10 @@
 <map id="Pre::isInitialized" name="Pre::isInitialized">
-<area shape="rect" id="node2" href="$class_collector.html#a7a52cb7e51c2bafa5ca760e2f005f427" title="Places the status graph in the listing project report. " alt="" coords="182,37,349,64"/>
-<area shape="rect" id="node6" href="$class_collector.html#af7b748977fb136842774e550b6c915b8" title="Places the status graph in the extracting project report. " alt="" coords="171,88,359,115"/>
+<area shape="rect" id="node2" href="$class_collector.html#a7a52cb7e51c2bafa5ca760e2f005f427" title="Places the status graph in the listing project report. " alt="" coords="181,37,349,64"/>
+<area shape="rect" id="node6" href="$class_collector.html#af7b748977fb136842774e550b6c915b8" title="Places the status graph in the extracting project report. " alt="" coords="171,88,360,115"/>
 <area shape="rect" id="node7" href="$class_collector.html#ad05ff772ab635dd2b018af610c45f666" title="Places the status graph in the listing workspace report. " alt="" coords="179,139,352,165"/>
 <area shape="rect" id="node9" href="$class_collector.html#a0dd8300c95e93daf33d5141d38c74c0d" title="Places the status graph in the extracting workspace report. " alt="" coords="168,189,363,216"/>
-<area shape="rect" id="node3" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="673,113,819,140"/>
+<area shape="rect" id="node3" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="673,113,820,140"/>
 <area shape="rect" id="node5" href="$class_collector.html#a24cfe1b83b040784e834277da16e0a68" title="Places the status grap in the listing and extract report. " alt="" coords="413,37,623,64"/>
-<area shape="rect" id="node4" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="867,113,1041,140"/>
+<area shape="rect" id="node4" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="868,113,1044,140"/>
 <area shape="rect" id="node8" href="$class_collector.html#a6f578e146a373e98a2638c6a509ee193" title="Places the status grap in the listing and extract workspace report. " alt="" coords="411,189,625,216"/>
 </map>
