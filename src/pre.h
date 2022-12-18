@@ -746,27 +746,21 @@ class Pre : public ColState
 		 */
 		clock_t m_tL0 = 0, m_tE0 = 0, m_tI = 0, m_dtL = 0 , m_dtE = 0;
 
-
-#include "marksbanned.h"	// all banned strings
-
 		/** \brief  tags finded into '*.wxs' or '*.xrc'
 		 *  \note  separator : ' '
 		 */
-/*
 		wxString
 			m_tagsRes = "<label <item <help <caption <note <message "
 						"<title <hint <tooltip "
-*/
+
 		/** \brief  tags finded into '*.xml'
 		 */
-/*
 			,m_tagsXml = "title description name summary developer_name "
 						 "checkMessage caption category type error <comment <p <li "
 			/// "thanksto "
-*/
+
         /** \brief  banned strings finded into all
          */
-/*
 			,m_bannedMarks =
 				"- + ... * ? m_  ll xx aaa eee nnn xxx vvv www "
 				"-fpic -fno-rtti c,cpp,cxx,cc,c++ Cygwin GCC "
@@ -776,10 +770,9 @@ class Pre : public ColState
 				"wizard.xrc atxxxxx mxxxx avrxxxx wxXXXX "
 				"include lib obj cflags ldflags func addr "
 				"CR LF AUTO Windows >Mac (CR) ASCII (ISO-8859-1) ID: "
-*/
+
 		 /** \brief  begin banned strings finded into all files for 'C::B'
          */
-/*
 			,m_beginBannedMarks =
 				"- + ... * ? m_  ll xx aaa eee nnn xxx vvv www \"\" "
 				"-fpic -fno-rtti c,cpp,cxx,cc,c++ Cygwin GDB CDB AT&T Intel "
@@ -896,7 +889,7 @@ class Pre : public ColState
 				"TC1792 TC1796 TC1797 TC1920 "
 				"RegSubst LonQuote Immeval LongQuote Cmdlet "
 				"HereDelim HereQ Rawstring Preproc Preproc If def Page Ex Strikeout "
-*/			;
+			;
 		/** \brief  Initialized by 'initArrayBanned()'
 		 */
 		wxArrayString
