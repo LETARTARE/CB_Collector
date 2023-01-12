@@ -2,14 +2,11 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Collector-1.6.0-sdk2180-Unix" />
+		<Option title="Collector-1.7.9-sdk2180-Unix" />
 		<Option platforms="Unix;" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Option show_notes="0">
-			<notes>
-				<![CDATA[with cb-12813-q, sdk-2.18.0]]>
-			</notes>
 		</Option>
 		<Build>
 			<Target title="loc_315">

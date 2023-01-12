@@ -1,4 +1,4 @@
-# Collector-1.7.8, December 17, 2022 (Win-64, Linux-64)
+# Collector-1.7.9, January 02, 2023 (Win-64, Lin-64)
 
 Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 
@@ -52,14 +52,14 @@ Plugin to translate applications (wxWidgets) with 'Code::Blocks'
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '...\win_321\Collector.cbpugin'
 				=> in 'Collector' log
-					** Platform : 'Win-64', 'sdk-2.23.0', 'Collector-1.7.8', built the '22/12/17::10:51:52'  
+					** Platform : 'Win-64', 'sdk-2.23.0', 'Collector-1.7.9', built the '23/01/01::10:51:52'  
 		- Lin-64 :
 			- 'Build->Build' => 'lin_321/Collector.so' with size ... KB
 				...
 			- 'Plugins->Manage plugins... : Install New' 
 				- choice '.../lin_321/Collector.cbpugin'
 				=> in 'Collector' log
-					** Platform : 'Linux-64', 'sdk-2.23.0', 'Collector-1.7.8', built the '20/05/31::11:09:15' 
+					** Platform : 'Linux-64', 'sdk-2.23.0', 'Collector-1.7.9', built the '23/01/01::11:09:15' 
 				
 	3- You see '&Collect' in menu bar or 'Collector Toolbar' in tools bar
 

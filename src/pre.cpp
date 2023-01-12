@@ -60,6 +60,9 @@ Pre::Pre(const wxString & _nameplugin, int _logindex) :
 #elif defined(__WXMAC__)
 	m_Mac = true; m_Win = m_Linux = false;
 #endif
+    // language filled in 'CreateForWx::m_lang' and 'CreateForQt::m_lang'
+	m_lang = wxLocale::GetLanguageCanonicalName(wxLocale::GetSystemLanguage());
+//	_printError("Pre::m_lang =" + quote(Pre::m_lang));
 }
 ///-----------------------------------------------------------------------------
 //	Destructor
@@ -114,9 +117,7 @@ wxString Pre::platForm()
 #else
 	Mes += "-32'";
 #endif
-// search lang = "xx_XX"
-    m_locale.Init();
-    m_lang =  m_locale.GetCanonicalName();
+// show lang = "xx_XX"
     Mes += "-" + quoteNS(m_lang) ;
 
 	return Mes ;
@@ -2989,6 +2990,8 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		return false;
 	}
 	//2-7- Language  here => 'm_locale.GetCanonicalName()'
+	if (m_lang.IsEmpty())
+        m_lang = wxLocale::GetLanguageCanonicalName(wxLocale::GetSystemLanguage());
 	oldtxt = "Language:"; newtxt = "Language: " + m_lang;
 	//=================================================
 	ok = Pre::changeContents  (source, oldtxt, newtxt);
