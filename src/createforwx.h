@@ -95,12 +95,19 @@ class CreateForWx  : public Pre
 		 *  \return number finded strings  or -1 if error
 		 */
 		wxInt32  listStringsXml(const wxString& _shortfile) override;
-		/** \brief Extract the label of *.xrc and create a temporary file  with string(s)
+		/** \brief List the strings into _shortfile with 'xgettext' and 'its'
 		 *  \note  Overloading a pure virtual method
 		 *  \param _file : 'namefile '*.xrc'
 		 *  \return number strings, if  < 0 =>  error
 		 */
 		wxInt32  listStringsRes(wxString& _file) override;
+
+		/** \brief Extract the label of *.xrc and create a temporary file  with string(s)
+		 *  \note  Overloading a pure virtual method
+		 *  \param _file : 'namefile '*.xrc'
+		 *  \return number strings, if  < 0 =>  error
+		 */
+		wxInt32  extractStringsRes(wxString& _file);
 		/** \brief For the '*.xrc' file  return '*_xrc.str???'
 		 *  \param _file : '*.xrc'
 		 *  \param _indexfree : 'xxx' where xxx is index in 'm_FileStrCreated'

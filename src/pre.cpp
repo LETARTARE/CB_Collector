@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-12-15
+ * Modified:  2023-01-17
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -54,11 +54,11 @@ Pre::Pre(const wxString & _nameplugin, int _logindex) :
 	  ,m_LogPageIndex(_logindex)
 {
 #if   defined(__WXMSW__)
-	m_Win = true; m_Linux = m_Mac = false;
+	m_Win = true; m_Lin = m_Mac = false;
 #elif defined(__WXGTK__)
-	m_Linux = true ; m_Win = m_Mac = false;
+	m_Lin = true ; m_Win = m_Mac = false;
 #elif defined(__WXMAC__)
-	m_Mac = true; m_Win = m_Linux = false;
+	m_Mac = true; m_Win = m_Lin = false;
 #endif
     // language filled in 'CreateForWx::m_lang' and 'CreateForQt::m_lang'
 	m_lang = wxLocale::GetLanguageCanonicalName(wxLocale::GetSystemLanguage());
@@ -73,6 +73,12 @@ Pre::Pre(const wxString & _nameplugin, int _logindex) :
 //
 Pre::~Pre()
 {
+// all managers
+	m_pM = nullptr; m_pMprj = nullptr; m_pMam = nullptr; m_pMed = nullptr;
+	m_pMconf = nullptr;
+// others pointers
+	m_pProjects = nullptr;  m_pProject = nullptr;
+	m_pProjectleader = nullptr;
 }
 ///-----------------------------------------------------------------------------
 // Determines the system platform
@@ -105,7 +111,7 @@ wxString Pre::platForm()
 		#define Eol Cr
 	}
 	else
-	if (m_Linux)
+	if (m_Lin)
 	{
 		Mes += " : 'Linux";
 		#undef Eol
@@ -674,6 +680,7 @@ _printD("=> Begin 'Pre::ListingtWS()'");
 		//==============================================
 		m_DirprojectLeader = m_Dirproject.Mid(0, m_Dirproject.Len());
 //_printError("Pre::listingWS() => m_DirprojectLeader = " + quote(m_DirprojectLeader) );
+
 //8- duration and save list
         //=========================
 		good = Pre::endaction('L');
@@ -864,10 +871,6 @@ _printD("=> Begin 'Pre::endextract()'" );
 		Mes += Tab + "  2-1- '\\r' -> ''" + Lf;
 		Mes += Tab + "  2-2- '$$...' -> '$...'" + Lf;
 		Mes += Tab + "  2-3- '%%...' -> '%...'";
-	//	Mes += Lf + _("For a very big project, this may take several minutes") + " ..." + Lf;
-	//	Mes += _("Do you want replace ?");
-	//	wxString title = _("Check the integrity of") + quote(m_Shortnamedup);
-	//	del = cbMessageBox(Mes, title, wxICON_QUESTION | wxYES_NO) == wxID_YES;
 		_print(Mes);
 		m_Fileswithstrings.Add(Mes);
 		del = true;
@@ -1130,7 +1133,7 @@ _printD("=> Begin 'Pre::Initbasic()'");
 		m_Nameconf = "default.conf";
 	}
 	else
-	if (m_Linux)
+	if (m_Lin)
 	{
 		m_Eol = Lf;
 		m_Pexe = "poedit"; m_Gexe = "xgettext";	m_Mexe = "msgmerge";
@@ -2426,7 +2429,7 @@ _printD("	<= End 'Pre::xgettextOut(...)");
 // Called by :
 //		1. Pre::xgettextOut(wxString& _txt);1,
 //
-#include <wx/arrstr.h>
+//#include <wx/arrstr.h>
 
 bool Pre::filterBeginBanned(wxString _line)
 {
@@ -2707,30 +2710,9 @@ _printD("=> Begin 'Pre::releaseProject(_pProject, " + strBool(_withpot) + ")'");
 		}
 	// name file 'pot' or 'dup'
 		m_Shortnamedup =  m_Nameproject;
-		if (m_Workspace)		m_Shortnamedup += "_workspace.dup";
-		else					m_Shortnamedup += ".dup";
+		if (m_Workspace)	m_Shortnamedup += PROLONG_WS ;
+		m_Shortnamedup += DOT_EXT_DUP;
 		m_Namedup = m_Dirpot + m_Shortnamedup;
-
-//_printError("Pre::releaseProject() => m_Namedup :" + quote(m_Namedup) );
-/*
-    // create a native '*.dup'
-		wxString firstline = "# " + m_Nameproject;
-		ok = ::cbSaveToFile(m_Dirlocale + m_Shortnamedup, firstline);
-		if (!ok)
-        {
-            Mes = " ** " + _("Error call to save the first") ;
-            Mes += " 'cbSaveToFile(" + m_Dirlocale + m_Shortnamedup + ")'" ;
-			_printError(Mes);
-            ShowError(Mes);
-            _print(m_Theend);
-        }
-        else
-        {
-            Mes = Tab + _("Create a native file '.dup' (only the first line))") + " :" ;
-            Mes += quote(m_Dirlocale + m_Shortnamedup);
-            _print(Mes);
-        }
-    */
 	}
 
 _printD("	<= End 'Pre::releaseProject((...)' => " + strBool(ok) );
@@ -2920,96 +2902,13 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 	_printWarn(Mes);
 	m_Fileswithstrings.Add(Mes);
 
-/// ====================== A- verify 'header' of '*.dup' =======================
-
-//2- header *.dup or *.pot
-	Mes = Tab + "1- " + _("Adjust and complete the header") + " ...";
-	_print(Mes);
-	m_Fileswithstrings.Add(Mes);
-
-	// modify the header
-	wxString oldtxt, newtxt;
-	//2-1- descriptive
-	oldtxt = "SOME DESCRIPTIVE TITLE"; newtxt = "$(PROJECT_NAME)";
-    //================================================
-	ok = Pre::changeContents (source, oldtxt, newtxt);
-	//================================================
-	if (!ok)
+//2- complete header *.dup or *.pot
+    //=============================
+    ok = Pre::adjustHeader(source);
+    //=============================
+    if (!ok)
 	{
-		_printError("not ok 1 => Pre::changeContents(...)" );
-		return false;
-	}
-/*  ATTENTION with $TDAY
-    //2-2- year copyright
-	oldtxt = "YEAR THE PACKAGE'S COPYRIGHT HOLDER";
-	newtxt = m_pMam->ReplaceMacros("$TDAY").Mid(0, 4);
-	//================================================
-	ok = Pre::changeContents (source, oldtxt , newtxt );
-	//================================================
-	if (!ok)
-	{
-		_printError("not ok 2 => Pre::changeContents(...)" );
-		return false;
-	}
-*/
-	//2-3- package name
-	oldtxt = "PACKAGE "; newtxt = "$(PROJECT_NAME)";
-	//================================================
-	ok = Pre::changeContents  (source, oldtxt, newtxt);
-	//================================================
-	if (!ok)
-	{
-		_printError("not ok 3 => Pre::changeContents(...)" );
-		return false;
-	}
-	//2-4- PACKAGE VERSION
-	oldtxt = "PACKAGE VERSION"; newtxt = "$(PROJECT_FILENAME)";
-	//================================================
-	ok = Pre::changeContents  (source, oldtxt, newtxt);
-	//================================================
-	if (!ok)
-	{
-		_printError("not ok 4 => Pre::changeContents(...)" );
-		return false;
-	}
-	//2-5- Last Translator
-	//oldtxt = "FULL NAME"; newtxt = "$PLUGINS";
-	//===================================================
-	//ok = Pre::changeContents  (source, oldtxt, newtxt);
-	//===================================================
-	//if (!ok)	return false;
-
-	//2-6- LANGUAGE	"LL"  here ==> m_locale ...
-	oldtxt = "LANGUAGE"; newtxt = "$(LANGUAGE)";
-	//================================================
-	ok = Pre::changeContents  (source, oldtxt, newtxt);
-	//================================================
-	if (!ok)
-	{
-		_printError("not ok 5 => Pre::changeContents(...)" );
-		return false;
-	}
-	//2-7- Language  here => 'm_locale.GetCanonicalName()'
-	if (m_lang.IsEmpty())
-        m_lang = wxLocale::GetLanguageCanonicalName(wxLocale::GetSystemLanguage());
-	oldtxt = "Language:"; newtxt = "Language: " + m_lang;
-	//=================================================
-	ok = Pre::changeContents  (source, oldtxt, newtxt);
-	//=================================================
-	if (!ok)
-	{
-		_printError("not ok 6 => Pre::changeContents(...)" );
-		return false;
-	}
-	//2-8- charset : here $(ENCODING) -> "windows-1252"  !!!
-	oldtxt = "charset"; newtxt = "charset=UTF-8";
-	//===================================================
-	ok = Pre::changeContents  (source, oldtxt, newtxt);
-	//===================================================
-	if (!ok)
-	{
-		_printError("not ok 7 => Pre::changeContents(...)" );
-		return false;
+        return false;
 	}
 
 //3- fix '*.dup'
@@ -3018,7 +2917,9 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		wxString rc = "\\r";
 		wxUint32 nr = 0;
 //3-1 find "\r" and delete into valid line
-	// No longer seems useful
+	/// **********************
+	/// No longer seems useful
+	/// **********************
 	//  nr = deleteCr(source);
 		Mes = Tab + "2- " + _("Search strings to delete") + " : ";
 		Mes += Quote + rc + Quote + Space  + "(" + _("no longer used") + ")" + Lf;
@@ -3080,7 +2981,7 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 		m_Fileswithstrings.Add(Mes);
 	}
 
-/// ======================= B- files '*.pot' and '*.po =========================
+/// ======================= files '*.pot' and '*.po =========================
 
 // name 'dup'
 	m_Shortnamedup = m_Namedup.AfterLast(cSlash);
@@ -3282,6 +3183,126 @@ _printD("=> Begin 'Pre::integrity(" + strBool(_replacecar)	+ ")'" );
 _printD("	<= End 'Pre::integrity()'");
 
 	return ok;
+}
+
+// -----------------------------------------------------------------------------
+//
+// Called by :
+//  1. Pre::integrity(bool _replacecar):1,
+//
+// Call to :
+//	1. Pre::changeContents(wxString _file, wxString _old, wxString _new):6,
+
+bool Pre::adjustHeader(wxString & _source)
+{
+    bool ok = false;
+    // header *.dup or *.pot
+	Mes = Tab + "1- " + _("Adjust and complete the header") + " ...";
+	_print(Mes);
+	m_Fileswithstrings.Add(Mes);
+
+    // modify the header
+	wxString oldtxt, newtxt;
+
+//1- descriptive
+	oldtxt = "SOME DESCRIPTIVE TITLE"; newtxt = "$(PROJECT_NAME)";
+    //================================================
+	ok = Pre::changeContents (_source, oldtxt, newtxt);
+	//================================================
+	if (!ok)
+	{
+		_printError("not ok 1 => Pre::changeContents(...)" );
+		return false;
+	}
+//2- year copyright
+	oldtxt = "YEAR-MO-DA HO:MI+ZONE" ;
+	newtxt = GetDateBuildPlugin();
+	//================================================
+	ok = Pre::changeContents (_source, oldtxt , newtxt );
+	//================================================
+	if (!ok)
+	{
+		_printError("not ok 2 => Pre::changeContents(...)" );
+		return false;
+	}
+//3- package name
+	oldtxt = "PACKAGE "; newtxt = "$(PROJECT_NAME)";
+	//================================================
+	ok = Pre::changeContents  (_source, oldtxt, newtxt);
+	//================================================
+	if (!ok)
+	{
+		_printError("not ok 3 => Pre::changeContents(...)" );
+		return false;
+	}
+//4- PACKAGE VERSION
+	oldtxt = "PACKAGE VERSION"; newtxt = "$(PROJECT_FILENAME)";
+	//================================================
+	ok = Pre::changeContents  (_source, oldtxt, newtxt);
+	//================================================
+	if (!ok)
+	{
+		_printError("not ok 4 => Pre::changeContents(...)" );
+		return false;
+	}
+//5- Last Translator
+	//oldtxt = "FULL NAME"; newtxt = "$PLUGINS";
+	//===================================================
+	//ok = Pre::changeContents  (source, oldtxt, newtxt);
+	//===================================================
+	//if (!ok)
+	//{
+	//	_printError("not ok 5 => Pre::changeContents(...)" );
+	//	return false;
+	//}
+
+//6- LANGUAGE	"LL"  here ==> 'fr_FR'
+	oldtxt = "LANGUAGE"; newtxt = "$(LANGUAGE)";
+	//================================================
+	ok = Pre::changeContents  (_source, oldtxt, newtxt);
+	//================================================
+	if (!ok)
+	{
+		_printError("not ok 6 => Pre::changeContents(...)" );
+		return false;
+	}
+//7- Language  here => 'm_locale.GetCanonicalName()'
+	if (m_lang.IsEmpty())
+		m_lang = wxLocale::GetLanguageCanonicalName(wxLocale::GetSystemLanguage());
+//_printError("m_lang =" +quote(m_lang) );
+    if (!m_lang.IsEmpty())
+    {
+        oldtxt = "Language:"; newtxt = "Language: " + m_lang;
+        //=================================================
+        ok = Pre::changeContents  (_source, oldtxt, newtxt);
+        //=================================================
+	}
+	else
+	{
+        _printWarn("*** m_lang =" + quote(m_lang));
+        ok = false;
+	}
+    // all errors
+	if (!ok)
+	{
+		_printError("not ok 7 => Pre::changeContents(...)" );
+
+		return false;
+	}
+
+//8- charset : here $(ENCODING) -> "windows-1252"  !!!
+	//oldtxt = "charset"; newtxt = "charset=$(ENCODING)" ;
+	oldtxt = "charset"; newtxt = "charset=UTF-8";
+	//=================================================
+	ok = Pre::changeContents  (_source, oldtxt, newtxt);
+	//=================================================
+	if (!ok)
+	{
+		_printError("not ok 8 => Pre::changeContents(...)" );
+		return false;
+	}
+
+    return ok;
 }
 // -----------------------------------------------------------------------------
 //
@@ -3794,7 +3815,7 @@ _printErrorD("=> Begin saveArrayToDisk(..., " + wxString(_mode) +  +")'" );
         else return false;
 	// file to disk
 		wxString namefile = m_Dirpot + m_NameprojectLeader;
-		if (m_Workspace)	namefile += "_workspace";
+		if (m_Workspace)	namefile += PROLONG_WS;
 		namefile += Dot + ext;
 		wxString shortname = namefile.AfterLast(cSlash).Prepend(m_Dirlocale);
     // exists already ?
@@ -3957,7 +3978,7 @@ bool Pre::closeAllExtraFiles()
 _printD("=> Begin 'Pre::closeAllExtraFiles()'");
 
     wxString fullpath = m_Dirproject + m_Dirlocale + m_Nameproject;
-    if (m_Workspace)   fullpath += "_workspace";
+     if (m_Workspace)   fullpath += PROLONG_WS;
 
     //======================================
     bool oklist = closedit(fullpath + ".list") ;
@@ -4087,7 +4108,7 @@ wxUint64 Pre::elapsed(const wxUint64 _last)
 {
 // actual in 'mS'
     wxUint64 actual = clock(), ret = 0 ;
-    if (m_Linux)    actual /= 1000;
+    if (m_Lin)    actual /= 1000;
 //_printWarn("actual : " + strInt(actual) + ", _last : " + strInt(_last));
     if (_last <= actual)
         ret = actual - _last;

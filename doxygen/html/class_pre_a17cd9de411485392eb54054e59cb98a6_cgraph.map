@@ -1,5 +1,5 @@
 <map id="Pre::listGoodfiles" name="Pre::listGoodfiles">
-<area shape="rect" id="node2" href="$class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="176,5,315,32"/>
-<area shape="rect" id="node3" href="$class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="180,56,311,83"/>
-<area shape="rect" id="node4" href="$class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="180,107,311,133"/>
+<area shape="rect" id="node2" href="$class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="175,5,313,32"/>
+<area shape="rect" id="node3" href="$class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="179,56,309,83"/>
+<area shape="rect" id="node4" href="$class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="179,107,309,133"/>
 </map>

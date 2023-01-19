@@ -1,8 +1,13 @@
 <map id="CreateForWx::listStringsRes" name="CreateForWx::listStringsRes">
-<area shape="rect" id="node2" href="$class_create_for_wx.html#a0dace6eb9781307cf17f64ebf1e35acc" title="For the &#39;*.xrc&#39; file return &#39;*_xrc.str???&#39;. " alt="" coords="245,21,430,47"/>
-<area shape="rect" id="node3" href="$class_create_for_wx.html#a8a71a31edcb93eda65b284da8f08bcc1" title="Execute &#39;wxrc&#39;. " alt="" coords="243,71,432,98"/>
-<area shape="rect" id="node7" href="$class_create_for_wx.html#aba3dc89c1da9d730e4a12dd292142d29" title="For the &#39;*_xrc.strxxx&#39; file copy to &#39;*.xrc&#39;. " alt="" coords="258,122,417,149"/>
-<area shape="rect" id="node4" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line mode synchronous. " alt="" coords="480,5,659,47"/>
-<area shape="rect" id="node5" href="$class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="495,122,644,149"/>
-<area shape="rect" id="node6" href="$class_create_for_wx.html#a10b4acf8ba5ca955eedc2f880bc0008b" title="Display formatting for resouces wxrc and wks. " alt="" coords="491,71,648,98"/>
+<area shape="rect" id="node2" href="$class_create_for_wx.html#a9ba96868e3389ab3bb6332f7743f7fde" title="Extract the label of *.xrc and create a temporary file with string(s) " alt="" coords="241,81,452,108"/>
+<area shape="rect" id="node9" href="$class_pre.html#a51af576d8b56ed77c362814160d5704a" title="Execute &#39;xgettext&#39; for &#39;listing()&#39; or &#39;extract()&#39;. " alt="" coords="281,191,413,217"/>
+<area shape="rect" id="node3" href="$class_create_for_wx.html#a0dace6eb9781307cf17f64ebf1e35acc" title="For the &#39;*.xrc&#39; file return &#39;*_xrc.str???&#39;. " alt="" coords="503,5,685,32"/>
+<area shape="rect" id="node4" href="$class_create_for_wx.html#a8a71a31edcb93eda65b284da8f08bcc1" title="Execute &#39;wxrc&#39;. " alt="" coords="500,107,688,133"/>
+<area shape="rect" id="node8" href="$class_create_for_wx.html#aba3dc89c1da9d730e4a12dd292142d29" title="For the &#39;*_xrc.strxxx&#39; file copy to &#39;*.xrc&#39;. " alt="" coords="515,56,673,83"/>
+<area shape="rect" id="node5" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line mode synchronous. " alt="" coords="736,158,915,199"/>
+<area shape="rect" id="node6" href="$class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="751,56,899,83"/>
+<area shape="rect" id="node7" href="$class_create_for_wx.html#a10b4acf8ba5ca955eedc2f880bc0008b" title="Display formatting for resouces wxrc and wks. " alt="" coords="748,107,903,133"/>
+<area shape="rect" id="node10" href="$class_pre.html#acae6b31276fc848dc713a044a7d1749b" title="From a text, extract the different strings to be translated. " alt="" coords="535,216,653,243"/>
+<area shape="rect" id="node12" href="$class_pre.html#af48b1dba2cd1dacc894770bc14359936" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="530,267,658,293"/>
+<area shape="rect" id="node11" href="$class_pre.html#aaf60fb9e5d3ea776b6975d5edbf54559" title="With &#39;xgettextOut(wxString&amp; _txt)&#39; banned strings. " alt="" coords="750,224,901,251"/>
 </map>

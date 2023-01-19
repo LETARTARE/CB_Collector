@@ -1,5 +1,5 @@
 <map id="Collector::OnMenuExtractPrj" name="Collector::OnMenuExtractPrj">
-<area shape="rect" id="node2" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="501,5,648,32"/>
-<area shape="rect" id="node4" href="$class_collector.html#a24cfe1b83b040784e834277da16e0a68" title="Places the status grap in the listing and extract report. " alt="" coords="243,31,453,57"/>
-<area shape="rect" id="node3" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="696,5,872,32"/>
+<area shape="rect" id="node2" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="499,5,644,32"/>
+<area shape="rect" id="node4" href="$class_collector.html#a24cfe1b83b040784e834277da16e0a68" title="Places the status grap in the listing and extract report. " alt="" coords="241,31,451,57"/>
+<area shape="rect" id="node3" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="692,5,867,32"/>
 </map>

@@ -1,3 +1,4 @@
 <map id="CreateForWx::RexewithError" name="CreateForWx::RexewithError">
-<area shape="rect" id="node2" href="$class_create_for_wx.html#ac4fe6bc6e861eff23cbcb65f5e3f3b82" title="Extract the label of *.xrc and create a temporary file with string(s) " alt="" coords="243,5,432,32"/>
+<area shape="rect" id="node2" href="$class_create_for_wx.html#a9ba96868e3389ab3bb6332f7743f7fde" title="Extract the label of *.xrc and create a temporary file with string(s) " alt="" coords="241,5,452,32"/>
+<area shape="rect" id="node3" href="$class_create_for_wx.html#ac4fe6bc6e861eff23cbcb65f5e3f3b82" title="List the strings into _shortfile with &#39;xgettext&#39; and &#39;its&#39;. " alt="" coords="500,5,688,32"/>
 </map>

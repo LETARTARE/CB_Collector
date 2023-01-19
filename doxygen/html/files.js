@@ -23,6 +23,5 @@ var files =
     [ "pre.h", "pre_8h.html", [
       [ "Pre", "class_pre.html", "class_pre" ]
     ] ],
-    [ "pretot.h", "pretot_8h.html", null ],
-    [ "wxrc320.cpp", "wxrc320_8cpp.html", "wxrc320_8cpp" ]
+    [ "wxrc321.cpp", "wxrc321_8cpp.html", "wxrc321_8cpp" ]
 ];

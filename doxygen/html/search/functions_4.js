@@ -11,5 +11,6 @@ var searchData=
   ['extraction',['extraction',['../class_pre.html#aa8a36aa79595248482a3865095fe0a65',1,'Pre']]],
   ['extractionws',['extractionWS',['../class_pre.html#a346ee750d8b28d66efbaf2c4342718e8',1,'Pre']]],
   ['extractproject',['ExtractProject',['../class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c',1,'Pre']]],
+  ['extractstringsres',['extractStringsRes',['../class_create_for_wx.html#a9ba96868e3389ab3bb6332f7743f7fde',1,'CreateForWx']]],
   ['extractws',['ExtractWS',['../class_pre.html#a8684f86d5efbdb8e3d688590d28a3179',1,'Pre']]]
 ];

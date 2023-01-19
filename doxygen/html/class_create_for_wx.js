@@ -7,6 +7,7 @@ var class_create_for_wx =
     [ "creatingPot", "class_create_for_wx.html#ab780b514578e494c6f9109613a2ec353", null ],
     [ "detectLibProject", "class_create_for_wx.html#a554fd7950577ce2a0ce22f921f8ef7b9", null ],
     [ "expandName", "class_create_for_wx.html#a0dace6eb9781307cf17f64ebf1e35acc", null ],
+    [ "extractStringsRes", "class_create_for_wx.html#a9ba96868e3389ab3bb6332f7743f7fde", null ],
     [ "iniHeaderPo", "class_create_for_wx.html#aca28a590c23090b0de63dd25774df49b", null ],
     [ "initArrayBanned", "class_create_for_wx.html#ab29a6194e9ab99093ebe9815e1f66501", null ],
     [ "initTailored", "class_create_for_wx.html#a9a7122b5d8f572300659c6b74616dae6", null ],

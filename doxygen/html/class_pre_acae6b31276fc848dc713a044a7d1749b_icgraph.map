@@ -1,6 +1,7 @@
 <map id="Pre::xgettextOut" name="Pre::xgettextOut">
-<area shape="rect" id="node2" href="$class_pre.html#a51af576d8b56ed77c362814160d5704a" title="Execute &#39;xgettext&#39; for &#39;listing()&#39; or &#39;extract()&#39;. " alt="" coords="172,56,304,83"/>
-<area shape="rect" id="node3" href="$class_create_for_qt.html#a016857846848b8502683f75d695310ad" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="355,5,546,32"/>
-<area shape="rect" id="node4" href="$class_create_for_wx.html#a7d13df1de2f638015374a04219aa2d54" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="352,56,549,83"/>
-<area shape="rect" id="node5" href="$class_create_for_wx.html#a024b578abef8bb97ef294251021fa11f" title="List the strings into _shortfile with &#39;xgettext&#39; and &#39;its&#39;. " alt="" coords="356,107,545,133"/>
+<area shape="rect" id="node2" href="$class_pre.html#a51af576d8b56ed77c362814160d5704a" title="Execute &#39;xgettext&#39; for &#39;listing()&#39; or &#39;extract()&#39;. " alt="" coords="172,81,304,108"/>
+<area shape="rect" id="node3" href="$class_create_for_qt.html#a016857846848b8502683f75d695310ad" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="355,5,544,32"/>
+<area shape="rect" id="node4" href="$class_create_for_wx.html#a7d13df1de2f638015374a04219aa2d54" title="List the strings into _shortfile with &#39;xgettext&#39;. " alt="" coords="352,56,547,83"/>
+<area shape="rect" id="node5" href="$class_create_for_wx.html#ac4fe6bc6e861eff23cbcb65f5e3f3b82" title="List the strings into _shortfile with &#39;xgettext&#39; and &#39;its&#39;. " alt="" coords="355,107,543,133"/>
+<area shape="rect" id="node6" href="$class_create_for_wx.html#a024b578abef8bb97ef294251021fa11f" title="List the strings into _shortfile with &#39;xgettext&#39; and &#39;its&#39;. " alt="" coords="356,157,543,184"/>
 </map>

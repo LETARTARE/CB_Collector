@@ -1,6 +1,6 @@
 <map id="Pre::GexewithError" name="Pre::GexewithError">
 <area shape="rect" id="node2" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line mode synchronous. " alt="" coords="185,5,364,47"/>
 <area shape="rect" id="node3" href="$class_pre.html#acae6b31276fc848dc713a044a7d1749b" title="From a text, extract the different strings to be translated. " alt="" coords="215,71,334,98"/>
-<area shape="rect" id="node5" href="$class_pre.html#af48b1dba2cd1dacc894770bc14359936" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="211,122,338,149"/>
-<area shape="rect" id="node4" href="$class_pre.html#aaf60fb9e5d3ea776b6975d5edbf54559" title="With &#39;xgettextOut(wxString&amp; _txt)&#39; banned strings. " alt="" coords="412,71,564,98"/>
+<area shape="rect" id="node5" href="$class_pre.html#af48b1dba2cd1dacc894770bc14359936" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="211,122,339,149"/>
+<area shape="rect" id="node4" href="$class_pre.html#aaf60fb9e5d3ea776b6975d5edbf54559" title="With &#39;xgettextOut(wxString&amp; _txt)&#39; banned strings. " alt="" coords="412,71,563,98"/>
 </map>

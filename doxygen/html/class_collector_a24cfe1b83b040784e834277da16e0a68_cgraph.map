@@ -1,51 +1,51 @@
 <map id="Collector::OnMenuListExtractPrj" name="Collector::OnMenuListExtractPrj">
-<area shape="rect" id="node2" href="$class_collector.html#a7a52cb7e51c2bafa5ca760e2f005f427" title="Places the status graph in the listing project report. " alt="" coords="275,237,443,264"/>
-<area shape="rect" id="node38" href="$class_pre.html#a325d06dc046499b45fd32e49a3eb1dc2" title="For globals boolan. " alt="" coords="305,300,412,327"/>
-<area shape="rect" id="node39" href="$class_collector.html#af7b748977fb136842774e550b6c915b8" title="Places the status graph in the extracting project report. " alt="" coords="264,376,453,403"/>
-<area shape="rect" id="node3" href="$class_collector.html#a2ac54bb5839f0a7469edfa5f9d23424b" title="Collector::SwitchToLog" alt="" coords="512,325,669,352"/>
-<area shape="rect" id="node4" href="$class_create_for_wx.html#aca28a590c23090b0de63dd25774df49b" title="Create the heder for file &#39;*.pot&#39;. " alt="" coords="501,5,680,32"/>
-<area shape="rect" id="node5" href="$class_pre.html#a6537186bec965c977da90bb2a1feac67" title=" " alt="" coords="735,136,847,163"/>
+<area shape="rect" id="node2" href="$class_collector.html#a7a52cb7e51c2bafa5ca760e2f005f427" title="Places the status graph in the listing project report. " alt="" coords="273,237,440,264"/>
+<area shape="rect" id="node38" href="$class_pre.html#a325d06dc046499b45fd32e49a3eb1dc2" title="For globals boolan. " alt="" coords="304,300,409,327"/>
+<area shape="rect" id="node39" href="$class_collector.html#af7b748977fb136842774e550b6c915b8" title="Places the status graph in the extracting project report. " alt="" coords="263,376,451,403"/>
+<area shape="rect" id="node3" href="$class_collector.html#a2ac54bb5839f0a7469edfa5f9d23424b" title="Collector::SwitchToLog" alt="" coords="510,325,665,352"/>
+<area shape="rect" id="node4" href="$class_create_for_wx.html#aca28a590c23090b0de63dd25774df49b" title="Create the heder for file &#39;*.pot&#39;. " alt="" coords="499,5,676,32"/>
+<area shape="rect" id="node5" href="$class_pre.html#a6537186bec965c977da90bb2a1feac67" title=" " alt="" coords="731,136,843,163"/>
 <area shape="rect" id="node9" href="$class_pre.html#ade90ee7736b6604f719efe44e24c6bb5" title="Pre::hasNoproject" alt="" coords="1523,183,1650,209"/>
-<area shape="rect" id="node31" href="$class_pre.html#a5e59005efa7714a6a1eabfd44cd07222" title="For globals boolan. " alt="" coords="533,376,648,403"/>
-<area shape="rect" id="node32" href="$class_pre.html#a982542e122fbc4d348a008c0e78987dd" title="Pre::isCancelled" alt="" coords="531,427,650,453"/>
-<area shape="rect" id="node33" href="$class_pre.html#ae10818f194c0edbd93c84487241076fb" title="Pre::isStopped" alt="" coords="537,275,645,301"/>
-<area shape="rect" id="node34" href="$class_pre.html#a9129591c145d5f21bcc0e29fa84ef490" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_INFORMATION)&#39;. " alt="" coords="739,528,844,555"/>
-<area shape="rect" id="node35" href="$class_collector.html#afffa9eed798f9788a774ad69043bde98" title="Enable the menu items of &#39;&amp;Collect&#39; and tools bar &#39;Collector&#39;. " alt="" coords="506,158,675,199"/>
-<area shape="rect" id="node6" href="$class_pre.html#ae5dcb49f219ed8e69e128492e8fc59a1" title="Global initialization. " alt="" coords="946,136,1014,163"/>
-<area shape="rect" id="node15" href="$class_pre.html#ae3c3702e9427cdb08d10f4b2b019d8b3" title="Give a duration (milliseconds) " alt="" coords="1345,689,1439,716"/>
-<area shape="rect" id="node16" href="$class_pre.html#a24b638659d8e4cbba05c2d4f7bf3b5f7" title="close all extra files to editor &#39;*.list&#39;, &#39;*.extr&#39;, &#39;*.po&#39; " alt="" coords="903,187,1057,213"/>
-<area shape="rect" id="node18" href="$class_pre.html#a58700da6472228a04e8b26033a63d438" title="Search and memorize strings to be extracted. " alt="" coords="938,487,1022,513"/>
-<area shape="rect" id="node7" href="$class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75" title="Basic initialization. " alt="" coords="1138,107,1237,133"/>
-<area shape="rect" id="node14" href="$class_pre.html#abf68866bcaffe0e09fcb298bb186c325" title="specific initialisation by inherited type " alt="" coords="1131,157,1243,184"/>
+<area shape="rect" id="node31" href="$class_pre.html#a5e59005efa7714a6a1eabfd44cd07222" title="For globals boolan. " alt="" coords="530,376,645,403"/>
+<area shape="rect" id="node32" href="$class_pre.html#a982542e122fbc4d348a008c0e78987dd" title="Pre::isCancelled" alt="" coords="529,427,646,453"/>
+<area shape="rect" id="node33" href="$class_pre.html#ae10818f194c0edbd93c84487241076fb" title="Pre::isStopped" alt="" coords="533,275,641,301"/>
+<area shape="rect" id="node34" href="$class_pre.html#a9129591c145d5f21bcc0e29fa84ef490" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_INFORMATION)&#39;. " alt="" coords="736,528,839,555"/>
+<area shape="rect" id="node35" href="$class_collector.html#afffa9eed798f9788a774ad69043bde98" title="Enable the menu items of &#39;&amp;Collect&#39; and tools bar &#39;Collector&#39;. " alt="" coords="503,158,671,199"/>
+<area shape="rect" id="node6" href="$class_pre.html#ae5dcb49f219ed8e69e128492e8fc59a1" title="Global initialization. " alt="" coords="943,136,1009,163"/>
+<area shape="rect" id="node15" href="$class_pre.html#ae3c3702e9427cdb08d10f4b2b019d8b3" title="Give a duration (milliseconds) " alt="" coords="1343,689,1437,716"/>
+<area shape="rect" id="node16" href="$class_pre.html#a24b638659d8e4cbba05c2d4f7bf3b5f7" title="close all extra files to editor &#39;*.list&#39;, &#39;*.extr&#39;, &#39;*.po&#39; " alt="" coords="899,187,1053,213"/>
+<area shape="rect" id="node18" href="$class_pre.html#a58700da6472228a04e8b26033a63d438" title="Search and memorize strings to be extracted. " alt="" coords="934,487,1018,513"/>
+<area shape="rect" id="node7" href="$class_pre.html#a2fa55792ca24df3e4aa7cab4172cda75" title="Basic initialization. " alt="" coords="1134,107,1233,133"/>
+<area shape="rect" id="node14" href="$class_pre.html#abf68866bcaffe0e09fcb298bb186c325" title="specific initialisation by inherited type " alt="" coords="1127,157,1239,184"/>
 <area shape="rect" id="node8" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="1707,816,1817,843"/>
-<area shape="rect" id="node10" href="$class_pre.html#a75af572e2d1e33e7d85535e839b28e3b" title="Give a project index. " alt="" coords="1331,208,1453,235"/>
-<area shape="rect" id="node11" href="$class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="1325,411,1459,437"/>
-<area shape="rect" id="node13" href="$class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b" title="Create a directory. " alt="" coords="1341,107,1443,133"/>
+<area shape="rect" id="node10" href="$class_pre.html#a75af572e2d1e33e7d85535e839b28e3b" title="Give a project index. " alt="" coords="1329,208,1451,235"/>
+<area shape="rect" id="node11" href="$class_pre.html#a1bfa14311a5693b175f8985e49fc976d" title="Release all variables. " alt="" coords="1323,411,1457,437"/>
+<area shape="rect" id="node13" href="$class_pre.html#af917f0ecc9c5aedb69524ac74eb1004b" title="Create a directory. " alt="" coords="1339,107,1441,133"/>
 <area shape="rect" id="node12" href="$class_pre.html#aaf295c590dcdc8b93ef190c23150a134" title="Detects the current libraries for project. " alt="" coords="1515,411,1659,437"/>
-<area shape="rect" id="node17" href="$class_pre.html#a07dbf60fd3686233daf1df7b85408e99" title="close a file to editor " alt="" coords="1140,208,1235,235"/>
-<area shape="rect" id="node19" href="$class_pre.html#aa2b44ed6f152aecda674ade4ca12666f" title="Initialization of a table for temporary file. " alt="" coords="1113,309,1261,336"/>
-<area shape="rect" id="node20" href="$class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="1150,613,1225,640"/>
-<area shape="rect" id="node21" href="$class_pre.html#a9077ad6294b11841149aab0d117bbed1" title="Search the elegible files for extracting. " alt="" coords="1124,360,1251,387"/>
-<area shape="rect" id="node23" href="$class_pre.html#ac500f37059d268467079d4c7ecdade5e" title="Give a string duration. " alt="" coords="1343,613,1441,640"/>
-<area shape="rect" id="node24" href="$class_pre.html#a17cd9de411485392eb54054e59cb98a6" title="List translatables strings from elegible files. " alt="" coords="1126,461,1249,488"/>
-<area shape="rect" id="node28" href="$class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="1134,765,1241,792"/>
-<area shape="rect" id="node22" href="$class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f" title="Tests readability for chain collection. " alt="" coords="1325,360,1459,387"/>
-<area shape="rect" id="node25" href="$class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="1323,512,1461,539"/>
-<area shape="rect" id="node26" href="$class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="1327,563,1457,589"/>
-<area shape="rect" id="node27" href="$class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="1327,461,1457,488"/>
-<area shape="rect" id="node29" href="$class_pre.html#aa8c9ebb604b9344afba3dd5f9e14073a" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="1317,892,1467,919"/>
+<area shape="rect" id="node17" href="$class_pre.html#a07dbf60fd3686233daf1df7b85408e99" title="close a file to editor " alt="" coords="1136,208,1231,235"/>
+<area shape="rect" id="node19" href="$class_pre.html#aa2b44ed6f152aecda674ade4ca12666f" title="Initialization of a table for temporary file. " alt="" coords="1109,309,1257,336"/>
+<area shape="rect" id="node20" href="$class_pre.html#ac79cc09d7d7cf858c712c8c8c9e2cbbb" title="Give a date. " alt="" coords="1146,613,1221,640"/>
+<area shape="rect" id="node21" href="$class_pre.html#a9077ad6294b11841149aab0d117bbed1" title="Search the elegible files for extracting. " alt="" coords="1121,360,1245,387"/>
+<area shape="rect" id="node23" href="$class_pre.html#ac500f37059d268467079d4c7ecdade5e" title="Give a string duration. " alt="" coords="1341,613,1439,640"/>
+<area shape="rect" id="node24" href="$class_pre.html#a17cd9de411485392eb54054e59cb98a6" title="List translatables strings from elegible files. " alt="" coords="1123,461,1244,488"/>
+<area shape="rect" id="node28" href="$class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="1130,765,1237,792"/>
+<area shape="rect" id="node22" href="$class_pre.html#a29bfd75a1870d5ee29079fed3aa19c0f" title="Tests readability for chain collection. " alt="" coords="1323,360,1457,387"/>
+<area shape="rect" id="node25" href="$class_pre.html#a8749bb215cdcec374ce5ba54f6eb1d96" title="Display the strings to be extracted of code file. " alt="" coords="1321,512,1459,539"/>
+<area shape="rect" id="node26" href="$class_pre.html#af0380a09af5d19735a1220821492e5fe" title="Display the strings to be extracted of resource file. " alt="" coords="1325,563,1455,589"/>
+<area shape="rect" id="node27" href="$class_pre.html#a48a5451b9da56e0529fda051e09c35d4" title="Display the strings to be extracted of xml file. " alt="" coords="1325,461,1455,488"/>
+<area shape="rect" id="node29" href="$class_pre.html#aa8c9ebb604b9344afba3dd5f9e14073a" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="1317,892,1463,919"/>
 <area shape="rect" id="node30" href="$class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="1537,892,1636,919"/>
-<area shape="rect" id="node36" href="$class_col_state.html#ab0e0c201acbe2047e08c8a84e7a1da6b" title="Returns a string corresponding to the state of the &#39;Collector&#39; state graph. " alt="" coords="728,187,855,213"/>
-<area shape="rect" id="node37" href="$class_pre.html#ad6e796a5a90943a4e4aa89ca4632717f" title="Set stop complement file creating. " alt="" coords="744,237,839,264"/>
-<area shape="rect" id="node40" href="$class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c" title="Extract strings to be translated. " alt="" coords="524,596,657,623"/>
-<area shape="rect" id="node41" href="$class_pre.html#aa8a36aa79595248482a3865095fe0a65" title="Extract the strings translatable from a project. " alt="" coords="738,791,845,817"/>
-<area shape="rect" id="node42" href="$class_pre.html#abcf550356de2e90fe9c2180780abab26" title="Creating the &#39;name_project.pot&#39; file. " alt="" coords="922,816,1038,843"/>
-<area shape="rect" id="node43" href="$class_pre.html#af48b1dba2cd1dacc894770bc14359936" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="917,867,1043,893"/>
-<area shape="rect" id="node44" href="$class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="925,917,1035,944"/>
-<area shape="rect" id="node45" href="$class_pre.html#af6109b9f6b0995eff93782d37b479132" title="Verify integrity file. " alt="" coords="1139,1069,1235,1096"/>
-<area shape="rect" id="node49" href="$class_pre.html#af92fb1137bdad11dd6bd32530ed7d426" title="Launch an external executable tool in asynchronous mode. " alt="" coords="1105,1019,1269,1045"/>
-<area shape="rect" id="node50" href="$class_pre.html#a84a8a1143763a2b58ef9b79e70ef3236" title="Copy a file to an another directory. " alt="" coords="1122,867,1253,893"/>
-<area shape="rect" id="node46" href="$class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="1317,1019,1467,1045"/>
-<area shape="rect" id="node47" href="$class_pre.html#adb898d671d19f5da736d7d847cd6059d" title="Refreshes &#39;_file&#39; by replacing &#39;old&#39; text with the &#39;_new&#39;. " alt="" coords="1319,1069,1465,1096"/>
-<area shape="rect" id="node48" href="$class_pre.html#a15b876256cb71c6179af842f2e320634" title="Delete &#39;&#39; in translate strings. " alt="" coords="1343,1120,1441,1147"/>
+<area shape="rect" id="node36" href="$class_col_state.html#ab0e0c201acbe2047e08c8a84e7a1da6b" title="Returns a string corresponding to the state of the &#39;Collector&#39; state graph. " alt="" coords="724,187,851,213"/>
+<area shape="rect" id="node37" href="$class_pre.html#ad6e796a5a90943a4e4aa89ca4632717f" title="Set stop complement file creating. " alt="" coords="740,237,835,264"/>
+<area shape="rect" id="node40" href="$class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c" title="Extract strings to be translated. " alt="" coords="521,596,654,623"/>
+<area shape="rect" id="node41" href="$class_pre.html#aa8a36aa79595248482a3865095fe0a65" title="Extract the strings translatable from a project. " alt="" coords="734,791,841,817"/>
+<area shape="rect" id="node42" href="$class_pre.html#abcf550356de2e90fe9c2180780abab26" title="Creating the &#39;name_project.pot&#39; file. " alt="" coords="918,816,1034,843"/>
+<area shape="rect" id="node43" href="$class_pre.html#af48b1dba2cd1dacc894770bc14359936" title="Retrieves error or warning messages when executing &#39;xgettext&#39;. " alt="" coords="912,867,1040,893"/>
+<area shape="rect" id="node44" href="$class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="921,917,1031,944"/>
+<area shape="rect" id="node45" href="$class_pre.html#af6109b9f6b0995eff93782d37b479132" title="Verify integrity file. " alt="" coords="1135,1069,1231,1096"/>
+<area shape="rect" id="node49" href="$class_pre.html#af92fb1137bdad11dd6bd32530ed7d426" title="Launch an external executable tool in asynchronous mode. " alt="" coords="1101,1019,1265,1045"/>
+<area shape="rect" id="node50" href="$class_pre.html#a84a8a1143763a2b58ef9b79e70ef3236" title="Copy a file to an another directory. " alt="" coords="1119,867,1248,893"/>
+<area shape="rect" id="node46" href="$class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="1316,1019,1464,1045"/>
+<area shape="rect" id="node47" href="$class_pre.html#aebb2ba681054177e9923d9acbb92bf31" title="Verify header file &#39;*.dup&#39;. " alt="" coords="1327,1069,1453,1096"/>
+<area shape="rect" id="node48" href="$class_pre.html#a41d802e11d74526800084a4ccc6f53da" title="Find and Unifies duplicate translations. " alt="" coords="1313,1120,1467,1147"/>
 </map>

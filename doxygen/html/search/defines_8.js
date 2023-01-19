@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['lf',['Lf',['../defines_8h.html#abebda562077d1f24dd008b76f221a2d2',1,'defines.h']]],
-  ['lfscol',['LfScol',['../defines_8h.html#a523ec62414ed886e0060fd7e255bc4f3',1,'defines.h']]],
-  ['line',['Line',['../defines_8h.html#a2fbda23c815fe6e08d242d638f6d9c25',1,'defines.h']]]
+  ['key_5fqt',['KEY_QT',['../defines_8h.html#abc0430bc3a54e4d80f67c347750536f2',1,'defines.h']]],
+  ['key_5fwx',['KEY_WX',['../defines_8h.html#a161e43298919fd33c3f37a1d2925906c',1,'defines.h']]]
 ];

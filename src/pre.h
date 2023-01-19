@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-12-16
+ * Modified:  2023-01-17
  * Copyright: LETARTARE
  * License:   GPL
  *************************************************************
@@ -14,6 +14,7 @@
 #define _PRE_H_
 //------------------------------------------------------------------------------
 #include "colstate.h"   // for 'ColState'
+#include "defines.h"
 
 // for linux
 #ifdef __linux__
@@ -366,6 +367,11 @@ class Pre : public ColState
 		 *  \return true if good
 		 */
 		bool integrity(const bool& _replacecar);
+		/** \brief Verify header file '*.dup'
+		 *  \param _source : modify the header od '_source'
+		 *  \return true if good
+		 */
+		bool adjustHeader(wxString & _source);
 		/** \brief Delete '\\r' in translate strings
 		 *  \param _source : translate strings
 		 *  \return number deleted characters
@@ -424,7 +430,7 @@ class Pre : public ColState
 		bool m_Win = false
 		/** \brief platforms Linux
 		 */
-			 ,m_Linux = false
+			 ,m_Lin = false
 		/** \brief platforms Mac
 		 */
 			 ,m_Mac = false
@@ -500,7 +506,7 @@ class Pre : public ColState
 
 			/**  \brief executables are here ?
 			 */
-			,m_Pexeishere = false
+			,m_Pexeishere  = false
 			,m_Gexeishere  = false
 			,m_Mexeishere  = false
 			,m_Uexeishere  = false
@@ -558,7 +564,6 @@ class Pre : public ColState
 			/**  \brief
 			 */
 			,m_Rexe = "wxrc", m_PathRexe = wxEmptyString
-			,EXT_WXS = "wxs"
 			/**  \brief
 			 */
 			,m_Exttmp = wxEmptyString, m_Warnpot =  wxEmptyString
@@ -587,16 +592,16 @@ class Pre : public ColState
 			,m_Namedup, m_Shortnamedup
 			,m_Nameuni, m_Shortnameuni
 			,m_nameFileTemp, m_Inputfile
-			,m_Temp = m_Dirlocale + "temp" + wxString(wxFILE_SEP_PATH)
+			,m_Temp = m_Dirlocale + DIR_TEMP + wxString(wxFILE_SEP_PATH)
 
 			/**  \brief extract keyword default
 			 */
-			,m_KeyWx	= "_"
-			,m_KeyQt	= "tr"
+			,m_KeyWx	= KEY_WX
+			,m_KeyQt	= KEY_QT
 			,m_Keyword 	= m_KeyWx
 			,m_Eol
 		;
-		/** \brief
+		/** \brief Different boolean variables
 		 */
 		bool m_isWxProject = false
 			,m_isQtProject = false
@@ -751,7 +756,7 @@ class Pre : public ColState
 		 */
 		wxString
 			m_tagsRes = "<label <item <help <caption <note <message "
-						"<title <hint <tooltip "
+						"<title <hint <tooltip <longhelp "
 
 		/** \brief  tags finded into '*.xml'
 		 */
@@ -760,9 +765,10 @@ class Pre : public ColState
 			/// "thanksto "
 
         /** \brief  banned strings finded into all
+         *  \note Used to ban the occurrences of the marks
          */
 			,m_bannedMarks =
-				"- + ... * ? m_  ll xx aaa eee nnn xxx vvv www "
+				"- + ... * ? m_ ll xx aaa eee nnn xxx vvv www Ø \"\" "
 				"-fpic -fno-rtti c,cpp,cxx,cc,c++ Cygwin GCC "
 				"GNU Linux Allman (ANSI) Java K&&R Stroustrup VTK "
 				"Horstmann Ratliff Whitesmith 1TBS Google Mozilla "
@@ -772,9 +778,13 @@ class Pre : public ColState
 				"CR LF AUTO Windows >Mac (CR) ASCII (ISO-8859-1) ID: "
 
 		 /** \brief  begin banned strings finded into all files for 'C::B'
+		  *  \note Used to ban the occurrences of the marks at begin text
+		  *  \note Oriented to 'Code::Blocks'
          */
 			,m_beginBannedMarks =
-				"- + ... * ? m_  ll xx aaa eee nnn xxx vvv www \"\" "
+				"\"16 3 1 \", Addr2LineUI 0x801100 160000000UL "
+				". - + ... : * ? m_ < > ^ //-- /*-- ll xx aaa eee nnn xxx vvv www "
+				"\"\" \n Ø 0 m_Content ModPoller tidycmt Addr2LineUI"
 				"-fpic -fno-rtti c,cpp,cxx,cc,c++ Cygwin GDB CDB AT&T Intel "
 				"/dev/ttyS0 192.168.0.1 YAML LaTeX POD Verb "
 				"GCC ASM SQL Smalltalk Ruby Python XBase Powershell Postscript Perl "
@@ -784,6 +794,41 @@ class Pre : public ColState
 				"AngelScript Ada Motorola 68k TreeCtrl1 "
 				"-fno-omit-frame-pointer UUID C/C++ ID: C++ 0x0 LF CR "
 				"M3000 AVR ARM cortex- Motorola S-Record Squirrel "
+				"at43usb320 at43usb355 at76c711 at86rf401 at90c8534 at90can128 "
+				"at90can32 at90can64 at90pwm1 at90pwm161 at90pwm2 at90pwm216 "
+				"at90pwm2b at90pwm3 at90pwm316 at90pwm3b at90pwm81 at90s1200 "
+				"at90s2313 at90s2333 at90s2343 at90s4414 at90s4433 at90s8515 "
+				"at90s8535 at90scr100 at90usb1286 at90usb1287 at90usb647 at90usb82 "
+				"at94k ata6289 atmega103 atmega128 atmega1280 atmega1281 atmega1284p "
+				"atmega128rfa1 atmega16 atmega161 atmega162 atmega163 atmega164a "
+				"atmega164p atmega165 atmega165a atmega165p atmega168 atmega168a "
+				"atmega168p atmega169 atmega169a atmega169p atmega169pa atmega16a"
+				"atmega16hva atmega16hva2 atmega16hvb atmega16hvbrevb atmega16m1 "
+				"atmega16u4 atmega2560 atmega2561 atmega32 atmega323 atmega324a "
+				"atmega324p atmega324pa atmega325 atmega3250 atmega3250a atmega3250p "
+				"atmega3250pa atmega325a atmega325p atmega325p atmega328 atmega328p "
+				"atmega329 atmega3290 atmega3290a atmega3290p atmega3290p atmega329a "
+				"atmega329p atmega329p atmega32c1 atmega32hvb atmega32hvbrevb atmega32m1 "
+				"atmega32u4 atmega32u6 atmega406 atmega48 atmega48a atmega48p "
+				"amega4hvd atmega48pa atmega64 atmega640 atmega644 atmega644a "
+				"atmega644p atmega644pa atmega6450 atmega6450a atmega6450p atmega645a "
+				"atmega645p atmega649 atmega6490 atmega6490a atmega6490p atmega649a "
+				"atmega649p atmega64c1 atmega64hve atmega64m1 atmega8 atmega8515 "
+				"atmega8535 atmega88 atmega88a atmega88p atmega88pa atmega8hva "
+				"atmega8hvd attiny10 attiny11 attiny12 attiny13 attiny13a attiny15 "
+				"attiny20 attiny22 attiny2313 attiny2313a attiny24 attiny24a attiny25 "
+				"attiny26 attiny261 attiny261a attiny28 attiny327 attiny4 attiny40 "
+				"attiny4313 attiny43u attiny44 attiny44a attiny45 attiny461 attiny461a "
+				"attiny48 attiny5 attiny84 attiny84a attiny85 attiny861 attiny861a "
+				"attiny87 attiny88 attiny9 atxmega128a1 atxmega128a1u atxmega128a3 "
+				"atxmega128b1 atxmega128d3 atxmega16a4 atxmega16d4 atxmega16x1 "
+				"atxmega192a3 atxmega192d3 atxmega256a3 atxmega256a3b atxmega256a3bu "
+				"atxmega256d3 atxmega32a4 atxmega32d4 atxmega32x1 atxmega64a1 atxmega64a1u "
+				"atxmega64a3 atxmega64d3 avr1 avr2 avr25 avr3 avr31 avr35 avr4 avr5 "
+				"avr51 avr6 avrtiny10 avrxmega1 avrxmega2 avrxmega3 avrxmega4 avrxmega5 "
+				"avrxmega6 avrxmega7 m3000f m3000 m3000s m3001b jtagmkII_avr32 "
+				"at90usb646 at90s2323 at90s4434 at90usb162 atmega16a atmega16hva "
+				"atmega325pa atmega3290pa atmega329pa atmega4hvd atmega645 "
 				"AT90S2313 AT90S232 AT90S2333 AT90S2343 AT90S4414 AT90S4433 "
 				"AT90S4434 AT90S8515 AT90C8534 AT90s8535 AT90usb82 AT90usb162 "
 				"AT90PWM1 AT90PWM2 AT90PWM2B AT90PWM3 AT90PWM3b AT90PWM81 AT90K "
@@ -877,7 +922,7 @@ class Pre : public ColState
 				"(MMX, 3DNow!) 3DNow!, SSE re-gf re-iar DWARF 2 ABI "
 				"VFPv2 VFPv3 VFPv3_D16 VFPv3_D16_FP16 VFPv4 VFPv4_sp VFP9-S "
 				"PowerPC  e300v1  e300c1  e300c2 e300c3 e300c4 e500v1 e500v2 e600 Zen 5565 gekko "
-				"wxAdvanced wxAUI wxGL wxHTML wxMedia wxNet 'wxPropertyGrid wxQA "
+				"wxAdvanced wxAUI wxGL wxHTML wxMedia wxNet wxPropertyGrid wxQA "
 				"wxRibbon wxRichText wxSTC wxWebView wxXML wxXRC wxWidgets "
 				"EasyRun TC1796 TriBoard TC1130 TC1161 TC1162 TC1762 TC1766 TC1792 "
 				"TC1796 TC1797 EasyKit TC1767 phyCORE TC1130 amd intel amd16 intel16 "

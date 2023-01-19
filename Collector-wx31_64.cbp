@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Collector-1.7.9-810seh-317-sdk2190" />
+		<Option title="Collector-1.8.0-810seh-317-sdk2190" />
 		<Option platforms="Windows;" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />

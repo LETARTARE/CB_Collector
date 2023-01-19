@@ -1,4 +1,4 @@
-# Collecteurr-1.7.8,  17 décembre 2022 (Win-64, Linux-64)
+# Collecteurr-1.8.0,  17 janvier 2023 (Win-64, Linux-64)
 
 Extension de traduction des apllications (wxWidgets) avec 'Code::Blocks'
 
@@ -51,7 +51,7 @@ B- Conditions préalables
 				- choisissez '...\win_321\Collector.cbpugin'
 				- ...
 				=> vous verrez dans le journal 'Collector'
-			** "Plate-forme : 'Win-64', 'sdk-2.23.0', 'Collector-1.7.8', construit le '22/12/317::10:09:15'" 
+			** "Plate-forme : 'Win-64', 'sdk-2.23.0', 'Collector-1.8.0', construit le '23/01/17::10:09:15'" 
 
 		- Lin-64 :
 			-  Générer->Générer' => 
@@ -61,7 +61,7 @@ B- Conditions préalables
 				- choisissez '.../lin_321/Collector.cbpugin'
 				- ...
 				=> dans le journal 'Collecter'
-			** "Plate-forme : 'Lin-64', 'sdk-2.23.0', 'Collector-1.7.8', construit le '22/12/317::10:09:15'" 
+			** "Plate-forme : 'Lin-64', 'sdk-2.23.0', 'Collector-1.8.0', construit le '23/12/17::10:09:15'" 
 				
 	3- Vous devez voir le menu '&Collecter' ou 'Collecteur Toolbar' dans la barre d'outils.
 

@@ -1,7 +1,10 @@
-<map id="/home/louis/Travail/SVN_COMPILE/Cb/Gcc821/wx321/Extensions/sdk2230/Collector/Wx/1.7.8/src/defines.h" name="/home/louis/Travail/SVN_COMPILE/Cb/Gcc821/wx321/Extensions/sdk2230/Collector/Wx/1.7.8/src/defines.h">
-<area shape="rect" id="node2" href="$collector_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/collector.cpp" alt="" coords="5,124,240,195"/>
-<area shape="rect" id="node3" href="$colstate_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/colstate.cpp" alt="" coords="264,124,496,195"/>
-<area shape="rect" id="node4" href="$createforqt_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/createforqt.cpp" alt="" coords="520,124,768,195"/>
-<area shape="rect" id="node5" href="$createforwx_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/createforwx.cpp" alt="" coords="793,124,1047,195"/>
-<area shape="rect" id="node6" href="$pre_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/pre.cpp" alt="" coords="1071,124,1275,195"/>
+<map id="defines.h" name="defines.h">
+<area shape="rect" id="node2" href="$pre_8h.html" title="pre.h" alt="" coords="193,80,244,107"/>
+<area shape="rect" id="node4" href="$collector_8cpp.html" title="collector.cpp" alt="" coords="22,229,118,256"/>
+<area shape="rect" id="node5" href="$createforwx_8cpp.html" title="createforwx.cpp" alt="" coords="340,229,454,256"/>
+<area shape="rect" id="node7" href="$createforqt_8cpp.html" title="createforqt.cpp" alt="" coords="187,229,295,256"/>
+<area shape="rect" id="node8" href="$pre_8cpp.html" title="pre.cpp" alt="" coords="266,155,331,181"/>
+<area shape="rect" id="node9" href="$colstate_8cpp.html" title="colstate.cpp" alt="" coords="457,80,550,107"/>
+<area shape="rect" id="node3" href="$createforwx_8h.html" title="createforwx.h" alt="" coords="142,155,241,181"/>
+<area shape="rect" id="node6" href="$createforqt_8h.html" title="createforqt.h" alt="" coords="23,155,118,181"/>
 </map>

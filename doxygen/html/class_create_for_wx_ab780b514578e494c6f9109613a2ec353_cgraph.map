@@ -1,7 +1,7 @@
 <map id="CreateForWx::creatingPot" name="CreateForWx::creatingPot">
-<area shape="rect" id="node2" href="$class_pre.html#aa8c9ebb604b9344afba3dd5f9e14073a" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="239,5,388,32"/>
-<area shape="rect" id="node5" href="$class_create_for_wx.html#a0ed056f22a319136cb6744977294b7c9" title="Delete all temporary file. " alt="" coords="228,56,399,83"/>
-<area shape="rect" id="node3" href="$class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="459,5,558,32"/>
-<area shape="rect" id="node4" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="619,5,729,32"/>
-<area shape="rect" id="node6" href="$class_pre.html#a3e392c946bee7fd92001373399a1df4b" title="Recursively deletes non&#45;empty directories. " alt="" coords="447,56,571,83"/>
+<area shape="rect" id="node2" href="$class_pre.html#aa8c9ebb604b9344afba3dd5f9e14073a" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="238,5,385,32"/>
+<area shape="rect" id="node5" href="$class_create_for_wx.html#a0ed056f22a319136cb6744977294b7c9" title="Delete all temporary file. " alt="" coords="227,56,396,83"/>
+<area shape="rect" id="node3" href="$class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="456,5,555,32"/>
+<area shape="rect" id="node4" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="615,5,725,32"/>
+<area shape="rect" id="node6" href="$class_pre.html#a3e392c946bee7fd92001373399a1df4b" title="Recursively deletes non&#45;empty directories. " alt="" coords="444,56,567,83"/>
 </map>

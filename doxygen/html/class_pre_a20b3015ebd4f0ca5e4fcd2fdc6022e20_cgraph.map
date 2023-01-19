@@ -1,7 +1,7 @@
 <map id="Pre::endaction" name="Pre::endaction">
-<area shape="rect" id="node2" href="$class_pre.html#aa8c9ebb604b9344afba3dd5f9e14073a" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="160,5,309,32"/>
-<area shape="rect" id="node5" href="$class_pre.html#ae3c3702e9427cdb08d10f4b2b019d8b3" title="Give a duration (milliseconds) " alt="" coords="187,56,282,83"/>
-<area shape="rect" id="node6" href="$class_pre.html#ac500f37059d268467079d4c7ecdade5e" title="Give a string duration. " alt="" coords="185,107,284,133"/>
-<area shape="rect" id="node3" href="$class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="357,5,456,32"/>
-<area shape="rect" id="node4" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="504,5,615,32"/>
+<area shape="rect" id="node2" href="$class_pre.html#aa8c9ebb604b9344afba3dd5f9e14073a" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="160,5,307,32"/>
+<area shape="rect" id="node5" href="$class_pre.html#ae3c3702e9427cdb08d10f4b2b019d8b3" title="Give a duration (milliseconds) " alt="" coords="186,56,281,83"/>
+<area shape="rect" id="node6" href="$class_pre.html#ac500f37059d268467079d4c7ecdade5e" title="Give a string duration. " alt="" coords="184,107,283,133"/>
+<area shape="rect" id="node3" href="$class_pre.html#a0c41270b1d60e164c94c286213bdfd18" title="Display a file to editor. " alt="" coords="355,5,453,32"/>
+<area shape="rect" id="node4" href="$class_pre.html#ad6c83ed54f3f22abcc25ee1de4581a04" title="Call to &#39;cbMessageBox(_mes, &quot;&quot;, wxICON_ERROR)&#39;. " alt="" coords="501,5,612,32"/>
 </map>

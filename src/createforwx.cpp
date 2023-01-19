@@ -304,7 +304,7 @@ _printD("Begin 'CreateForWx::initWx()'" );
 		EXT_WXS = "wxs"; m_Exttmp = "str";
 	}
 	else
-	if (m_Linux)
+	if (m_Lin)
 	{
 		m_Rexe = "wxrc";
 		EXT_WXS = "wxs" ; m_Exttmp = "str" ;
@@ -593,7 +593,7 @@ _printD("=> Begin 'CreateForWx::searchExe()'");
 			m_PathLocalIts = UnixFilename(".\\its\\", wxPATH_NATIVE);
 		}
 		else
-		if (m_Linux)
+		if (m_Lin)
 		{
 			newpath = "/usr/share/gettext/its/";
 			m_PathIts = UnixFilename(newpath, wxPATH_NATIVE);
@@ -917,7 +917,60 @@ _printD("	<= End 'CreateForWx::listStringsCode(...) => " + strInt(nbstr) + ")'")
 }
 
 // -----------------------------------------------------------------------------
-// List all strings in files '*.wrc' and '*.wks'
+//
+// Called by :
+//		1. Pre::listGoodfiles(bool _verify):1,
+// Call to :
+//		1. Pre::GexewithError(wxString, wxString, bool):1,
+// -----------------------------------------------------------------------------
+wxInt32 CreateForWx::listStringsRes(wxString& _shortfile)
+{
+_printD("=> Begin 'CreateForWx::listStringsRes(" + _shortfile + ")'");
+/// extracts strings of '*.xrc' ou '*.wxs' => '*_xrc.str??' or '*_wxs.str??'
+	//===========================================
+	wxInt32 nbstr = extractStringsRes(_shortfile);
+	//===========================================
+	if (!nbstr)	return 0;
+// 'm_nameFileTemp' contains the resource file name
+//_printWarn("res =>" + quote(m_nameFileTemp));
+
+	wxString longfile = m_nameFileTemp;
+//1- absolute name inputfile
+//	if (m_Workspace) 	longfile.Prepend(m_Dirproject);
+//2- build command : 'xgettext -C -k_ infile -o- ....'  => console
+	wxString key = " -k" + m_Keyword;
+//_printError("key = " + quote(key) );
+	wxString command = m_PathGexe + " --c++ --from-code=UTF-8" + key;
+	// inputfile
+	command += dquote(longfile) ;
+	// output  to 'stdout'
+	command += " -o-";
+	// without header of the form 'msgid ""'
+	command += " --omit-header";
+	// text indent
+	//command += " -i";
+	// files sorted
+	//command += " -F";
+	// data sorted
+	//command += " -s" ;
+	// text width before new line
+	//command += " -w 180";
+	command += " -w 80";
+	//command += " --no-wrap " ;
+
+//_print("command :" + quote(command));
+//3- command execute with error
+	// list string into
+	//=====================================================================
+	nbstr = Pre::GexewithError(_shortfile, command, PREPEND_ERROR);
+	//=====================================================================
+
+_printD("	<= End 'CreateForWx::listStringsRes(...) => " + strInt(nbstr) + ")'");
+
+	return nbstr;
+}
+// -----------------------------------------------------------------------------
+// List all strings in files '*.wrc' and '*.wxs'
 //
 //  Command of 'wxrc'
 //
@@ -958,9 +1011,9 @@ _printD("	<= End 'CreateForWx::listStringsCode(...) => " + strInt(nbstr) + ")'")
 //		1. CreateForWx::expandName(wxString _file, wxInt32 _indexfree):1,
 //		1. CreateForWx::RexewithError(wxString, wxString, bool):1,
 //
-wxInt32 CreateForWx::listStringsRes(wxString& _file)
+wxInt32 CreateForWx::extractStringsRes(wxString& _file)
 {
-_printD("=> Begin 'CreateForWx::listStringsRes(" + quoteNS(_file) + ")'");
+_printD("=> Begin 'CreateForWx::extractStringsRes(" + quoteNS(_file) + ")'");
 
 	if (m_PathRexe.IsEmpty() )	return wxNOT_FOUND;
 //1- path name output file
@@ -972,6 +1025,7 @@ _printD("=> Begin 'CreateForWx::listStringsRes(" + quoteNS(_file) + ")'");
 	wxString filemod = expandName(_file, indexfree);
 	//==============================================
 	m_nameFileTemp = m_Temp + filemod.AfterLast(cSlash);
+//_printError("m_nameFileTem = " + quote(m_nameFileTemp) );
 	if (m_Workspace)
 	{
 	// change 'm_DirProject' ->  'm_DirprojectLeader'
@@ -1005,7 +1059,7 @@ _printD("=> Begin 'CreateForWx::listStringsRes(" + quoteNS(_file) + ")'");
 		}
 	}
 
-_printD("	<= End 'CreateForWx::listStringsRes(...) => " + strInt(nbstr) + ")'");
+_printD("	<= End 'CreateForWx::extractStringsRes(...) => " + strInt(nbstr) + ")'");
 
 	return nbstr;
 }

@@ -3,7 +3,7 @@
  * Purpose:   Code::Blocks plugin
  * Author:    LETARTARE
  * Created:   2020-05-10
- * Modified:  2022-12-15
+ * Modified:  2023-01-17
  * Copyright: LETARTARE
  * License:   GPL
  **************************************************************/
@@ -15,7 +15,7 @@
 ///-----------------------------------------------------------------------------
 /** Version
  */
-#define VERSION_COLLECT wxString("1.7.8")
+#define VERSION_COLLECT wxString("-1.8.0")
 
 //=========================================================
 /** \brief  For 'Collector::MesToLog'
@@ -33,9 +33,18 @@
 #define NO_RES    	true
 #define NO_XML    	true
 
-/** \brief  external traductor
+/** \brief  external traductor tools
  */
-#define EXTERN_TRANSLATOR wxString("Poedit")
+#define EXTERN_TRANSLATOR wxString("poedit")
+
+/** \brief the keys for translate
+ */
+#define	KEY_WX	"_"
+#define	KEY_QT	"tr"
+
+/** \brief name of directory for complements of 'Qt' project
+ */
+#define dirAddon	"adding"
 
 /** @brief end of line for Win/Linux/OX
  */
@@ -84,7 +93,7 @@
 #define 	quoteNS(__s)	(Quote + wxString(__s) + Quote)
 #define 	dquote(__s)		(Space + Dquote + wxString(__s) + Dquote + Space)
 #define 	dquoteNS(__s)	(Dquote + wxString(__s) + Dquote)
-#define 	markNS(__s)		("=>" + Lf + wxString(__s) + Lf + "<=")
+#define 	markNS(__s)		("=>>" + Lf + wxString(__s) + Lf + "<<=")
 // for __s is a string, __c is a character
 #define     within(__s, __c) (__s.AfterFirst('__c').BeforeLast('__c') )
 
@@ -155,6 +164,10 @@
 //#define printCritical(__a)	Collector->MesToLog(__a, Logger::critical)
 
 ///-----------------------------------------------------------------------------
+/** @brief directory temporary name
+ */
+#define	DIR_TEMP	wxString("temp")
+
 /** @brief news extensions for 'Qt'
  */
 #define		EXT_UI			"ui"
@@ -179,6 +192,39 @@
 #define		T_FUZZY			T_FLAG"fuzzy"
 #define 	T_BANNED		T_COMM"banned"
 
+/** @brief news extensions for 'lconvert'
+ */
+#define		DOT_EXT_QM		".qm"
+#define		DOT_EXT_TS		".ts"
+
+/** Project unknow
+ */
+#define 	L_UNKNOWN		""
+/** Project 'Wx'
+ */
+#define 	L_WX			"_WX"
+/** Project 'Qt'
+ */
+#define 	L_QT			"_QT"
+/** Project 'Wx' + targets 'Qt'
+ */
+#define 	L_WX_QT			"_WX_QT"
+/** Project 'Qt' + targets 'Wx'
+ */
+#define 	L_QT_WX			"_QT_WX"
+
+/** Name prolong for workspace
+ */
+#define 	PROLONG_WS		"_ws"
+/** New extensions internals
+ */
+#define 	EXT_DUP			wxString("dup")
+#define 	DOT_EXT_DUP		cDot + EXT_DUP
+#define 	EXT_UNI			wxString("uni")
+#define 	DOT_EXT_UNI		cDot + EXT_UNI
+
+/** Extensions externals
+ */
 #include <filefilters.h>
 /// c++ code
 #define  	EXT_H 				FileFilters::H_EXT
@@ -197,7 +243,7 @@
 /// xrc
 #define  	EXT_XRC 			FileFilters::XRCRESOURCE_EXT
 #define  	DOT_EXT_XRC 		FileFilters::XRCRESOURCE_DOT_EXT
-/// wks
+/// wxs
 #define		EXT_WXS			 	wxString("wxs")
 #define  	DOT_EXT_WXS 		cDot + EXT_WXS
 /// xml
@@ -205,6 +251,7 @@
 #define 	DOT_EXT_XML			FileFilters::XML_DOT_EXT
 /// .dll
 #define     DOT_DYNAMICLIB_EXT  FileFilters::DYNAMICLIB_DOT_EXT
+
 ///-----------------------------------------------------------------------------
 /** @brief local booleans
  */

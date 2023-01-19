@@ -191,7 +191,7 @@ bool CreateForQt::findTargetQtexe(CompileTargetBase * _pBuildTarget)
 		m_LLexe = qtexe + "linguist.exe" ;
 	}
 	else
-	if (m_Linux)
+	if (m_Lin)
 	{
 		m_LUexe = qtexe + "lupdate" ;
 		m_LRexe = qtexe + "lrelease" ;

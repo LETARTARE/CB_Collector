@@ -1,22 +1,22 @@
 <map id="Pre::openedit" name="Pre::openedit">
-<area shape="rect" id="node2" href="$class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="572,37,683,64"/>
-<area shape="rect" id="node13" href="$class_pre.html#aa8c9ebb604b9344afba3dd5f9e14073a" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="152,88,301,115"/>
-<area shape="rect" id="node3" href="$class_pre.html#aa8a36aa79595248482a3865095fe0a65" title="Extract the strings translatable from a project. " alt="" coords="731,63,837,89"/>
-<area shape="rect" id="node4" href="$class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c" title="Extract strings to be translated. " alt="" coords="885,37,1019,64"/>
-<area shape="rect" id="node9" href="$class_pre.html#a346ee750d8b28d66efbaf2c4342718e8" title="Extract the strings translatable from worspace. " alt="" coords="888,139,1016,165"/>
-<area shape="rect" id="node5" href="$class_collector.html#af7b748977fb136842774e550b6c915b8" title="Places the status graph in the extracting project report. " alt="" coords="1231,37,1420,64"/>
-<area shape="rect" id="node6" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="1733,113,1880,140"/>
-<area shape="rect" id="node8" href="$class_collector.html#a24cfe1b83b040784e834277da16e0a68" title="Places the status grap in the listing and extract report. " alt="" coords="1473,37,1683,64"/>
-<area shape="rect" id="node7" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="1928,113,2104,140"/>
-<area shape="rect" id="node10" href="$class_pre.html#a8684f86d5efbdb8e3d688590d28a3179" title="Extract strings to be translated in workspace. " alt="" coords="1067,139,1180,165"/>
-<area shape="rect" id="node11" href="$class_collector.html#a0dd8300c95e93daf33d5141d38c74c0d" title="Places the status graph in the extracting workspace report. " alt="" coords="1228,139,1423,165"/>
-<area shape="rect" id="node12" href="$class_collector.html#a6f578e146a373e98a2638c6a509ee193" title="Places the status grap in the listing and extract workspace report. " alt="" coords="1471,189,1685,216"/>
-<area shape="rect" id="node14" href="$class_create_for_wx.html#ab780b514578e494c6f9109613a2ec353" title="Create the file &#39;*.pot&#39; containing all translatable string(s) " alt="" coords="349,164,524,191"/>
-<area shape="rect" id="node15" href="$class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="383,113,490,140"/>
-<area shape="rect" id="node16" href="$class_pre.html#a0236657277d3ebf2dc392a6f05e215c5" title="Search and memorize strings to be extracted from workspace. " alt="" coords="899,189,1005,216"/>
-<area shape="rect" id="node19" href="$class_pre.html#a58700da6472228a04e8b26033a63d438" title="Search and memorize strings to be extracted. " alt="" coords="742,139,826,165"/>
-<area shape="rect" id="node17" href="$class_pre.html#aa9b0b0f3b571d8c8b511ed3134d26bb4" title="List strings to be translated in workspace. " alt="" coords="1077,189,1169,216"/>
-<area shape="rect" id="node18" href="$class_collector.html#ad05ff772ab635dd2b018af610c45f666" title="Places the status graph in the listing workspace report. " alt="" coords="1239,189,1412,216"/>
-<area shape="rect" id="node20" href="$class_pre.html#a6537186bec965c977da90bb2a1feac67" title=" " alt="" coords="896,88,1008,115"/>
-<area shape="rect" id="node21" href="$class_collector.html#a7a52cb7e51c2bafa5ca760e2f005f427" title="Places the status graph in the listing project report. " alt="" coords="1241,88,1409,115"/>
+<area shape="rect" id="node2" href="$class_pre.html#a959385935eed997d2393b62d6b1b21df" title="Ending extracting. " alt="" coords="568,37,679,64"/>
+<area shape="rect" id="node13" href="$class_pre.html#aa8c9ebb604b9344afba3dd5f9e14073a" title="Save an array to disk and open the file in &#39;Editor&#39;. " alt="" coords="152,88,299,115"/>
+<area shape="rect" id="node3" href="$class_pre.html#aa8a36aa79595248482a3865095fe0a65" title="Extract the strings translatable from a project. " alt="" coords="727,63,833,89"/>
+<area shape="rect" id="node4" href="$class_pre.html#a4324dc0618ec55468f2c1979b2e66f2c" title="Extract strings to be translated. " alt="" coords="881,37,1015,64"/>
+<area shape="rect" id="node9" href="$class_pre.html#a346ee750d8b28d66efbaf2c4342718e8" title="Extract the strings translatable from worspace. " alt="" coords="883,139,1013,165"/>
+<area shape="rect" id="node5" href="$class_collector.html#af7b748977fb136842774e550b6c915b8" title="Places the status graph in the extracting project report. " alt="" coords="1229,37,1417,64"/>
+<area shape="rect" id="node6" href="$class_collector.html#a772e3452af93d18c7764aed8245af527" title="Call all &#39;OnMenu...()&#39;. " alt="" coords="1731,113,1876,140"/>
+<area shape="rect" id="node8" href="$class_collector.html#a24cfe1b83b040784e834277da16e0a68" title="Places the status grap in the listing and extract report. " alt="" coords="1471,37,1680,64"/>
+<area shape="rect" id="node7" href="$class_collector.html#a4d9c1a6b570a3cf86ee6e96d3344531e" title="Only one method for all events. " alt="" coords="1924,113,2099,140"/>
+<area shape="rect" id="node10" href="$class_pre.html#a8684f86d5efbdb8e3d688590d28a3179" title="Extract strings to be translated in workspace. " alt="" coords="1063,139,1177,165"/>
+<area shape="rect" id="node11" href="$class_collector.html#a0dd8300c95e93daf33d5141d38c74c0d" title="Places the status graph in the extracting workspace report. " alt="" coords="1225,139,1420,165"/>
+<area shape="rect" id="node12" href="$class_collector.html#a6f578e146a373e98a2638c6a509ee193" title="Places the status grap in the listing and extract workspace report. " alt="" coords="1468,189,1683,216"/>
+<area shape="rect" id="node14" href="$class_create_for_wx.html#ab780b514578e494c6f9109613a2ec353" title="Create the file &#39;*.pot&#39; containing all translatable string(s) " alt="" coords="347,164,520,191"/>
+<area shape="rect" id="node15" href="$class_pre.html#a20b3015ebd4f0ca5e4fcd2fdc6022e20" title="Display messages of ending listing or extracting. " alt="" coords="380,113,487,140"/>
+<area shape="rect" id="node16" href="$class_pre.html#a0236657277d3ebf2dc392a6f05e215c5" title="Search and memorize strings to be extracted from workspace. " alt="" coords="895,189,1001,216"/>
+<area shape="rect" id="node19" href="$class_pre.html#a58700da6472228a04e8b26033a63d438" title="Search and memorize strings to be extracted. " alt="" coords="738,139,822,165"/>
+<area shape="rect" id="node17" href="$class_pre.html#aa9b0b0f3b571d8c8b511ed3134d26bb4" title="List strings to be translated in workspace. " alt="" coords="1073,189,1167,216"/>
+<area shape="rect" id="node18" href="$class_collector.html#ad05ff772ab635dd2b018af610c45f666" title="Places the status graph in the listing workspace report. " alt="" coords="1236,189,1409,216"/>
+<area shape="rect" id="node20" href="$class_pre.html#a6537186bec965c977da90bb2a1feac67" title=" " alt="" coords="892,88,1004,115"/>
+<area shape="rect" id="node21" href="$class_collector.html#a7a52cb7e51c2bafa5ca760e2f005f427" title="Places the status graph in the listing project report. " alt="" coords="1239,88,1406,115"/>
 </map>

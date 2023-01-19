@@ -147,7 +147,7 @@ void Collector::OnAttach()
 //1- manager
     m_pM = Manager::Get();
 	if (!m_pM)  return ;
-//2- projects manager
+//2- others manager
 	m_pMprj = m_pM->GetProjectManager();
 	if (!m_pMprj)  return ;
 
@@ -241,7 +241,6 @@ void Collector::OnAttach()
 		//_print(Mes);
     }
 
-
 //11- user welcome message
 	if (m_pCreateWx && m_pCreateQt)
 	{
@@ -264,7 +263,9 @@ void Collector::OnAttach()
 // Construct menu on 'menuBar'
 //
 //	Called by :
-//	1. 'ProjectsManager'
+//	1. MainFrame::CreateMenubar():1,
+//  2. MainFrame::DoAddPlugin(cbPlugin* plugin):2,
+//
 // Call to : none
 //
 void Collector::BuildMenu(wxMenuBar* _pMenuBar)

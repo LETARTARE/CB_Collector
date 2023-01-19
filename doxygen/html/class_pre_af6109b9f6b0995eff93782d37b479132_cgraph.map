@@ -1,8 +1,9 @@
 <map id="Pre::integrity" name="Pre::integrity">
-<area shape="rect" id="node2" href="$class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="152,5,301,32"/>
-<area shape="rect" id="node3" href="$class_pre.html#adb898d671d19f5da736d7d847cd6059d" title="Refreshes &#39;_file&#39; by replacing &#39;old&#39; text with the &#39;_new&#39;. " alt="" coords="154,56,299,83"/>
-<area shape="rect" id="node4" href="$class_pre.html#a15b876256cb71c6179af842f2e320634" title="Delete &#39;&#39; in translate strings. " alt="" coords="177,107,276,133"/>
-<area shape="rect" id="node5" href="$class_pre.html#a41d802e11d74526800084a4ccc6f53da" title="Find and Unifies duplicate translations. " alt="" coords="149,157,304,184"/>
-<area shape="rect" id="node7" href="$class_pre.html#a332daf7c35dd6b93ad96c6a77e282e8b" title="Merge new &#39;_new&#39; file with &#39;_old&#39; file and update &#39;_old&#39; file. " alt="" coords="169,208,284,235"/>
-<area shape="rect" id="node6" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line mode synchronous. " alt="" coords="352,175,531,217"/>
+<area shape="rect" id="node2" href="$class_pre.html#a88e3bef0ca2ea7f66d9aa18292b88ba6" title="Read contents file. " alt="" coords="152,5,300,32"/>
+<area shape="rect" id="node3" href="$class_pre.html#aebb2ba681054177e9923d9acbb92bf31" title="Verify header file &#39;*.dup&#39;. " alt="" coords="163,56,289,83"/>
+<area shape="rect" id="node6" href="$class_pre.html#a41d802e11d74526800084a4ccc6f53da" title="Find and Unifies duplicate translations. " alt="" coords="149,107,303,133"/>
+<area shape="rect" id="node8" href="$class_pre.html#a332daf7c35dd6b93ad96c6a77e282e8b" title="Merge new &#39;_new&#39; file with &#39;_old&#39; file and update &#39;_old&#39; file. " alt="" coords="169,157,283,184"/>
+<area shape="rect" id="node4" href="$class_pre.html#adb898d671d19f5da736d7d847cd6059d" title="Refreshes &#39;_file&#39; by replacing &#39;old&#39; text with the &#39;_new&#39;. " alt="" coords="368,16,512,43"/>
+<area shape="rect" id="node5" href="$class_pre.html#a0fdec89814261cb970450a316ecb7c7f" title="Get the date followed by the time of construction of the plugin. " alt="" coords="359,67,521,93"/>
+<area shape="rect" id="node7" href="$class_pre.html#a8ecc4928641aebbd2da6e9221c32aded" title="Launch a command line mode synchronous. " alt="" coords="351,129,529,170"/>
 </map>

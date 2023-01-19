@@ -1,8 +1,11 @@
-<map id="/home/louis/Travail/SVN_COMPILE/Cb/Gcc821/wx321/Extensions/sdk2230/Collector/Wx/1.7.8/src/collector.h" name="/home/louis/Travail/SVN_COMPILE/Cb/Gcc821/wx321/Extensions/sdk2230/Collector/Wx/1.7.8/src/collector.h">
-<area shape="rect" id="node2" href="$collector_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/collector.cpp" alt="" coords="5,243,240,313"/>
-<area shape="rect" id="node3" href="$defines_8h.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/defines.h" alt="" coords="405,124,619,195"/>
-<area shape="rect" id="node4" href="$colstate_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/colstate.cpp" alt="" coords="264,243,496,313"/>
-<area shape="rect" id="node5" href="$createforqt_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/createforqt.cpp" alt="" coords="520,243,768,313"/>
-<area shape="rect" id="node6" href="$createforwx_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/createforwx.cpp" alt="" coords="793,243,1047,313"/>
-<area shape="rect" id="node7" href="$pre_8cpp.html" title="/home/louis/Travail\l/SVN_COMPILE/Cb/Gcc821\l/wx321/Extensions/sdk2230\l/Collector/Wx/1.7.8/src/pre.cpp" alt="" coords="1071,243,1275,313"/>
+<map id="collector.h" name="collector.h">
+<area shape="rect" id="node2" href="$collector_8cpp.html" title="collector.cpp" alt="" coords="12,304,108,331"/>
+<area shape="rect" id="node3" href="$defines_8h.html" title="defines.h" alt="" coords="112,80,187,107"/>
+<area shape="rect" id="node4" href="$pre_8h.html" title="pre.h" alt="" coords="220,155,271,181"/>
+<area shape="rect" id="node6" href="$createforwx_8cpp.html" title="createforwx.cpp" alt="" coords="157,304,270,331"/>
+<area shape="rect" id="node8" href="$createforqt_8cpp.html" title="createforqt.cpp" alt="" coords="355,304,463,331"/>
+<area shape="rect" id="node9" href="$pre_8cpp.html" title="pre.cpp" alt="" coords="43,229,109,256"/>
+<area shape="rect" id="node10" href="$colstate_8cpp.html" title="colstate.cpp" alt="" coords="103,155,196,181"/>
+<area shape="rect" id="node5" href="$createforwx_8h.html" title="createforwx.h" alt="" coords="133,229,232,256"/>
+<area shape="rect" id="node7" href="$createforqt_8h.html" title="createforqt.h" alt="" coords="257,229,351,256"/>
 </map>

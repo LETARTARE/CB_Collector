@@ -1,4 +1,4 @@
 <map id="CreateForWx" name="CreateForWx">
-<area shape="rect" id="node2" href="$class_pre.html" title="This class supports inherited classes to collect strings to be translated. " alt="" coords="5,160,204,692"/>
-<area shape="rect" id="node3" href="$class_col_state.html" title="This classe share data between classe &#39;Pre&#39; and &#39;Collector&#39;. " alt="" coords="54,5,155,112"/>
+<area shape="rect" id="node2" href="$class_pre.html" title="This class supports inherited classes to collect strings to be translated. " alt="" coords="5,160,203,692"/>
+<area shape="rect" id="node3" href="$class_col_state.html" title="This classe share data between classe &#39;Pre&#39; and &#39;Collector&#39;. " alt="" coords="54,5,154,112"/>
 </map>
